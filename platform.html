@@ -395,6 +395,50 @@ body {
 .ascii-quote .quote-text { font-size: 0.95rem; color: var(--text); font-style: italic; }
 .ascii-nav { display: flex; gap: 6px; justify-content: center; margin-top: 10px; align-items: center; }
 
+/* ========== 记忆翻牌 ========== */
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  max-width: 360px;
+  margin: 0 auto;
+}
+.memory-card {
+  aspect-ratio: 1;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 2rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.3s, background 0.2s;
+  user-select: none;
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  color: transparent;
+  transform-style: preserve-3d;
+}
+.memory-card:hover { transform: scale(1.05); }
+.memory-card.flipped {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  color: inherit;
+  transform: rotateY(180deg);
+}
+.memory-card.matched {
+  background: #d1fae5;
+  border: 2px solid #10b981;
+  cursor: default;
+  opacity: 0.7;
+}
+.memory-card.matched:hover { transform: none; }
+.memory-stats {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+  color: var(--text-dim);
+}
+.memory-stats span { font-weight: 700; color: var(--text); }
+
 /* ========== 通用按钮 ========== */
 .btn {
   padding: 8px 18px;
@@ -490,6 +534,16 @@ body {
       <div class="tags">字符画 &middot; 每日励志语录</div>
     </div>
   </div>
+
+  <div class="game-card" onclick="openGame('memory')">
+    <div class="thumb memory-svg">
+      <svg viewBox="0 0 56 56"><rect width="56" height="56" fill="#f8fafc" rx="4"/><rect x="4" y="4" width="22" height="22" rx="4" fill="#7c3aed"/><text x="15" y="19" text-anchor="middle" fill="#fff" font-size="12">?</text><rect x="30" y="4" width="22" height="22" rx="4" fill="#d1fae5" stroke="#10b981"/><text x="41" y="19" text-anchor="middle" font-size="12">🐶</text><rect x="4" y="30" width="22" height="22" rx="4" fill="#d1fae5" stroke="#10b981"/><text x="15" y="45" text-anchor="middle" font-size="12">🐶</text><rect x="30" y="30" width="22" height="22" rx="4" fill="#7c3aed"/><text x="41" y="45" text-anchor="middle" fill="#fff" font-size="12">?</text></svg>
+    </div>
+    <div class="info">
+      <div class="name">Memory Match</div>
+      <div class="tags">翻牌配对 &middot; 记忆力挑战</div>
+    </div>
+  </div>
 </div>
 
 <!-- ========== 弹窗遮罩 ========== -->
@@ -515,7 +569,8 @@ function openGame(type) {
     sudoku: 'Sudoku 数独',
     wordsearch: 'Word Search',
     puzzle: 'Number Puzzle',
-    ascii: 'ASCII Art'
+    ascii: 'ASCII Art',
+    memory: 'Memory Match'
   };
   $('#panelTitle').textContent = titles[type];
   const content = $('#panelContent');
@@ -526,6 +581,7 @@ function openGame(type) {
   else if (type === 'wordsearch') initWordSearch(content);
   else if (type === 'puzzle') initPuzzle(content);
   else if (type === 'ascii') initAscii(content);
+  else if (type === 'memory') initMemory(content);
 }
 
 function closeGame(e) {
@@ -940,6 +996,67 @@ function initAscii(container) {
     window.asciiNext = () => { idx = (idx + 1) % arts.length; renderArt(); };
   }
   renderArt();
+}
+
+// ========================= 记忆翻牌 =========================
+function initMemory(container) {
+  const emojis = ['🐶','🐱','🐰','🦊','🐻','🐼','🐨','🐯'];
+  const cards = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+  let flipped = [];      // 当前翻开的卡片索引
+  let matched = new Set(); // 已配对的索引
+  let moves = 0;
+  let lock = false;
+
+  function render() {
+    let html = '<div style="text-align:center;">';
+    html += '<div class="memory-stats">Moves: <span>' + moves + '</span> &nbsp;|&nbsp; Matched: <span>' + matched.size/2 + '</span> / ' + emojis.length + '</div>';
+    html += '<div class="memory-grid">';
+    for (let i = 0; i < cards.length; i++) {
+      let cls = 'memory-card';
+      if (flipped.includes(i) || matched.has(i)) cls += ' flipped';
+      if (matched.has(i)) cls += ' matched';
+      html += '<div class="' + cls + '" data-idx="' + i + '">' + cards[i] + '</div>';
+    }
+    html += '</div>';
+
+    if (matched.size === cards.length) {
+      html += '<div class="maze-win">🎉 全部配对成功！用了 ' + moves + ' 步！</div>';
+    }
+
+    html += '<button class="btn" style="margin-top:12px;" onclick="initMemory(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 新游戏</button>';
+    html += '</div>';
+    container.innerHTML = html;
+
+    container.querySelectorAll('.memory-card').forEach(card => {
+      card.addEventListener('click', () => {
+        if (lock) return;
+        const idx = parseInt(card.dataset.idx);
+        if (flipped.includes(idx) || matched.has(idx)) return;
+        if (flipped.length >= 2) return;
+
+        flipped.push(idx);
+        render();
+
+        if (flipped.length === 2) {
+          moves++;
+          const [a, b] = flipped;
+          if (cards[a] === cards[b]) {
+            matched.add(a); matched.add(b);
+            flipped = [];
+            render();
+          } else {
+            lock = true;
+            setTimeout(() => {
+              flipped = [];
+              lock = false;
+              render();
+            }, 600);
+          }
+        }
+      });
+    });
+  }
+  render();
 }
 
 // ESC 关闭
