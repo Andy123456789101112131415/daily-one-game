@@ -1,0 +1,42 @@
+name: 🎮 每日趣味小游戏
+
+on:
+  schedule:
+    # 每天北京时间 7:00 (UTC 23:00)
+    - cron: '0 23 * * *'
+  # 允许手动触发
+  workflow_dispatch:
+
+jobs:
+  daily-game:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🐍 设置Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 🎲 生成今日小游戏
+        run: python daily_game.py
+
+      - name: 📝 提交并推送
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+
+          # 获取当前日期作为commit消息
+          DATE=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M')
+          
+          git add output/ TODAY.md
+          git diff --staged --quiet || (
+            git commit -m "🎮 每日小游戏 - $DATE" &&
+            git push
+          )
