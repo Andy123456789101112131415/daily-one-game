@@ -9,6 +9,7 @@ import re
 import sys
 import json
 import hashlib
+import random
 import requests
 from datetime import date
 from pathlib import Path
@@ -18,8 +19,51 @@ PLATFORM_FILE = BASE_DIR / "platform.html"
 DEEPSEEK_API_URL = "https://api.deepseek.com/chat/completions"
 MODEL = "deepseek-chat"
 
-# 已有的游戏类型
-EXISTING_TYPES = {"maze", "sudoku", "wordsearch", "puzzle", "ascii", "memory"}
+# 固化的内置游戏类型（永远保留）
+BUILTIN_TYPES = {"maze", "sudoku", "wordsearch", "puzzle", "ascii", "memory"}
+
+# 创意种子池
+IDEA_POOL = [
+    "经典街机游戏（如打砖块、弹球、太空射击）",
+    "益智解谜游戏（如滑块拼图、华容道、数独变体）",
+    "反应速度类游戏（点击测试、颜色判断、节奏游戏）",
+    "记忆类游戏（翻牌配对、序列记忆、图案回忆）",
+    "文字游戏（拼字、填词、猜单词）",
+    "数学逻辑游戏（算术挑战、数字推理、方程式）",
+    "休闲小游戏（钓鱼、种菜、养宠物模拟）",
+    "策略对战（井字棋、四子棋、简易卡牌对战）",
+    "物理模拟（弹射、碰撞、重力感应）",
+    "音乐节奏类（按键节拍、简易音游）",
+]
+
+
+def get_existing_types():
+    """扫描 platform.html，返回所有已存在的游戏类型名"""
+    html = PLATFORM_FILE.read_text(encoding="utf-8")
+    types = set(BUILTIN_TYPES)
+    # 只匹配标题映射中的缩进格式: "    typename: 'Title',"
+    for m in re.finditer(r"\n\s{4}(\w+):\s*'[^']*',", html):
+        name = m.group(1)
+        # 过滤 JS 关键字
+        if name not in ("if","else","var","let","const","function","return",
+                        "new","this","true","false","null","typeof","for","while"):
+            types.add(name)
+    return types
+
+
+def make_unique_type(idea, existing):
+    """生成不与已有类型冲突的唯一类型名"""
+    base = "g" + hashlib.md5(idea.encode()).hexdigest()[:8]
+    if base not in existing:
+        return base
+    # 冲突则加后缀
+    for i in range(2, 100):
+        candidate = f"{base}_{i}"
+        if candidate not in existing:
+            return candidate
+    # 极端情况下用时间戳
+    import time
+    return f"g{int(time.time())}"
 
 # 创意种子池——每天随机选一个方向
 IDEA_POOL = [
@@ -36,25 +80,23 @@ IDEA_POOL = [
 ]
 
 
-def get_today_idea():
-    """根据日期生成今日创意方向"""
+def get_today_idea(existing_types):
+    """根据日期生成今日创意方向，并告知AI已有游戏避免重复"""
     today = date.today()
-    import random
     random.seed(today.toordinal())
     category = random.choice(IDEA_POOL)
-    # 加一点随机变化
     twists = [
-        "要有计分系统",
-        "难度逐渐递增",
-        "加入道具或技能",
-        "限时挑战模式",
-        "加入排行榜风格显示",
-        "有combo连击奖励",
-        "支持键盘和鼠标两种操作",
-        "画面简洁但有趣",
+        "要有计分系统", "难度逐渐递增", "加入道具或技能",
+        "限时挑战模式", "加入排行榜风格显示", "有combo连击奖励",
+        "支持键盘和鼠标两种操作", "画面简洁但有趣",
     ]
     twist = random.choice(twists)
-    return f"做一个{category}的游戏，{twist}"
+
+    # 列出已有游戏类型，让AI避免重复
+    existing_list = sorted(existing_types)
+    avoid_hint = f"注意：平台已有这些游戏类型名（{', '.join(existing_list)}），请确保新游戏的类型名不重复，游戏玩法也不要和已有游戏雷同。"
+
+    return f"做一个{category}的游戏，{twist}。{avoid_hint}"
 
 
 def build_prompt(idea):
@@ -148,7 +190,11 @@ def main():
         print("❌ 未设置 DEEPSEEK_API_KEY 环境变量")
         sys.exit(1)
 
-    idea = get_today_idea()
+    # 扫描已有游戏，确保不重复
+    existing = get_existing_types()
+    print(f"📋 已有 {len(existing)} 个游戏类型: {sorted(existing)}")
+
+    idea = get_today_idea(existing)
     print(f"💡 今日创意: {idea}")
 
     result = call_api(api_key, idea)
@@ -156,9 +202,11 @@ def main():
     css = result["css"]
     js_init = result["js_init"]
 
-    print(f"✅ 生成成功: {title}")
+    # 确保类型名不重复
+    type_name = make_unique_type(title + idea, existing)
+    existing.add(type_name)
 
-    type_name = "g" + hashlib.md5(idea.encode()).hexdigest()[:8]
+    print(f"✅ 生成成功: {title}（类型名: {type_name}）")
 
     html = PLATFORM_FILE.read_text(encoding="utf-8")
     html = insert_game(html, type_name, title, css, js_init)
@@ -166,11 +214,10 @@ def main():
 
     print(f"✅ 已插入 platform.html")
 
-    # 写 TODAY.md
     today = date.today()
     (BASE_DIR / "TODAY.md").write_text(
         f"# 今日游戏: {title}\n\n> {idea}\n\n"
-        f"打开 platform.html 即可游玩！\n", encoding="utf-8")
+        f"类型名: `{type_name}`\n打开 platform.html 即可游玩！\n", encoding="utf-8")
 
     print("✅ 完成！准备提交...")
 
