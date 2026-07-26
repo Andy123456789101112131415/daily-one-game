@@ -152,6 +152,60 @@ def call_api(api_key, idea):
     return json.loads(content)
 
 
+def review_and_fix(api_key, title, css, js_init):
+    """第二步：AI自检——审查代码找bug并修复"""
+    review_prompt = f"""你是代码审查专家。下面是一个网页游戏的代码，请检查并修复所有bug。
+
+游戏名: {title}
+
+【CSS代码】
+{css[:2000]}
+
+【JS代码】
+{js_init[:3000]}
+
+请找出以下问题并修复：
+1. 变量未定义或拼写错误
+2. 事件监听器未正确绑定
+3. 游戏逻辑漏洞（如分数不更新、无法胜利等）
+4. CSS布局问题（元素重叠、超出边界等）
+5. 缺少"🔄 新游戏"按钮或重置功能
+
+只返回JSON: {{"css":"修复后的CSS","js_init":"修复后的JS","changes":"修改说明"}}
+如果代码没有问题，返回原始代码并在changes中写"无需修改"。"""
+
+    print("🔍 第二步：AI 审查代码找bug...")
+    resp = requests.post(DEEPSEEK_API_URL, headers={
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    }, json={
+        "model": MODEL,
+        "messages": [
+            {"role": "system", "content": "你是代码审查专家。只返回JSON。"},
+            {"role": "user", "content": review_prompt}
+        ],
+        "temperature": 0.3,
+        "max_tokens": 4096,
+        "response_format": {"type": "json_object"},
+    }, timeout=120)
+
+    if resp.status_code != 200:
+        print(f"⚠️ 审查API失败，使用原始代码: {resp.status_code}")
+        return css, js_init, "审查跳过"
+
+    content = resp.json()["choices"][0]["message"]["content"]
+    content = re.sub(r'^```json\s*', '', content.strip())
+    content = re.sub(r'\s*```$', '', content.strip())
+    try:
+        result = json.loads(content)
+        changes = result.get("changes", "")
+        print(f"   📝 {changes}")
+        return result.get("css", css), result.get("js_init", js_init), changes
+    except json.JSONDecodeError:
+        print("⚠️ 审查结果解析失败，使用原始代码")
+        return css, js_init, "解析失败"
+
+
 def insert_game(html, type_name, title, css, js_init):
     """插入游戏到 platform.html"""
     # CSS
@@ -190,36 +244,59 @@ def main():
         print("❌ 未设置 DEEPSEEK_API_KEY 环境变量")
         sys.exit(1)
 
-    # 扫描已有游戏，确保不重复
+    # 扫描已有游戏
     existing = get_existing_types()
-    print(f"📋 已有 {len(existing)} 个游戏类型: {sorted(existing)}")
+    print(f"📋 已有 {len(existing)} 个游戏")
 
+    # ========== 第一步：AI 制作游戏 ==========
     idea = get_today_idea(existing)
-    print(f"💡 今日创意: {idea}")
+    print(f"\n🎨 第一步：AI 制作游戏")
+    print(f"💡 创意: {idea}")
 
     result = call_api(api_key, idea)
     title = result["title"]
     css = result["css"]
     js_init = result["js_init"]
 
-    # 确保类型名不重复
     type_name = make_unique_type(title + idea, existing)
     existing.add(type_name)
+    print(f"✅ 生成: {title}（{type_name}）")
 
-    print(f"✅ 生成成功: {title}（类型名: {type_name}）")
-
+    # 插入并第一次提交
     html = PLATFORM_FILE.read_text(encoding="utf-8")
     html = insert_game(html, type_name, title, css, js_init)
     PLATFORM_FILE.write_text(html, encoding="utf-8")
 
-    print(f"✅ 已插入 platform.html")
+    os.system(f'git add platform.html && git commit -m "🎨 新游戏: {title}" && git push')
+    print("📦 第一次提交: 游戏创建完成")
 
+    # ========== 第二步：AI 审查修复 ==========
+    print(f"\n🔍 第二步：AI 审查并修复 bug")
+    fixed_css, fixed_js, changes = review_and_fix(api_key, title, css, js_init)
+
+    # 如果代码有变化，更新并第二次提交
+    if changes and "无需修改" not in changes and "解析失败" not in changes and "跳过" not in changes:
+        html = PLATFORM_FILE.read_text(encoding="utf-8")
+        # 替换旧CSS和JS
+        html = html.replace(css, fixed_css)
+        html = html.replace(js_init, fixed_js)
+        PLATFORM_FILE.write_text(html, encoding="utf-8")
+
+        os.system(f'git add platform.html && git commit -m "🔧 审查修复: {changes[:50]}" && git push')
+        print(f"📦 第二次提交: 修复完成 - {changes}")
+    else:
+        print("✅ 代码无需修复，跳过第二次提交")
+
+    # 更新 TODAY.md
     today = date.today()
     (BASE_DIR / "TODAY.md").write_text(
         f"# 今日游戏: {title}\n\n> {idea}\n\n"
-        f"类型名: `{type_name}`\n打开 platform.html 即可游玩！\n", encoding="utf-8")
+        f"类型名: `{type_name}`\n"
+        f"审查结果: {changes}\n\n"
+        f"打开 platform.html 即可游玩！\n", encoding="utf-8")
 
-    print("✅ 完成！准备提交...")
+    os.system(f'git add TODAY.md && git commit -m "📋 更新今日记录" && git push')
+    print(f"\n🎉 完成！今日游戏「{title}」已上线（含自检修复）")
 
 
 if __name__ == "__main__":
