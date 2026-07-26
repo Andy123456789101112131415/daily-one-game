@@ -25,3 +25,8 @@ env/
 # 不需要版本控制的输出
 # output/ 可以保留，想看历史的话就注释掉下面这行
 # output/
+
+# 🔐 密钥和本地脚本（绝不提交！）
+.env
+make_game.py
+ideas.txt
