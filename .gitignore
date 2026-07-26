@@ -30,3 +30,4 @@ env/
 .env
 make_game.py
 ideas.txt
+# auto_game.py 需要提交到仓库，供 GitHub Actions 使用

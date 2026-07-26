@@ -1,10 +1,9 @@
-name: 🎮 每日趣味小游戏
+name: 🤖 每日AI造游戏
 
 on:
   schedule:
     # 每天北京时间 7:00 (UTC 23:00)
     - cron: '0 23 * * *'
-  # 允许手动触发
   workflow_dispatch:
 
 jobs:
@@ -24,19 +23,21 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 🎲 生成今日小游戏
-        run: python daily_game.py
+      - name: 📦 安装依赖
+        run: pip install requests
+
+      - name: 🤖 AI生成新游戏
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: python auto_game.py
 
       - name: 📝 提交并推送
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-
-          # 获取当前日期作为commit消息
           DATE=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M')
-          
-          git add output/ TODAY.md
+          git add platform.html TODAY.md
           git diff --staged --quiet || (
-            git commit -m "🎮 每日小游戏 - $DATE" &&
+            git commit -m "🤖 AI新游戏 - $DATE" &&
             git push
           )
