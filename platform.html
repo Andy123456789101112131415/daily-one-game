@@ -1112,7 +1112,7 @@ function init_gae84ccb5(container) {
   function reset() {
     if (spawnTimer) clearInterval(spawnTimer);
     if (gameLoop) cancelAnimationFrame(gameLoop);
-    if (keyHandler) container.removeEventListener('keydown', keyHandler);
+    if (keyHandler) document.removeEventListener('keydown', keyHandler);
     state = { score: 0, combo: 0, maxCombo: 0, notes: [], noteId: 0, playing: true, timeLeft: DURATION };
     buildHTML();
     bindEvents();
@@ -1120,15 +1120,13 @@ function init_gae84ccb5(container) {
   }
 
   function bindEvents() {
-    // 键盘
     var keyMap = { 'd': 0, 'f': 1, 'j': 2, 'k': 3 };
     keyHandler = function(e) {
       var lane = keyMap[e.key.toLowerCase()];
       if (lane !== undefined) { e.preventDefault(); hit(lane); }
     };
-    container.addEventListener('keydown', keyHandler);
+    document.addEventListener('keydown', keyHandler);
 
-    // 点击按键
     var keys = container.querySelectorAll('.rt-key2');
     for (var i = 0; i < keys.length; i++) {
       keys[i].addEventListener('mousedown', function(e) {
@@ -1141,7 +1139,11 @@ function init_gae84ccb5(container) {
     if (!state.playing) return;
     // 按键动画
     var keyEl = container.querySelector('.rt-key2[data-lane="' + lane + '"]');
-    if (keyEl) { keyEl.style.background = '#e2e8f0'; keyEl.style.borderColor = '#7c3aed'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; }, 100); }
+    if (keyEl) { keyEl.style.background = '#d1fae5'; keyEl.style.borderColor = '#10b981'; keyEl.style.color = '#059669'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 120); }
+
+    // 轨道闪光
+    var laneEl = container.querySelector('#rt-lane2-' + lane);
+    if (laneEl) { laneEl.style.boxShadow = '0 0 12px rgba(16,185,129,0.4)'; laneEl.style.borderColor = '#10b981'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 150); }
 
     // 找该轨道最接近底部的音符
     var notes = state.notes.filter(function(n) { return n.lane === lane && !n.hit && !n.miss; });
@@ -1156,10 +1158,12 @@ function init_gae84ccb5(container) {
     if (bestDist < 30) { // Perfect
       best.hit = true; state.score += 10; state.combo++;
       if (state.combo > state.maxCombo) state.maxCombo = state.combo;
+      if (best.el) { best.el.style.background = '#f59e0b'; best.el.style.transform = 'translateX(-50%) scale(1.5)'; best.el.style.boxShadow = '0 0 20px rgba(245,158,11,0.6)'; }
       showFB('Perfect!', '#f59e0b');
     } else if (bestDist < 60) { // Good
       best.hit = true; state.score += 5; state.combo++;
       if (state.combo > state.maxCombo) state.maxCombo = state.combo;
+      if (best.el) { best.el.style.background = '#10b981'; best.el.style.transform = 'translateX(-50%) scale(1.5)'; best.el.style.boxShadow = '0 0 20px rgba(16,185,129,0.6)'; }
       showFB('Good', '#10b981');
     } else { // Miss
       state.combo = 0;
