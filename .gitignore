@@ -29,5 +29,4 @@ env/
 # 🔐 密钥和本地脚本（绝不提交！）
 .env
 make_game.py
-ideas.txt
-# auto_game.py 需要提交到仓库，供 GitHub Actions 使用
+# ideas.txt 需要提交到仓库，供 GitHub Actions 每日读取

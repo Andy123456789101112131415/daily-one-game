@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 🤖 每日自动游戏生成器 - GitHub Actions 每天7:00运行
-自己生成创意 → 调用 DeepSeek → 插入 platform.html → 自动推送
+从 ideas.txt 读取创意 → 调用 DeepSeek → 插入 platform.html → 自动推送
 """
 
 import os
@@ -9,42 +9,26 @@ import re
 import sys
 import json
 import hashlib
-import random
 import requests
 from datetime import date
 from pathlib import Path
 
 BASE_DIR = Path(__file__).parent
 PLATFORM_FILE = BASE_DIR / "platform.html"
+IDEAS_FILE = BASE_DIR / "ideas.txt"
 DEEPSEEK_API_URL = "https://api.deepseek.com/chat/completions"
 MODEL = "deepseek-chat"
 
 # 固化的内置游戏类型（永远保留）
 BUILTIN_TYPES = {"maze", "sudoku", "wordsearch", "puzzle", "ascii", "memory"}
 
-# 创意种子池
-IDEA_POOL = [
-    "经典街机游戏（如打砖块、弹球、太空射击）",
-    "益智解谜游戏（如滑块拼图、华容道、数独变体）",
-    "反应速度类游戏（点击测试、颜色判断、节奏游戏）",
-    "记忆类游戏（翻牌配对、序列记忆、图案回忆）",
-    "文字游戏（拼字、填词、猜单词）",
-    "数学逻辑游戏（算术挑战、数字推理、方程式）",
-    "休闲小游戏（钓鱼、种菜、养宠物模拟）",
-    "策略对战（井字棋、四子棋、简易卡牌对战）",
-    "物理模拟（弹射、碰撞、重力感应）",
-    "音乐节奏类（按键节拍、简易音游）",
-]
-
 
 def get_existing_types():
     """扫描 platform.html，返回所有已存在的游戏类型名"""
     html = PLATFORM_FILE.read_text(encoding="utf-8")
     types = set(BUILTIN_TYPES)
-    # 只匹配标题映射中的缩进格式: "    typename: 'Title',"
     for m in re.finditer(r"\n\s{4}(\w+):\s*'[^']*',", html):
         name = m.group(1)
-        # 过滤 JS 关键字
         if name not in ("if","else","var","let","const","function","return",
                         "new","this","true","false","null","typeof","for","while"):
             types.add(name)
@@ -56,47 +40,34 @@ def make_unique_type(idea, existing):
     base = "g" + hashlib.md5(idea.encode()).hexdigest()[:8]
     if base not in existing:
         return base
-    # 冲突则加后缀
     for i in range(2, 100):
         candidate = f"{base}_{i}"
         if candidate not in existing:
             return candidate
-    # 极端情况下用时间戳
     import time
     return f"g{int(time.time())}"
 
-# 创意种子池——每天随机选一个方向
-IDEA_POOL = [
-    "经典街机游戏（如打砖块、弹球、太空射击）",
-    "益智解谜游戏（如滑块拼图、华容道、数独变体）",
-    "反应速度类游戏（点击测试、颜色判断、节奏游戏）",
-    "记忆类游戏（翻牌配对、序列记忆、图案回忆）",
-    "文字游戏（拼字、填词、猜单词）",
-    "数学逻辑游戏（算术挑战、数字推理、方程式）",
-    "休闲小游戏（钓鱼、种菜、养宠物模拟）",
-    "策略对战（井字棋、四子棋、简易卡牌对战）",
-    "物理模拟（弹射、碰撞、重力感应）",
-    "音乐节奏类（按键节拍、简易音游）",
-]
+
+def read_idea():
+    """读取 ideas.txt 第一行创意"""
+    if not IDEAS_FILE.exists():
+        print("⚠️ ideas.txt 不存在，使用默认创意")
+        return "做一个有趣的网页小游戏", None
+
+    lines = [l.strip() for l in IDEAS_FILE.read_text(encoding="utf-8").splitlines() if l.strip()]
+    if not lines:
+        print("⚠️ ideas.txt 已空，使用默认创意")
+        return "做一个有趣的网页小游戏", None
+    return lines[0], lines
 
 
-def get_today_idea(existing_types):
-    """根据日期生成今日创意方向，并告知AI已有游戏避免重复"""
-    today = date.today()
-    random.seed(today.toordinal())
-    category = random.choice(IDEA_POOL)
-    twists = [
-        "要有计分系统", "难度逐渐递增", "加入道具或技能",
-        "限时挑战模式", "加入排行榜风格显示", "有combo连击奖励",
-        "支持键盘和鼠标两种操作", "画面简洁但有趣",
-    ]
-    twist = random.choice(twists)
-
-    # 列出已有游戏类型，让AI避免重复
-    existing_list = sorted(existing_types)
-    avoid_hint = f"注意：平台已有这些游戏类型名（{', '.join(existing_list)}），请确保新游戏的类型名不重复，游戏玩法也不要和已有游戏雷同。"
-
-    return f"做一个{category}的游戏，{twist}。{avoid_hint}"
+def remove_first_idea(lines):
+    """移除第一行创意并写回"""
+    if lines is None:
+        return
+    remaining = lines[1:]
+    IDEAS_FILE.write_text("\n".join(remaining) + "\n" if remaining else "", encoding="utf-8")
+    print(f"📝 已消耗创意，剩余 {len(remaining)} 个")
 
 
 def build_prompt(idea):
@@ -118,7 +89,7 @@ def build_prompt(idea):
 7. 🏆 反馈：胜利/失败有庆祝或提示动画，分数实时更新
 8. 🐛 健壮：变量声明完整、事件绑定在container内、边界条件处理。container是函数参数直接用，不要document.getElementById重新获取！
 9. 🔁 可重玩：每次🔄都是全新随机对局
-10. 🧹 代码干净：CSS类名加前缀防冲突，JS不用eval/外部依赖。函数体末尾只一个}，不要多余括号。
+10. 🧹 代码干净：CSS类名加前缀防冲突，JS不用eval/外部依赖。函数体末尾只一个右花括号，不要多余括号。
 
 【配色方案】
 主色：#7c3aed(紫) #06b6d4(青) #10b981(绿) #f59e0b(金) #ef4444(红)
@@ -252,8 +223,8 @@ def main():
     existing = get_existing_types()
     print(f"📋 已有 {len(existing)} 个游戏")
 
-    # ========== 第一步：AI 制作游戏 ==========
-    idea = get_today_idea(existing)
+    # 从 ideas.txt 读取创意
+    idea, lines = read_idea()
     print(f"\n🎨 第一步：AI 制作游戏")
     print(f"💡 创意: {idea}")
 
@@ -274,29 +245,30 @@ def main():
     os.system(f'git add platform.html && git commit -m "🎨 新游戏: {title}" && git push')
     print("📦 第一次提交: 游戏创建完成")
 
-    # ========== 第二步：AI 审查修复 ==========
+    # 第二步：AI 审查修复
     print(f"\n🔍 第二步：AI 审查并修复 bug")
     fixed_css, fixed_js, changes = review_and_fix(api_key, title, css, js_init)
 
-    # 如果代码有变化，更新并第二次提交
     if changes and "无需修改" not in changes and "解析失败" not in changes and "跳过" not in changes:
         html = PLATFORM_FILE.read_text(encoding="utf-8")
-        # 替换旧CSS和JS
         html = html.replace(css, fixed_css)
         html = html.replace(js_init, fixed_js)
         PLATFORM_FILE.write_text(html, encoding="utf-8")
-
         os.system(f'git add platform.html && git commit -m "🔧 审查修复: {changes[:50]}" && git push')
         print(f"📦 第二次提交: 修复完成 - {changes}")
     else:
         print("✅ 代码无需修复，跳过第二次提交")
 
+    # 消耗创意
+    if lines is not None:
+        remove_first_idea(lines)
+        os.system(f'git add ideas.txt')
+
     # 更新 TODAY.md
     today = date.today()
     (BASE_DIR / "TODAY.md").write_text(
         f"# 今日游戏: {title}\n\n> {idea}\n\n"
-        f"类型名: `{type_name}`\n"
-        f"审查结果: {changes}\n\n"
+        f"类型名: `{type_name}`\n审查: {changes}\n\n"
         f"打开 platform.html 即可游玩！\n", encoding="utf-8")
 
     os.system(f'git add TODAY.md && git commit -m "📋 更新今日记录" && git push')
