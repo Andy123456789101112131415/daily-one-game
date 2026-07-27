@@ -1137,17 +1137,18 @@ function init_gae84ccb5(container) {
 
   function hit(lane) {
     if (!state.playing) return;
-    // 按键动画
     var keyEl = container.querySelector('.rt-key2[data-lane="' + lane + '"]');
-    if (keyEl) { keyEl.style.background = '#d1fae5'; keyEl.style.borderColor = '#10b981'; keyEl.style.color = '#059669'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 120); }
-
-    // 轨道闪光
     var laneEl = container.querySelector('#rt-lane2-' + lane);
-    if (laneEl) { laneEl.style.boxShadow = '0 0 12px rgba(16,185,129,0.4)'; laneEl.style.borderColor = '#10b981'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 150); }
 
     // 找该轨道最接近底部的音符
     var notes = state.notes.filter(function(n) { return n.lane === lane && !n.hit && !n.miss; });
-    if (notes.length === 0) { state.combo = 0; updateUI(); showFB('Miss', '#ef4444'); return; }
+    if (notes.length === 0) {
+      // 空按 — 红色
+      state.combo = 0;
+      if (keyEl) { keyEl.style.background = '#fee2e2'; keyEl.style.borderColor = '#ef4444'; keyEl.style.color = '#dc2626'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 150); }
+      if (laneEl) { laneEl.style.boxShadow = '0 0 12px rgba(239,68,68,0.4)'; laneEl.style.borderColor = '#ef4444'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
+      updateUI(); showFB('Miss', '#ef4444'); return;
+    }
 
     var best = notes[0], bestDist = Math.abs(best.y - 235);
     for (var i = 1; i < notes.length; i++) {
@@ -1155,18 +1156,24 @@ function init_gae84ccb5(container) {
       if (d < bestDist) { best = notes[i]; bestDist = d; }
     }
 
-    if (bestDist < 30) { // Perfect
+    if (bestDist < 30) { // Perfect — 绿色
       best.hit = true; state.score += 10; state.combo++;
       if (state.combo > state.maxCombo) state.maxCombo = state.combo;
-      if (best.el) { best.el.style.background = '#f59e0b'; best.el.style.transform = 'translateX(-50%) scale(1.5)'; best.el.style.boxShadow = '0 0 20px rgba(245,158,11,0.6)'; }
-      showFB('Perfect!', '#f59e0b');
-    } else if (bestDist < 60) { // Good
+      if (best.el) { best.el.style.background = '#10b981'; best.el.style.transform = 'translateX(-50%) scale(1.6)'; best.el.style.boxShadow = '0 0 24px rgba(16,185,129,0.7)'; }
+      if (keyEl) { keyEl.style.background = '#d1fae5'; keyEl.style.borderColor = '#10b981'; keyEl.style.color = '#059669'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 120); }
+      if (laneEl) { laneEl.style.boxShadow = '0 0 14px rgba(16,185,129,0.5)'; laneEl.style.borderColor = '#10b981'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
+      showFB('Perfect!', '#10b981');
+    } else if (bestDist < 60) { // Good — 绿色
       best.hit = true; state.score += 5; state.combo++;
       if (state.combo > state.maxCombo) state.maxCombo = state.combo;
-      if (best.el) { best.el.style.background = '#10b981'; best.el.style.transform = 'translateX(-50%) scale(1.5)'; best.el.style.boxShadow = '0 0 20px rgba(16,185,129,0.6)'; }
-      showFB('Good', '#10b981');
-    } else { // Miss
+      if (best.el) { best.el.style.background = '#34d399'; best.el.style.transform = 'translateX(-50%) scale(1.3)'; best.el.style.boxShadow = '0 0 16px rgba(16,185,129,0.5)'; }
+      if (keyEl) { keyEl.style.background = '#d1fae5'; keyEl.style.borderColor = '#34d399'; keyEl.style.color = '#059669'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 120); }
+      if (laneEl) { laneEl.style.boxShadow = '0 0 10px rgba(16,185,129,0.35)'; laneEl.style.borderColor = '#34d399'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
+      showFB('Good', '#34d399');
+    } else { // Miss — 红色
       state.combo = 0;
+      if (keyEl) { keyEl.style.background = '#fee2e2'; keyEl.style.borderColor = '#ef4444'; keyEl.style.color = '#dc2626'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 150); }
+      if (laneEl) { laneEl.style.boxShadow = '0 0 12px rgba(239,68,68,0.4)'; laneEl.style.borderColor = '#ef4444'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
       showFB('Miss', '#ef4444');
     }
     updateUI();
@@ -1202,7 +1209,11 @@ function init_gae84ccb5(container) {
       }
       n.y += 1.8;
       if (n.el) n.el.style.top = n.y + 'px';
-      if (n.y > 290) { n.miss = true; state.combo = 0; updateUI(); showFB('Miss', '#ef4444'); }
+      if (n.y > 290) {
+        n.miss = true; state.combo = 0;
+        if (n.el) { n.el.style.background = '#ef4444'; n.el.style.boxShadow = '0 0 12px rgba(239,68,68,0.5)'; }
+        updateUI(); showFB('Miss', '#ef4444');
+      }
     }
   }
 
