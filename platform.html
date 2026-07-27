@@ -609,7 +609,7 @@ function openGame(type) {
     wordsearch: 'Word Search',
     puzzle: 'Number Puzzle',
     ascii: 'ASCII Art',
-    memory: 'Memory Match'
+    memory: 'Memory Match',
         gae84ccb5: 'RhythmTap 节奏点',
     <!-- ANCHOR:TITLE -->
   };
@@ -1105,9 +1105,6 @@ function initMemory(container) {
 
 // ======== RhythmTap 节奏点 ========
 function init_gae84ccb5(container) {
-function() {
-  var container = document.getElementById('rhythmtap-container');
-  if (!container) return;
   container.innerHTML = '';
   var state = {
     score: 0,
@@ -1326,7 +1323,6 @@ function() {
     state.gameLoop = requestAnimationFrame(gameLoop);
   }
   startGame();
-}
 }
 
 <!-- ANCHOR:JS -->
