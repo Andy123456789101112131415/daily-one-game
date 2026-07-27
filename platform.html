@@ -440,6 +440,39 @@ body {
 }
 .memory-stats span { font-weight: 700; color: var(--text); }
 
+
+/* ======== RhythmTap 节奏点 ======== */
+#rhythmtap-container * {box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;}
+#rhythmtap-container {background:#f8f9fc;width:680px;max-width:100%;margin:0 auto;padding:20px;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,0.05);}
+#rhythmtap-container .rt-header {display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+#rhythmtap-container .rt-title {font-size:24px;font-weight:600;color:#1e293b;}
+#rhythmtap-container .rt-score {font-size:20px;color:#7c3aed;font-weight:600;}
+#rhythmtap-container .rt-combo {font-size:16px;color:#64748b;margin-left:10px;}
+#rhythmtap-container .rt-lanes {display:flex;justify-content:center;gap:12px;padding:20px 0;}
+#rhythmtap-container .rt-lane {position:relative;width:70px;height:300px;background:#ffffff;border:2px solid #e2e8f0;border-radius:12px;overflow:hidden;}
+#rhythmtap-container .rt-lane.active {border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,0.2);}
+#rhythmtap-container .rt-note {position:absolute;left:50%;transform:translateX(-50%);width:50px;height:50px;border-radius:25px;background:#10b981;transition:top 0.05s linear;opacity:0.9;}
+#rhythmtap-container .rt-note.hit {background:#06b6d4;transform:translateX(-50%) scale(1.2);}
+#rhythmtap-container .rt-note.miss {background:#ef4444;opacity:0.5;}
+#rhythmtap-container .rt-target {position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:54px;height:54px;border:3px dashed #e2e8f0;border-radius:27px;pointer-events:none;}
+#rhythmtap-container .rt-target.hit {border-color:#06b6d4;background:rgba(6,182,212,0.15);}
+#rhythmtap-container .rt-keys {display:flex;justify-content:center;gap:12px;margin:20px 0;}
+#rhythmtap-container .rt-key {width:70px;height:50px;background:#ffffff;border:2px solid #e2e8f0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600;color:#64748b;cursor:pointer;user-select:none;}
+#rhythmtap-container .rt-key.active {background:#7c3aed;color:#ffffff;border-color:#7c3aed;}
+#rhythmtap-container .rt-controls {display:flex;justify-content:center;gap:12px;margin-top:20px;}
+#rhythmtap-container .rt-btn {padding:10px 24px;border:2px solid #e2e8f0;border-radius:8px;background:#ffffff;color:#1e293b;font-size:16px;cursor:pointer;transition:all 0.2s;}
+#rhythmtap-container .rt-btn:hover {background:#f1f5f9;}
+#rhythmtap-container .rt-btn.primary {background:#7c3aed;color:#ffffff;border-color:#7c3aed;}
+#rhythmtap-container .rt-btn.primary:hover {background:#6d28d9;}
+#rhythmtap-container .rt-result {text-align:center;padding:30px;}
+#rhythmtap-container .rt-result h2 {font-size:28px;color:#1e293b;margin-bottom:10px;}
+#rhythmtap-container .rt-result p {font-size:18px;color:#64748b;}
+#rhythmtap-container .rt-hidden {display:none;}
+#rhythmtap-container .rt-feedback {position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:48px;font-weight:700;pointer-events:none;animation:rtPop 0.3s ease-out;}
+@keyframes rtPop {0% {transform:translate(-50%,-50%) scale(0.5);opacity:0;} 100% {transform:translate(-50%,-50%) scale(1);opacity:1;}}
+#rhythmtap-container .rt-celebration {position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+#rhythmtap-container .rt-particle {position:absolute;width:8px;height:8px;border-radius:50%;animation:rtParticle 1s ease-out forwards;}
+@keyframes rtParticle {0% {opacity:1;transform:translateY(0) scale(1);} 100% {opacity:0;transform:translateY(-100px) scale(0);}}
 <!-- ANCHOR:CSS -->
 /* ========== 通用按钮 ========== */
 .btn {
@@ -546,6 +579,13 @@ body {
       <div class="tags">翻牌配对 &middot; 记忆力挑战</div>
     </div>
   </div>
+  <div class="game-card" onclick="openGame('gae84ccb5')">
+    <div class="thumb" style="background:linear-gradient(135deg,#6366f1,#818cf8);display:flex;align-items:center;justify-content:center;font-size:1.3rem;">🎲</div>
+    <div class="info">
+      <div class="name">RhythmTap 节奏点</div>
+      <div class="tags">今日新游戏 &middot; AI生成</div>
+    </div>
+  </div>
 <!-- ANCHOR:CARD -->
 </div>
 
@@ -574,6 +614,7 @@ function openGame(type) {
     puzzle: 'Number Puzzle',
     ascii: 'ASCII Art',
     memory: 'Memory Match'
+        gae84ccb5: 'RhythmTap 节奏点',
     <!-- ANCHOR:TITLE -->
   };
   $('#panelTitle').textContent = titles[type];
@@ -586,6 +627,7 @@ function openGame(type) {
   else if (type === 'puzzle') initPuzzle(content);
   else if (type === 'ascii') initAscii(content);
   else if (type === 'memory') initMemory(content);
+    else if (type === 'gae84ccb5') init_gae84ccb5(content);
   <!-- ANCHOR:DISPATCH -->
 }
 
@@ -1062,6 +1104,256 @@ function initMemory(container) {
     });
   }
   render();
+}
+
+
+// ======== RhythmTap 节奏点 ========
+function init_gae84ccb5(container) {
+function() {
+  var container = document.getElementById('rhythmtap-container');
+  if (!container) return;
+  // 清空容器
+  container.innerHTML = '';
+  // 状态
+  var state = {
+    score: 0,
+    combo: 0,
+    maxCombo: 0,
+    isPlaying: false,
+    notes: [],
+    noteId: 0,
+    lanes: [0,1,2,3], // 4 lanes
+    speed: 2, // px per frame
+    spawnInterval: 800, // ms
+    spawnTimer: null,
+    gameLoop: null,
+    keys: ['d','f','j','k'],
+    activeKey: null
+  };
+  // 创建UI
+  var header = document.createElement('div');
+  header.className = 'rt-header';
+  header.innerHTML = '<div class="rt-title">RhythmTap 节奏点</div><div><span class="rt-score" id="rt-score">0</span><span class="rt-combo" id="rt-combo"></span></div>';
+  container.appendChild(header);
+  var lanesDiv = document.createElement('div');
+  lanesDiv.className = 'rt-lanes';
+  for (var i = 0; i < 4; i++) {
+    var lane = document.createElement('div');
+    lane.className = 'rt-lane';
+    lane.id = 'rt-lane-' + i;
+    var target = document.createElement('div');
+    target.className = 'rt-target';
+    target.id = 'rt-target-' + i;
+    lane.appendChild(target);
+    lanesDiv.appendChild(lane);
+  }
+  container.appendChild(lanesDiv);
+  var keysDiv = document.createElement('div');
+  keysDiv.className = 'rt-keys';
+  var keyLabels = ['D','F','J','K'];
+  for (var i = 0; i < 4; i++) {
+    var key = document.createElement('div');
+    key.className = 'rt-key';
+    key.id = 'rt-key-' + i;
+    key.textContent = keyLabels[i];
+    key.dataset.lane = i;
+    key.addEventListener('mousedown', function(e) { handleKeyPress(parseInt(e.currentTarget.dataset.lane)); });
+    keysDiv.appendChild(key);
+  }
+  container.appendChild(keysDiv);
+  var controls = document.createElement('div');
+  controls.className = 'rt-controls';
+  var restartBtn = document.createElement('button');
+  restartBtn.className = 'rt-btn primary';
+  restartBtn.textContent = '🔄 重来';
+  restartBtn.addEventListener('click', resetGame);
+  controls.appendChild(restartBtn);
+  container.appendChild(controls);
+  // 结果区域
+  var resultDiv = document.createElement('div');
+  resultDiv.className = 'rt-result rt-hidden';
+  resultDiv.id = 'rt-result';
+  container.appendChild(resultDiv);
+  // 反馈元素
+  var feedback = document.createElement('div');
+  feedback.className = 'rt-feedback rt-hidden';
+  feedback.id = 'rt-feedback';
+  container.appendChild(feedback);
+  // 键盘监听
+  document.addEventListener('keydown', function(e) {
+    var key = e.key.toLowerCase();
+    var lane = state.keys.indexOf(key);
+    if (lane !== -1) {
+      e.preventDefault();
+      handleKeyPress(lane);
+    }
+    if (key === 'r' || key === 'r') { resetGame(); }
+  });
+  // 函数定义
+  function handleKeyPress(lane) {
+    if (!state.isPlaying) return;
+    var keyEl = document.getElementById('rt-key-' + lane);
+    keyEl.classList.add('active');
+    setTimeout(function() { keyEl.classList.remove('active'); }, 150);
+    var laneEl = document.getElementById('rt-lane-' + lane);
+    laneEl.classList.add('active');
+    setTimeout(function() { laneEl.classList.remove('active'); }, 100);
+    // 检测命中
+    var notesInLane = [];
+    for (var i = 0; i < state.notes.length; i++) {
+      if (state.notes[i].lane === lane) {
+        notesInLane.push(state.notes[i]);
+      }
+    }
+    var hit = false;
+    for (var i = 0; i < notesInLane.length; i++) {
+      var note = notesInLane[i];
+      var noteEl = document.getElementById('rt-note-' + note.id);
+      if (!noteEl) continue;
+      var noteBottom = parseInt(noteEl.style.top.replace('px','')) + 50;
+      var targetBottom = 20 + 54; // target top + height? Actually target bottom is 20+54=74
+      var diff = Math.abs(noteBottom - (20 + 54));
+      if (diff < 40) {
+        // 命中
+        hit = true;
+        state.score += 10 + state.combo;
+        state.combo++;
+        if (state.combo > state.maxCombo) state.maxCombo = state.combo;
+        note.hit = true;
+        noteEl.classList.add('hit');
+        noteEl.style.background = '#06b6d4';
+        var targetEl = document.getElementById('rt-target-' + lane);
+        targetEl.classList.add('hit');
+        setTimeout(function() { targetEl.classList.remove('hit'); }, 200);
+        showFeedback('+' + (10 + state.combo - 1));
+        updateScore();
+        // 移除note
+        setTimeout(function(noteId) {
+          var el = document.getElementById('rt-note-' + noteId);
+          if (el) el.remove();
+        }, 200, note.id);
+        state.notes.splice(state.notes.indexOf(note), 1);
+        break;
+      }
+    }
+    if (!hit) {
+      // miss
+      state.combo = 0;
+      showFeedback('Miss');
+      updateScore();
+    }
+  }
+  function showFeedback(text) {
+    var fb = document.getElementById('rt-feedback');
+    fb.textContent = text;
+    fb.className = 'rt-feedback';
+    fb.style.color = text === 'Miss' ? '#ef4444' : '#10b981';
+    setTimeout(function() { fb.className = 'rt-feedback rt-hidden'; }, 300);
+  }
+  function updateScore() {
+    document.getElementById('rt-score').textContent = state.score;
+    var comboEl = document.getElementById('rt-combo');
+    if (state.combo > 1) {
+      comboEl.textContent = state.combo + ' combo';
+    } else {
+      comboEl.textContent = '';
+    }
+  }
+  function spawnNote() {
+    if (!state.isPlaying) return;
+    var lane = Math.floor(Math.random() * 4);
+    var noteId = state.noteId++;
+    var note = { id: noteId, lane: lane, top: -50, hit: false };
+    state.notes.push(note);
+    var laneEl = document.getElementById('rt-lane-' + lane);
+    var noteEl = document.createElement('div');
+    noteEl.className = 'rt-note';
+    noteEl.id = 'rt-note-' + noteId;
+    noteEl.style.top = '-50px';
+    laneEl.appendChild(noteEl);
+  }
+  function gameLoop() {
+    if (!state.isPlaying) return;
+    for (var i = state.notes.length - 1; i >= 0; i--) {
+      var note = state.notes[i];
+      var noteEl = document.getElementById('rt-note-' + note.id);
+      if (!noteEl) {
+        state.notes.splice(i, 1);
+        continue;
+      }
+      var top = parseInt(noteEl.style.top.replace('px','')) + state.speed;
+      noteEl.style.top = top + 'px';
+      // 检查是否超出底部（miss）
+      if (top > 300) {
+        // miss
+        state.combo = 0;
+        updateScore();
+        noteEl.remove();
+        state.notes.splice(i, 1);
+      }
+    }
+    // 检查胜利条件：分数达到500或时间结束？这里设定目标分数500
+    if (state.score >= 500) {
+      endGame(true);
+    }
+  }
+  function endGame(win) {
+    state.isPlaying = false;
+    clearInterval(state.spawnTimer);
+    cancelAnimationFrame(state.gameLoop);
+    var resultDiv = document.getElementById('rt-result');
+    resultDiv.className = 'rt-result';
+    if (win) {
+      resultDiv.innerHTML = '<h2>🎉 完美!</h2><p>得分: ' + state.score + ' | 最大连击: ' + state.maxCombo + '</p>';
+      // 庆祝粒子
+      for (var i = 0; i < 30; i++) {
+        var particle = document.createElement('div');
+        particle.className = 'rt-particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.background = ['#7c3aed','#06b6d4','#10b981','#f59e0b','#ef4444'][Math.floor(Math.random()*5)];
+        container.appendChild(particle);
+        setTimeout(function(p) { p.remove(); }, 1000, particle);
+      }
+    } else {
+      resultDiv.innerHTML = '<h2>😞 继续加油</h2><p>得分: ' + state.score + ' | 最大连击: ' + state.maxCombo + '</p>';
+    }
+  }
+  function resetGame() {
+    // 停止游戏
+    state.isPlaying = false;
+    clearInterval(state.spawnTimer);
+    cancelAnimationFrame(state.gameLoop);
+    // 重置状态
+    state.score = 0;
+    state.combo = 0;
+    state.maxCombo = 0;
+    state.notes = [];
+    state.noteId = 0;
+    // 清除note元素
+    var notes = container.querySelectorAll('.rt-note');
+    for (var i = 0; i < notes.length; i++) { notes[i].remove(); }
+    // 清除粒子
+    var particles = container.querySelectorAll('.rt-particle');
+    for (var i = 0; i < particles.length; i++) { particles[i].remove(); }
+    // 隐藏结果
+    document.getElementById('rt-result').className = 'rt-result rt-hidden';
+    // 更新UI
+    updateScore();
+    // 开始游戏
+    state.isPlaying = true;
+    state.spawnTimer = setInterval(spawnNote, state.spawnInterval);
+    function step() {
+      gameLoop();
+      if (state.isPlaying) {
+        state.gameLoop = requestAnimationFrame(step);
+      }
+    }
+    state.gameLoop = requestAnimationFrame(step);
+  }
+  // 启动游戏
+  resetGame();
+}
 }
 
 <!-- ANCHOR:JS -->
