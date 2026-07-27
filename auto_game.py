@@ -77,7 +77,7 @@ def build_prompt(idea):
 【游戏创意】{idea}
 
 【输出要求】
-返回严格的JSON格式：{{"title":"中英文游戏名","css":"CSS代码","js_init":"JS函数体"}}
+返回JSON：{{"title":"中英文游戏名","icon":"2字缩写如SN/BB/MM","tags":"8字内描述如方向键控制·吃果变长","css":"CSS代码","js_init":"JS函数体"}}
 
 【用户的游戏设计偏好——必须遵守】
 1. 🎨 UI风格：纯白/极浅灰背景(#f8f9fc)，简洁现代，拒绝花哨。卡片白底+轻阴影+细边框(#e2e8f0)
@@ -181,19 +181,25 @@ def review_and_fix(api_key, title, css, js_init):
         return css, js_init, "解析失败"
 
 
-def insert_game(html, type_name, title, css, js_init):
+def insert_game(html, type_name, title, icon, tags, css, js_init):
     """插入游戏到 platform.html"""
+    # 卡片缩略图颜色
+    colors = ['#7c3aed','#06b6d4','#10b981','#f59e0b','#ef4444','#6366f1']
+    color = colors[hash(type_name) % len(colors)]
+
     # CSS
     html = html.replace("<!-- ANCHOR:CSS -->",
         f"\n/* ======== {title} ======== */\n{css}\n<!-- ANCHOR:CSS -->")
 
     # 卡片
+    icon_html = icon if icon else title[:2]
+    tags_html = tags if tags else "AI生成 &middot; 每日新游戏"
     html = html.replace("<!-- ANCHOR:CARD -->",
         f"""  <div class="game-card" onclick="openGame('{type_name}')">
-    <div class="thumb" style="background:linear-gradient(135deg,#6366f1,#818cf8);display:flex;align-items:center;justify-content:center;font-size:1.3rem;">🎲</div>
+    <div class="thumb" style="background:{color};display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;color:#fff;">{icon_html}</div>
     <div class="info">
       <div class="name">{title}</div>
-      <div class="tags">今日新游戏 &middot; AI生成</div>
+      <div class="tags">{tags_html}</div>
     </div>
   </div>
 <!-- ANCHOR:CARD -->""")
@@ -230,16 +236,18 @@ def main():
 
     result = call_api(api_key, idea)
     title = result["title"]
+    icon = result.get("icon", title[:2])
+    tags = result.get("tags", "AI生成")
     css = result["css"]
     js_init = result["js_init"]
 
     type_name = make_unique_type(title + idea, existing)
     existing.add(type_name)
-    print(f"✅ 生成: {title}（{type_name}）")
+    print(f"✅ 生成: {title} [{icon}] {tags}（{type_name}）")
 
     # 插入并第一次提交
     html = PLATFORM_FILE.read_text(encoding="utf-8")
-    html = insert_game(html, type_name, title, css, js_init)
+    html = insert_game(html, type_name, title, icon, tags, css, js_init)
     PLATFORM_FILE.write_text(html, encoding="utf-8")
 
     os.system(f'git add platform.html && git commit -m "🎨 新游戏: {title}" && git push')
