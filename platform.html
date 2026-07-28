@@ -444,6 +444,9 @@ body {
 /* ======== RhythmTap 节奏点 ======== */
 .rt-lane2 .rt-note-hit { background: #06b6d4 !important; transform: translateX(-50%) scale(1.3) !important; transition: all 0.1s; }
 .rt-key2:active { background: #e2e8f0 !important; border-color: #7c3aed !important; }
+
+/* ======== 贪吃蛇 ======== */
+.snake-game-container { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8f9fc; width: 680px; max-width: 100%; margin: 0 auto; padding: 20px; box-sizing: border-box; } .snake-game-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 20px; display: flex; gap: 16px; align-items: center; } .snake-game-thumb { width: 56px; height: 56px; border-radius: 8px; overflow: hidden; flex-shrink: 0; } .snake-game-info { flex: 1; } .snake-game-title { font-size: 20px; font-weight: 600; color: #1e293b; margin: 0; } .snake-game-tags { font-size: 14px; color: #64748b; margin-top: 2px; } .snake-game-score { text-align: center; font-size: 24px; font-weight: 700; color: #7c3aed; margin: 16px 0; } .snake-game-canvas-wrap { display: flex; justify-content: center; margin: 12px 0; } .snake-game-canvas { border: 2px solid #e2e8f0; border-radius: 8px; background: #ffffff; } .snake-game-controls { text-align: center; } .snake-game-btn { background: #7c3aed; color: #ffffff; border: none; border-radius: 8px; padding: 10px 24px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.2s; } .snake-game-btn:hover { background: #6d28d9; } .snake-game-message { text-align: center; font-size: 18px; font-weight: 600; color: #ef4444; margin-top: 12px; min-height: 28px; }
 <!-- ANCHOR:CSS -->
 /* ========== 通用按钮 ========== */
 .btn {
@@ -557,6 +560,13 @@ body {
       <div class="tags">节奏音游 &middot; D/F/J/K按键</div>
     </div>
   </div>
+  <div class="game-card" onclick="openGame('g1b8a479c')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc' rx='4'/><rect x='12' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='20' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='28' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='36' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='44' y='20' width='8' height='8' fill='#ef4444' rx='2'/></svg></div>
+    <div class="info">
+      <div class="name">贪吃蛇</div>
+      <div class="tags">经典小游戏</div>
+    </div>
+  </div>
 <!-- ANCHOR:CARD -->
 </div>
 
@@ -586,6 +596,7 @@ function openGame(type) {
     ascii: 'ASCII Art',
     memory: 'Memory Match',
         gae84ccb5: 'RhythmTap 节奏点',
+        g1b8a479c: '贪吃蛇',
     <!-- ANCHOR:TITLE -->
   };
   $('#panelTitle').textContent = titles[type];
@@ -599,6 +610,7 @@ function openGame(type) {
   else if (type === 'ascii') initAscii(content);
   else if (type === 'memory') initMemory(content);
     else if (type === 'gae84ccb5') init_gae84ccb5(content);
+    else if (type === 'g1b8a479c') init_g1b8a479c(content);
   <!-- ANCHOR:DISPATCH -->
 }
 
@@ -1257,6 +1269,12 @@ function init_gae84ccb5(container) {
   }
 
   reset();
+}
+
+
+// ======== 贪吃蛇 ========
+function init_g1b8a479c(container) {
+function(container) { var gridSize = 20; var cellSize = 20; var canvas = document.createElement('canvas'); canvas.className = 'snake-game-canvas'; canvas.width = gridSize * cellSize; canvas.height = gridSize * cellSize; var ctx = canvas.getContext('2d'); var scoreDisplay = document.createElement('div'); scoreDisplay.className = 'snake-game-score'; scoreDisplay.textContent = '0'; var messageDiv = document.createElement('div'); messageDiv.className = 'snake-game-message'; var controlsDiv = document.createElement('div'); controlsDiv.className = 'snake-game-controls'; var restartBtn = document.createElement('button'); restartBtn.className = 'snake-game-btn'; restartBtn.textContent = '重新开始'; controlsDiv.appendChild(restartBtn); var canvasWrap = document.createElement('div'); canvasWrap.className = 'snake-game-canvas-wrap'; canvasWrap.appendChild(canvas); var cardDiv = document.createElement('div'); cardDiv.className = 'snake-game-card'; var thumbDiv = document.createElement('div'); thumbDiv.className = 'snake-game-thumb'; thumbDiv.innerHTML = "<svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc' rx='4'/><rect x='12' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='20' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='28' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='36' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='44' y='20' width='8' height='8' fill='#ef4444' rx='2'/></svg>"; var infoDiv = document.createElement('div'); infoDiv.className = 'snake-game-info'; var titleP = document.createElement('p'); titleP.className = 'snake-game-title'; titleP.textContent = '贪吃蛇'; var tagsP = document.createElement('p'); tagsP.className = 'snake-game-tags'; tagsP.textContent = '经典小游戏'; infoDiv.appendChild(titleP); infoDiv.appendChild(tagsP); cardDiv.appendChild(thumbDiv); cardDiv.appendChild(infoDiv); container.innerHTML = ''; container.appendChild(cardDiv); container.appendChild(scoreDisplay); container.appendChild(canvasWrap); container.appendChild(controlsDiv); container.appendChild(messageDiv); var snake = [{x:10, y:10}]; var food = {x:15, y:15}; var direction = 'right'; var nextDirection = 'right'; var score = 0; var gameOver = false; var win = false; var gameInterval = null; function randomFood() { var free = []; for (var i=0; i<gridSize; i++) { for (var j=0; j<gridSize; j++) { var occupied = false; for (var k=0; k<snake.length; k++) { if (snake[k].x === i && snake[k].y === j) { occupied = true; break; } } if (!occupied) { free.push({x:i, y:j}); } } } if (free.length === 0) { win = true; gameOver = true; clearInterval(gameInterval); gameInterval = null; messageDiv.textContent = '恭喜你赢了！'; return null; } var idx = Math.floor(Math.random() * free.length); return free[idx]; } function draw() { ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height); ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 0.5; for (var i=0; i<=gridSize; i++) { ctx.beginPath(); ctx.moveTo(i*cellSize, 0); ctx.lineTo(i*cellSize, canvas.height); ctx.stroke(); ctx.beginPath(); ctx.moveTo(0, i*cellSize); ctx.lineTo(canvas.width, i*cellSize); ctx.stroke(); } ctx.fillStyle = '#10b981'; for (var j=0; j<snake.length; j++) { ctx.fillRect(snake[j].x*cellSize+1, snake[j].y*cellSize+1, cellSize-2, cellSize-2); } ctx.fillStyle = '#ef4444'; ctx.fillRect(food.x*cellSize+1, food.y*cellSize+1, cellSize-2, cellSize-2); } function move() { if (gameOver) return; var head = snake[0]; var newHead = {x: head.x, y: head.y}; switch(direction) { case 'up': newHead.y--; break; case 'down': newHead.y++; break; case 'left': newHead.x--; break; case 'right': newHead.x++; break; } if (newHead.x < 0 || newHead.x >= gridSize || newHead.y < 0 || newHead.y >= gridSize) { gameOver = true; clearInterval(gameInterval); gameInterval = null; messageDiv.textContent = '撞墙了！游戏结束'; draw(); return; } for (var i=0; i<snake.length; i++) { if (snake[i].x === newHead.x && snake[i].y === newHead.y) { gameOver = true; clearInterval(gameInterval); gameInterval = null; messageDiv.textContent = '撞到自己了！游戏结束'; draw(); return; } } var ate = (newHead.x === food.x && newHead.y === food.y); snake.unshift(newHead); if (ate) { score++; scoreDisplay.textContent = score; var newFood = randomFood(); if (newFood === null) { gameOver = true; win = true; clearInterval(gameInterval); gameInterval = null; messageDiv.textContent = '恭喜你赢了！'; draw(); return; } food = newFood; } else { snake.pop(); } draw(); } function resetGame() { if (gameInterval) { clearInterval(gameInterval); gameInterval = null; } snake = [{x:10, y:10}]; food = {x:15, y:15}; direction = 'right'; nextDirection = 'right'; score = 0; gameOver = false; win = false; scoreDisplay.textContent = '0'; messageDiv.textContent = ''; draw(); gameInterval = setInterval(move, 150); } function handleKey(e) { e.preventDefault(); var key = e.key; if (gameOver) return; if (key === 'ArrowUp' && direction !== 'down') { nextDirection = 'up'; } else if (key === 'ArrowDown' && direction !== 'up') { nextDirection = 'down'; } else if (key === 'ArrowLeft' && direction !== 'right') { nextDirection = 'left'; } else if (key === 'ArrowRight' && direction !== 'left') { nextDirection = 'right'; } } function gameLoop() { if (!gameOver) { direction = nextDirection; move(); } } restartBtn.addEventListener('click', resetGame); document.addEventListener('keydown', handleKey); resetGame(); }
 }
 
 <!-- ANCHOR:JS -->
