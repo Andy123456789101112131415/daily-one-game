@@ -447,6 +447,9 @@ body {
 
 /* ======== 贪吃蛇 ======== */
 .snake-game-container { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8f9fc; width: 680px; max-width: 100%; margin: 0 auto; padding: 20px; box-sizing: border-box; } .snake-game-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 20px; display: flex; gap: 16px; align-items: center; } .snake-game-thumb { width: 56px; height: 56px; border-radius: 8px; overflow: hidden; flex-shrink: 0; } .snake-game-info { flex: 1; } .snake-game-title { font-size: 20px; font-weight: 600; color: #1e293b; margin: 0; } .snake-game-tags { font-size: 14px; color: #64748b; margin-top: 2px; } .snake-game-score { text-align: center; font-size: 24px; font-weight: 700; color: #7c3aed; margin: 16px 0; } .snake-game-canvas-wrap { display: flex; justify-content: center; margin: 12px 0; } .snake-game-canvas { border: 2px solid #e2e8f0; border-radius: 8px; background: #ffffff; } .snake-game-controls { text-align: center; } .snake-game-btn { background: #7c3aed; color: #ffffff; border: none; border-radius: 8px; padding: 10px 24px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.2s; } .snake-game-btn:hover { background: #6d28d9; } .snake-game-message { text-align: center; font-size: 18px; font-weight: 600; color: #ef4444; margin-top: 12px; min-height: 28px; }
+
+/* ======== Breakout Bricks ======== */
+.brk-container { width: 100%; max-width: 680px; margin: 0 auto; background: #f8f9fc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: #1e293b; } .brk-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; } .brk-score { font-size: 18px; font-weight: 600; } .brk-btn { background: #7c3aed; color: white; border: none; border-radius: 6px; padding: 8px 16px; font-size: 14px; cursor: pointer; font-family: inherit; } .brk-btn:hover { background: #6d28d9; } .brk-canvas-wrap { position: relative; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; } .brk-canvas-wrap canvas { display: block; width: 100%; height: auto; } .brk-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(255,255,255,0.8); color: #1e293b; font-size: 24px; font-weight: 600; } .brk-overlay .brk-sub { font-size: 16px; font-weight: 400; margin-top: 8px; } .brk-overlay .brk-btn { margin-top: 16px; }
 <!-- ANCHOR:CSS -->
 /* ========== 通用按钮 ========== */
 .btn {
@@ -567,6 +570,13 @@ body {
       <div class="tags">经典小游戏</div>
     </div>
   </div>
+  <div class="game-card" onclick="openGame('g1819fe04')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc' rx='4'/><rect x='4' y='4' width='10' height='6' fill='#7c3aed' rx='1'/><rect x='16' y='4' width='10' height='6' fill='#06b6d4' rx='1'/><rect x='28' y='4' width='10' height='6' fill='#10b981' rx='1'/><rect x='40' y='4' width='10' height='6' fill='#f59e0b' rx='1'/><rect x='10' y='14' width='10' height='6' fill='#ef4444' rx='1'/><rect x='22' y='14' width='10' height='6' fill='#7c3aed' rx='1'/><rect x='34' y='14' width='10' height='6' fill='#06b6d4' rx='1'/><circle cx='28' cy='34' r='3' fill='#1e293b'/><rect x='18' y='44' width='20' height='4' fill='#64748b' rx='2'/></svg></div>
+    <div class="info">
+      <div class="name">Breakout Bricks</div>
+      <div class="tags">打砖块小游戏</div>
+    </div>
+  </div>
 <!-- ANCHOR:CARD -->
 </div>
 
@@ -597,6 +607,7 @@ function openGame(type) {
     memory: 'Memory Match',
         gae84ccb5: 'RhythmTap 节奏点',
         g1b8a479c: '贪吃蛇',
+        g1819fe04: 'Breakout Bricks',
     <!-- ANCHOR:TITLE -->
   };
   $('#panelTitle').textContent = titles[type];
@@ -611,6 +622,7 @@ function openGame(type) {
   else if (type === 'memory') initMemory(content);
     else if (type === 'gae84ccb5') init_gae84ccb5(content);
     else if (type === 'g1b8a479c') init_g1b8a479c(content);
+    else if (type === 'g1819fe04') init_g1819fe04(content);
   <!-- ANCHOR:DISPATCH -->
 }
 
@@ -1477,6 +1489,199 @@ function init_g1b8a479c(container) {
         clearInterval(gameInterval);
         document.removeEventListener('keydown', keydownHandler);
     };
+
+
+// ======== Breakout Bricks ========
+function init_g1819fe04(container) {
+  const scoreEl = container.querySelector('.brk-score');
+  const canvas = container.querySelector('canvas');
+  const overlay = container.querySelector('.brk-overlay');
+  const restartBtn = container.querySelector('.brk-btn');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+  function resize() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    W = rect.width;
+    H = W * 0.75;
+    canvas.width = W;
+    canvas.height = H;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Game state
+  const paddleWidth = 80;
+  const paddleHeight = 10;
+  const ballRadius = 6;
+  const brickRowCount = 5;
+  const brickColCount = 7;
+  const brickWidth = 60;
+  const brickHeight = 16;
+  const brickPadding = 6;
+  const brickOffsetTop = 30;
+  const brickOffsetLeft = (W - (brickColCount * (brickWidth + brickPadding) - brickPadding)) / 2;
+  let paddleX = (W - paddleWidth) / 2;
+  let ballX = W / 2;
+  let ballY = H - 30;
+  let ballDX = 3;
+  let ballDY = -3;
+  let score = 0;
+  let gameOver = false;
+  let gameWin = false;
+  let running = false;
+  let bricks = [];
+
+  function initBricks() {
+    bricks = [];
+    const colors = ['#7c3aed','#06b6d4','#10b981','#f59e0b','#ef4444'];
+    for (let r = 0; r < brickRowCount; r++) {
+      bricks[r] = [];
+      for (let c = 0; c < brickColCount; c++) {
+        bricks[r][c] = { x: 0, y: 0, status: 1, color: colors[r] };
+      }
+    }
+  }
+  initBricks();
+
+  function drawBricks() {
+    for (let r = 0; r < brickRowCount; r++) {
+      for (let c = 0; c < brickColCount; c++) {
+        if (bricks[r][c].status === 1) {
+          const brickX = brickOffsetLeft + c * (brickWidth + brickPadding);
+          const brickY = brickOffsetTop + r * (brickHeight + brickPadding);
+          bricks[r][c].x = brickX;
+          bricks[r][c].y = brickY;
+          ctx.fillStyle = bricks[r][c].color;
+          ctx.fillRect(brickX, brickY, brickWidth, brickHeight);
+          ctx.strokeStyle = '#e2e8f0';
+          ctx.strokeRect(brickX, brickY, brickWidth, brickHeight);
+        }
+      }
+    }
+  }
+
+  function drawPaddle() {
+    ctx.fillStyle = '#64748b';
+    ctx.fillRect(paddleX, H - paddleHeight, paddleWidth, paddleHeight);
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.strokeRect(paddleX, H - paddleHeight, paddleWidth, paddleHeight);
+  }
+
+  function drawBall() {
+    ctx.beginPath();
+    ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+    ctx.fillStyle = '#1e293b';
+    ctx.fill();
+    ctx.closePath();
+  }
+
+  function collisionDetection() {
+    for (let r = 0; r < brickRowCount; r++) {
+      for (let c = 0; c < brickColCount; c++) {
+        const b = bricks[r][c];
+        if (b.status === 1) {
+          if (ballX > b.x && ballX < b.x + brickWidth && ballY > b.y && ballY < b.y + brickHeight) {
+            ballDY = -ballDY;
+            b.status = 0;
+            score += 10;
+            scoreEl.textContent = score;
+            if (score === brickRowCount * brickColCount * 10) {
+              gameWin = true;
+              running = false;
+              overlay.style.display = 'flex';
+              overlay.innerHTML = '<div>🎉 You Win!</div><div class="brk-sub">Score: ' + score + '</div>';
+            }
+          }
+        }
+      }
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    drawBricks();
+    drawPaddle();
+    drawBall();
+    collisionDetection();
+
+    // Ball movement
+    if (ballX + ballDX > W - ballRadius || ballX + ballDX < ballRadius) {
+      ballDX = -ballDX;
+    }
+    if (ballY + ballDY < ballRadius) {
+      ballDY = -ballDY;
+    } else if (ballY + ballDY > H - ballRadius) {
+      // Paddle hit?
+      if (ballX > paddleX && ballX < paddleX + paddleWidth) {
+        ballDY = -ballDY;
+        ballY = H - paddleHeight - ballRadius;
+      } else {
+        // Game over
+        gameOver = true;
+        running = false;
+        overlay.style.display = 'flex';
+        overlay.innerHTML = '<div>Game Over</div><div class="brk-sub">Score: ' + score + '</div>';
+      }
+    }
+    ballX += ballDX;
+    ballY += ballDY;
+
+    if (running) {
+      requestAnimationFrame(draw);
+    }
+  }
+
+  function startGame() {
+    running = true;
+    gameOver = false;
+    gameWin = false;
+    overlay.style.display = 'none';
+    score = 0;
+    scoreEl.textContent = '0';
+    initBricks();
+    paddleX = (W - paddleWidth) / 2;
+    ballX = W / 2;
+    ballY = H - 30;
+    ballDX = 3 * (Math.random() > 0.5 ? 1 : -1);
+    ballDY = -3;
+    draw();
+  }
+
+  // Mouse control
+  canvas.addEventListener('mousemove', function(e) {
+    const rect = canvas.getBoundingClientRect();
+    let mouseX = e.clientX - rect.left;
+    if (mouseX < 0) mouseX = 0;
+    if (mouseX > W) mouseX = W;
+    paddleX = mouseX - paddleWidth / 2;
+    if (paddleX < 0) paddleX = 0;
+    if (paddleX + paddleWidth > W) paddleX = W - paddleWidth;
+  });
+
+  // Keyboard control
+  const keys = {};
+  document.addEventListener('keydown', function(e) {
+    keys[e.key] = true;
+  });
+  document.addEventListener('keyup', function(e) {
+    keys[e.key] = false;
+  });
+  setInterval(function() {
+    if (keys['ArrowLeft'] || keys['a']) {
+      paddleX -= 7;
+      if (paddleX < 0) paddleX = 0;
+    }
+    if (keys['ArrowRight'] || keys['d']) {
+      paddleX += 7;
+      if (paddleX + paddleWidth > W) paddleX = W - paddleWidth;
+    }
+  }, 16);
+
+  restartBtn.addEventListener('click', startGame);
+
+  // Auto start
+  startGame();
+}
 
 <!-- ANCHOR:JS -->
 // ESC 关闭
