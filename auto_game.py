@@ -223,6 +223,51 @@ def insert_game(html, type_name, title, icon, tags, thumb, css, js_init):
     return html
 
 
+def syntax_check(platform_html):
+    """第三步：纯Python语法检查——修复AI常见bug，无需API调用"""
+    fixes = []
+
+    # 1. 双重 function(container) {
+    p1 = r'(function init_\w+\(container\)\s*\{)\s*\n\s*function\s*\(container\)\s*\{'
+    if re.search(p1, platform_html):
+        platform_html = re.sub(p1, r'\1', platform_html)
+        fixes.append("移除双重 function(container){")
+
+    # 2. 函数末尾多余 }
+    p2 = r'(startGame\(\);\s*\n\s*\})\s*\n\s*\}\s*\n\s*\n\s*<!-- ANCHOR:JS'
+    if re.search(p2, platform_html):
+        platform_html = re.sub(p2, r'\1\n\n<!-- ANCHOR:JS', platform_html)
+        fixes.append("移除 startGame 后多余 }")
+
+    # 3. endGame 后多余 }
+    p3 = r'(endGame\(\);\s*\n\s*\})\s*\n\s*\}\s*\n\s*\n\s*<!-- ANCHOR:JS'
+    if re.search(p3, platform_html):
+        platform_html = re.sub(p3, r'\1\n\n<!-- ANCHOR:JS', platform_html)
+        fixes.append("移除 endGame 后多余 }")
+
+    # 4. cleanup 后多余 }
+    p4 = r'(\};\s*\n)\}\s*\n\s*<!-- ANCHOR:JS'
+    if re.search(p4, platform_html):
+        platform_html = re.sub(p4, r'\1\n<!-- ANCHOR:JS', platform_html)
+        fixes.append("移除 cleanup 后多余 }")
+
+    # 5. titles 对象缺少逗号
+    p5 = r"('[^']*')\s*\n\s{8}(\w+):"
+    for m in re.findall(p5, platform_html):
+        old = f"{m[0]}\n        {m[1]}:"
+        new = f"{m[0]},\n        {m[1]}:"
+        if old in platform_html:
+            platform_html = platform_html.replace(old, new)
+            fixes.append(f"补全逗号: {m[0]}")
+
+    if fixes:
+        print(f"🛠  语法检查修复 {len(fixes)} 处: {'; '.join(fixes)}")
+    else:
+        print("✅ 语法检查通过，无需修复")
+
+    return platform_html, fixes
+
+
 def main():
     api_key = os.environ.get("DEEPSEEK_API_KEY")
     if not api_key:
@@ -253,6 +298,9 @@ def main():
     # 插入并第一次提交
     html = PLATFORM_FILE.read_text(encoding="utf-8")
     html = insert_game(html, type_name, title, icon, tags, thumb, css, js_init)
+
+    # 🔍 语法检查
+    html, fixes1 = syntax_check(html)
     PLATFORM_FILE.write_text(html, encoding="utf-8")
 
     os.system(f'git add platform.html && git commit -m "🎨 新游戏: {title}" && git push')
@@ -266,6 +314,12 @@ def main():
         html = PLATFORM_FILE.read_text(encoding="utf-8")
         html = html.replace(css, fixed_css)
         html = html.replace(js_init, fixed_js)
+
+        # 🔍 审查后再次语法检查
+        html, fixes2 = syntax_check(html)
+        if fixes2:
+            changes += " + 语法自动修复"
+
         PLATFORM_FILE.write_text(html, encoding="utf-8")
         os.system(f'git add platform.html && git commit -m "🔧 审查修复: {changes[:50]}" && git push')
         print(f"📦 第二次提交: 修复完成 - {changes}")
