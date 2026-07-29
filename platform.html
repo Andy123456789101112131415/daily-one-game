@@ -5,208 +5,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>每日趣味小游戏</title>
 <style>
-/* ========== 全局样式（浅色主题） ========== */
+/* ========== 全局样式 ========== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 :root {
-  --bg: #f8f9fc;
-  --card-bg: #ffffff;
-  --card-hover: #f0f2ff;
-  --accent: #7c3aed;
-  --accent2: #06b6d4;
-  --text: #1e293b;
-  --text-dim: #64748b;
-  --gold: #f59e0b;
-  --green: #10b981;
-  --red: #ef4444;
-  --border: #e2e8f0;
+  --bg: #f8f9fc; --card-bg: #ffffff; --card-hover: #f0f2ff;
+  --accent: #7c3aed; --accent2: #06b6d4; --text: #1e293b;
+  --text-dim: #64748b; --gold: #f59e0b; --green: #10b981;
+  --red: #ef4444; --border: #e2e8f0;
   --shadow: 0 2px 12px rgba(0,0,0,0.06);
   --shadow-hover: 0 8px 30px rgba(124,58,237,0.12);
 }
-
-body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-}
-
-/* ========== 头部 ========== */
-.header {
-  text-align: center;
-  padding: 36px 20px 16px;
-}
-.header h1 {
-  font-size: 2rem;
-  color: var(--text);
-  margin-bottom: 6px;
-}
-.header h1 span { color: var(--accent); }
+body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+.header { text-align: center; padding: 36px 20px 16px; }
+.header h1 { font-size: 2rem; color: var(--text); margin-bottom: 6px; }
 .header .subtitle { color: var(--text-dim); font-size: 0.95rem; }
-
-/* ========== 游戏卡片网格 ========== */
-.games-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 14px;
-  padding: 16px 32px 48px;
-  max-width: 1050px;
-  margin: 0 auto;
-}
-
-.game-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 16px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: var(--shadow);
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.game-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent);
-  box-shadow: var(--shadow-hover);
-}
-
-.game-card .thumb {
-  width: 56px; height: 56px;
-  border-radius: 6px;
-  flex-shrink: 0;
-  border: 1px solid #e2e8f0;
-  overflow: hidden;
-  position: relative;
-  background: #f8fafc;
-}
+.games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; padding: 16px 32px 48px; max-width: 1050px; margin: 0 auto; }
+.game-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px; cursor: pointer; transition: all 0.2s ease; box-shadow: var(--shadow); display: flex; align-items: center; gap: 14px; }
+.game-card:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: var(--shadow-hover); }
+.game-card .thumb { width: 56px; height: 56px; border-radius: 6px; flex-shrink: 0; border: 1px solid #e2e8f0; overflow: hidden; position: relative; background: #f8fafc; }
 .thumb svg { width: 100%; height: 100%; display: block; }
-/* 迷宫缩略图 */
-.thumb.maze svg { width: 100%; height: 100%; display: block; }
-/* 数独缩略图 */
-.thumb.sudoku {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 1px;
-  background: #94a3b8;
-  padding: 3px;
-}
-.thumb.sudoku span {
-  background: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 9px; font-weight: 700; color: #7c3aed;
-}
-/* 单词搜索缩略图 */
-.thumb.wordsearch {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  gap: 1px;
-  padding: 3px;
-}
-.thumb.wordsearch span {
-  background: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 8px; font-weight: 600; color: #64748b;
-  border: 1px solid #e2e8f0;
-  border-radius: 1px;
-}
-.thumb.wordsearch span.hi { background: #dbeafe; border-color: #93c5fd; color: #2563eb; }
-/* 数字谜题缩略图 */
-.thumb.puzzle {
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column;
-  gap: 2px;
-}
-.thumb.puzzle .eq {
-  font-size: 10px; font-weight: 600; color: #1e293b;
-  font-family: 'Consolas', monospace;
-}
-.thumb.puzzle .ans {
-  width: 20px; height: 14px;
-  border-radius: 3px;
-  border: 1.5px dashed #10b981;
-  background: #d1fae5;
-}
-/* ASCII缩略图 */
-.thumb.ascii {
-  display: flex; align-items: center; justify-content: center;
-  padding: 4px;
-}
-.thumb.ascii pre {
-  font-family: 'Consolas', monospace;
-  font-size: 6px;
-  line-height: 1.2;
-  color: #64748b;
-  margin: 0;
-}
-
 .game-card .info { flex: 1; min-width: 0; }
-.game-card .name {
-  font-size: 0.95rem;
-  font-weight: 700;
-  margin-bottom: 2px;
-  color: var(--text);
-}
-.game-card .tags {
-  font-size: 0.72rem;
-  color: var(--text-dim);
-  line-height: 1.4;
-}
-
-/* ========== 游戏面板（弹窗） ========== */
-.overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  z-index: 100;
-  backdrop-filter: blur(3px);
-}
+.game-card .name { font-size: 0.95rem; font-weight: 700; margin-bottom: 2px; color: var(--text); }
+.game-card .tags { font-size: 0.72rem; color: var(--text-dim); line-height: 1.4; }
+.overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.35); z-index: 100; backdrop-filter: blur(3px); }
 .overlay.active { display: flex; align-items: center; justify-content: center; }
-
-.game-panel {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  width: 92vw;
-  max-width: 680px;
-  max-height: 88vh;
-  overflow-y: auto;
-  padding: 28px;
-  position: relative;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-  animation: slideUp 0.3s ease;
-}
-@keyframes slideUp {
-  from { transform: translateY(30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-.panel-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 18px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--border);
-}
+.game-panel { background: #fff; border: 1px solid var(--border); border-radius: 18px; width: 92vw; max-width: 680px; max-height: 88vh; overflow-y: auto; padding: 28px; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.15); animation: slideUp 0.3s ease; }
+@keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
 .panel-header h2 { font-size: 1.4rem; display: flex; align-items: center; gap: 8px; color: var(--text); }
-.close-btn {
-  width: 34px; height: 34px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: #fff;
-  color: var(--text-dim);
-  font-size: 1.1rem;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s;
-}
+.close-btn { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border); background: #fff; color: var(--text-dim); font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
 .close-btn:hover { background: var(--red); border-color: var(--red); color: #fff; }
+.maze-win { text-align: center; padding: 16px; color: var(--accent); font-size: 1.2rem; font-weight: 700; animation: bounceIn 0.5s ease; }
+@keyframes bounceIn { 0%{transform:scale(0)} 60%{transform:scale(1.12)} 100%{transform:scale(1)} }
+.btn { padding: 8px 18px; border-radius: 8px; border: 1px solid var(--border); background: #fff; color: var(--text); cursor: pointer; font-size: 0.88rem; transition: all 0.15s; font-weight: 500; }
+.btn:hover { border-color: var(--accent); background: #f3eeff; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary:hover { background: #6d28d9; }
+@media (max-width: 600px) { .games-grid { padding: 12px; gap: 10px; grid-template-columns: 1fr 1fr; } .game-card { padding: 12px; gap: 10px; } .game-panel { padding: 18px; width: 96vw; } }
 
+/* ========== 游戏CSS ========== */
+/* === ascii === */
+
+/* === g1819fe04 === */
+/* === g1b8a479c === */
+/* === g1b8a479c === */
+
+/* === gae84ccb5 === */
+/* === maze === */
+/* === maze === */
 /* ========== 迷宫游戏 ========== */
 .maze-container {
   display: flex;
@@ -244,7 +90,16 @@ body {
   animation: bounceIn 0.5s ease;
 }
 @keyframes bounceIn { 0%{transform:scale(0)} 60%{transform:scale(1.12)} 100%{transform:scale(1)} }
+/* === memory === */
 
+/* === puzzle === */
+
+/* === sudoku === */
+/* === memory === */
+/* === puzzle === */
+/* === puzzle === */
+
+/* === sudoku === */
 /* ========== 数独 ========== */
 .sudoku-board {
   display: grid;
@@ -288,218 +143,73 @@ body {
 }
 .sudoku-numpad button:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
 .sudoku-numpad button.erase { color: var(--red); }
+/* === wordsearch === */
+/* === wordsearch === */
 
-/* ========== 单词搜索（英文） ========== */
-.wordsearch-grid {
-  display: grid;
-  gap: 3px;
-  margin: 0 auto;
-  width: fit-content;
-  user-select: none;
-}
-.wordsearch-cell {
-  width: 32px; height: 32px;
-  display: flex; align-items: center; justify-content: center;
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #475569;
-  transition: all 0.1s;
-  text-transform: uppercase;
-}
-.wordsearch-cell:hover { background: #f8fafc; border-color: #cbd5e1; }
-.wordsearch-cell.selecting { background: #dbeafe; border-color: #93c5fd; color: #2563eb; }
-.wordsearch-cell.found { background: #d1fae5; border-color: #6ee7b7; color: #059669; }
-.word-list { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 10px 0; }
-.word-tag {
-  padding: 4px 10px;
-  border-radius: 16px;
-  font-size: 0.8rem;
-  border: 1px solid var(--border);
-  background: #fff;
-  color: var(--text);
-  font-weight: 500;
-  transition: all 0.25s;
-}
-.word-tag.found { background: #d1fae5; border-color: #6ee7b7; color: #059669; text-decoration: line-through; }
-.ws-score { text-align: center; margin: 8px 0; font-size: 1rem; color: var(--text-dim); }
-
-/* ========== 数字谜题 ========== */
-.puzzle-card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 14px;
-}
-.puzzle-card h3 { margin-bottom: 10px; color: var(--accent); font-size: 1.05rem; }
-.puzzle-card .question { font-size: 1rem; line-height: 1.7; margin-bottom: 10px; white-space: pre-line; color: var(--text); }
-.puzzle-input { display: flex; gap: 8px; align-items: center; }
-.puzzle-input input {
-  flex: 1;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #fff;
-  color: var(--text);
-  font-size: 1rem;
-}
-.puzzle-input input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(124,58,237,0.1); }
-.puzzle-input button {
-  padding: 10px 18px;
-  border-radius: 8px;
-  border: none;
-  background: var(--accent);
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.puzzle-input button:hover { background: #6d28d9; }
-.puzzle-feedback {
-  margin-top: 8px;
-  padding: 10px;
-  border-radius: 8px;
-  font-weight: 600;
-  display: none;
-  font-size: 0.9rem;
-}
-.puzzle-feedback.correct { display: block; background: #d1fae5; color: #059669; }
-.puzzle-feedback.wrong { display: block; background: #fee2e2; color: #dc2626; }
-.puzzle-feedback .hint-text { font-weight: 400; font-size: 0.85rem; margin-top: 4px; color: var(--text-dim); }
-.puzzle-progress { text-align: center; margin-bottom: 14px; color: var(--text-dim); font-size: 0.9rem; }
-
-/* ========== ASCII艺术 ========== */
-.ascii-display {
-  background: #f8fafc;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  font-family: 'Consolas', 'Courier New', monospace;
-  white-space: pre;
-  line-height: 1.6;
-  font-size: 0.85rem;
-  overflow-x: auto;
-  color: var(--text);
-}
-.ascii-quote {
-  text-align: center;
-  margin-top: 14px;
-  padding: 14px;
-  background: #f3eeff;
-  border-radius: 10px;
-  border-left: 3px solid var(--accent);
-}
-.ascii-quote .quote-text { font-size: 0.95rem; color: var(--text); font-style: italic; }
-.ascii-nav { display: flex; gap: 6px; justify-content: center; margin-top: 10px; align-items: center; }
-
-/* ========== 记忆翻牌 ========== */
-.memory-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  max-width: 360px;
-  margin: 0 auto;
-}
-.memory-card {
-  aspect-ratio: 1;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 2rem;
-  display: flex; align-items: center; justify-content: center;
-  transition: transform 0.3s, background 0.2s;
-  user-select: none;
-  background: linear-gradient(135deg, #7c3aed, #a78bfa);
-  color: transparent;
-  transform-style: preserve-3d;
-}
-.memory-card:hover { transform: scale(1.05); }
-.memory-card.flipped {
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  color: inherit;
-  transform: rotateY(180deg);
-}
-.memory-card.matched {
-  background: #d1fae5;
-  border: 2px solid #10b981;
-  cursor: default;
-  opacity: 0.7;
-}
-.memory-card.matched:hover { transform: none; }
-.memory-stats {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  margin-bottom: 14px;
-  font-size: 0.95rem;
-  color: var(--text-dim);
-}
-.memory-stats span { font-weight: 700; color: var(--text); }
-
-
-/* ======== RhythmTap 节奏点 ======== */
-.rt-lane2 .rt-note-hit { background: #06b6d4 !important; transform: translateX(-50%) scale(1.3) !important; transition: all 0.1s; }
-.rt-key2:active { background: #e2e8f0 !important; border-color: #7c3aed !important; }
-
-/* ======== 贪吃蛇 ======== */
-.snake-game-container { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8f9fc; width: 680px; max-width: 100%; margin: 0 auto; padding: 20px; box-sizing: border-box; } .snake-game-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 20px; display: flex; gap: 16px; align-items: center; } .snake-game-thumb { width: 56px; height: 56px; border-radius: 8px; overflow: hidden; flex-shrink: 0; } .snake-game-info { flex: 1; } .snake-game-title { font-size: 20px; font-weight: 600; color: #1e293b; margin: 0; } .snake-game-tags { font-size: 14px; color: #64748b; margin-top: 2px; } .snake-game-score { text-align: center; font-size: 24px; font-weight: 700; color: #7c3aed; margin: 16px 0; } .snake-game-canvas-wrap { display: flex; justify-content: center; margin: 12px 0; } .snake-game-canvas { border: 2px solid #e2e8f0; border-radius: 8px; background: #ffffff; } .snake-game-controls { text-align: center; } .snake-game-btn { background: #7c3aed; color: #ffffff; border: none; border-radius: 8px; padding: 10px 24px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.2s; } .snake-game-btn:hover { background: #6d28d9; } .snake-game-message { text-align: center; font-size: 18px; font-weight: 600; color: #ef4444; margin-top: 12px; min-height: 28px; }
-
-/* ======== Breakout Bricks ======== */
-.brk-container { width: 100%; max-width: 680px; margin: 0 auto; background: #f8f9fc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: #1e293b; } .brk-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; } .brk-score { font-size: 18px; font-weight: 600; } .brk-btn { background: #7c3aed; color: white; border: none; border-radius: 6px; padding: 8px 16px; font-size: 14px; cursor: pointer; font-family: inherit; } .brk-btn:hover { background: #6d28d9; } .brk-canvas-wrap { position: relative; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; } .brk-canvas-wrap canvas { display: block; width: 100%; height: auto; } .brk-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(255,255,255,0.8); color: #1e293b; font-size: 24px; font-weight: 600; } .brk-overlay .brk-sub { font-size: 16px; font-weight: 400; margin-top: 8px; } .brk-overlay .brk-btn { margin-top: 16px; }
-<!-- ANCHOR:CSS -->
-/* ========== 通用按钮 ========== */
-.btn {
-  padding: 8px 18px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #fff;
-  color: var(--text);
-  cursor: pointer;
-  font-size: 0.88rem;
-  transition: all 0.15s;
-  font-weight: 500;
-}
-.btn:hover { border-color: var(--accent); background: #f3eeff; }
-.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-.btn.primary:hover { background: #6d28d9; }
-.btn.small { padding: 5px 12px; font-size: 0.78rem; }
-
-/* ========== 响应式 ========== */
-@media (max-width: 600px) {
-  .games-grid { padding: 12px; gap: 10px; grid-template-columns: 1fr 1fr; }
-  .game-card { padding: 12px; gap: 10px; }
-  .game-card .thumb { width: 42px; height: 42px; border-radius: 5px; }
-  .game-card .name { font-size: 0.85rem; }
-  .game-card .tags { font-size: 0.68rem; }
-  .game-panel { padding: 18px; width: 96vw; }
-  .sudoku-cell { width: 30px; height: 30px; font-size: 0.8rem; }
-  .wordsearch-cell { width: 26px; height: 26px; font-size: 0.7rem; }
-}
 </style>
 </head>
 <body>
-
-<!-- ========== 头部 ========== -->
-<div class="header">
-  <h1>每日趣味小游戏</h1>
-  <p class="subtitle">选择一个游戏开始玩吧！每天都有新挑战~</p>
-</div>
-
-<!-- ========== 游戏卡片 ========== -->
+<div class="header"><h1>每日趣味小游戏</h1><p class="subtitle">选择一个游戏开始玩吧！每天都有新挑战~</p></div>
 <div class="games-grid">
-  <div class="game-card" onclick="openGame('maze')">
+<div class="game-card" onclick="openGame('ascii')">
+    <div class="thumb ascii">
+      <pre>/\_/\
+(•_•)
+ &gt;🥕</pre>
+    </div>
+    <div class="info">
+      <div class="name">ASCII Art</div>
+      <div class="tags">字符画 &middot; 每日励志语录</div>
+    </div>
+  </div>
+<div class="game-card" onclick="openGame('g1819fe04')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc' rx='4'/><rect x='4' y='4' width='10' height='6' fill='#7c3aed' rx='1'/><rect x='16' y='4' width='10' height='6' fill='#06b6d4' rx='1'/><rect x='28' y='4' width='10' height='6' fill='#10b981' rx='1'/><rect x='40' y='4' width='10' height='6' fill='#f59e0b' rx='1'/><rect x='10' y='14' width='10' height='6' fill='#ef4444' rx='1'/><rect x='22' y='14' width='10' height='6' fill='#7c3aed' rx='1'/><rect x='34' y='14' width='10' height='6' fill='#06b6d4' rx='1'/><circle cx='28' cy='34' r='3' fill='#1e293b'/><rect x='18' y='44' width='20' height='4' fill='#64748b' rx='2'/></svg></div>
+    <div class="info">
+      <div class="name">Breakout Bricks</div>
+      <div class="tags">打砖块小游戏</div>
+    </div>
+  </div>
+<div class="game-card" onclick="openGame('g1b8a479c')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc' rx='4'/><rect x='12' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='20' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='28' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='36' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='44' y='20' width='8' height='8' fill='#ef4444' rx='2'/></svg></div>
+    <div class="info">
+      <div class="name">贪吃蛇</div>
+      <div class="tags">经典小游戏</div>
+    </div>
+  </div>
+<div class="game-card" onclick="openGame('gae84ccb5')">
+    <div class="thumb"><svg viewBox="0 0 56 56"><rect width="56" height="56" fill="#f8fafc" rx="4"/><rect x="4" y="8" width="10" height="36" rx="3" fill="#fff" stroke="#e2e8f0"/><rect x="16" y="8" width="10" height="36" rx="3" fill="#fff" stroke="#e2e8f0"/><rect x="28" y="8" width="10" height="36" rx="3" fill="#fff" stroke="#e2e8f0"/><rect x="40" y="8" width="10" height="36" rx="3" fill="#fff" stroke="#e2e8f0"/><circle cx="9" cy="18" r="3" fill="#10b981"/><circle cx="21" cy="28" r="3" fill="#10b981"/><circle cx="33" cy="12" r="3" fill="#10b981"/><rect x="4" y="46" width="10" height="6" rx="2" fill="#7c3aed"/><rect x="16" y="46" width="10" height="6" rx="2" fill="#7c3aed"/><rect x="28" y="46" width="10" height="6" rx="2" fill="#7c3aed"/><rect x="40" y="46" width="10" height="6" rx="2" fill="#7c3aed"/></svg></div>
+    <div class="info">
+      <div class="name">RhythmTap 节奏点</div>
+      <div class="tags">节奏音游 &middot; D/F/J/K按键</div>
+    </div>
+  </div>
+<div class="game-card" onclick="openGame('maze')">
     <div class="thumb maze"><svg viewBox="0 0 48 48"><rect width="48" height="48" fill="#f8fafc"/><rect x="0" y="0" width="48" height="6" fill="#334155"/><rect x="0" y="0" width="6" height="48" fill="#334155"/><rect x="0" y="42" width="48" height="6" fill="#334155"/><rect x="42" y="0" width="6" height="48" fill="#334155"/><rect x="14" y="12" width="20" height="6" fill="#334155"/><rect x="14" y="12" width="6" height="18" fill="#334155"/><rect x="34" y="18" width="6" height="12" fill="#334155"/><rect x="20" y="30" width="20" height="6" fill="#334155"/><rect x="8" y="24" width="8" height="6" fill="#334155"/><circle cx="3" cy="45" r="2.5" fill="#06b6d4"/><rect x="42" y="30" width="6" height="3" rx="1.5" fill="#10b981"/></svg></div>
     <div class="info">
       <div class="name">Maze 迷宫</div>
       <div class="tags">方向键控制 &middot; 寻路挑战</div>
     </div>
   </div>
-
-  <div class="game-card" onclick="openGame('sudoku')">
+<div class="game-card" onclick="openGame('memory')">
+    <div class="thumb memory-svg">
+      <svg viewBox="0 0 56 56"><rect width="56" height="56" fill="#f8fafc" rx="4"/><rect x="4" y="4" width="22" height="22" rx="4" fill="#7c3aed"/><text x="15" y="19" text-anchor="middle" fill="#fff" font-size="12">?</text><rect x="30" y="4" width="22" height="22" rx="4" fill="#d1fae5" stroke="#10b981"/><text x="41" y="19" text-anchor="middle" font-size="12">🐶</text><rect x="4" y="30" width="22" height="22" rx="4" fill="#d1fae5" stroke="#10b981"/><text x="15" y="45" text-anchor="middle" font-size="12">🐶</text><rect x="30" y="30" width="22" height="22" rx="4" fill="#7c3aed"/><text x="41" y="45" text-anchor="middle" fill="#fff" font-size="12">?</text></svg>
+    </div>
+    <div class="info">
+      <div class="name">Memory Match</div>
+      <div class="tags">翻牌配对 &middot; 记忆力挑战</div>
+    </div>
+  </div>
+<div class="game-card" onclick="openGame('puzzle')">
+    <div class="thumb puzzle">
+      <span class="eq">2, 3, 5, 7, ?</span>
+      <span class="ans"></span>
+    </div>
+    <div class="info">
+      <div class="name">Number Puzzle</div>
+      <div class="tags">找规律 &middot; 24点 &middot; 趣味题</div>
+    </div>
+  </div>
+<div class="game-card" onclick="openGame('sudoku')">
     <div class="thumb sudoku">
       <span>5</span><span>3</span><span></span>
       <span>6</span><span></span><span>9</span>
@@ -510,8 +220,7 @@ body {
       <div class="tags">点击填数 &middot; 逻辑推理</div>
     </div>
   </div>
-
-  <div class="game-card" onclick="openGame('wordsearch')">
+<div class="game-card" onclick="openGame('wordsearch')">
     <div class="thumb wordsearch">
       <span class="hi">P</span><span class="hi">Y</span><span class="hi">T</span><span>Q</span>
       <span>X</span><span>O</span><span>K</span><span>W</span>
@@ -523,489 +232,43 @@ body {
       <div class="tags">拖拽选中 &middot; 英文拼词</div>
     </div>
   </div>
-
-  <div class="game-card" onclick="openGame('puzzle')">
-    <div class="thumb puzzle">
-      <span class="eq">2, 3, 5, 7, ?</span>
-      <span class="ans"></span>
-    </div>
-    <div class="info">
-      <div class="name">Number Puzzle</div>
-      <div class="tags">找规律 &middot; 24点 &middot; 趣味题</div>
-    </div>
-  </div>
-
-  <div class="game-card" onclick="openGame('ascii')">
-    <div class="thumb ascii">
-      <pre>/\_/\
-(•_•)
- &gt;🥕</pre>
-    </div>
-    <div class="info">
-      <div class="name">ASCII Art</div>
-      <div class="tags">字符画 &middot; 每日励志语录</div>
-    </div>
-  </div>
-
-  <div class="game-card" onclick="openGame('memory')">
-    <div class="thumb memory-svg">
-      <svg viewBox="0 0 56 56"><rect width="56" height="56" fill="#f8fafc" rx="4"/><rect x="4" y="4" width="22" height="22" rx="4" fill="#7c3aed"/><text x="15" y="19" text-anchor="middle" fill="#fff" font-size="12">?</text><rect x="30" y="4" width="22" height="22" rx="4" fill="#d1fae5" stroke="#10b981"/><text x="41" y="19" text-anchor="middle" font-size="12">🐶</text><rect x="4" y="30" width="22" height="22" rx="4" fill="#d1fae5" stroke="#10b981"/><text x="15" y="45" text-anchor="middle" font-size="12">🐶</text><rect x="30" y="30" width="22" height="22" rx="4" fill="#7c3aed"/><text x="41" y="45" text-anchor="middle" fill="#fff" font-size="12">?</text></svg>
-    </div>
-    <div class="info">
-      <div class="name">Memory Match</div>
-      <div class="tags">翻牌配对 &middot; 记忆力挑战</div>
-    </div>
-  </div>
-  <div class="game-card" onclick="openGame('gae84ccb5')">
-    <div class="thumb"><svg viewBox="0 0 56 56"><rect width="56" height="56" fill="#f8fafc" rx="4"/><rect x="4" y="8" width="10" height="36" rx="3" fill="#fff" stroke="#e2e8f0"/><rect x="16" y="8" width="10" height="36" rx="3" fill="#fff" stroke="#e2e8f0"/><rect x="28" y="8" width="10" height="36" rx="3" fill="#fff" stroke="#e2e8f0"/><rect x="40" y="8" width="10" height="36" rx="3" fill="#fff" stroke="#e2e8f0"/><circle cx="9" cy="18" r="3" fill="#10b981"/><circle cx="21" cy="28" r="3" fill="#10b981"/><circle cx="33" cy="12" r="3" fill="#10b981"/><rect x="4" y="46" width="10" height="6" rx="2" fill="#7c3aed"/><rect x="16" y="46" width="10" height="6" rx="2" fill="#7c3aed"/><rect x="28" y="46" width="10" height="6" rx="2" fill="#7c3aed"/><rect x="40" y="46" width="10" height="6" rx="2" fill="#7c3aed"/></svg></div>
-    <div class="info">
-      <div class="name">RhythmTap 节奏点</div>
-      <div class="tags">节奏音游 &middot; D/F/J/K按键</div>
-    </div>
-  </div>
-  <div class="game-card" onclick="openGame('g1b8a479c')">
-    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc' rx='4'/><rect x='12' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='20' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='28' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='36' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='44' y='20' width='8' height='8' fill='#ef4444' rx='2'/></svg></div>
-    <div class="info">
-      <div class="name">贪吃蛇</div>
-      <div class="tags">经典小游戏</div>
-    </div>
-  </div>
-  <div class="game-card" onclick="openGame('g1819fe04')">
-    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc' rx='4'/><rect x='4' y='4' width='10' height='6' fill='#7c3aed' rx='1'/><rect x='16' y='4' width='10' height='6' fill='#06b6d4' rx='1'/><rect x='28' y='4' width='10' height='6' fill='#10b981' rx='1'/><rect x='40' y='4' width='10' height='6' fill='#f59e0b' rx='1'/><rect x='10' y='14' width='10' height='6' fill='#ef4444' rx='1'/><rect x='22' y='14' width='10' height='6' fill='#7c3aed' rx='1'/><rect x='34' y='14' width='10' height='6' fill='#06b6d4' rx='1'/><circle cx='28' cy='34' r='3' fill='#1e293b'/><rect x='18' y='44' width='20' height='4' fill='#64748b' rx='2'/></svg></div>
-    <div class="info">
-      <div class="name">Breakout Bricks</div>
-      <div class="tags">打砖块小游戏</div>
-    </div>
-  </div>
-<!-- ANCHOR:CARD -->
 </div>
-
-<!-- ========== 弹窗遮罩 ========== -->
 <div class="overlay" id="overlay" onclick="closeGame(event)">
-  <div class="game-panel" id="gamePanel" onclick="event.stopPropagation()">
-    <div class="panel-header">
-      <h2 id="panelTitle"></h2>
-      <button class="close-btn" onclick="closeGame()">✕</button>
-    </div>
-    <div id="panelContent"></div>
-  </div>
+<div class="game-panel" id="gamePanel" onclick="event.stopPropagation()">
+<div class="panel-header"><h2 id="panelTitle"></h2><button class="close-btn" onclick="closeGame()">✕</button></div>
+<div id="panelContent"></div>
 </div>
-
+</div>
 <script>
-// ========================= 全局工具 =========================
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => document.querySelectorAll(s);
-
 function openGame(type) {
   $('#overlay').classList.add('active');
-  const titles = {
+  var titles = {ascii: 'ASCII Art',
+    g1819fe04: 'Breakout Bricks',
+    g1b8a479c: '贪吃蛇',
+    gae84ccb5: 'RhythmTap 节奏点',
     maze: 'Maze 迷宫',
-    sudoku: 'Sudoku 数独',
-    wordsearch: 'Word Search',
-    puzzle: 'Number Puzzle',
-    ascii: 'ASCII Art',
     memory: 'Memory Match',
-        gae84ccb5: 'RhythmTap 节奏点',
-        g1b8a479c: '贪吃蛇',
-        g1819fe04: 'Breakout Bricks',
-    <!-- ANCHOR:TITLE -->
-  };
-  $('#panelTitle').textContent = titles[type];
-  const content = $('#panelContent');
+    puzzle: 'Number Puzzle',
+    sudoku: 'Sudoku 数独',
+    wordsearch: 'Word Search'};
+  $('#panelTitle').textContent = titles[type] || type;
+  var content = $('#panelContent');
   content.innerHTML = '';
-
-  if (type === 'maze') initMaze(content);
+  if (false) {}
+  else if (type === 'ascii') initAscii(content);
+  else if (type === 'g1819fe04') init_g1819fe04(content);
+  else if (type === 'g1b8a479c') init_g1b8a479c(content);
+  else if (type === 'gae84ccb5') init_gae84ccb5(content);
+  else if (type === 'maze') initMaze(content);
+  else if (type === 'memory') initMemory(content);
+  else if (type === 'puzzle') initPuzzle(content);
   else if (type === 'sudoku') initSudoku(content);
   else if (type === 'wordsearch') initWordSearch(content);
-  else if (type === 'puzzle') initPuzzle(content);
-  else if (type === 'ascii') initAscii(content);
-  else if (type === 'memory') initMemory(content);
-    else if (type === 'gae84ccb5') init_gae84ccb5(content);
-    else if (type === 'g1b8a479c') init_g1b8a479c(content);
-    else if (type === 'g1819fe04') init_g1819fe04(content);
-  <!-- ANCHOR:DISPATCH -->
 }
-
-function closeGame(e) {
-  if (e && e.target !== $('#overlay')) return;
-  $('#overlay').classList.remove('active');
-  document.removeEventListener('keydown', mazeKeyHandler);
-}
-
-// ========================= 迷宫游戏 =========================
-function initMaze(container) {
-  const w = 21, h = 15;
-  const maze = generateMaze(w, h);
-  let px = 1, py = 1;
-  const ex = w - 2, ey = h - 2;
-  maze[1][0] = 2; maze[h-2][w-1] = 3;
-  let won = false;
-
-  function render() {
-    let html = '<div class="maze-container"><div class="maze-grid" style="grid-template-columns: repeat(' + w + ', 20px);">';
-    for (let y = 0; y < h; y++) {
-      for (let x = 0; x < w; x++) {
-        let cls = 'maze-cell '; let txt = '';
-        if (x === px && y === py) { cls += 'player'; txt = '🙂'; }
-        else if (maze[y][x] === 3) { cls += 'exit'; txt = '🚪'; }
-        else if (maze[y][x] === 2) { cls += 'entry'; txt = '▶'; }
-        else if (maze[y][x] === 1) { cls += 'wall'; txt = ''; }
-        else { cls += 'path'; }
-        html += '<div class="' + cls + '">' + txt + '</div>';
-      }
-    }
-    html += '</div>';
-    if (won) html += '<div class="maze-win">🎉 恭喜通关！你太厉害了！ 🎉</div>';
-    html += '<div class="maze-controls">⬆⬇⬅➡ 方向键移动 &nbsp;|&nbsp; <button class="btn small" onclick="initMaze(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 新迷宫</button></div>';
-    html += '</div>';
-    container.innerHTML = html;
-  }
-
-  document.removeEventListener('keydown', mazeKeyHandler);
-  mazeKeyHandler = function(e) {
-    if (!$('#overlay').classList.contains('active')) return;
-    if (won) return;
-    let nx = px, ny = py;
-    if (e.key === 'ArrowUp') ny--; else if (e.key === 'ArrowDown') ny++;
-    else if (e.key === 'ArrowLeft') nx--; else if (e.key === 'ArrowRight') nx++;
-    else return;
-    e.preventDefault();
-    if (nx >= 0 && nx < w && ny >= 0 && ny < h && maze[ny][nx] !== 1) {
-      px = nx; py = ny;
-      if (maze[ny][nx] === 3) won = true;
-      render();
-    }
-  };
-  document.addEventListener('keydown', mazeKeyHandler);
-  render();
-}
-
-let mazeKeyHandler = null;
-
-function generateMaze(w, h) {
-  const maze = Array.from({length: h}, () => Array(w).fill(1));
-  function carve(x, y) {
-    maze[y][x] = 0;
-    const dirs = [[0,2],[2,0],[0,-2],[-2,0]].sort(() => Math.random() - 0.5);
-    for (const [dx, dy] of dirs) {
-      const nx = x + dx, ny = y + dy;
-      if (nx > 0 && nx < w-1 && ny > 0 && ny < h-1 && maze[ny][nx] === 1) {
-        maze[y + dy/2][x + dx/2] = 0;
-        carve(nx, ny);
-      }
-    }
-  }
-  carve(1, 1);
-  maze[1][0] = 2; maze[h-2][w-1] = 3;
-  return maze;
-}
-
-// ========================= 数独游戏 =========================
-function initSudoku(container) {
-  const solution = Array.from({length:9}, () => Array(9).fill(0));
-  function isValid(b, r, c, n) {
-    for (let i = 0; i < 9; i++) if (b[r][i] === n || b[i][c] === n) return false;
-    const sr = Math.floor(r/3)*3, sc = Math.floor(c/3)*3;
-    for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) if (b[sr+i][sc+j] === n) return false;
-    return true;
-  }
-  (function solve() {
-    for (let r = 0; r < 9; r++) {
-      for (let c = 0; c < 9; c++) {
-        if (solution[r][c] === 0) {
-          const nums = [1,2,3,4,5,6,7,8,9].sort(() => Math.random()-0.5);
-          for (const n of nums) {
-            if (isValid(solution, r, c, n)) { solution[r][c] = n; if (solve()) return true; solution[r][c] = 0; }
-          }
-          return false;
-        }
-      }
-    }
-    return true;
-  })();
-
-  const puzzle = solution.map(r => [...r]);
-  const cells = [];
-  for (let r = 0; r < 9; r++) for (let c = 0; c < 9; c++) cells.push([r,c]);
-  cells.sort(() => Math.random()-0.5);
-  // 后41个格子保留数字（given），前40个挖空让玩家填
-  const given = new Set();
-  for (const [r,c] of cells.slice(40)) given.add(r*9+c);
-  for (const [r,c] of cells.slice(0, 40)) puzzle[r][c] = 0;
-
-  let selectedR = -1, selectedC = -1;
-  const playerBoard = puzzle.map(r => [...r]);
-
-  function render() {
-    let html = '<div style="display:flex;flex-direction:column;align-items:center;gap:10px;">';
-    html += '<div class="sudoku-board">';
-    for (let r = 0; r < 9; r++) {
-      for (let c = 0; c < 9; c++) {
-        let cls = 'sudoku-cell';
-        if (c % 3 === 2 && c < 8) cls += ' br-right';
-        if (r % 3 === 2 && r < 8) cls += ' br-bottom';
-        if (given.has(r*9+c)) cls += ' given';
-        if (r === selectedR && c === selectedC) cls += ' selected';
-        if (playerBoard[r][c] !== 0 && playerBoard[r][c] !== solution[r][c] && !given.has(r*9+c)) cls += ' error';
-        html += '<div class="' + cls + '" data-r="' + r + '" data-c="' + c + '">' + (playerBoard[r][c] || '') + '</div>';
-      }
-    }
-    html += '</div>';
-    html += '<div class="sudoku-numpad">';
-    for (let i = 1; i <= 9; i++) html += '<button data-num="' + i + '">' + i + '</button>';
-    html += '<button class="erase" data-num="0">✕</button>';
-    html += '</div>';
-    const done = playerBoard.every((row, r) => row.every((v, c) => v === solution[r][c]));
-    if (done) html += '<div class="maze-win">🎉 恭喜完成数独！你太聪明了！ 🎉</div>';
-    html += '<button class="btn" onclick="initSudoku(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 新题目</button>';
-    html += '</div>';
-    container.innerHTML = html;
-
-    container.querySelectorAll('.sudoku-cell').forEach(cell => {
-      cell.addEventListener('click', () => {
-        const r = parseInt(cell.dataset.r), c = parseInt(cell.dataset.c);
-        if (given.has(r*9+c)) return;
-        selectedR = r; selectedC = c;
-        render();
-      });
-    });
-    container.querySelectorAll('.sudoku-numpad button').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (selectedR < 0) return;
-        playerBoard[selectedR][selectedC] = parseInt(btn.dataset.num);
-        render();
-      });
-    });
-  }
-  render();
-}
-
-// ========================= Word Search（纯英文 + 按住拖拽选中） =========================
-function initWordSearch(container) {
-  const words = ['PYTHON','CODING','GITHUB','ALGORITHM','DEBUG','COMMIT','PUSH','BRANCH','MERGE','COMPILE','SCRIPT','STACK'];
-  const size = 12;
-  const grid = Array.from({length: size}, () => Array(size).fill(''));
-  const dirs = [[1,0],[0,1],[1,1],[-1,1],[1,-1],[-1,0],[0,-1],[-1,-1]];
-  const placedWords = [];
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-  // 放置单词（长词优先，避免后期放不下）
-  const shuffled = [...words].sort((a, b) => b.length - a.length || Math.random() - 0.5);
-  for (const word of shuffled) {
-    let placed = false;
-    for (let attempt = 0; attempt < 100 && !placed; attempt++) {
-      const [dx, dy] = dirs[Math.floor(Math.random() * dirs.length)];
-      const len = word.length;
-      const maxX = size - 1 - (len - 1) * Math.max(0, dx);
-      const minX = (len - 1) * Math.max(0, -dx);
-      const maxY = size - 1 - (len - 1) * Math.max(0, dy);
-      const minY = (len - 1) * Math.max(0, -dy);
-      if (minX > maxX || minY > maxY) continue;
-      const x = minX + Math.floor(Math.random() * (maxX - minX + 1));
-      const y = minY + Math.floor(Math.random() * (maxY - minY + 1));
-      let ok = true;
-      for (let i = 0; i < len; i++) {
-        const cx = x + i * dx, cy = y + i * dy;
-        if (grid[cy][cx] !== '' && grid[cy][cx] !== word[i]) { ok = false; break; }
-      }
-      if (ok) {
-        for (let i = 0; i < len; i++) grid[y + i * dy][x + i * dx] = word[i];
-        placedWords.push({word, positions: Array.from({length: len}, (_, i) => [y + i * dy, x + i * dx])});
-        placed = true;
-      }
-    }
-  }
-
-  // 填充随机字母
-  for (let y = 0; y < size; y++)
-    for (let x = 0; x < size; x++)
-      if (!grid[y][x]) grid[y][x] = alphabet[Math.floor(Math.random() * 26)];
-
-  const foundSet = new Set();
-  let dragStart = null;     // [y, x]
-  let dragCurrent = null;   // [y, x]
-  let isDragging = false;
-
-  // 计算从 (y0,x0) 到 (y1,x1) 的直线路径上所有格子
-  function getLineCells(y0, x0, y1, x1) {
-    const cells = [];
-    const dx = Math.sign(x1 - x0);
-    const dy = Math.sign(y1 - y0);
-    if (dx === 0 && dy === 0) return [[y0, x0]];
-    const adx = Math.abs(x1 - x0);
-    const ady = Math.abs(y1 - y0);
-    if (dx !== 0 && dy !== 0 && adx !== ady) return [[y0, x0]];
-    const steps = Math.max(adx, ady);
-    for (let i = 0; i <= steps; i++) {
-      const cy = y0 + i * dy;
-      const cx = x0 + i * dx;
-      if (cy >= 0 && cy < size && cx >= 0 && cx < size) cells.push([cy, cx]);
-    }
-    return cells;
-  }
-
-  function buildSelectingSet() {
-    if (!dragStart || !dragCurrent) return new Set();
-    const cells = getLineCells(dragStart[0], dragStart[1], dragCurrent[0], dragCurrent[1]);
-    return new Set(cells.map(([y, x]) => y * size + x));
-  }
-
-  function render() {
-    const selectingSet = buildSelectingSet();
-
-    let html = '<div style="text-align:center;">';
-    html += '<div class="ws-score">✅ Found: ' + foundSet.size + ' / ' + placedWords.length + '</div>';
-    html += '<div class="word-list">';
-    for (const pw of placedWords) {
-      html += '<span class="word-tag' + (foundSet.has(pw.word) ? ' found' : '') + '">' + pw.word + '</span>';
-    }
-    html += '</div>';
-
-    html += '<div class="wordsearch-grid" style="grid-template-columns: repeat(' + size + ', 32px);">';
-    for (let y = 0; y < size; y++) {
-      for (let x = 0; x < size; x++) {
-        let cls = 'wordsearch-cell';
-        const key = y * size + x;
-
-        let inFound = false;
-        for (const fw of foundSet) {
-          const pw = placedWords.find(p => p.word === fw);
-          if (pw && pw.positions.some(p => p[0] === y && p[1] === x)) { inFound = true; break; }
-        }
-
-        if (inFound) cls += ' found';
-        else if (selectingSet.has(key)) cls += ' selecting';
-
-        html += '<div class="' + cls + '" data-y="' + y + '" data-x="' + x + '">' + grid[y][x] + '</div>';
-      }
-    }
-    html += '</div>';
-
-    if (foundSet.size === placedWords.length) {
-      html += '<div class="maze-win">🎉 All words found! Great job! 🎉</div>';
-    }
-
-    html += '<button class="btn" style="margin-top:10px;" onclick="initWordSearch(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 New Puzzle</button>';
-    html += '</div>';
-    container.innerHTML = html;
-
-    // ---- 拖拽事件绑定 ----
-    const cells = container.querySelectorAll('.wordsearch-cell');
-
-    cells.forEach(cell => {
-      cell.addEventListener('mousedown', (e) => {
-        e.preventDefault();
-        isDragging = true;
-        dragStart = [parseInt(cell.dataset.y), parseInt(cell.dataset.x)];
-        dragCurrent = [...dragStart];
-        render();
-      });
-    });
-
-    container.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      const el = document.elementFromPoint(e.clientX, e.clientY);
-      if (!el || !el.classList.contains('wordsearch-cell')) return;
-      const ny = parseInt(el.dataset.y), nx = parseInt(el.dataset.x);
-      if (dragCurrent && dragCurrent[0] === ny && dragCurrent[1] === nx) return;
-
-      if (dragStart) {
-        const dx = nx - dragStart[1], dy = ny - dragStart[0];
-        const adx = Math.abs(dx), ady = Math.abs(dy);
-        if (dx === 0 || dy === 0 || adx === ady) {
-          dragCurrent = [ny, nx];
-        } else {
-          // 智能吸附：优先斜向，其次水平/垂直
-          const d = Math.min(adx, ady);
-          dragCurrent = [dragStart[0] + Math.sign(dy) * d, dragStart[1] + Math.sign(dx) * d];
-        }
-      }
-      render();
-    });
-
-    document.addEventListener('mouseup', onMouseUp);
-    function onMouseUp() {
-      if (!isDragging) return;
-      isDragging = false;
-
-      if (dragStart && dragCurrent) {
-        const lineCells = getLineCells(dragStart[0], dragStart[1], dragCurrent[0], dragCurrent[1]);
-        const selectedWord = lineCells.map(([y, x]) => grid[y][x]).join('');
-        const reversedWord = [...selectedWord].reverse().join('');
-
-        for (const pw of placedWords) {
-          if ((pw.word === selectedWord || pw.word === reversedWord) && !foundSet.has(pw.word)) {
-            foundSet.add(pw.word);
-            break;
-          }
-        }
-      }
-
-      dragStart = null;
-      dragCurrent = null;
-      document.removeEventListener('mouseup', onMouseUp);
-      render();
-    }
-  }
-  render();
-}
-
-// ========================= 数字谜题 =========================
-function initPuzzle(container) {
-  let puzzleIndex = 0;
-  let score = 0;
-  const puzzles = [
-    { title: '🔢 Find the Pattern', question: 'Sequence: 2, 3, 5, 7, 11, ?\nWhat is the next number?', hint: 'These numbers can only be divided by 1 and themselves...', answer: '13' },
-    { title: '🃏 24 Game', question: 'Using 3, 3, 8, 8 each exactly once,\nmake 24 with + - × ÷', hint: 'Hint: 8 ÷ (3 - 8 ÷ 3) = ?', answer: '24' },
-    { title: '💡 Brain Teaser', question: '1 = 5\n2 = 10\n3 = 15\n4 = 20\n5 = ?', hint: 'Look at the first equation carefully...', answer: '1' },
-    { title: '🔢 Missing Number', question: 'Find the pattern:\n2, 6, 12, 20, 30, ?', hint: '2=1×2, 6=2×3, 12=3×4, 20=4×5...', answer: '42' },
-    { title: '💡 Math Puzzle', question: 'A number added to itself equals\nitself multiplied by itself.\nWhat is it? (integer)', hint: 'x + x = x × x  →  2x = x²', answer: '2' }
-  ].sort(() => Math.random() - 0.5);
-
-  function renderPuzzle() {
-    let html = '<div>';
-    if (puzzleIndex >= puzzles.length) {
-      html += '<div class="maze-win">🎉 All done! Score: ' + score + '/' + puzzles.length + '</div>';
-      html += '<div style="text-align:center;"><button class="btn primary" onclick="initPuzzle(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 Play Again</button></div>';
-      container.innerHTML = html;
-      return;
-    }
-    const p = puzzles[puzzleIndex];
-    html += '<div class="puzzle-progress">Question ' + (puzzleIndex+1) + ' / ' + puzzles.length + ' &nbsp;|&nbsp; ✅ ' + score + ' pts</div>';
-    html += '<div class="puzzle-card">';
-    html += '<h3>' + p.title + '</h3>';
-    html += '<div class="question">' + p.question + '</div>';
-    html += '<div class="puzzle-input">';
-    html += '<input type="text" id="puzzleAnswer" placeholder="Your answer..." autocomplete="off">';
-    html += '<button onclick="checkPuzzleAnswer()">Submit</button>';
-    html += '</div>';
-    html += '<div class="puzzle-feedback" id="puzzleFeedback"></div>';
-    html += '</div>';
-    html += '<div style="text-align:center;"><button class="btn" onclick="initPuzzle(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 New Set</button></div>';
-    html += '</div>';
-    container.innerHTML = html;
-
-    window.checkPuzzleAnswer = function() {
-      const input = $('#puzzleAnswer').value.trim();
-      const fb = $('#puzzleFeedback');
-      if (input === p.answer || input.toLowerCase() === p.answer.toLowerCase()) {
-        fb.className = 'puzzle-feedback correct';
-        fb.innerHTML = '✅ Correct! Well done!';
-        score++;
-        setTimeout(() => { puzzleIndex++; renderPuzzle(); }, 1000);
-      } else {
-        fb.className = 'puzzle-feedback wrong';
-        fb.innerHTML = '❌ Not quite, try again!<div class="hint-text">💡 ' + p.hint + '</div>';
-      }
-    };
-    $('#puzzleAnswer').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') checkPuzzleAnswer();
-    });
-  }
-  renderPuzzle();
-}
-
+function closeGame(e) { if (e && e.target !== $('#overlay')) return; $('#overlay').classList.remove('active'); }
+// === ascii ===
 // ========================= ASCII艺术 =========================
 function initAscii(container) {
   const arts = [
@@ -1039,252 +302,200 @@ function initAscii(container) {
   }
   renderArt();
 }
+// === g1819fe04 ===
+function init_g1819fe04(container) {
+  container.innerHTML = '<div style="text-align:center"><span class="brk-score" style="font-size:1.2rem;font-weight:700;color:#7c3aed;">0</span></div><div style="position:relative;display:flex;justify-content:center"><canvas style="background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0;"></canvas><div class="brk-overlay" style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;background:rgba(255,255,255,0.9);border-radius:8px;font-size:1.5rem;font-weight:700;color:#7c3aed;gap:8px;"><span>Breakout!</span><span class="brk-sub"></span></div></div><div style="text-align:center;margin-top:8px"><button class="btn" id="brk-restart">New Game</button></div>';
+  var restartBtn = container.querySelector('#brk-restart');
+  if (restartBtn) restartBtn.addEventListener('click', function() { init_g1819fe04(container); });
+  const scoreEl = container.querySelector('.brk-score');
+  const canvas = container.querySelector('canvas');
+  const overlay = container.querySelector('.brk-overlay');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+  function resize() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    W = rect.width;
+    H = W * 0.75;
+    canvas.width = W;
+    canvas.height = H;
+  }
+  resize();
+  window.addEventListener('resize', resize);
 
-// ========================= 记忆翻牌 =========================
-function initMemory(container) {
-  const emojis = ['🐶','🐱','🐰','🦊','🐻','🐼','🐨','🐯'];
-  const cards = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
-  let flipped = [];      // 当前翻开的卡片索引
-  let matched = new Set(); // 已配对的索引
-  let moves = 0;
-  let lock = false;
+  // Game state
+  const paddleWidth = 80;
+  const paddleHeight = 10;
+  const ballRadius = 6;
+  const brickRowCount = 5;
+  const brickColCount = 7;
+  const brickWidth = 60;
+  const brickHeight = 16;
+  const brickPadding = 6;
+  const brickOffsetTop = 30;
+  const brickOffsetLeft = (W - (brickColCount * (brickWidth + brickPadding) - brickPadding)) / 2;
+  let paddleX = (W - paddleWidth) / 2;
+  let ballX = W / 2;
+  let ballY = H - 30;
+  let ballDX = 3;
+  let ballDY = -3;
+  let score = 0;
+  let gameOver = false;
+  let gameWin = false;
+  let running = false;
+  let bricks = [];
 
-  function render() {
-    let html = '<div style="text-align:center;">';
-    html += '<div class="memory-stats">Moves: <span>' + moves + '</span> &nbsp;|&nbsp; Matched: <span>' + matched.size/2 + '</span> / ' + emojis.length + '</div>';
-    html += '<div class="memory-grid">';
-    for (let i = 0; i < cards.length; i++) {
-      let cls = 'memory-card';
-      if (flipped.includes(i) || matched.has(i)) cls += ' flipped';
-      if (matched.has(i)) cls += ' matched';
-      html += '<div class="' + cls + '" data-idx="' + i + '">' + cards[i] + '</div>';
+  function initBricks() {
+    bricks = [];
+    const colors = ['#7c3aed','#06b6d4','#10b981','#f59e0b','#ef4444'];
+    for (let r = 0; r < brickRowCount; r++) {
+      bricks[r] = [];
+      for (let c = 0; c < brickColCount; c++) {
+        bricks[r][c] = { x: 0, y: 0, status: 1, color: colors[r] };
+      }
     }
-    html += '</div>';
+  }
+  initBricks();
 
-    if (matched.size === cards.length) {
-      html += '<div class="maze-win">🎉 全部配对成功！用了 ' + moves + ' 步！</div>';
+  function drawBricks() {
+    for (let r = 0; r < brickRowCount; r++) {
+      for (let c = 0; c < brickColCount; c++) {
+        if (bricks[r][c].status === 1) {
+          const brickX = brickOffsetLeft + c * (brickWidth + brickPadding);
+          const brickY = brickOffsetTop + r * (brickHeight + brickPadding);
+          bricks[r][c].x = brickX;
+          bricks[r][c].y = brickY;
+          ctx.fillStyle = bricks[r][c].color;
+          ctx.fillRect(brickX, brickY, brickWidth, brickHeight);
+          ctx.strokeStyle = '#e2e8f0';
+          ctx.strokeRect(brickX, brickY, brickWidth, brickHeight);
+        }
+      }
     }
+  }
 
-    html += '<button class="btn" style="margin-top:12px;" onclick="initMemory(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 新游戏</button>';
-    html += '</div>';
-    container.innerHTML = html;
+  function drawPaddle() {
+    ctx.fillStyle = '#64748b';
+    ctx.fillRect(paddleX, H - paddleHeight, paddleWidth, paddleHeight);
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.strokeRect(paddleX, H - paddleHeight, paddleWidth, paddleHeight);
+  }
 
-    container.querySelectorAll('.memory-card').forEach(card => {
-      card.addEventListener('click', () => {
-        if (lock) return;
-        const idx = parseInt(card.dataset.idx);
-        if (flipped.includes(idx) || matched.has(idx)) return;
-        if (flipped.length >= 2) return;
+  function drawBall() {
+    ctx.beginPath();
+    ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+    ctx.fillStyle = '#1e293b';
+    ctx.fill();
+    ctx.closePath();
+  }
 
-        flipped.push(idx);
-        render();
-
-        if (flipped.length === 2) {
-          moves++;
-          const [a, b] = flipped;
-          if (cards[a] === cards[b]) {
-            matched.add(a); matched.add(b);
-            flipped = [];
-            render();
-          } else {
-            lock = true;
-            setTimeout(() => {
-              flipped = [];
-              lock = false;
-              render();
-            }, 600);
+  function collisionDetection() {
+    for (let r = 0; r < brickRowCount; r++) {
+      for (let c = 0; c < brickColCount; c++) {
+        const b = bricks[r][c];
+        if (b.status === 1) {
+          if (ballX > b.x && ballX < b.x + brickWidth && ballY > b.y && ballY < b.y + brickHeight) {
+            ballDY = -ballDY;
+            b.status = 0;
+            score += 10;
+            scoreEl.textContent = score;
+            if (score === brickRowCount * brickColCount * 10) {
+              gameWin = true;
+              running = false;
+              overlay.style.display = 'flex';
+              overlay.innerHTML = '<div>🎉 You Win!</div><div class="brk-sub">Score: ' + score + '</div>';
+            }
           }
         }
-      });
-    });
-  }
-  render();
-}
-
-
-// ======== RhythmTap 节奏点 ========
-function init_gae84ccb5(container) {
-  var DURATION = 30; // 游戏时长（秒）
-  var state, spawnTimer, gameLoop, keyHandler;
-
-  function buildHTML() {
-    var lanesHTML = '';
-    var keysHTML = '';
-    var labels = ['D', 'F', 'J', 'K'];
-    for (var i = 0; i < 4; i++) {
-      lanesHTML += '<div id="rt-lane2-' + i + '" style="width:64px;height:240px;background:#fff;border:2px solid #e2e8f0;border-radius:10px;position:relative;overflow:hidden;">'
-        + '<div style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);width:44px;height:44px;border:3px dashed #e2e8f0;border-radius:50%;"></div>'
-        + '</div>';
-      keysHTML += '<div class="rt-key2" data-lane="' + i + '" style="width:64px;height:44px;background:#fff;border:2px solid #e2e8f0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;color:#64748b;cursor:pointer;user-select:none;">' + labels[i] + '</div>';
-    }
-    container.innerHTML = ''
-      + '<div style="text-align:center;">'
-      + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">'
-      + '<span style="font-size:1rem;font-weight:700;">RhythmTap</span>'
-      + '<span style="font-size:0.9rem;color:#7c3aed;font-weight:700;">分: <span id="rt-score2">0</span></span>'
-      + '<span style="font-size:0.85rem;color:#64748b;">⏱ <span id="rt-time2">' + DURATION + '</span>s</span>'
-      + '</div>'
-      + '<div id="rt-combo2" style="font-size:0.9rem;min-height:22px;color:#f59e0b;font-weight:600;"></div>'
-      + '<div style="display:flex;justify-content:center;gap:8px;margin:6px 0;">' + lanesHTML + '</div>'
-      + '<div style="display:flex;justify-content:center;gap:8px;margin:6px 0;">' + keysHTML + '</div>'
-      + '<div id="rt-feedback2" style="font-size:1.8rem;font-weight:700;min-height:36px;"></div>'
-      + '<button class="btn" style="margin-top:4px;" onclick="init_gae84ccb5(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 重新开始</button>'
-      + '<div id="rt-result2" style="display:none;margin-top:8px;font-size:1.1rem;font-weight:700;color:#7c3aed;"></div>'
-      + '</div>';
-  }
-
-  function reset() {
-    if (spawnTimer) clearInterval(spawnTimer);
-    if (gameLoop) cancelAnimationFrame(gameLoop);
-    if (keyHandler) document.removeEventListener('keydown', keyHandler);
-    state = { score: 0, combo: 0, maxCombo: 0, notes: [], noteId: 0, playing: true, timeLeft: DURATION };
-    buildHTML();
-    bindEvents();
-    startGame();
-  }
-
-  function bindEvents() {
-    var keyMap = { 'd': 0, 'f': 1, 'j': 2, 'k': 3 };
-    keyHandler = function(e) {
-      var lane = keyMap[e.key.toLowerCase()];
-      if (lane !== undefined) { e.preventDefault(); hit(lane); }
-    };
-    document.addEventListener('keydown', keyHandler);
-
-    var keys = container.querySelectorAll('.rt-key2');
-    for (var i = 0; i < keys.length; i++) {
-      keys[i].addEventListener('mousedown', function(e) {
-        hit(parseInt(e.currentTarget.dataset.lane));
-      });
-    }
-  }
-
-  function hit(lane) {
-    if (!state.playing) return;
-    var keyEl = container.querySelector('.rt-key2[data-lane="' + lane + '"]');
-    var laneEl = container.querySelector('#rt-lane2-' + lane);
-
-    // 找该轨道最接近底部的音符
-    var notes = state.notes.filter(function(n) { return n.lane === lane && !n.hit && !n.miss; });
-    if (notes.length === 0) {
-      // 空按 — 红色
-      state.combo = 0;
-      if (keyEl) { keyEl.style.background = '#fee2e2'; keyEl.style.borderColor = '#ef4444'; keyEl.style.color = '#dc2626'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 150); }
-      if (laneEl) { laneEl.style.boxShadow = '0 0 12px rgba(239,68,68,0.4)'; laneEl.style.borderColor = '#ef4444'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
-      updateUI(); showFB('Miss', '#ef4444'); return;
-    }
-
-    var best = notes[0], bestDist = Math.abs(best.y - 235);
-    for (var i = 1; i < notes.length; i++) {
-      var d = Math.abs(notes[i].y - 235);
-      if (d < bestDist) { best = notes[i]; bestDist = d; }
-    }
-
-    if (bestDist < 30) { // Perfect — 绿色
-      best.hit = true; state.score += 10; state.combo++;
-      if (state.combo > state.maxCombo) state.maxCombo = state.combo;
-      if (best.el) { best.el.style.background = '#10b981'; best.el.style.transform = 'translateX(-50%) scale(1.6)'; best.el.style.boxShadow = '0 0 24px rgba(16,185,129,0.7)'; }
-      if (keyEl) { keyEl.style.background = '#d1fae5'; keyEl.style.borderColor = '#10b981'; keyEl.style.color = '#059669'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 120); }
-      if (laneEl) { laneEl.style.boxShadow = '0 0 14px rgba(16,185,129,0.5)'; laneEl.style.borderColor = '#10b981'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
-      showFB('Perfect!', '#10b981');
-    } else if (bestDist < 60) { // Good — 绿色
-      best.hit = true; state.score += 5; state.combo++;
-      if (state.combo > state.maxCombo) state.maxCombo = state.combo;
-      if (best.el) { best.el.style.background = '#34d399'; best.el.style.transform = 'translateX(-50%) scale(1.3)'; best.el.style.boxShadow = '0 0 16px rgba(16,185,129,0.5)'; }
-      if (keyEl) { keyEl.style.background = '#d1fae5'; keyEl.style.borderColor = '#34d399'; keyEl.style.color = '#059669'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 120); }
-      if (laneEl) { laneEl.style.boxShadow = '0 0 10px rgba(16,185,129,0.35)'; laneEl.style.borderColor = '#34d399'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
-      showFB('Good', '#34d399');
-    } else { // Miss — 红色
-      state.combo = 0;
-      if (keyEl) { keyEl.style.background = '#fee2e2'; keyEl.style.borderColor = '#ef4444'; keyEl.style.color = '#dc2626'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 150); }
-      if (laneEl) { laneEl.style.boxShadow = '0 0 12px rgba(239,68,68,0.4)'; laneEl.style.borderColor = '#ef4444'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
-      showFB('Miss', '#ef4444');
-    }
-    updateUI();
-  }
-
-  function showFB(text, color) {
-    var el = container.querySelector('#rt-feedback2');
-    if (!el) return;
-    el.textContent = text; el.style.color = color;
-    clearTimeout(el._t); el._t = setTimeout(function() { el.textContent = ''; }, 400);
-  }
-
-  function spawnNote() {
-    if (!state.playing) return;
-    var lane = Math.floor(Math.random() * 4);
-    var note = { id: state.noteId++, lane: lane, y: -40, hit: false, miss: false, el: null };
-    var laneEl = container.querySelector('#rt-lane2-' + lane);
-    var nd = document.createElement('div');
-    nd.style.cssText = 'position:absolute;left:50%;transform:translateX(-50%);width:40px;height:40px;border-radius:50%;background:#10b981;transition:none;';
-    nd.style.top = note.y + 'px';
-    laneEl.appendChild(nd);
-    note.el = nd;
-    state.notes.push(note);
-  }
-
-  function updateNotes() {
-    for (var i = state.notes.length - 1; i >= 0; i--) {
-      var n = state.notes[i];
-      if (n.hit || n.miss) {
-        if (n.el && n.el.parentNode) n.el.parentNode.removeChild(n.el);
-        state.notes.splice(i, 1);
-        continue;
-      }
-      n.y += 1.8;
-      if (n.el) n.el.style.top = n.y + 'px';
-      if (n.y > 290) {
-        n.miss = true; state.combo = 0;
-        if (n.el) { n.el.style.background = '#ef4444'; n.el.style.boxShadow = '0 0 12px rgba(239,68,68,0.5)'; }
-        updateUI(); showFB('Miss', '#ef4444');
       }
     }
   }
 
-  function updateUI() {
-    var s = container.querySelector('#rt-score2');
-    if (s) s.textContent = state.score;
-    var c = container.querySelector('#rt-combo2');
-    if (c) c.textContent = state.combo > 0 ? '🔥 ' + state.combo + ' 连击' : '';
-    var t = container.querySelector('#rt-time2');
-    if (t) t.textContent = state.timeLeft;
-  }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    drawBricks();
+    drawPaddle();
+    drawBall();
+    collisionDetection();
 
-  function countdown() {
-    if (!state.playing) return;
-    state.timeLeft--;
-    updateUI();
-    if (state.timeLeft <= 0) endGame();
+    // Ball movement
+    if (ballX + ballDX > W - ballRadius || ballX + ballDX < ballRadius) {
+      ballDX = -ballDX;
+    }
+    if (ballY + ballDY < ballRadius) {
+      ballDY = -ballDY;
+    } else if (ballY + ballDY > H - ballRadius) {
+      // Paddle hit?
+      if (ballX > paddleX && ballX < paddleX + paddleWidth) {
+        ballDY = -ballDY;
+        ballY = H - paddleHeight - ballRadius;
+      } else {
+        // Game over
+        gameOver = true;
+        running = false;
+        overlay.style.display = 'flex';
+        overlay.innerHTML = '<div>Game Over</div><div class="brk-sub">Score: ' + score + '</div>';
+      }
+    }
+    ballX += ballDX;
+    ballY += ballDY;
+
+    if (running) {
+      requestAnimationFrame(draw);
+    }
   }
 
   function startGame() {
-    state.playing = true;
-    spawnTimer = setInterval(spawnNote, 700);
-    var timeTimer = setInterval(countdown, 1000);
-    function loop() {
-      if (!state.playing) { clearInterval(timeTimer); return; }
-      updateNotes();
-      gameLoop = requestAnimationFrame(loop);
-    }
-    gameLoop = requestAnimationFrame(loop);
+    running = true;
+    gameOver = false;
+    gameWin = false;
+    overlay.style.display = 'none';
+    score = 0;
+    scoreEl.textContent = '0';
+    initBricks();
+    paddleX = (W - paddleWidth) / 2;
+    ballX = W / 2;
+    ballY = H - 30;
+    ballDX = 3 * (Math.random() > 0.5 ? 1 : -1);
+    ballDY = -3;
+    draw();
   }
 
-  function endGame() {
-    state.playing = false;
-    if (spawnTimer) clearInterval(spawnTimer);
-    if (gameLoop) cancelAnimationFrame(gameLoop);
-    var res = container.querySelector('#rt-result2');
-    if (res) {
-      res.style.display = 'block';
-      res.innerHTML = '🎉 游戏结束！得分: <b>' + state.score + '</b> &nbsp;|&nbsp; 最高连击: <b>' + state.maxCombo + '</b>';
-    }
-  }
+  // Mouse control
+  canvas.addEventListener('mousemove', function(e) {
+    const rect = canvas.getBoundingClientRect();
+    let mouseX = e.clientX - rect.left;
+    if (mouseX < 0) mouseX = 0;
+    if (mouseX > W) mouseX = W;
+    paddleX = mouseX - paddleWidth / 2;
+    if (paddleX < 0) paddleX = 0;
+    if (paddleX + paddleWidth > W) paddleX = W - paddleWidth;
+  });
 
-  reset();
+  // Keyboard control
+  const keys = {};
+  document.addEventListener('keydown', function(e) {
+    keys[e.key] = true;
+  });
+  document.addEventListener('keyup', function(e) {
+    keys[e.key] = false;
+  });
+  setInterval(function() {
+    if (keys['ArrowLeft'] || keys['a']) {
+      paddleX -= 7;
+      if (paddleX < 0) paddleX = 0;
+    }
+    if (keys['ArrowRight'] || keys['d']) {
+      paddleX += 7;
+      if (paddleX + paddleWidth > W) paddleX = W - paddleWidth;
+    }
+  }, 16);
+
+  restartBtn.addEventListener('click', startGame);
+
+  // Auto start
+  startGame();
 }
-
-
-// ======== 贪吃蛇 ========
+// === g1b8a479c ===
 function init_g1b8a479c(container) {
     var gridSize = 20;
     var cellSize = 20;
@@ -1490,8 +701,188 @@ function init_g1b8a479c(container) {
         document.removeEventListener('keydown', keydownHandler);
     };
 }
+// === gae84ccb5 ===
+function init_gae84ccb5(container) {
+  var DURATION = 30; // 游戏时长（秒）
+  var state, spawnTimer, gameLoop, keyHandler;
 
-// ======== Breakout Bricks ========
+  function buildHTML() {
+    var lanesHTML = '';
+    var keysHTML = '';
+    var labels = ['D', 'F', 'J', 'K'];
+    for (var i = 0; i < 4; i++) {
+      lanesHTML += '<div id="rt-lane2-' + i + '" style="width:64px;height:240px;background:#fff;border:2px solid #e2e8f0;border-radius:10px;position:relative;overflow:hidden;">'
+        + '<div style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);width:44px;height:44px;border:3px dashed #e2e8f0;border-radius:50%;"></div>'
+        + '</div>';
+      keysHTML += '<div class="rt-key2" data-lane="' + i + '" style="width:64px;height:44px;background:#fff;border:2px solid #e2e8f0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;color:#64748b;cursor:pointer;user-select:none;">' + labels[i] + '</div>';
+    }
+    container.innerHTML = ''
+      + '<div style="text-align:center;">'
+      + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">'
+      + '<span style="font-size:1rem;font-weight:700;">RhythmTap</span>'
+      + '<span style="font-size:0.9rem;color:#7c3aed;font-weight:700;">分: <span id="rt-score2">0</span></span>'
+      + '<span style="font-size:0.85rem;color:#64748b;">⏱ <span id="rt-time2">' + DURATION + '</span>s</span>'
+      + '</div>'
+      + '<div id="rt-combo2" style="font-size:0.9rem;min-height:22px;color:#f59e0b;font-weight:600;"></div>'
+      + '<div style="display:flex;justify-content:center;gap:8px;margin:6px 0;">' + lanesHTML + '</div>'
+      + '<div style="display:flex;justify-content:center;gap:8px;margin:6px 0;">' + keysHTML + '</div>'
+      + '<div id="rt-feedback2" style="font-size:1.8rem;font-weight:700;min-height:36px;"></div>'
+      + '<button class="btn" style="margin-top:4px;" onclick="init_gae84ccb5(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 重新开始</button>'
+      + '<div id="rt-result2" style="display:none;margin-top:8px;font-size:1.1rem;font-weight:700;color:#7c3aed;"></div>'
+      + '</div>';
+  }
+
+  function reset() {
+    if (spawnTimer) clearInterval(spawnTimer);
+    if (gameLoop) cancelAnimationFrame(gameLoop);
+    if (keyHandler) document.removeEventListener('keydown', keyHandler);
+    state = { score: 0, combo: 0, maxCombo: 0, notes: [], noteId: 0, playing: true, timeLeft: DURATION };
+    buildHTML();
+    bindEvents();
+    startGame();
+  }
+
+  function bindEvents() {
+    var keyMap = { 'd': 0, 'f': 1, 'j': 2, 'k': 3 };
+    keyHandler = function(e) {
+      var lane = keyMap[e.key.toLowerCase()];
+      if (lane !== undefined) { e.preventDefault(); hit(lane); }
+    };
+    document.addEventListener('keydown', keyHandler);
+
+    var keys = container.querySelectorAll('.rt-key2');
+    for (var i = 0; i < keys.length; i++) {
+      keys[i].addEventListener('mousedown', function(e) {
+        hit(parseInt(e.currentTarget.dataset.lane));
+      });
+    }
+  }
+
+  function hit(lane) {
+    if (!state.playing) return;
+    var keyEl = container.querySelector('.rt-key2[data-lane="' + lane + '"]');
+    var laneEl = container.querySelector('#rt-lane2-' + lane);
+
+    // 找该轨道最接近底部的音符
+    var notes = state.notes.filter(function(n) { return n.lane === lane && !n.hit && !n.miss; });
+    if (notes.length === 0) {
+      // 空按 — 红色
+      state.combo = 0;
+      if (keyEl) { keyEl.style.background = '#fee2e2'; keyEl.style.borderColor = '#ef4444'; keyEl.style.color = '#dc2626'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 150); }
+      if (laneEl) { laneEl.style.boxShadow = '0 0 12px rgba(239,68,68,0.4)'; laneEl.style.borderColor = '#ef4444'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
+      updateUI(); showFB('Miss', '#ef4444'); return;
+    }
+
+    var best = notes[0], bestDist = Math.abs(best.y - 235);
+    for (var i = 1; i < notes.length; i++) {
+      var d = Math.abs(notes[i].y - 235);
+      if (d < bestDist) { best = notes[i]; bestDist = d; }
+    }
+
+    if (bestDist < 30) { // Perfect — 绿色
+      best.hit = true; state.score += 10; state.combo++;
+      if (state.combo > state.maxCombo) state.maxCombo = state.combo;
+      if (best.el) { best.el.style.background = '#10b981'; best.el.style.transform = 'translateX(-50%) scale(1.6)'; best.el.style.boxShadow = '0 0 24px rgba(16,185,129,0.7)'; }
+      if (keyEl) { keyEl.style.background = '#d1fae5'; keyEl.style.borderColor = '#10b981'; keyEl.style.color = '#059669'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 120); }
+      if (laneEl) { laneEl.style.boxShadow = '0 0 14px rgba(16,185,129,0.5)'; laneEl.style.borderColor = '#10b981'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
+      showFB('Perfect!', '#10b981');
+    } else if (bestDist < 60) { // Good — 绿色
+      best.hit = true; state.score += 5; state.combo++;
+      if (state.combo > state.maxCombo) state.maxCombo = state.combo;
+      if (best.el) { best.el.style.background = '#34d399'; best.el.style.transform = 'translateX(-50%) scale(1.3)'; best.el.style.boxShadow = '0 0 16px rgba(16,185,129,0.5)'; }
+      if (keyEl) { keyEl.style.background = '#d1fae5'; keyEl.style.borderColor = '#34d399'; keyEl.style.color = '#059669'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 120); }
+      if (laneEl) { laneEl.style.boxShadow = '0 0 10px rgba(16,185,129,0.35)'; laneEl.style.borderColor = '#34d399'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
+      showFB('Good', '#34d399');
+    } else { // Miss — 红色
+      state.combo = 0;
+      if (keyEl) { keyEl.style.background = '#fee2e2'; keyEl.style.borderColor = '#ef4444'; keyEl.style.color = '#dc2626'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 150); }
+      if (laneEl) { laneEl.style.boxShadow = '0 0 12px rgba(239,68,68,0.4)'; laneEl.style.borderColor = '#ef4444'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
+      showFB('Miss', '#ef4444');
+    }
+    updateUI();
+  }
+
+  function showFB(text, color) {
+    var el = container.querySelector('#rt-feedback2');
+    if (!el) return;
+    el.textContent = text; el.style.color = color;
+    clearTimeout(el._t); el._t = setTimeout(function() { el.textContent = ''; }, 400);
+  }
+
+  function spawnNote() {
+    if (!state.playing) return;
+    var lane = Math.floor(Math.random() * 4);
+    var note = { id: state.noteId++, lane: lane, y: -40, hit: false, miss: false, el: null };
+    var laneEl = container.querySelector('#rt-lane2-' + lane);
+    var nd = document.createElement('div');
+    nd.style.cssText = 'position:absolute;left:50%;transform:translateX(-50%);width:40px;height:40px;border-radius:50%;background:#10b981;transition:none;';
+    nd.style.top = note.y + 'px';
+    laneEl.appendChild(nd);
+    note.el = nd;
+    state.notes.push(note);
+  }
+
+  function updateNotes() {
+    for (var i = state.notes.length - 1; i >= 0; i--) {
+      var n = state.notes[i];
+      if (n.hit || n.miss) {
+        if (n.el && n.el.parentNode) n.el.parentNode.removeChild(n.el);
+        state.notes.splice(i, 1);
+        continue;
+      }
+      n.y += 1.8;
+      if (n.el) n.el.style.top = n.y + 'px';
+      if (n.y > 290) {
+        n.miss = true; state.combo = 0;
+        if (n.el) { n.el.style.background = '#ef4444'; n.el.style.boxShadow = '0 0 12px rgba(239,68,68,0.5)'; }
+        updateUI(); showFB('Miss', '#ef4444');
+      }
+    }
+  }
+
+  function updateUI() {
+    var s = container.querySelector('#rt-score2');
+    if (s) s.textContent = state.score;
+    var c = container.querySelector('#rt-combo2');
+    if (c) c.textContent = state.combo > 0 ? '🔥 ' + state.combo + ' 连击' : '';
+    var t = container.querySelector('#rt-time2');
+    if (t) t.textContent = state.timeLeft;
+  }
+
+  function countdown() {
+    if (!state.playing) return;
+    state.timeLeft--;
+    updateUI();
+    if (state.timeLeft <= 0) endGame();
+  }
+
+  function startGame() {
+    state.playing = true;
+    spawnTimer = setInterval(spawnNote, 700);
+    var timeTimer = setInterval(countdown, 1000);
+    function loop() {
+      if (!state.playing) { clearInterval(timeTimer); return; }
+      updateNotes();
+      gameLoop = requestAnimationFrame(loop);
+    }
+    gameLoop = requestAnimationFrame(loop);
+  }
+
+  function endGame() {
+    state.playing = false;
+    if (spawnTimer) clearInterval(spawnTimer);
+    if (gameLoop) cancelAnimationFrame(gameLoop);
+    var res = container.querySelector('#rt-result2');
+    if (res) {
+      res.style.display = 'block';
+      res.innerHTML = '🎉 游戏结束！得分: <b>' + state.score + '</b> &nbsp;|&nbsp; 最高连击: <b>' + state.maxCombo + '</b>';
+    }
+  }
+
+  reset();
+}
+// === maze ===
+// === g1819fe04 ===
 function init_g1819fe04(container) {
   container.innerHTML = '<div style="text-align:center"><span class="brk-score" style="font-size:1.2rem;font-weight:700;color:#7c3aed;">0</span></div><div style="position:relative;display:flex;justify-content:center"><canvas style="background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0;"></canvas><div class="brk-overlay" style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;background:rgba(255,255,255,0.9);border-radius:8px;font-size:1.5rem;font-weight:700;color:#7c3aed;gap:8px;"><span>Breakout!</span><span class="brk-sub"></span></div></div><div style="text-align:center;margin-top:8px"><button class="btn" id="brk-restart">New Game</button></div>';
   var restartBtn = container.querySelector('#brk-restart');
@@ -1684,12 +1075,836 @@ function init_g1819fe04(container) {
   // Auto start
   startGame();
 }
+// === g1b8a479c ===
+function init_g1b8a479c(container) {
+    var gridSize = 20;
+    var cellSize = 20;
+    var canvas = document.createElement('canvas');
+    canvas.className = 'snake-game-canvas';
+    canvas.width = gridSize * cellSize;
+    canvas.height = gridSize * cellSize;
+    var ctx = canvas.getContext('2d');
+    var scoreDisplay = document.createElement('div');
+    scoreDisplay.className = 'snake-game-score';
+    scoreDisplay.textContent = '0';
+    var messageDiv = document.createElement('div');
+    messageDiv.className = 'snake-game-message';
+    var controlsDiv = document.createElement('div');
+    controlsDiv.className = 'snake-game-controls';
+    var restartBtn = document.createElement('button');
+    restartBtn.className = 'snake-game-btn';
+    restartBtn.textContent = '重新开始';
+    controlsDiv.appendChild(restartBtn);
+    var canvasWrap = document.createElement('div');
+    canvasWrap.className = 'snake-game-canvas-wrap';
+    canvasWrap.appendChild(canvas);
+    var cardDiv = document.createElement('div');
+    cardDiv.className = 'snake-game-card';
+    var thumbDiv = document.createElement('div');
+    thumbDiv.className = 'snake-game-thumb';
+    thumbDiv.innerHTML = "<svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc' rx='4'/><rect x='12' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='20' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='28' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='36' y='12' width='8' height='8' fill='#10b981' rx='2'/><rect x='44' y='20' width='8' height='8' fill='#ef4444' rx='2'/></svg>";
+    var infoDiv = document.createElement('div');
+    infoDiv.className = 'snake-game-info';
+    var titleP = document.createElement('p');
+    titleP.className = 'snake-game-title';
+    titleP.textContent = '贪吃蛇';
+    var tagsP = document.createElement('p');
+    tagsP.className = 'snake-game-tags';
+    tagsP.textContent = '经典小游戏';
+    infoDiv.appendChild(titleP);
+    infoDiv.appendChild(tagsP);
+    cardDiv.appendChild(thumbDiv);
+    cardDiv.appendChild(infoDiv);
+    container.innerHTML = '';
+    container.appendChild(cardDiv);
+    container.appendChild(scoreDisplay);
+    container.appendChild(canvasWrap);
+    container.appendChild(controlsDiv);
+    container.appendChild(messageDiv);
 
-<!-- ANCHOR:JS -->
-// ESC 关闭
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeGame();
-});
+    var snake = [{x:10, y:10}];
+    var food = {x:15, y:15};
+    var direction = 'right';
+    var nextDirection = 'right';
+    var score = 0;
+    var gameOver = false;
+    var win = false;
+    var gameInterval = null;
+
+    function randomFood() {
+        var free = [];
+        for (var i=0; i<gridSize; i++) {
+            for (var j=0; j<gridSize; j++) {
+                var occupied = false;
+                for (var k=0; k<snake.length; k++) {
+                    if (snake[k].x === i && snake[k].y === j) {
+                        occupied = true;
+                        break;
+                    }
+                }
+                if (!occupied) {
+                    free.push({x:i, y:j});
+                }
+            }
+        }
+        if (free.length === 0) {
+            win = true;
+            gameOver = true;
+            clearInterval(gameInterval);
+            gameInterval = null;
+            messageDiv.textContent = '恭喜你赢了！';
+            return null;
+        }
+        var idx = Math.floor(Math.random() * free.length);
+        return free[idx];
+    }
+
+    function draw() {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.lineWidth = 0.5;
+        for (var i=0; i<=gridSize; i++) {
+            ctx.beginPath();
+            ctx.moveTo(i*cellSize, 0);
+            ctx.lineTo(i*cellSize, canvas.height);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(0, i*cellSize);
+            ctx.lineTo(canvas.width, i*cellSize);
+            ctx.stroke();
+        }
+        // 绘制蛇
+        ctx.fillStyle = '#10b981';
+        for (var i=0; i<snake.length; i++) {
+            ctx.fillRect(snake[i].x*cellSize, snake[i].y*cellSize, cellSize-1, cellSize-1);
+        }
+        // 绘制食物
+        ctx.fillStyle = '#ef4444';
+        ctx.fillRect(food.x*cellSize, food.y*cellSize, cellSize-1, cellSize-1);
+    }
+
+    function move() {
+        if (gameOver) return;
+        direction = nextDirection;
+        var head = {x: snake[0].x, y: snake[0].y};
+        switch(direction) {
+            case 'right': head.x++; break;
+            case 'left': head.x--; break;
+            case 'up': head.y--; break;
+            case 'down': head.y++; break;
+        }
+        // 检查是否吃到食物
+        if (head.x === food.x && head.y === food.y) {
+            score++;
+            scoreDisplay.textContent = score;
+            snake.unshift(head);
+            var newFood = randomFood();
+            if (newFood) {
+                food = newFood;
+            } else {
+                // 胜利，游戏结束
+                return;
+            }
+        } else {
+            snake.unshift(head);
+            snake.pop();
+        }
+        // 检查碰撞
+        if (head.x < 0 || head.x >= gridSize || head.y < 0 || head.y >= gridSize) {
+            gameOver = true;
+            clearInterval(gameInterval);
+            gameInterval = null;
+            messageDiv.textContent = '游戏结束！撞墙了';
+            return;
+        }
+        for (var i=1; i<snake.length; i++) {
+            if (snake[i].x === head.x && snake[i].y === head.y) {
+                gameOver = true;
+                clearInterval(gameInterval);
+                gameInterval = null;
+                messageDiv.textContent = '游戏结束！撞到自己了';
+                return;
+            }
+        }
+        draw();
+    }
+
+    function resetGame() {
+        clearInterval(gameInterval);
+        gameInterval = null;
+        snake = [{x:10, y:10}];
+        direction = 'right';
+        nextDirection = 'right';
+        score = 0;
+        gameOver = false;
+        win = false;
+        scoreDisplay.textContent = '0';
+        messageDiv.textContent = '';
+        food = randomFood();
+        if (!food) {
+            food = {x:15, y:15};
+        }
+        draw();
+        startGame();
+    }
+
+    function startGame() {
+        if (gameInterval) clearInterval(gameInterval);
+        gameInterval = setInterval(move, 150);
+    }
+
+    function keydownHandler(e) {
+        if (gameOver) return;
+        var key = e.key;
+        if (key === 'ArrowUp' && direction !== 'down') nextDirection = 'up';
+        else if (key === 'ArrowDown' && direction !== 'up') nextDirection = 'down';
+        else if (key === 'ArrowLeft' && direction !== 'right') nextDirection = 'left';
+        else if (key === 'ArrowRight' && direction !== 'left') nextDirection = 'right';
+        e.preventDefault();
+    }
+
+    document.addEventListener('keydown', keydownHandler);
+    restartBtn.addEventListener('click', resetGame);
+
+    // 初始化食物
+    food = randomFood();
+    if (!food) {
+        food = {x:15, y:15};
+    }
+    draw();
+    startGame();
+
+    // 清理函数（可选）
+    return function cleanup() {
+        clearInterval(gameInterval);
+        document.removeEventListener('keydown', keydownHandler);
+    };
+}
+// === gae84ccb5 ===
+function init_gae84ccb5(container) {
+  var DURATION = 30; // 游戏时长（秒）
+  var state, spawnTimer, gameLoop, keyHandler;
+
+  function buildHTML() {
+    var lanesHTML = '';
+    var keysHTML = '';
+    var labels = ['D', 'F', 'J', 'K'];
+    for (var i = 0; i < 4; i++) {
+      lanesHTML += '<div id="rt-lane2-' + i + '" style="width:64px;height:240px;background:#fff;border:2px solid #e2e8f0;border-radius:10px;position:relative;overflow:hidden;">'
+        + '<div style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);width:44px;height:44px;border:3px dashed #e2e8f0;border-radius:50%;"></div>'
+        + '</div>';
+      keysHTML += '<div class="rt-key2" data-lane="' + i + '" style="width:64px;height:44px;background:#fff;border:2px solid #e2e8f0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;color:#64748b;cursor:pointer;user-select:none;">' + labels[i] + '</div>';
+    }
+    container.innerHTML = ''
+      + '<div style="text-align:center;">'
+      + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">'
+      + '<span style="font-size:1rem;font-weight:700;">RhythmTap</span>'
+      + '<span style="font-size:0.9rem;color:#7c3aed;font-weight:700;">分: <span id="rt-score2">0</span></span>'
+      + '<span style="font-size:0.85rem;color:#64748b;">⏱ <span id="rt-time2">' + DURATION + '</span>s</span>'
+      + '</div>'
+      + '<div id="rt-combo2" style="font-size:0.9rem;min-height:22px;color:#f59e0b;font-weight:600;"></div>'
+      + '<div style="display:flex;justify-content:center;gap:8px;margin:6px 0;">' + lanesHTML + '</div>'
+      + '<div style="display:flex;justify-content:center;gap:8px;margin:6px 0;">' + keysHTML + '</div>'
+      + '<div id="rt-feedback2" style="font-size:1.8rem;font-weight:700;min-height:36px;"></div>'
+      + '<button class="btn" style="margin-top:4px;" onclick="init_gae84ccb5(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 重新开始</button>'
+      + '<div id="rt-result2" style="display:none;margin-top:8px;font-size:1.1rem;font-weight:700;color:#7c3aed;"></div>'
+      + '</div>';
+  }
+
+  function reset() {
+    if (spawnTimer) clearInterval(spawnTimer);
+    if (gameLoop) cancelAnimationFrame(gameLoop);
+    if (keyHandler) document.removeEventListener('keydown', keyHandler);
+    state = { score: 0, combo: 0, maxCombo: 0, notes: [], noteId: 0, playing: true, timeLeft: DURATION };
+    buildHTML();
+    bindEvents();
+    startGame();
+  }
+
+  function bindEvents() {
+    var keyMap = { 'd': 0, 'f': 1, 'j': 2, 'k': 3 };
+    keyHandler = function(e) {
+      var lane = keyMap[e.key.toLowerCase()];
+      if (lane !== undefined) { e.preventDefault(); hit(lane); }
+    };
+    document.addEventListener('keydown', keyHandler);
+
+    var keys = container.querySelectorAll('.rt-key2');
+    for (var i = 0; i < keys.length; i++) {
+      keys[i].addEventListener('mousedown', function(e) {
+        hit(parseInt(e.currentTarget.dataset.lane));
+      });
+    }
+  }
+
+  function hit(lane) {
+    if (!state.playing) return;
+    var keyEl = container.querySelector('.rt-key2[data-lane="' + lane + '"]');
+    var laneEl = container.querySelector('#rt-lane2-' + lane);
+
+    // 找该轨道最接近底部的音符
+    var notes = state.notes.filter(function(n) { return n.lane === lane && !n.hit && !n.miss; });
+    if (notes.length === 0) {
+      // 空按 — 红色
+      state.combo = 0;
+      if (keyEl) { keyEl.style.background = '#fee2e2'; keyEl.style.borderColor = '#ef4444'; keyEl.style.color = '#dc2626'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 150); }
+      if (laneEl) { laneEl.style.boxShadow = '0 0 12px rgba(239,68,68,0.4)'; laneEl.style.borderColor = '#ef4444'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
+      updateUI(); showFB('Miss', '#ef4444'); return;
+    }
+
+    var best = notes[0], bestDist = Math.abs(best.y - 235);
+    for (var i = 1; i < notes.length; i++) {
+      var d = Math.abs(notes[i].y - 235);
+      if (d < bestDist) { best = notes[i]; bestDist = d; }
+    }
+
+    if (bestDist < 30) { // Perfect — 绿色
+      best.hit = true; state.score += 10; state.combo++;
+      if (state.combo > state.maxCombo) state.maxCombo = state.combo;
+      if (best.el) { best.el.style.background = '#10b981'; best.el.style.transform = 'translateX(-50%) scale(1.6)'; best.el.style.boxShadow = '0 0 24px rgba(16,185,129,0.7)'; }
+      if (keyEl) { keyEl.style.background = '#d1fae5'; keyEl.style.borderColor = '#10b981'; keyEl.style.color = '#059669'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 120); }
+      if (laneEl) { laneEl.style.boxShadow = '0 0 14px rgba(16,185,129,0.5)'; laneEl.style.borderColor = '#10b981'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
+      showFB('Perfect!', '#10b981');
+    } else if (bestDist < 60) { // Good — 绿色
+      best.hit = true; state.score += 5; state.combo++;
+      if (state.combo > state.maxCombo) state.maxCombo = state.combo;
+      if (best.el) { best.el.style.background = '#34d399'; best.el.style.transform = 'translateX(-50%) scale(1.3)'; best.el.style.boxShadow = '0 0 16px rgba(16,185,129,0.5)'; }
+      if (keyEl) { keyEl.style.background = '#d1fae5'; keyEl.style.borderColor = '#34d399'; keyEl.style.color = '#059669'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 120); }
+      if (laneEl) { laneEl.style.boxShadow = '0 0 10px rgba(16,185,129,0.35)'; laneEl.style.borderColor = '#34d399'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
+      showFB('Good', '#34d399');
+    } else { // Miss — 红色
+      state.combo = 0;
+      if (keyEl) { keyEl.style.background = '#fee2e2'; keyEl.style.borderColor = '#ef4444'; keyEl.style.color = '#dc2626'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 150); }
+      if (laneEl) { laneEl.style.boxShadow = '0 0 12px rgba(239,68,68,0.4)'; laneEl.style.borderColor = '#ef4444'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
+      showFB('Miss', '#ef4444');
+    }
+    updateUI();
+  }
+
+  function showFB(text, color) {
+    var el = container.querySelector('#rt-feedback2');
+    if (!el) return;
+    el.textContent = text; el.style.color = color;
+    clearTimeout(el._t); el._t = setTimeout(function() { el.textContent = ''; }, 400);
+  }
+
+  function spawnNote() {
+    if (!state.playing) return;
+    var lane = Math.floor(Math.random() * 4);
+    var note = { id: state.noteId++, lane: lane, y: -40, hit: false, miss: false, el: null };
+    var laneEl = container.querySelector('#rt-lane2-' + lane);
+    var nd = document.createElement('div');
+    nd.style.cssText = 'position:absolute;left:50%;transform:translateX(-50%);width:40px;height:40px;border-radius:50%;background:#10b981;transition:none;';
+    nd.style.top = note.y + 'px';
+    laneEl.appendChild(nd);
+    note.el = nd;
+    state.notes.push(note);
+  }
+
+  function updateNotes() {
+    for (var i = state.notes.length - 1; i >= 0; i--) {
+      var n = state.notes[i];
+      if (n.hit || n.miss) {
+        if (n.el && n.el.parentNode) n.el.parentNode.removeChild(n.el);
+        state.notes.splice(i, 1);
+        continue;
+      }
+      n.y += 1.8;
+      if (n.el) n.el.style.top = n.y + 'px';
+      if (n.y > 290) {
+        n.miss = true; state.combo = 0;
+        if (n.el) { n.el.style.background = '#ef4444'; n.el.style.boxShadow = '0 0 12px rgba(239,68,68,0.5)'; }
+        updateUI(); showFB('Miss', '#ef4444');
+      }
+    }
+  }
+
+  function updateUI() {
+    var s = container.querySelector('#rt-score2');
+    if (s) s.textContent = state.score;
+    var c = container.querySelector('#rt-combo2');
+    if (c) c.textContent = state.combo > 0 ? '🔥 ' + state.combo + ' 连击' : '';
+    var t = container.querySelector('#rt-time2');
+    if (t) t.textContent = state.timeLeft;
+  }
+
+  function countdown() {
+    if (!state.playing) return;
+    state.timeLeft--;
+    updateUI();
+    if (state.timeLeft <= 0) endGame();
+  }
+
+  function startGame() {
+    state.playing = true;
+    spawnTimer = setInterval(spawnNote, 700);
+    var timeTimer = setInterval(countdown, 1000);
+    function loop() {
+      if (!state.playing) { clearInterval(timeTimer); return; }
+      updateNotes();
+      gameLoop = requestAnimationFrame(loop);
+    }
+    gameLoop = requestAnimationFrame(loop);
+  }
+
+  function endGame() {
+    state.playing = false;
+    if (spawnTimer) clearInterval(spawnTimer);
+    if (gameLoop) cancelAnimationFrame(gameLoop);
+    var res = container.querySelector('#rt-result2');
+    if (res) {
+      res.style.display = 'block';
+      res.innerHTML = '🎉 游戏结束！得分: <b>' + state.score + '</b> &nbsp;|&nbsp; 最高连击: <b>' + state.maxCombo + '</b>';
+    }
+  }
+
+  reset();
+}
+// === maze ===
+// ========================= 迷宫游戏 =========================
+function initMaze(container) {
+  const w = 21, h = 15;
+  const maze = generateMaze(w, h);
+  let px = 1, py = 1;
+  const ex = w - 2, ey = h - 2;
+  maze[1][0] = 2; maze[h-2][w-1] = 3;
+  let won = false;
+
+  function render() {
+    let html = '<div class="maze-container"><div class="maze-grid" style="grid-template-columns: repeat(' + w + ', 20px);">';
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        let cls = 'maze-cell '; let txt = '';
+        if (x === px && y === py) { cls += 'player'; txt = '🙂'; }
+        else if (maze[y][x] === 3) { cls += 'exit'; txt = '🚪'; }
+        else if (maze[y][x] === 2) { cls += 'entry'; txt = '▶'; }
+        else if (maze[y][x] === 1) { cls += 'wall'; txt = ''; }
+        else { cls += 'path'; }
+        html += '<div class="' + cls + '">' + txt + '</div>';
+      }
+    }
+    html += '</div>';
+    if (won) html += '<div class="maze-win">🎉 恭喜通关！你太厉害了！ 🎉</div>';
+    html += '<div class="maze-controls">⬆⬇⬅➡ 方向键移动 &nbsp;|&nbsp; <button class="btn small" onclick="initMaze(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 新迷宫</button></div>';
+    html += '</div>';
+    container.innerHTML = html;
+  }
+
+  document.removeEventListener('keydown', mazeKeyHandler);
+  mazeKeyHandler = function(e) {
+    if (!$('#overlay').classList.contains('active')) return;
+    if (won) return;
+    let nx = px, ny = py;
+    if (e.key === 'ArrowUp') ny--; else if (e.key === 'ArrowDown') ny++;
+    else if (e.key === 'ArrowLeft') nx--; else if (e.key === 'ArrowRight') nx++;
+    else return;
+    e.preventDefault();
+    if (nx >= 0 && nx < w && ny >= 0 && ny < h && maze[ny][nx] !== 1) {
+      px = nx; py = ny;
+      if (maze[ny][nx] === 3) won = true;
+      render();
+    }
+  };
+  document.addEventListener('keydown', mazeKeyHandler);
+  render();
+}
+
+let mazeKeyHandler = null;
+
+function generateMaze(w, h) {
+  const maze = Array.from({length: h}, () => Array(w).fill(1));
+  function carve(x, y) {
+    maze[y][x] = 0;
+    const dirs = [[0,2],[2,0],[0,-2],[-2,0]].sort(() => Math.random() - 0.5);
+    for (const [dx, dy] of dirs) {
+      const nx = x + dx, ny = y + dy;
+      if (nx > 0 && nx < w-1 && ny > 0 && ny < h-1 && maze[ny][nx] === 1) {
+        maze[y + dy/2][x + dx/2] = 0;
+        carve(nx, ny);
+      }
+    }
+  }
+  carve(1, 1);
+  maze[1][0] = 2; maze[h-2][w-1] = 3;
+  return maze;
+}
+// === memory ===
+// === memory ===
+// ========================= 记忆翻牌 =========================
+function initMemory(container) {
+  const emojis = ['🐶','🐱','🐰','🦊','🐻','🐼','🐨','🐯'];
+  const cards = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+  let flipped = [];      // 当前翻开的卡片索引
+  let matched = new Set(); // 已配对的索引
+  let moves = 0;
+  let lock = false;
+
+  function render() {
+    let html = '<div style="text-align:center;">';
+    html += '<div class="memory-stats">Moves: <span>' + moves + '</span> &nbsp;|&nbsp; Matched: <span>' + matched.size/2 + '</span> / ' + emojis.length + '</div>';
+    html += '<div class="memory-grid">';
+    for (let i = 0; i < cards.length; i++) {
+      let cls = 'memory-card';
+      if (flipped.includes(i) || matched.has(i)) cls += ' flipped';
+      if (matched.has(i)) cls += ' matched';
+      html += '<div class="' + cls + '" data-idx="' + i + '">' + cards[i] + '</div>';
+    }
+    html += '</div>';
+
+    if (matched.size === cards.length) {
+      html += '<div class="maze-win">🎉 全部配对成功！用了 ' + moves + ' 步！</div>';
+    }
+
+    html += '<button class="btn" style="margin-top:12px;" onclick="initMemory(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 新游戏</button>';
+    html += '</div>';
+    container.innerHTML = html;
+
+    container.querySelectorAll('.memory-card').forEach(card => {
+      card.addEventListener('click', () => {
+        if (lock) return;
+        const idx = parseInt(card.dataset.idx);
+        if (flipped.includes(idx) || matched.has(idx)) return;
+        if (flipped.length >= 2) return;
+
+        flipped.push(idx);
+        render();
+
+        if (flipped.length === 2) {
+          moves++;
+          const [a, b] = flipped;
+          if (cards[a] === cards[b]) {
+            matched.add(a); matched.add(b);
+            flipped = [];
+            render();
+          } else {
+            lock = true;
+            setTimeout(() => {
+              flipped = [];
+              lock = false;
+              render();
+            }, 600);
+          }
+        }
+      });
+    });
+  }
+  render();
+}
+// === puzzle ===
+// === puzzle ===
+// ========================= 数字谜题 =========================
+function initPuzzle(container) {
+  let puzzleIndex = 0;
+  let score = 0;
+  const puzzles = [
+    { title: '🔢 Find the Pattern', question: 'Sequence: 2, 3, 5, 7, 11, ?\nWhat is the next number?', hint: 'These numbers can only be divided by 1 and themselves...', answer: '13' },
+    { title: '🃏 24 Game', question: 'Using 3, 3, 8, 8 each exactly once,\nmake 24 with + - × ÷', hint: 'Hint: 8 ÷ (3 - 8 ÷ 3) = ?', answer: '24' },
+    { title: '💡 Brain Teaser', question: '1 = 5\n2 = 10\n3 = 15\n4 = 20\n5 = ?', hint: 'Look at the first equation carefully...', answer: '1' },
+    { title: '🔢 Missing Number', question: 'Find the pattern:\n2, 6, 12, 20, 30, ?', hint: '2=1×2, 6=2×3, 12=3×4, 20=4×5...', answer: '42' },
+    { title: '💡 Math Puzzle', question: 'A number added to itself equals\nitself multiplied by itself.\nWhat is it? (integer)', hint: 'x + x = x × x  →  2x = x²', answer: '2' }
+  ].sort(() => Math.random() - 0.5);
+
+  function renderPuzzle() {
+    let html = '<div>';
+    if (puzzleIndex >= puzzles.length) {
+      html += '<div class="maze-win">🎉 All done! Score: ' + score + '/' + puzzles.length + '</div>';
+      html += '<div style="text-align:center;"><button class="btn primary" onclick="initPuzzle(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 Play Again</button></div>';
+      container.innerHTML = html;
+      return;
+    }
+    const p = puzzles[puzzleIndex];
+    html += '<div class="puzzle-progress">Question ' + (puzzleIndex+1) + ' / ' + puzzles.length + ' &nbsp;|&nbsp; ✅ ' + score + ' pts</div>';
+    html += '<div class="puzzle-card">';
+    html += '<h3>' + p.title + '</h3>';
+    html += '<div class="question">' + p.question + '</div>';
+    html += '<div class="puzzle-input">';
+    html += '<input type="text" id="puzzleAnswer" placeholder="Your answer..." autocomplete="off">';
+    html += '<button onclick="checkPuzzleAnswer()">Submit</button>';
+    html += '</div>';
+    html += '<div class="puzzle-feedback" id="puzzleFeedback"></div>';
+    html += '</div>';
+    html += '<div style="text-align:center;"><button class="btn" onclick="initPuzzle(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 New Set</button></div>';
+    html += '</div>';
+    container.innerHTML = html;
+
+    window.checkPuzzleAnswer = function() {
+      const input = $('#puzzleAnswer').value.trim();
+      const fb = $('#puzzleFeedback');
+      if (input === p.answer || input.toLowerCase() === p.answer.toLowerCase()) {
+        fb.className = 'puzzle-feedback correct';
+        fb.innerHTML = '✅ Correct! Well done!';
+        score++;
+        setTimeout(() => { puzzleIndex++; renderPuzzle(); }, 1000);
+      } else {
+        fb.className = 'puzzle-feedback wrong';
+        fb.innerHTML = '❌ Not quite, try again!<div class="hint-text">💡 ' + p.hint + '</div>';
+      }
+    };
+    $('#puzzleAnswer').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') checkPuzzleAnswer();
+    });
+  }
+  renderPuzzle();
+}
+// === sudoku ===
+// === sudoku ===
+// ========================= 数独游戏 =========================
+function initSudoku(container) {
+  const solution = Array.from({length:9}, () => Array(9).fill(0));
+  function isValid(b, r, c, n) {
+    for (let i = 0; i < 9; i++) if (b[r][i] === n || b[i][c] === n) return false;
+    const sr = Math.floor(r/3)*3, sc = Math.floor(c/3)*3;
+    for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) if (b[sr+i][sc+j] === n) return false;
+    return true;
+  }
+  (function solve() {
+    for (let r = 0; r < 9; r++) {
+      for (let c = 0; c < 9; c++) {
+        if (solution[r][c] === 0) {
+          const nums = [1,2,3,4,5,6,7,8,9].sort(() => Math.random()-0.5);
+          for (const n of nums) {
+            if (isValid(solution, r, c, n)) { solution[r][c] = n; if (solve()) return true; solution[r][c] = 0; }
+          }
+          return false;
+        }
+      }
+    }
+    return true;
+  })();
+
+  const puzzle = solution.map(r => [...r]);
+  const cells = [];
+  for (let r = 0; r < 9; r++) for (let c = 0; c < 9; c++) cells.push([r,c]);
+  cells.sort(() => Math.random()-0.5);
+  // 后41个格子保留数字（given），前40个挖空让玩家填
+  const given = new Set();
+  for (const [r,c] of cells.slice(40)) given.add(r*9+c);
+  for (const [r,c] of cells.slice(0, 40)) puzzle[r][c] = 0;
+
+  let selectedR = -1, selectedC = -1;
+  const playerBoard = puzzle.map(r => [...r]);
+
+  function render() {
+    let html = '<div style="display:flex;flex-direction:column;align-items:center;gap:10px;">';
+    html += '<div class="sudoku-board">';
+    for (let r = 0; r < 9; r++) {
+      for (let c = 0; c < 9; c++) {
+        let cls = 'sudoku-cell';
+        if (c % 3 === 2 && c < 8) cls += ' br-right';
+        if (r % 3 === 2 && r < 8) cls += ' br-bottom';
+        if (given.has(r*9+c)) cls += ' given';
+        if (r === selectedR && c === selectedC) cls += ' selected';
+        if (playerBoard[r][c] !== 0 && playerBoard[r][c] !== solution[r][c] && !given.has(r*9+c)) cls += ' error';
+        html += '<div class="' + cls + '" data-r="' + r + '" data-c="' + c + '">' + (playerBoard[r][c] || '') + '</div>';
+      }
+    }
+    html += '</div>';
+    html += '<div class="sudoku-numpad">';
+    for (let i = 1; i <= 9; i++) html += '<button data-num="' + i + '">' + i + '</button>';
+    html += '<button class="erase" data-num="0">✕</button>';
+    html += '</div>';
+    const done = playerBoard.every((row, r) => row.every((v, c) => v === solution[r][c]));
+    if (done) html += '<div class="maze-win">🎉 恭喜完成数独！你太聪明了！ 🎉</div>';
+    html += '<button class="btn" onclick="initSudoku(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 新题目</button>';
+    html += '</div>';
+    container.innerHTML = html;
+
+    container.querySelectorAll('.sudoku-cell').forEach(cell => {
+      cell.addEventListener('click', () => {
+        const r = parseInt(cell.dataset.r), c = parseInt(cell.dataset.c);
+        if (given.has(r*9+c)) return;
+        selectedR = r; selectedC = c;
+        render();
+      });
+    });
+    container.querySelectorAll('.sudoku-numpad button').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (selectedR < 0) return;
+        playerBoard[selectedR][selectedC] = parseInt(btn.dataset.num);
+        render();
+      });
+    });
+  }
+  render();
+}
+// === wordsearch ===
+// === wordsearch ===
+// ========================= Word Search（纯英文 + 按住拖拽选中） =========================
+function initWordSearch(container) {
+  const words = ['PYTHON','CODING','GITHUB','ALGORITHM','DEBUG','COMMIT','PUSH','BRANCH','MERGE','COMPILE','SCRIPT','STACK'];
+  const size = 12;
+  const grid = Array.from({length: size}, () => Array(size).fill(''));
+  const dirs = [[1,0],[0,1],[1,1],[-1,1],[1,-1],[-1,0],[0,-1],[-1,-1]];
+  const placedWords = [];
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+  // 放置单词（长词优先，避免后期放不下）
+  const shuffled = [...words].sort((a, b) => b.length - a.length || Math.random() - 0.5);
+  for (const word of shuffled) {
+    let placed = false;
+    for (let attempt = 0; attempt < 100 && !placed; attempt++) {
+      const [dx, dy] = dirs[Math.floor(Math.random() * dirs.length)];
+      const len = word.length;
+      const maxX = size - 1 - (len - 1) * Math.max(0, dx);
+      const minX = (len - 1) * Math.max(0, -dx);
+      const maxY = size - 1 - (len - 1) * Math.max(0, dy);
+      const minY = (len - 1) * Math.max(0, -dy);
+      if (minX > maxX || minY > maxY) continue;
+      const x = minX + Math.floor(Math.random() * (maxX - minX + 1));
+      const y = minY + Math.floor(Math.random() * (maxY - minY + 1));
+      let ok = true;
+      for (let i = 0; i < len; i++) {
+        const cx = x + i * dx, cy = y + i * dy;
+        if (grid[cy][cx] !== '' && grid[cy][cx] !== word[i]) { ok = false; break; }
+      }
+      if (ok) {
+        for (let i = 0; i < len; i++) grid[y + i * dy][x + i * dx] = word[i];
+        placedWords.push({word, positions: Array.from({length: len}, (_, i) => [y + i * dy, x + i * dx])});
+        placed = true;
+      }
+    }
+  }
+
+  // 填充随机字母
+  for (let y = 0; y < size; y++)
+    for (let x = 0; x < size; x++)
+      if (!grid[y][x]) grid[y][x] = alphabet[Math.floor(Math.random() * 26)];
+
+  const foundSet = new Set();
+  let dragStart = null;     // [y, x]
+  let dragCurrent = null;   // [y, x]
+  let isDragging = false;
+
+  // 计算从 (y0,x0) 到 (y1,x1) 的直线路径上所有格子
+  function getLineCells(y0, x0, y1, x1) {
+    const cells = [];
+    const dx = Math.sign(x1 - x0);
+    const dy = Math.sign(y1 - y0);
+    if (dx === 0 && dy === 0) return [[y0, x0]];
+    const adx = Math.abs(x1 - x0);
+    const ady = Math.abs(y1 - y0);
+    if (dx !== 0 && dy !== 0 && adx !== ady) return [[y0, x0]];
+    const steps = Math.max(adx, ady);
+    for (let i = 0; i <= steps; i++) {
+      const cy = y0 + i * dy;
+      const cx = x0 + i * dx;
+      if (cy >= 0 && cy < size && cx >= 0 && cx < size) cells.push([cy, cx]);
+    }
+    return cells;
+  }
+
+  function buildSelectingSet() {
+    if (!dragStart || !dragCurrent) return new Set();
+    const cells = getLineCells(dragStart[0], dragStart[1], dragCurrent[0], dragCurrent[1]);
+    return new Set(cells.map(([y, x]) => y * size + x));
+  }
+
+  function render() {
+    const selectingSet = buildSelectingSet();
+
+    let html = '<div style="text-align:center;">';
+    html += '<div class="ws-score">✅ Found: ' + foundSet.size + ' / ' + placedWords.length + '</div>';
+    html += '<div class="word-list">';
+    for (const pw of placedWords) {
+      html += '<span class="word-tag' + (foundSet.has(pw.word) ? ' found' : '') + '">' + pw.word + '</span>';
+    }
+    html += '</div>';
+
+    html += '<div class="wordsearch-grid" style="grid-template-columns: repeat(' + size + ', 32px);">';
+    for (let y = 0; y < size; y++) {
+      for (let x = 0; x < size; x++) {
+        let cls = 'wordsearch-cell';
+        const key = y * size + x;
+
+        let inFound = false;
+        for (const fw of foundSet) {
+          const pw = placedWords.find(p => p.word === fw);
+          if (pw && pw.positions.some(p => p[0] === y && p[1] === x)) { inFound = true; break; }
+        }
+
+        if (inFound) cls += ' found';
+        else if (selectingSet.has(key)) cls += ' selecting';
+
+        html += '<div class="' + cls + '" data-y="' + y + '" data-x="' + x + '">' + grid[y][x] + '</div>';
+      }
+    }
+    html += '</div>';
+
+    if (foundSet.size === placedWords.length) {
+      html += '<div class="maze-win">🎉 All words found! Great job! 🎉</div>';
+    }
+
+    html += '<button class="btn" style="margin-top:10px;" onclick="initWordSearch(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 New Puzzle</button>';
+    html += '</div>';
+    container.innerHTML = html;
+
+    // ---- 拖拽事件绑定 ----
+    const cells = container.querySelectorAll('.wordsearch-cell');
+
+    cells.forEach(cell => {
+      cell.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        isDragging = true;
+        dragStart = [parseInt(cell.dataset.y), parseInt(cell.dataset.x)];
+        dragCurrent = [...dragStart];
+        render();
+      });
+    });
+
+    container.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      if (!el || !el.classList.contains('wordsearch-cell')) return;
+      const ny = parseInt(el.dataset.y), nx = parseInt(el.dataset.x);
+      if (dragCurrent && dragCurrent[0] === ny && dragCurrent[1] === nx) return;
+
+      if (dragStart) {
+        const dx = nx - dragStart[1], dy = ny - dragStart[0];
+        const adx = Math.abs(dx), ady = Math.abs(dy);
+        if (dx === 0 || dy === 0 || adx === ady) {
+          dragCurrent = [ny, nx];
+        } else {
+          // 智能吸附：优先斜向，其次水平/垂直
+          const d = Math.min(adx, ady);
+          dragCurrent = [dragStart[0] + Math.sign(dy) * d, dragStart[1] + Math.sign(dx) * d];
+        }
+      }
+      render();
+    });
+
+    document.addEventListener('mouseup', onMouseUp);
+    function onMouseUp() {
+      if (!isDragging) return;
+      isDragging = false;
+
+      if (dragStart && dragCurrent) {
+        const lineCells = getLineCells(dragStart[0], dragStart[1], dragCurrent[0], dragCurrent[1]);
+        const selectedWord = lineCells.map(([y, x]) => grid[y][x]).join('');
+        const reversedWord = [...selectedWord].reverse().join('');
+
+        for (const pw of placedWords) {
+          if ((pw.word === selectedWord || pw.word === reversedWord) && !foundSet.has(pw.word)) {
+            foundSet.add(pw.word);
+            break;
+          }
+        }
+      }
+
+      dragStart = null;
+      dragCurrent = null;
+      document.removeEventListener('mouseup', onMouseUp);
+      render();
+    }
+  }
+  render();
+}
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeGame(); });
+</script>
+</body>
+</html>
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeGame(); });
 </script>
 </body>
 </html>

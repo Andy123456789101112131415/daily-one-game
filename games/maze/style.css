@@ -1,0 +1,42 @@
+/* ========== 迷宫游戏 ========== */
+.maze-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.maze-grid {
+  display: grid;
+  gap: 0;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1;
+  user-select: none;
+}
+.maze-cell {
+  width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+}
+.maze-cell.wall { background: #334155; color: #64748b; }
+.maze-cell.path { background: #f1f5f9; color: #e2e8f0; }
+.maze-cell.player { background: var(--accent2); border-radius: 50%; color: #fff; font-size: 13px; }
+.maze-cell.exit { background: var(--green); border-radius: 3px; color: #fff; animation: pulse 1.5s infinite; }
+.maze-cell.entry { background: #fbbf24; border-radius: 3px; color: #fff; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.55} }
+
+.maze-controls { text-align: center; color: var(--text-dim); font-size: 0.85rem; }
+.maze-win {
+  text-align: center;
+  padding: 16px;
+  color: var(--accent);
+  font-size: 1.2rem;
+  font-weight: 700;
+  animation: bounceIn 0.5s ease;
+}
+@keyframes bounceIn { 0%{transform:scale(0)} 60%{transform:scale(1.12)} 100%{transform:scale(1)} }
+/* === memory === */
+
+/* === puzzle === */
+
+/* === sudoku === */
