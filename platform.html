@@ -145,7 +145,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 .np-feedback.no { display: block; background: #fee2e2; color: #dc2626; }
 .np-hint { font-weight: 400; font-size: 0.85rem; margin-top: 6px; color: #64748b; }
 .np-done { text-align: center; }
-.np-done .np-big { font-size: 3rem; margin-bottom: 8px; }
+.np-done .np-big { font-size: 3rem; margin-bottom: 8px; font-weight: 900; color: #7c3aed; }
 .np-done .np-msg { font-size: 1.3rem; font-weight: 700; color: #7c3aed; margin-bottom: 10px; }
 
 /* === sudoku === */
@@ -1058,11 +1058,11 @@ function initMemory(container) {
 function initPuzzle(container) {
   var idx = 0, score = 0, dots = [];
   var puzzles = [
-    { icon: '🧩', q: '2, 3, 5, 7, 11, ?\n下一个数字是什么？', hint: '只能被1和自身整除的数...', a: '13' },
-    { icon: '🃏', q: '用 3, 3, 8, 8 算出 24\n（加减乘除，每个数字用一次）', hint: '8 ÷ (3 - 8 ÷ 3) = 24', a: '24' },
-    { icon: '🤔', q: '1 = 5\n2 = 10\n3 = 15\n4 = 20\n5 = ?', hint: '注意第一个等式...', a: '1' },
-    { icon: '🔢', q: '2, 6, 12, 20, 30, ?\n找规律填空', hint: '1×2, 2×3, 3×4, 4×5...', a: '42' },
-    { icon: '💡', q: '一个数加上自己等于\n自己乘自己，它是？', hint: 'x + x = x × x → 2x = x²', a: '2' }
+    { icon: '#1', q: '2, 3, 5, 7, 11, ?\n下一个数字是什么？', hint: '只能被1和自身整除的数...', a: '13' },
+    { icon: '#2', q: '用 3, 3, 8, 8 算出 24\n（加减乘除，每个数字用一次）', hint: '8 / (3 - 8 / 3) = 24', a: '24' },
+    { icon: '#3', q: '1 = 5\n2 = 10\n3 = 15\n4 = 20\n5 = ?', hint: '注意第一个等式...', a: '1' },
+    { icon: '#4', q: '2, 6, 12, 20, 30, ?\n找规律填空', hint: '1x2, 2x3, 3x4, 4x5...', a: '42' },
+    { icon: '#5', q: '一个数加上自己等于\n自己乘自己，它是？', hint: 'x + x = x * x', a: '2' }
   ].sort(function(){ return Math.random() - 0.5; });
 
   function dotsHTML() {
@@ -1083,7 +1083,7 @@ function initPuzzle(container) {
     html += dotsHTML();
 
     if (idx >= puzzles.length) {
-      html += '<div class="np-done"><div class="np-big">' + (score >= 4 ? '🏆' : score >= 2 ? '⭐' : '💪') + '</div>';
+      html += '<div class="np-done"><div class="np-big">' + (score >= 4 ? 'S' : score >= 2 ? 'A' : 'B') + '</div>';
       html += '<div class="np-msg">答对 ' + score + ' / ' + puzzles.length + ' 题！</div>';
       html += '<button class="btn primary" onclick="initPuzzle(document.getElementById(\'panelContent\'));event.stopPropagation();">再来一轮</button></div>';
       container.innerHTML = html;
