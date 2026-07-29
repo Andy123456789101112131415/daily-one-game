@@ -1,1 +1,9 @@
-/* === puzzle === */
+/* ========== 记忆翻牌 ========== */
+.memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 360px; margin: 0 auto; }
+.memory-card { aspect-ratio: 1; border-radius: 10px; cursor: pointer; font-size: 2rem; display: flex; align-items: center; justify-content: center; transition: transform 0.3s, background 0.2s; user-select: none; background: linear-gradient(135deg, #7c3aed, #a78bfa); color: transparent; }
+.memory-card:hover { transform: scale(1.05); }
+.memory-card.flipped { background: #fff; border: 1px solid #e2e8f0; color: inherit; }
+.memory-card.matched { background: #d1fae5; border: 2px solid #10b981; cursor: default; opacity: 0.7; }
+.memory-card.matched:hover { transform: none; }
+.memory-stats { display: flex; justify-content: center; gap: 24px; margin-bottom: 14px; font-size: 0.95rem; color: var(--text-dim); }
+.memory-stats span { font-weight: 700; color: var(--text); }
