@@ -1,0 +1,10 @@
+/* ========== 单词搜索 ========== */
+.wordsearch-grid { display: grid; gap: 3px; margin: 0 auto; width: fit-content; user-select: none; }
+.wordsearch-cell { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: #fff; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 0.85rem; font-weight: 600; color: #475569; transition: all 0.1s; text-transform: uppercase; }
+.wordsearch-cell:hover { background: #f8fafc; border-color: #cbd5e1; }
+.wordsearch-cell.selecting { background: #dbeafe; border-color: #93c5fd; color: #2563eb; }
+.wordsearch-cell.found { background: #d1fae5; border-color: #6ee7b7; color: #059669; }
+.word-list { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 10px 0; }
+.word-tag { padding: 4px 10px; border-radius: 16px; font-size: 0.8rem; border: 1px solid var(--border); background: #fff; color: var(--text); font-weight: 500; transition: all 0.25s; }
+.word-tag.found { background: #d1fae5; border-color: #6ee7b7; color: #059669; text-decoration: line-through; }
+.ws-score { text-align: center; margin: 8px 0; font-size: 1rem; color: var(--text-dim); }
