@@ -29,6 +29,7 @@ jobs:
       - name: 🤖 AI生成+自检修复
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          TZ: Asia/Shanghai
         run: |
           git config --local user.name "Andy123456789101112131415"
           git config --local user.email "17717486751@163.com"
