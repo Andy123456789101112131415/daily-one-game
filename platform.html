@@ -122,20 +122,31 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 .memory-stats span { font-weight: 700; color: var(--text); }
 
 /* === puzzle === */
-/* ========== 数字谜题 ========== */
-.puzzle-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 14px; }
-.puzzle-card h3 { margin-bottom: 10px; color: var(--accent); font-size: 1.05rem; }
-.puzzle-card .question { font-size: 1rem; line-height: 1.7; margin-bottom: 10px; white-space: pre-line; color: var(--text); }
-.puzzle-input { display: flex; gap: 8px; align-items: center; }
-.puzzle-input input { flex: 1; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background: #fff; color: var(--text); font-size: 1rem; }
-.puzzle-input input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(124,58,237,0.1); }
-.puzzle-input button { padding: 10px 18px; border-radius: 8px; border: none; background: var(--accent); color: #fff; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-.puzzle-input button:hover { background: #6d28d9; }
-.puzzle-feedback { margin-top: 8px; padding: 10px; border-radius: 8px; font-weight: 600; display: none; font-size: 0.9rem; }
-.puzzle-feedback.correct { display: block; background: #d1fae5; color: #059669; }
-.puzzle-feedback.wrong { display: block; background: #fee2e2; color: #dc2626; }
-.puzzle-feedback .hint-text { font-weight: 400; font-size: 0.85rem; margin-top: 4px; color: var(--text-dim); }
-.puzzle-progress { text-align: center; margin-bottom: 14px; color: var(--text-dim); font-size: 0.9rem; }
+/* ========== Number Puzzle ========== */
+.np-wrap { max-width: 500px; margin: 0 auto; }
+.np-progress { display: flex; gap: 4px; justify-content: center; margin-bottom: 16px; }
+.np-dot { width: 12px; height: 12px; border-radius: 50%; background: #e2e8f0; transition: all 0.3s; }
+.np-dot.done { background: #10b981; }
+.np-dot.wrong { background: #ef4444; }
+.np-dot.current { background: #7c3aed; box-shadow: 0 0 0 3px rgba(124,58,237,0.2); }
+.np-score { text-align: center; margin-bottom: 8px; font-size: 0.85rem; color: #64748b; }
+.np-score b { color: #7c3aed; font-size: 1.1rem; }
+.np-card { background: #fff; border: 2px solid #e2e8f0; border-radius: 16px; padding: 24px; }
+.np-card .np-icon { font-size: 2.5rem; text-align: center; margin-bottom: 8px; }
+.np-card .np-question { font-size: 1.15rem; line-height: 1.8; text-align: center; color: #1e293b; white-space: pre-line; margin-bottom: 20px; font-weight: 500; }
+.np-input-row { display: flex; gap: 8px; max-width: 300px; margin: 0 auto; }
+.np-input-row input { flex: 1; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 1.1rem; text-align: center; font-weight: 600; color: #1e293b; outline: none; transition: all 0.2s; }
+.np-input-row input:focus { border-color: #7c3aed; box-shadow: 0 0 0 4px rgba(124,58,237,0.1); }
+.np-input-row button { padding: 12px 24px; background: #7c3aed; color: #fff; border: none; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+.np-input-row button:hover { background: #6d28d9; transform: scale(1.03); }
+.np-feedback { text-align: center; margin-top: 14px; padding: 12px; border-radius: 10px; font-weight: 700; font-size: 1rem; animation: npPop 0.3s ease; display: none; }
+@keyframes npPop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.np-feedback.ok { display: block; background: #d1fae5; color: #059669; }
+.np-feedback.no { display: block; background: #fee2e2; color: #dc2626; }
+.np-hint { font-weight: 400; font-size: 0.85rem; margin-top: 6px; color: #64748b; }
+.np-done { text-align: center; }
+.np-done .np-big { font-size: 3rem; margin-bottom: 8px; }
+.np-done .np-msg { font-size: 1.3rem; font-weight: 700; color: #7c3aed; margin-bottom: 10px; }
 
 /* === sudoku === */
 /* ========== 数独 ========== */
@@ -1043,61 +1054,80 @@ function initMemory(container) {
 }
 // === puzzle ===
 // === puzzle ===
-// ========================= 数字谜题 =========================
+// ======== Number Puzzle ========
 function initPuzzle(container) {
-  let puzzleIndex = 0;
-  let score = 0;
-  const puzzles = [
-    { title: '🔢 Find the Pattern', question: 'Sequence: 2, 3, 5, 7, 11, ?\nWhat is the next number?', hint: 'These numbers can only be divided by 1 and themselves...', answer: '13' },
-    { title: '🃏 24 Game', question: 'Using 3, 3, 8, 8 each exactly once,\nmake 24 with + - × ÷', hint: 'Hint: 8 ÷ (3 - 8 ÷ 3) = ?', answer: '24' },
-    { title: '💡 Brain Teaser', question: '1 = 5\n2 = 10\n3 = 15\n4 = 20\n5 = ?', hint: 'Look at the first equation carefully...', answer: '1' },
-    { title: '🔢 Missing Number', question: 'Find the pattern:\n2, 6, 12, 20, 30, ?', hint: '2=1×2, 6=2×3, 12=3×4, 20=4×5...', answer: '42' },
-    { title: '💡 Math Puzzle', question: 'A number added to itself equals\nitself multiplied by itself.\nWhat is it? (integer)', hint: 'x + x = x × x  →  2x = x²', answer: '2' }
-  ].sort(() => Math.random() - 0.5);
+  var idx = 0, score = 0, dots = [];
+  var puzzles = [
+    { icon: '🧩', q: '2, 3, 5, 7, 11, ?\n下一个数字是什么？', hint: '只能被1和自身整除的数...', a: '13' },
+    { icon: '🃏', q: '用 3, 3, 8, 8 算出 24\n（加减乘除，每个数字用一次）', hint: '8 ÷ (3 - 8 ÷ 3) = 24', a: '24' },
+    { icon: '🤔', q: '1 = 5\n2 = 10\n3 = 15\n4 = 20\n5 = ?', hint: '注意第一个等式...', a: '1' },
+    { icon: '🔢', q: '2, 6, 12, 20, 30, ?\n找规律填空', hint: '1×2, 2×3, 3×4, 4×5...', a: '42' },
+    { icon: '💡', q: '一个数加上自己等于\n自己乘自己，它是？', hint: 'x + x = x × x → 2x = x²', a: '2' }
+  ].sort(function(){ return Math.random() - 0.5; });
 
-  function renderPuzzle() {
-    let html = '<div>';
-    if (puzzleIndex >= puzzles.length) {
-      html += '<div class="maze-win">🎉 All done! Score: ' + score + '/' + puzzles.length + '</div>';
-      html += '<div style="text-align:center;"><button class="btn primary" onclick="initPuzzle(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 Play Again</button></div>';
+  function dotsHTML() {
+    var h = '<div class="np-score"><b>' + score + '</b> / ' + puzzles.length + ' 题正确</div>';
+    h += '<div class="np-progress">';
+    for (var i = 0; i < puzzles.length; i++) {
+      var cls = 'np-dot';
+      if (i < idx) cls += dots[i] ? ' done' : ' wrong';
+      else if (i === idx) cls += ' current';
+      h += '<div class="' + cls + '"></div>';
+    }
+    h += '</div>';
+    return h;
+  }
+
+  function render() {
+    var html = '<div class="np-wrap">';
+    html += dotsHTML();
+
+    if (idx >= puzzles.length) {
+      html += '<div class="np-done"><div class="np-big">' + (score >= 4 ? '🏆' : score >= 2 ? '⭐' : '💪') + '</div>';
+      html += '<div class="np-msg">答对 ' + score + ' / ' + puzzles.length + ' 题！</div>';
+      html += '<button class="btn primary" onclick="initPuzzle(document.getElementById(\'panelContent\'));event.stopPropagation();">再来一轮</button></div>';
       container.innerHTML = html;
       return;
     }
-    const p = puzzles[puzzleIndex];
-    html += '<div class="puzzle-progress">Question ' + (puzzleIndex+1) + ' / ' + puzzles.length + ' &nbsp;|&nbsp; ✅ ' + score + ' pts</div>';
-    html += '<div class="puzzle-card">';
-    html += '<h3>' + p.title + '</h3>';
-    html += '<div class="question">' + p.question + '</div>';
-    html += '<div class="puzzle-input">';
-    html += '<input type="text" id="puzzleAnswer" placeholder="Your answer..." autocomplete="off">';
-    html += '<button onclick="checkPuzzleAnswer()">Submit</button>';
+
+    var p = puzzles[idx];
+    html += '<div class="np-card">';
+    html += '<div class="np-icon">' + p.icon + '</div>';
+    html += '<div class="np-question">' + p.q + '</div>';
+    html += '<div class="np-input-row">';
+    html += '<input id="npA" placeholder="输入答案" autocomplete="off">';
+    html += '<button onclick="npCheck()">确定</button>';
     html += '</div>';
-    html += '<div class="puzzle-feedback" id="puzzleFeedback"></div>';
+    html += '<div class="np-feedback" id="npFB"></div>';
     html += '</div>';
-    html += '<div style="text-align:center;"><button class="btn" onclick="initPuzzle(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 New Set</button></div>';
+    html += '<div style="text-align:center;margin-top:10px;"><button class="btn" onclick="initPuzzle(document.getElementById(\'panelContent\'));event.stopPropagation();">换一批题</button></div>';
     html += '</div>';
     container.innerHTML = html;
 
-    window.checkPuzzleAnswer = function() {
-      const input = $('#puzzleAnswer').value.trim();
-      const fb = $('#puzzleFeedback');
-      if (input === p.answer || input.toLowerCase() === p.answer.toLowerCase()) {
-        fb.className = 'puzzle-feedback correct';
-        fb.innerHTML = '✅ Correct! Well done!';
-        score++;
-        setTimeout(() => { puzzleIndex++; renderPuzzle(); }, 1000);
+    window.npCheck = function() {
+      var val = document.getElementById('npA').value.trim();
+      var fb = document.getElementById('npFB');
+      if (val === p.a || val.toLowerCase() === p.a.toLowerCase()) {
+        fb.className = 'np-feedback ok';
+        fb.innerHTML = '✅ 正确！';
+        score++; dots.push(true);
+        setTimeout(function(){ idx++; render(); }, 800);
       } else {
-        fb.className = 'puzzle-feedback wrong';
-        fb.innerHTML = '❌ Not quite, try again!<div class="hint-text">💡 ' + p.hint + '</div>';
+        fb.className = 'np-feedback no';
+        fb.innerHTML = '❌ 不对哦<div class="np-hint">💡 ' + p.hint + '</div>';
+        dots.push(false); idx++; 
+        setTimeout(function(){ render(); }, 2500);
       }
     };
-    $('#puzzleAnswer').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') checkPuzzleAnswer();
+
+    document.getElementById('npA').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') npCheck();
     });
+    setTimeout(function(){ document.getElementById('npA').focus(); }, 100);
   }
-  renderPuzzle();
+  render();
 }
-// === sudoku ===
+
 // === sudoku ===
 // ========================= 数独游戏 =========================
 function initSudoku(container) {
