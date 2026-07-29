@@ -167,7 +167,3 @@ function initWordSearch(container) {
   }
   render();
 }
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeGame(); });
-</script>
-</body>
-</html>
