@@ -1,4 +1,4 @@
-// ========================= ASCII鑹烘湳 =========================
+// ======== ASCII Art ========
 function initAscii(container) {
   const arts = [
     { art: '      /\\_/\\\n     ( o.o )\n      > ^ <\n     Meow ~ Have a great day!', quote: 'Code changes the world. Your line today could be tomorrow\'s miracle.' },
