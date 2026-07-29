@@ -245,10 +245,10 @@ def syntax_check(platform_html):
         platform_html = re.sub(p3, r'\1\n\n<!-- ANCHOR:JS', platform_html)
         fixes.append("移除 endGame 后多余 }")
 
-    # 4. cleanup 后多余 }
-    p4 = r'(\};\s*\n)\}\s*\n\s*<!-- ANCHOR:JS'
+    # 4. cleanup 后多余 }（只有连续两个 } 才删）
+    p4 = r'(\};\s*\n)\}\s*\n\s*\}\s*\n\s*<!-- ANCHOR:JS'
     if re.search(p4, platform_html):
-        platform_html = re.sub(p4, r'\1\n<!-- ANCHOR:JS', platform_html)
+        platform_html = re.sub(p4, r'\1}\n\n<!-- ANCHOR:JS', platform_html)
         fixes.append("移除 cleanup 后多余 }")
 
     # 5. titles 对象缺少逗号
