@@ -181,46 +181,46 @@ def review_and_fix(api_key, title, css, js_init):
         return css, js_init, "解析失败"
 
 
-def insert_game(html, type_name, title, icon, tags, thumb, css, js_init):
-    """插入游戏到 platform.html"""
+def create_game_folder(type_name, title, icon, tags, thumb, css, js_init):
+    """创建游戏独立文件夹（game/{type_name}/）"""
+    gd = BASE_DIR / "games" / type_name
+    gd.mkdir(parents=True, exist_ok=True)
+
+    # card.html
     colors = ['#7c3aed','#06b6d4','#10b981','#f59e0b','#ef4444','#6366f1']
     color = colors[hash(type_name) % len(colors)]
-
-    # 缩略图：优先用AI生成的SVG截图，否则用文字图标
     if thumb and '<svg' in thumb:
         thumb_html = f'<div class="thumb">{thumb}</div>'
     else:
         thumb_html = f'<div class="thumb" style="background:{color};display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;color:#fff;">{icon}</div>'
 
-    # CSS
-    html = html.replace("<!-- ANCHOR:CSS -->",
-        f"\n/* ======== {title} ======== */\n{css}\n<!-- ANCHOR:CSS -->")
-
-    # 卡片
-    tags_html = tags if tags else "AI生成 &middot; 每日新游戏"
-    html = html.replace("<!-- ANCHOR:CARD -->",
-        f"""  <div class="game-card" onclick="openGame('{type_name}')">
+    card = f"""  <div class="game-card" onclick="openGame('{type_name}')">
     {thumb_html}
     <div class="info">
       <div class="name">{title}</div>
-      <div class="tags">{tags_html}</div>
+      <div class="tags">{tags}</div>
     </div>
-  </div>
-<!-- ANCHOR:CARD -->""")
+  </div>"""
+    (gd / "card.html").write_text(card, encoding='utf-8')
 
-    # 标题
-    html = html.replace("<!-- ANCHOR:TITLE -->",
-        f"    {type_name}: '{title}',\n    <!-- ANCHOR:TITLE -->")
+    # style.css
+    (gd / "style.css").write_text(css, encoding='utf-8')
 
-    # 调度
-    html = html.replace("<!-- ANCHOR:DISPATCH -->",
-        f"  else if (type === '{type_name}') init_{type_name}(content);\n  <!-- ANCHOR:DISPATCH -->")
+    # script.js
+    js_code = f"function init_{type_name}(container) {{\n{js_init}\n}}"
+    (gd / "script.js").write_text(js_code, encoding='utf-8')
 
-    # JS
-    html = html.replace("<!-- ANCHOR:JS -->",
-        f"\n// ======== {title} ========\nfunction init_{type_name}(container) {{\n{js_init}\n}}\n\n<!-- ANCHOR:JS -->")
+    print(f"📁 已创建 games/{type_name}/")
 
-    return html
+
+def build_platform():
+    """调用 build.py 重新生成 platform.html"""
+    import subprocess
+    result = subprocess.run([sys.executable, str(BASE_DIR / "build.py")],
+                          capture_output=True, text=True)
+    print(result.stdout.strip())
+    if result.returncode != 0:
+        print(result.stderr)
 
 
 def syntax_check(platform_html):
@@ -295,15 +295,19 @@ def main():
     existing.add(type_name)
     print(f"✅ 生成: {title} [{icon}] {tags}（{type_name}）")
 
-    # 插入并第一次提交
-    html = PLATFORM_FILE.read_text(encoding="utf-8")
-    html = insert_game(html, type_name, title, icon, tags, thumb, css, js_init)
+    # 创建游戏文件夹
+    create_game_folder(type_name, title, icon, tags, thumb, css, js_init)
 
-    # 🔍 语法检查
-    html, fixes1 = syntax_check(html)
-    PLATFORM_FILE.write_text(html, encoding="utf-8")
+    # 构建平台
+    build_platform()
 
-    os.system(f'git add platform.html && git commit -m "🎨 新游戏: {title}" && git push')
+    # 语法检查
+    platform_html = PLATFORM_FILE.read_text(encoding="utf-8")
+    platform_html, fixes1 = syntax_check(platform_html)
+    if fixes1:
+        PLATFORM_FILE.write_text(platform_html, encoding="utf-8")
+
+    os.system(f'git add games/{type_name}/ platform.html && git commit -m "🎨 新游戏: {title}" && git push')
     print("📦 第一次提交: 游戏创建完成")
 
     # 第二步：AI 审查修复
@@ -321,7 +325,7 @@ def main():
             changes += " + 语法自动修复"
 
         PLATFORM_FILE.write_text(html, encoding="utf-8")
-        os.system(f'git add platform.html && git commit -m "🔧 审查修复: {changes[:50]}" && git push')
+        os.system(f'git add games/{type_name}/ platform.html && git commit -m "🔧 审查修复: {changes[:50]}" && git push')
         print(f"📦 第二次提交: 修复完成 - {changes}")
     else:
         print("✅ 代码无需修复，跳过第二次提交")
