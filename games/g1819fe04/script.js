@@ -48,13 +48,24 @@ function init_g1819fe04(container) {
     return t;
   }
 
+  var ballOnPaddle = true;
+
   function spawnBall() {
     return {
-      x: W / 2, y: H - 35,
+      x: paddleX + paddleW / 2,
+      y: H - paddleH - 6,
       dx: (Math.random() * 2 + 2) * (Math.random() > 0.5 ? 1 : -1),
       dy: -(Math.random() * 1.5 + 2.5),
       r: 5
     };
+  }
+
+  function launchBall() {
+    if (!ballOnPaddle || balls.length === 0) return;
+    ballOnPaddle = false;
+    var b = balls[0];
+    b.dx = (Math.random() * 2 + 2) * (Math.random() > 0.5 ? 1 : -1);
+    b.dy = -(Math.random() * 1.5 + 2.5);
   }
 
   function drawBricks() {
@@ -97,9 +108,16 @@ function init_g1819fe04(container) {
       ctx.fillStyle = '#1e293b'; ctx.fill(); ctx.closePath();
     }
 
+    // 球在板子上跟随
+    if (ballOnPaddle && balls.length > 0) {
+      balls[0].x = paddleX + paddleW / 2;
+      balls[0].y = H - paddleH - 6;
+    }
+
     // 移动球
     for (var i = balls.length - 1; i >= 0; i--) {
       var bl = balls[i];
+      if (ballOnPaddle && i === 0) continue; // 板子上的球不动
       bl.x += bl.dx; bl.y += bl.dy;
       if (bl.x - bl.r < 0 || bl.x + bl.r > W) bl.dx = -bl.dx;
       if (bl.y - bl.r < 0) bl.dy = -bl.dy;
@@ -159,12 +177,16 @@ function init_g1819fe04(container) {
 
   function startGame() {
     initBricks();
+    ballOnPaddle = true;
     balls = [spawnBall()];
     paddleX = (W - paddleW) / 2;
     running = true;
     overlay.style.display = 'none';
     draw();
   }
+
+  // 点击发射
+  canvas.addEventListener('click', launchBall);
 
   // 鼠标
   canvas.addEventListener('mousemove', function(e) {
@@ -174,7 +196,10 @@ function init_g1819fe04(container) {
 
   // 键盘
   var keys = {};
-  document.addEventListener('keydown', function(e) { keys[e.key] = true; });
+  document.addEventListener('keydown', function(e) {
+    keys[e.key] = true;
+    if (e.key === ' ' || e.key === 'ArrowUp') { e.preventDefault(); launchBall(); }
+  });
   document.addEventListener('keyup', function(e) { keys[e.key] = false; });
   setInterval(function() {
     if (keys['ArrowLeft'] || keys['a']) paddleX = Math.max(0, paddleX - 8);
