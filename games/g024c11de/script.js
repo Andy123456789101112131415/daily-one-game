@@ -38,25 +38,33 @@ function init_g024c11de(container) {
 
   function updateGrid() {
     scoreEl.textContent = 'Score: ' + score;
-    gridEl.innerHTML = '';
+    var cells = []; var animDelay = 0;
     for (var r = 0; r < 4; r++) {
       for (var c = 0; c < 4; c++) {
-        var cell = document.createElement('div');
-        cell.className = 'game2048-cell';
-        var val = grid[r][c];
-        if (val !== 0) {
-          cell.textContent = val;
-          cell.classList.add('game2048-cell-' + val);
-        }
-        gridEl.appendChild(cell);
+        cells.push({r:r, c:c, val: grid[r][c]});
       }
     }
+    // Sort: new/higher tiles render last (on top)
+    cells.sort(function(a,b){ return a.val - b.val; });
+    gridEl.innerHTML = '';
+    for (var i = 0; i < cells.length; i++) {
+      var cell = document.createElement('div');
+      cell.className = 'game2048-cell';
+      if (cells[i].val !== 0) {
+        cell.textContent = cells[i].val;
+        cell.className += ' game2048-cell-' + cells[i].val;
+        cell.style.animation = 'g2048pop 0.18s ease ' + (i * 0.02).toFixed(2) + 's backwards';
+      }
+      cell.style.gridRow = (cells[i].r + 1);
+      cell.style.gridColumn = (cells[i].c + 1);
+      gridEl.appendChild(cell);
+    }
     if (gameOver) {
-      messageEl.textContent = '游戏结束！';
-      messageEl.className = 'game2048-message lose';
+      messageEl.textContent = 'Game Over!';
+      messageEl.style.animation = 'g2048fade 0.5s ease';
     } else if (checkWin()) {
-      messageEl.textContent = '恭喜你赢了！';
-      messageEl.className = 'game2048-message';
+      messageEl.textContent = 'You Win! 2048!';
+      messageEl.style.animation = 'g2048fade 0.5s ease';
     }
   }
 

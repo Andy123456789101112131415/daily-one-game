@@ -1,1 +1,28 @@
-.game2048-container { background: #f8f9fc; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; } .game2048-modal { background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; padding: 24px; max-width: 680px; width: 100%; box-sizing: border-box; } .game2048-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; } .game2048-thumb { width: 56px; height: 56px; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; } .game2048-info { flex: 1; } .game2048-title { font-size: 20px; font-weight: 600; color: #1e293b; margin: 0; } .game2048-tags { font-size: 14px; color: #64748b; margin: 4px 0 0; } .game2048-score { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; } .game2048-score-value { font-size: 24px; font-weight: 700; color: #7c3aed; } .game2048-restart { background: #7c3aed; color: white; border: none; border-radius: 6px; padding: 8px 16px; font-size: 14px; cursor: pointer; } .game2048-restart:hover { background: #6d28d9; } .game2048-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; background: #e2e8f0; padding: 8px; border-radius: 8px; max-width: 400px; margin: 0 auto; } .game2048-cell { aspect-ratio: 1; background: #f1f5f9; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: #1e293b; transition: all 0.15s; } .game2048-cell-2 { background: #ede9fe; color: #5b21b6; } .game2048-cell-4 { background: #cffafe; color: #0e7490; } .game2048-cell-8 { background: #d1fae5; color: #047857; } .game2048-cell-16 { background: #fef3c7; color: #b45309; } .game2048-cell-32 { background: #fecaca; color: #b91c1c; } .game2048-cell-64 { background: #fca5a5; color: #991b1b; } .game2048-cell-128 { background: #fde68a; color: #92400e; } .game2048-cell-256 { background: #fcd34d; color: #78350f; } .game2048-cell-512 { background: #fb923c; color: #7c2d12; } .game2048-cell-1024 { background: #f97316; color: #7c2d12; } .game2048-cell-2048 { background: #ef4444; color: white; } .game2048-message { text-align: center; margin-top: 16px; font-size: 18px; font-weight: 600; color: #10b981; } .game2048-message.lose { color: #ef4444; }
+/* ======== 2048 ======== */
+.game2048-container { background: #f8f9fc; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+.game2048-modal { background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; padding: 24px; max-width: 680px; width: 100%; box-sizing: border-box; }
+.game2048-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.game2048-thumb { width: 56px; height: 56px; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; }
+.game2048-info { flex: 1; }
+.game2048-title { font-size: 20px; font-weight: 600; color: #1e293b; margin: 0; }
+.game2048-tags { font-size: 14px; color: #64748b; margin: 4px 0 0; }
+.game2048-score { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.game2048-score-value { font-size: 24px; font-weight: 700; color: #7c3aed; }
+.game2048-restart { background: #7c3aed; color: white; border: none; border-radius: 6px; padding: 8px 16px; font-size: 14px; cursor: pointer; }
+.game2048-restart:hover { background: #6d28d9; }
+.game2048-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; background: #e2e8f0; padding: 8px; border-radius: 8px; max-width: 400px; margin: 0 auto; }
+.game2048-cell { aspect-ratio: 1; background: #f1f5f9; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: #1e293b; }
+.game2048-cell-2 { background: #ede9fe; color: #5b21b6; }
+.game2048-cell-4 { background: #cffafe; color: #0e7490; }
+.game2048-cell-8 { background: #d1fae5; color: #047857; }
+.game2048-cell-16 { background: #fef3c7; color: #b45309; }
+.game2048-cell-32 { background: #fecaca; color: #b91c1c; }
+.game2048-cell-64 { background: #fca5a5; color: #991b1b; }
+.game2048-cell-128 { background: #fde68a; color: #92400e; }
+.game2048-cell-256 { background: #fcd34d; color: #78350f; font-size: 20px; }
+.game2048-cell-512 { background: #fbbf24; color: #78350f; font-size: 20px; }
+.game2048-cell-1024 { background: #f59e0b; color: #fff; font-size: 18px; }
+.game2048-cell-2048 { background: #ef4444; color: #fff; font-size: 18px; }
+.game2048-message { text-align: center; margin-top: 12px; font-size: 1.1rem; font-weight: 700; color: #7c3aed; }
+@keyframes g2048pop { 0% { transform: scale(0); opacity: 0; } 60% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1; } }
+@keyframes g2048fade { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
