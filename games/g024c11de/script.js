@@ -1,5 +1,4 @@
 function init_g024c11de(container) {
-function(container) {
   var grid = [];
   var score = 0;
   var gameOver = false;

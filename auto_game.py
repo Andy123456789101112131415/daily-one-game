@@ -227,10 +227,10 @@ def syntax_check(platform_html):
     """第三步：纯Python语法检查——修复AI常见bug，无需API调用"""
     fixes = []
 
-    # 1. 双重 function(container) {
-    p1 = r'(function init_\w+\(container\)\s*\{)\s*\n\s*function\s*\(container\)\s*\{'
-    if re.search(p1, platform_html):
-        platform_html = re.sub(p1, r'\1', platform_html)
+    # 1. 双重 function(container) {  —— 用更宽的匹配
+    p1 = r'function\s+init_\w+\(container\)\s*\{.*?\n\s*function\s*\(container\)\s*\{'
+    if re.search(p1, platform_html, re.DOTALL):
+        platform_html = re.sub(p1, lambda m: m.group(0).split('\n')[0], platform_html, flags=re.DOTALL)
         fixes.append("移除双重 function(container){")
 
     # 2. 函数末尾多余 }
