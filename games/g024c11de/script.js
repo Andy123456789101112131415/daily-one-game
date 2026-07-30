@@ -171,4 +171,3 @@ function init_g024c11de(container) {
 
   init();
 }
-}
