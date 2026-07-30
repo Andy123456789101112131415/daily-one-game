@@ -263,7 +263,15 @@ def syntax_check(platform_html):
     if fixes:
         print(f"🛠  语法检查修复 {len(fixes)} 处: {'; '.join(fixes)}")
     else:
-        print("✅ 语法检查通过，无需修复")
+        # 额外：花括号平衡检查
+        script = platform_html[platform_html.find('<script>')+8:platform_html.rfind('</script>')]
+        opens = script.count('{')
+        closes = script.count('}')
+        if opens != closes:
+            print(f"⚠️  花括号不平衡: {{ {opens} }} {closes} (差 {opens-closes})")
+            # 标记但不自动修复（太危险）
+        else:
+            print("✅ 语法检查通过，无需修复")
 
     return platform_html, fixes
 
