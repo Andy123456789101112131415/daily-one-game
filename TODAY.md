@@ -1,14 +1,8 @@
-# 今日游戏: 扫雷 / Minesweeper
+# 今日游戏: 打字极速
 
-> 做一个扫雷游戏，点击格子揭示数字，标记地雷
+> 做一个打字速度测试，显示随机英文段落，计时统计WPM
 
-类型名: `g72251d0e`
-审查: 1. 修复了placeMines函数中board[y][x] = -1后缺少闭合大括号的问题。
-2. 补全了缺失的handleClick、handleRightClick、revealCell、revealAll、checkWin、getCell、updateStatus函数定义。
-3. 修复了revealCell中递归调用时未跳过自身导致无限递归的问题。
-4. 修复了checkWin中胜利后标记所有地雷的逻辑。
-5. 添加了getCell辅助函数以正确获取单元格元素。
-6. 修复了updateStatus中更新剩余雷数的计算。
-7. 确保init函数在最后调用以启动游戏。
+类型名: `g0cae2419`
+审查: 修复了JS代码中的未完成部分（setInterval未闭合），添加了缺失的updateTimer、updateStats、countCorrect、checkCompletion、resetGame函数，并正确绑定事件监听器。修复了CSS中.tt-celebrate p的样式缺失。
 
 打开 platform.html 即可游玩！
