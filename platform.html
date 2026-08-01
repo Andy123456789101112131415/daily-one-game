@@ -91,6 +91,8 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 @keyframes g2048pop { 0% { transform: scale(0); opacity: 0; } 60% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1; } }
 @keyframes g2048fade { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
 
+/* === g0cae2419 === */
+.tt-wrap{font-family:'Segoe UI',system-ui,sans-serif;background:#f8f9fc;color:#1e293b;max-width:680px;margin:0 auto;padding:20px}.tt-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.04)}.tt-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.tt-title{font-size:18px;font-weight:600}.tt-stats{display:flex;gap:16px;font-size:14px;color:#64748b}.tt-stat{background:#f8f9fc;padding:4px 10px;border-radius:6px}.tt-text-display{background:#f8f9fc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;font-size:16px;line-height:1.6;min-height:80px;margin-bottom:12px;user-select:none;word-break:break-word}.tt-input{width:100%;height:80px;border:1px solid #e2e8f0;border-radius:8px;padding:12px;font-size:16px;font-family:inherit;resize:none;outline:none;box-sizing:border-box;background:#fff;color:#1e293b}.tt-input:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,0.1)}.tt-input:disabled{background:#f8f9fc;color:#64748b}.tt-actions{display:flex;justify-content:center;gap:12px;margin-top:16px}.tt-btn{background:#7c3aed;color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:14px;cursor:pointer;transition:background 0.2s}.tt-btn:hover{background:#6d28d9}.tt-btn:disabled{background:#cbd5e1;cursor:not-allowed}.tt-btn-secondary{background:#fff;color:#7c3aed;border:1px solid #e2e8f0;border-radius:8px;padding:8px 20px;font-size:14px;cursor:pointer;transition:background 0.2s}.tt-btn-secondary:hover{background:#f8f9fc}.tt-error{color:#ef4444;font-size:14px;text-align:center;margin-top:8px;min-height:20px}.tt-celebrate{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.2);padding:20px 40px;z-index:1000;text-align:center;display:none}.tt-celebrate.show{display:block;animation:tt-pop 0.3s ease-out}.tt-celebrate h3{color:#10b981;margin-bottom:8px;font-size:20px}.tt-celebrate p{color:#64748b;font-size:16px}.tt-celebrate button{margin-top:12px}@keyframes tt-pop{from{transform:translate(-50%,-50%) scale(0.8);opacity:0}to{transform:translate(-50%,-50%) scale(1);opacity:1}}
 /* === g1819fe04 === */
 /* === g1b8a479c === */
 /* === g1b8a479c === */
@@ -260,6 +262,13 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
       <div class="tags">滑动合并</div>
     </div>
   </div>
+<div class="game-card" onclick="openGame('g0cae2419')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' rx='8' fill='#f8f9fc'/><rect x='4' y='4' width='48' height='48' rx='6' fill='#fff' stroke='#e2e8f0'/><text x='28' y='24' font-family='Arial' font-size='8' fill='#1e293b' text-anchor='middle'>WPM</text><text x='28' y='38' font-family='Arial' font-size='14' fill='#7c3aed' text-anchor='middle' font-weight='bold'>60</text><rect x='8' y='42' width='40' height='4' rx='2' fill='#e2e8f0'/><rect x='8' y='42' width='24' height='4' rx='2' fill='#06b6d4'/></svg></div>
+    <div class="info">
+      <div class="name">打字极速</div>
+      <div class="tags">打字测速</div>
+    </div>
+  </div>
 <div class="game-card" onclick="openGame('g1819fe04')">
     <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc' rx='4'/><rect x='4' y='4' width='10' height='6' fill='#7c3aed' rx='1'/><rect x='16' y='4' width='10' height='6' fill='#06b6d4' rx='1'/><rect x='28' y='4' width='10' height='6' fill='#10b981' rx='1'/><rect x='40' y='4' width='10' height='6' fill='#f59e0b' rx='1'/><rect x='10' y='14' width='10' height='6' fill='#ef4444' rx='1'/><rect x='22' y='14' width='10' height='6' fill='#7c3aed' rx='1'/><rect x='34' y='14' width='10' height='6' fill='#06b6d4' rx='1'/><circle cx='28' cy='34' r='3' fill='#1e293b'/><rect x='18' y='44' width='20' height='4' fill='#64748b' rx='2'/></svg></div>
     <div class="info">
@@ -351,6 +360,7 @@ function openGame(type) {
   $('#overlay').classList.add('active');
   var titles = {ascii: 'ASCII Art',
     g024c11de: '2048 数字合并',
+    g0cae2419: '打字极速',
     g1819fe04: 'Breakout Bricks',
     g1b8a479c: '贪吃蛇',
     g72251d0e: '扫雷 / Minesweeper',
@@ -366,6 +376,7 @@ function openGame(type) {
   if (false) {}
   else if (type === 'ascii') initAscii(content);
   else if (type === 'g024c11de') init_g024c11de(content);
+  else if (type === 'g0cae2419') init_g0cae2419(content);
   else if (type === 'g1819fe04') init_g1819fe04(content);
   else if (type === 'g1b8a479c') init_g1b8a479c(content);
   else if (type === 'g72251d0e') init_g72251d0e(content);
@@ -413,6 +424,207 @@ function initAscii(container) {
 }
 // === g024c11de ===
 function init_g024c11de(container) {
+  // 段落库
+  const paragraphs = [
+    "The quick brown fox jumps over the lazy dog while the sun sets over the quiet hills.",
+    "Programming is the art of telling a computer what to do, and it requires patience and logic.",
+    "In the midst of winter, I found there was, within me, an invincible summer.",
+    "To be or not to be, that is the question that has puzzled philosophers for centuries.",
+    "The only way to do great work is to love what you do, and never stop learning."
+  ];
+
+  let currentText = '';
+  let startTime = null;
+  let timerInterval = null;
+  let timeElapsed = 0; // 秒
+  let finished = false;
+  let wpm = 0;
+  let accuracy = 100;
+
+  // DOM 元素
+  const wrap = document.createElement('div');
+  wrap.className = 'tt-wrap';
+  wrap.innerHTML = `
+    <div class="tt-card">
+      <div class="tt-header">
+        <span class="tt-title">打字速度测试</span>
+        <div class="tt-stats">
+          <span class="tt-stat">时间: <span id="tt-time">0</span>s</span>
+          <span class="tt-stat">WPM: <span id="tt-wpm">0</span></span>
+          <span class="tt-stat">准确率: <span id="tt-acc">100</span>%</span>
+        </div>
+      </div>
+      <div class="tt-text-display" id="tt-text-display">点击开始后显示</div>
+      <textarea class="tt-input" id="tt-input" placeholder="开始后在这里输入..." disabled></textarea>
+      <div class="tt-error" id="tt-error"></div>
+      <div class="tt-actions">
+        <button class="tt-btn" id="tt-start">开始</button>
+        <button class="tt-btn-secondary" id="tt-reset">重来</button>
+      </div>
+    </div>
+    <div class="tt-celebrate" id="tt-celebrate">
+      <h3>🎉 完成!</h3>
+      <p>WPM: <span id="tt-final-wpm">0</span> | 准确率: <span id="tt-final-acc">0</span>%</p>
+      <button class="tt-btn" id="tt-celebrate-close">继续</button>
+    </div>
+  `;
+  container.appendChild(wrap);
+
+  // 获取元素
+  const textDisplay = wrap.querySelector('#tt-text-display');
+  const inputArea = wrap.querySelector('#tt-input');
+  const startBtn = wrap.querySelector('#tt-start');
+  const resetBtn = wrap.querySelector('#tt-reset');
+  const timeSpan = wrap.querySelector('#tt-time');
+  const wpmSpan = wrap.querySelector('#tt-wpm');
+  const accSpan = wrap.querySelector('#tt-acc');
+  const errorDiv = wrap.querySelector('#tt-error');
+  const celebrate = wrap.querySelector('#tt-celebrate');
+  const finalWpm = wrap.querySelector('#tt-final-wpm');
+  const finalAcc = wrap.querySelector('#tt-final-acc');
+  const celebrateClose = wrap.querySelector('#tt-celebrate-close');
+
+  // 初始化：随机选一段
+  function pickText() {
+    currentText = paragraphs[Math.floor(Math.random() * paragraphs.length)];
+    textDisplay.textContent = currentText;
+  }
+
+  // 开始游戏
+  function startGame() {
+    if (finished) return; // 防止重复开始
+    pickText();
+    inputArea.value = '';
+    inputArea.disabled = false;
+    inputArea.focus();
+    startBtn.disabled = true;
+    resetBtn.disabled = false;
+    errorDiv.textContent = '';
+    startTime = Date.now();
+    timeElapsed = 0;
+    timerInterval = setInterval(updateTimer, 100); // 100ms更新
+    updateStats();
+  }
+
+  // 更新计时器
+  function updateTimer() {
+    if (startTime) {
+      timeElapsed = (Date.now() - startTime) / 1000;
+      timeSpan.textContent = Math.floor(timeElapsed);
+      updateStats();
+    }
+  }
+
+  // 更新统计
+  function updateStats() {
+    const inputVal = inputArea.value;
+    const wordsTyped = inputVal.trim().split(/\s+/).filter(w => w.length > 0).length;
+    const minutes = timeElapsed / 60;
+    wpm = minutes > 0 ? Math.round(wordsTyped / minutes) : 0;
+    wpmSpan.textContent = wpm;
+
+    // 计算准确率（基于字符）
+    if (inputVal.length === 0) {
+      accuracy = 100;
+    } else {
+      let correct = 0;
+      for (let i = 0; i < inputVal.length; i++) {
+        if (i < currentText.length && inputVal[i] === currentText[i]) correct++;
+      }
+      accuracy = Math.round((correct / inputVal.length) * 100);
+    }
+    accSpan.textContent = accuracy;
+  }
+
+  // 检查输入并高亮
+  inputArea.addEventListener('input', function() {
+    if (finished) return;
+    updateStats();
+    const inputVal = inputArea.value;
+    // 高亮显示：将文本分为正确、错误、未输入部分
+    let html = '';
+    for (let i = 0; i < currentText.length; i++) {
+      if (i < inputVal.length) {
+        if (inputVal[i] === currentText[i]) {
+          html += `<span style="color:#10b981;">${currentText[i]}</span>`;
+        } else {
+          html += `<span style="color:#ef4444;text-decoration:underline;">${currentText[i]}</span>`;
+        }
+      } else {
+        html += currentText[i];
+      }
+    }
+    textDisplay.innerHTML = html;
+
+    // 完成检测：输入长度等于文本且所有字符正确
+    if (inputVal.length === currentText.length && inputVal === currentText) {
+      finishGame();
+    }
+  });
+
+  // 完成游戏
+  function finishGame() {
+    clearInterval(timerInterval);
+    startTime = null;
+    finished = true;
+    inputArea.disabled = true;
+    startBtn.disabled = true;
+    // 计算最终WPM（基于单词数）
+    const words = currentText.trim().split(/\s+/).length;
+    const minutes = timeElapsed / 60;
+    const finalWpmVal = minutes > 0 ? Math.round(words / minutes) : 0;
+    wpmSpan.textContent = finalWpmVal;
+    finalWpm.textContent = finalWpmVal;
+    finalAcc.textContent = accuracy;
+    celebrate.classList.add('show');
+  }
+
+  // 重置游戏
+  function resetGame() {
+    clearInterval(timerInterval);
+    startTime = null;
+    timeElapsed = 0;
+    finished = false;
+    wpm = 0;
+    accuracy = 100;
+    inputArea.value = '';
+    inputArea.disabled = true;
+    startBtn.disabled = false;
+    resetBtn.disabled = true;
+    timeSpan.textContent = '0';
+    wpmSpan.textContent = '0';
+    accSpan.textContent = '100';
+    errorDiv.textContent = '';
+    celebrate.classList.remove('show');
+    pickText();
+  }
+
+  // 事件绑定
+  startBtn.addEventListener('click', startGame);
+  resetBtn.addEventListener('click', resetGame);
+  celebrateClose.addEventListener('click', function() {
+    celebrate.classList.remove('show');
+    resetGame();
+  });
+
+  // 键盘快捷键：Ctrl+Enter 开始，Ctrl+R 重来（但防止浏览器刷新）
+  wrap.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.key === 'Enter') {
+      e.preventDefault();
+      if (!startBtn.disabled) startGame();
+    } else if (e.ctrlKey && (e.key === 'r' || e.key === 'R')) {
+      e.preventDefault();
+      resetGame();
+    }
+  });
+
+  // 初始显示
+  pickText();
+  resetBtn.disabled = true;
+}
+}
+// === g1819fe04 ===
+function init_g1819fe04(container) {
   const BOARD_SIZE = 10;
   const MINE_COUNT = 15;
   let board = [];
