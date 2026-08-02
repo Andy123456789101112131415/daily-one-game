@@ -99,6 +99,8 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 
 /* === g554863fb === */
 .ttt-container{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;padding:20px;border-radius:12px;max-width:480px;margin:0 auto;color:#1e293b}.ttt-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.ttt-title{font-size:20px;font-weight:600;color:#1e293b}.ttt-score{font-size:14px;color:#64748b;background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:4px 12px}.ttt-board{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:#fff;padding:12px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.05)}.ttt-cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:#f8f9fc;border:1px solid #e2e8f0;border-radius:8px;cursor:pointer;font-size:40px;font-weight:700;color:#1e293b;transition:background 0.2s}.ttt-cell:hover{background:#eef2f7}.ttt-cell:disabled{cursor:default;background:#f8f9fc}.ttt-cell.ttt-x{color:#7c3aed}.ttt-cell.ttt-o{color:#06b6d4}.ttt-status{margin-top:16px;text-align:center;font-size:16px;color:#64748b;min-height:24px}.ttt-status.ttt-win{color:#10b981;font-weight:600;animation:ttt-pulse 0.5s ease-in-out 3}.ttt-status.ttt-lose{color:#ef4444;font-weight:600;animation:ttt-pulse 0.5s ease-in-out 3}.ttt-status.ttt-draw{color:#f59e0b;font-weight:600}.ttt-restart{margin-top:12px;display:block;width:100%;padding:10px;background:#7c3aed;color:#fff;border:none;border-radius:8px;font-size:16px;cursor:pointer;transition:background 0.2s}.ttt-restart:hover{background:#6d28d9}.ttt-restart:focus{outline:2px solid #a78bfa}@keyframes ttt-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}.ttt-cell:focus-visible{outline:2px solid #7c3aed;outline-offset:1px}@media(max-width:480px){.ttt-container{padding:12px}.ttt-cell{font-size:32px}}
+/* === g690c5548 === */
+.rr-container{width:100%;max-width:680px;margin:0 auto;background:#f8f9fc;border-radius:16px;padding:20px;box-sizing:border-box;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:#1e293b}.rr-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.05);text-align:center}.rr-title{font-size:24px;font-weight:600;margin-bottom:8px}.rr-subtitle{font-size:14px;color:#64748b;margin-bottom:20px}.rr-status{font-size:18px;font-weight:500;margin-bottom:12px;min-height:24px}.rr-area{width:100%;height:260px;background:#f1f5f9;border:2px solid #e2e8f0;border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;transition:background 0.2s;font-size:28px;font-weight:600;color:#1e293b;margin-bottom:20px}.rr-area.waiting{background:#f1f5f9;border-color:#e2e8f0;color:#64748b}.rr-area.ready{background:#fff;border-color:#f59e0b;color:#f59e0b}.rr-area.go{background:#10b981;border-color:#10b981;color:#fff}.rr-area.too-early{background:#ef4444;border-color:#ef4444;color:#fff}.rr-area.result{background:#f1f5f9;border-color:#e2e8f0;color:#1e293b}.rr-info{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.rr-score{font-size:16px;color:#64748b}.rr-btn{background:#7c3aed;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:16px;cursor:pointer;transition:background 0.2s}.rr-btn:hover{background:#6d28d9}.rr-btn:active{transform:scale(0.98)}.rr-result-text{font-size:20px;font-weight:600;color:#10b981}.rr-result-text.fail{color:#ef4444}.rr-highlight{animation:rr-pulse 0.5s ease}.@keyframes rr-pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}@media(max-width:600px){.rr-container{padding:10px}.rr-area{height:200px;font-size:24px}.rr-title{font-size:20px}}
 /* === g72251d0e === */
 .ms-game { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8f9fc; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; max-width: 680px; margin: 0 auto; } .ms-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; } .ms-title { font-size: 20px; font-weight: 600; color: #1e293b; } .ms-controls { display: flex; gap: 8px; } .ms-btn { border: 1px solid #e2e8f0; background: #ffffff; color: #1e293b; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 14px; font-family: inherit; } .ms-btn:hover { background: #f1f5f9; } .ms-btn:active { transform: scale(0.97); } .ms-board { display: inline-grid; gap: 2px; background: #e2e8f0; padding: 2px; border-radius: 4px; } .ms-cell { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 2px; cursor: pointer; user-select: none; transition: background 0.1s; } .ms-cell:hover { background: #f1f5f9; } .ms-cell.revealed { background: #f8f9fc; border-color: #cbd5e1; cursor: default; } .ms-cell.flagged { background: #fef9c3; color: #f59e0b; } .ms-cell.mine { background: #fee2e2; color: #ef4444; } .ms-cell.mine-hit { background: #fecaca; } .ms-cell.n1 { color: #3b82f6; } .ms-cell.n2 { color: #10b981; } .ms-cell.n3 { color: #ef4444; } .ms-cell.n4 { color: #7c3aed; } .ms-cell.n5 { color: #f59e0b; } .ms-cell.n6 { color: #06b6d4; } .ms-cell.n7 { color: #1e293b; } .ms-cell.n8 { color: #64748b; } .ms-status { display: flex; align-items: center; gap: 12px; font-size: 14px; color: #64748b; margin-top: 12px; } .ms-status span { font-weight: 600; color: #1e293b; }
 /* === gae84ccb5 === */
@@ -292,6 +294,13 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
       <div class="tags">AI不能输</div>
     </div>
   </div>
+<div class="game-card" onclick="openGame('g690c5548')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc'/><rect x='8' y='8' width='40' height='40' rx='8' fill='#fff' stroke='#e2e8f0'/><circle cx='28' cy='28' r='12' fill='#10b981'/><text x='28' y='32' font-family='Arial' font-size='10' fill='#fff' text-anchor='middle' font-weight='bold'>GO</text></svg></div>
+    <div class="info">
+      <div class="name">反应速度测试 Reaction Rush</div>
+      <div class="tags">毫秒级反应测试</div>
+    </div>
+  </div>
 <div class="game-card" onclick="openGame('g72251d0e')">
     <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc' rx='4'/><text x='4' y='12' font-size='8' fill='#1e293b'>1</text><text x='12' y='12' font-size='8' fill='#1e293b'>2</text><text x='20' y='12' font-size='8' fill='#1e293b'>3</text><text x='28' y='12' font-size='8' fill='#1e293b'>4</text><text x='36' y='12' font-size='8' fill='#1e293b'>5</text><text x='44' y='12' font-size='8' fill='#1e293b'>6</text><text x='4' y='22' font-size='8' fill='#1e293b'>7</text><text x='12' y='22' font-size='8' fill='#7c3aed'>8</text><text x='20' y='22' font-size='8' fill='#06b6d4'>9</text><text x='28' y='22' font-size='8' fill='#10b981'>10</text><text x='36' y='22' font-size='8' fill='#f59e0b'>11</text><text x='44' y='22' font-size='8' fill='#ef4444'>12</text><text x='4' y='32' font-size='8' fill='#1e293b'>13</text><text x='12' y='32' font-size='8' fill='#1e293b'>14</text><text x='20' y='32' font-size='8' fill='#1e293b'>15</text><text x='28' y='32' font-size='8' fill='#1e293b'>16</text><text x='36' y='32' font-size='8' fill='#1e293b'>17</text><text x='44' y='32' font-size='8' fill='#1e293b'>18</text><text x='4' y='42' font-size='8' fill='#1e293b'>19</text><text x='12' y='42' font-size='8' fill='#1e293b'>20</text><text x='20' y='42' font-size='8' fill='#1e293b'>21</text><text x='28' y='42' font-size='8' fill='#1e293b'>22</text><text x='36' y='42' font-size='8' fill='#1e293b'>23</text><text x='44' y='42' font-size='8' fill='#1e293b'>24</text><text x='4' y='52' font-size='8' fill='#1e293b'>25</text><text x='12' y='52' font-size='8' fill='#1e293b'>26</text><text x='20' y='52' font-size='8' fill='#1e293b'>27</text><text x='28' y='52' font-size='8' fill='#1e293b'>28</text><text x='36' y='52' font-size='8' fill='#1e293b'>29</text><text x='44' y='52' font-size='8' fill='#1e293b'>30</text></svg></div>
     <div class="info">
@@ -373,6 +382,7 @@ function openGame(type) {
     g1819fe04: 'Breakout Bricks',
     g1b8a479c: '贪吃蛇',
     g554863fb: 'Tic-Tac-Toe 井字棋',
+    g690c5548: '反应速度测试 Reaction Rush',
     g72251d0e: '扫雷 / Minesweeper',
     gae84ccb5: 'RhythmTap 节奏点',
     maze: 'Maze 迷宫',
@@ -390,6 +400,7 @@ function openGame(type) {
   else if (type === 'g1819fe04') init_g1819fe04(content);
   else if (type === 'g1b8a479c') init_g1b8a479c(content);
   else if (type === 'g554863fb') init_g554863fb(content);
+  else if (type === 'g690c5548') init_g690c5548(content);
   else if (type === 'g72251d0e') init_g72251d0e(content);
   else if (type === 'gae84ccb5') init_gae84ccb5(content);
   else if (type === 'maze') initMaze(content);
@@ -832,6 +843,148 @@ function init_g1819fe04(container) {
   }
 
   createBoard();
+}
+}
+// === g690c5548 ===
+function init_g690c5548(container) {
+  // State
+  let state = 'idle'; // idle, waiting, ready, go, too-early, result
+  let timeoutId = null;
+  let startTime = 0;
+  let resultTime = 0;
+  let score = 0;
+  let attempts = 0;
+  
+  // Create DOM structure
+  container.classList.add('rr-container');
+  container.innerHTML = `
+    <div class="rr-card">
+      <div class="rr-title">反应速度测试</div>
+      <div class="rr-subtitle">屏幕变绿时快速点击，测你的毫秒级反应</div>
+      <div class="rr-status" id="rr-status">点击开始</div>
+      <div class="rr-area waiting" id="rr-area">点击开始</div>
+      <div class="rr-info">
+        <div class="rr-score">得分: <span id="rr-score">0</span> 分</div>
+        <button class="rr-btn" id="rr-reset">🔄 重来</button>
+      </div>
+    </div>
+  `;
+  
+  // Get references
+  const statusEl = container.querySelector('#rr-status');
+  const area = container.querySelector('#rr-area');
+  const scoreEl = container.querySelector('#rr-score');
+  const resetBtn = container.querySelector('#rr-reset');
+  
+  // Functions
+  function setState(newState) {
+    state = newState;
+    area.className = 'rr-area';
+    switch(newState) {
+      case 'idle':
+        area.classList.add('waiting');
+        area.textContent = '点击开始';
+        statusEl.textContent = '准备就绪';
+        break;
+      case 'waiting':
+        area.classList.add('waiting');
+        area.textContent = '等待绿色...';
+        statusEl.textContent = '等待中...';
+        break;
+      case 'ready':
+        area.classList.add('ready');
+        area.textContent = '等待变绿';
+        statusEl.textContent = '即将变绿，做好准备';
+        break;
+      case 'go':
+        area.classList.add('go');
+        area.textContent = '点击！';
+        statusEl.textContent = '点击！';
+        startTime = performance.now();
+        break;
+      case 'too-early':
+        area.classList.add('too-early');
+        area.textContent = '太早了！';
+        statusEl.textContent = '太早了！';
+        break;
+      case 'result':
+        area.classList.add('result');
+        area.textContent = `${resultTime}ms`;
+        statusEl.textContent = '反应时间';
+        break;
+    }
+  }
+  
+  function handleClick() {
+    if (state === 'idle') {
+      startGame();
+    } else if (state === 'ready') {
+      // Too early
+      clearTimeout(timeoutId);
+      setState('too-early');
+      setTimeout(() => {
+        startGame();
+      }, 1000);
+    } else if (state === 'go') {
+      // Success
+      resultTime = performance.now() - startTime;
+      attempts++;
+      score = Math.max(score, Math.round(1000 / resultTime));
+      scoreEl.textContent = score;
+      setState('result');
+      // Add highlight effect
+      area.classList.add('rr-highlight');
+      setTimeout(() => area.classList.remove('rr-highlight'), 500);
+      // Allow restart after a short delay
+      setTimeout(() => {
+        setState('idle');
+        area.textContent = '点击开始';
+        statusEl.textContent = '点击开始';
+      }, 1500);
+    } else if (state === 'too-early' || state === 'result') {
+      // Ignore clicks during these states
+      return;
+    }
+  }
+  
+  function startGame() {
+    attempts = 0;
+    score = 0;
+    scoreEl.textContent = '0';
+    setState('waiting');
+    // Random delay 1-3 seconds
+    const delay = 1000 + Math.random() * 2000;
+    timeoutId = setTimeout(() => {
+      setState('go');
+    }, delay);
+  }
+  
+  function resetGame() {
+    clearTimeout(timeoutId);
+    attempts = 0;
+    score = 0;
+    scoreEl.textContent = '0';
+    setState('idle');
+  }
+  
+  // Event listeners
+  area.addEventListener('click', handleClick);
+  resetBtn.addEventListener('click', resetGame);
+  
+  // Keyboard support (Enter/Space)
+  container.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleClick();
+    }
+  });
+  
+  // Make container focusable for keyboard
+  container.setAttribute('tabindex', '0');
+  container.focus();
+  
+  // Initial state
+  setState('idle');
 }
 }
 // === g72251d0e ===
