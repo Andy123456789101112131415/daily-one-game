@@ -105,6 +105,8 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 .ms-game { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8f9fc; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; max-width: 680px; margin: 0 auto; } .ms-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; } .ms-title { font-size: 20px; font-weight: 600; color: #1e293b; } .ms-controls { display: flex; gap: 8px; } .ms-btn { border: 1px solid #e2e8f0; background: #ffffff; color: #1e293b; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 14px; font-family: inherit; } .ms-btn:hover { background: #f1f5f9; } .ms-btn:active { transform: scale(0.97); } .ms-board { display: inline-grid; gap: 2px; background: #e2e8f0; padding: 2px; border-radius: 4px; } .ms-cell { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 2px; cursor: pointer; user-select: none; transition: background 0.1s; } .ms-cell:hover { background: #f1f5f9; } .ms-cell.revealed { background: #f8f9fc; border-color: #cbd5e1; cursor: default; } .ms-cell.flagged { background: #fef9c3; color: #f59e0b; } .ms-cell.mine { background: #fee2e2; color: #ef4444; } .ms-cell.mine-hit { background: #fecaca; } .ms-cell.n1 { color: #3b82f6; } .ms-cell.n2 { color: #10b981; } .ms-cell.n3 { color: #ef4444; } .ms-cell.n4 { color: #7c3aed; } .ms-cell.n5 { color: #f59e0b; } .ms-cell.n6 { color: #06b6d4; } .ms-cell.n7 { color: #1e293b; } .ms-cell.n8 { color: #64748b; } .ms-status { display: flex; align-items: center; gap: 12px; font-size: 14px; color: #64748b; margin-top: 12px; } .ms-status span { font-weight: 600; color: #1e293b; }
 /* === gae84ccb5 === */
 /* === maze === */
+/* === gf2c90829 === */
+.ccg-container{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;color:#1e293b;padding:20px;border-radius:12px;max-width:680px;margin:0 auto;box-sizing:border-box}.ccg-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.ccg-title{font-size:1.5em;font-weight:600}.ccg-score{font-size:1.2em;color:#64748b}.ccg-rgb-display{background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:20px;text-align:center;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.ccg-rgb-value{font-size:2em;font-weight:700;letter-spacing:2px;font-family:monospace}.ccg-options{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}.ccg-option{aspect-ratio:1;border-radius:8px;border:2px solid #e2e8f0;cursor:pointer;transition:transform 0.1s, box-shadow 0.1s;background:#ffffff}.ccg-option:hover{transform:scale(1.02);box-shadow:0 2px 6px rgba(0,0,0,0.1)}.ccg-option:active{transform:scale(0.98)}.ccg-option.correct{animation:ccg-pulse 0.5s ease;border-color:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,0.2)}.ccg-option.wrong{animation:ccg-shake 0.5s ease;border-color:#ef4444}.ccg-feedback{min-height:30px;text-align:center;font-size:1.1em;color:#64748b;margin-bottom:10px}.ccg-btn{background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:10px 20px;font-size:1em;cursor:pointer;color:#1e293b;transition:background 0.2s;display:block;margin:0 auto}.ccg-btn:hover{background:#f1f5f9}.ccg-btn:disabled{opacity:0.6;cursor:not-allowed}@keyframes ccg-pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}@keyframes ccg-shake{0%{transform:translateX(0)}25%{transform:translateX(-5px)}50%{transform:translateX(5px)}75%{transform:translateX(-5px)}100%{transform:translateX(0)}}@media(max-width:480px){.ccg-container{padding:10px}.ccg-rgb-value{font-size:1.5em}.ccg-options{grid-template-columns:repeat(3,1fr);gap:8px}}
 /* === maze === */
 /* ========== 迷宫游戏 ========== */
 .maze-container {
@@ -315,6 +317,13 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
       <div class="tags">节奏音游 &middot; D/F/J/K按键</div>
     </div>
   </div>
+<div class="game-card" onclick="openGame('gf2c90829')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc'/><rect x='8' y='8' width='40' height='40' rx='8' fill='#7c3aed'/><text x='28' y='30' font-size='10' text-anchor='middle' fill='white' font-family='Arial'>RGB?</text></svg></div>
+    <div class="info">
+      <div class="name">RGB Color Guess</div>
+      <div class="tags">颜色猜谜</div>
+    </div>
+  </div>
 <div class="game-card" onclick="openGame('maze')">
     <div class="thumb maze"><svg viewBox="0 0 48 48"><rect width="48" height="48" fill="#f8fafc"/><rect x="0" y="0" width="48" height="6" fill="#334155"/><rect x="0" y="0" width="6" height="48" fill="#334155"/><rect x="0" y="42" width="48" height="6" fill="#334155"/><rect x="42" y="0" width="6" height="48" fill="#334155"/><rect x="14" y="12" width="20" height="6" fill="#334155"/><rect x="14" y="12" width="6" height="18" fill="#334155"/><rect x="34" y="18" width="6" height="12" fill="#334155"/><rect x="20" y="30" width="20" height="6" fill="#334155"/><rect x="8" y="24" width="8" height="6" fill="#334155"/><circle cx="3" cy="45" r="2.5" fill="#06b6d4"/><rect x="42" y="30" width="6" height="3" rx="1.5" fill="#10b981"/></svg></div>
     <div class="info">
@@ -385,6 +394,7 @@ function openGame(type) {
     g690c5548: '反应速度测试 Reaction Rush',
     g72251d0e: '扫雷 / Minesweeper',
     gae84ccb5: 'RhythmTap 节奏点',
+    gf2c90829: 'RGB Color Guess',
     maze: 'Maze 迷宫',
     memory: 'Memory Match',
     puzzle: 'Number Puzzle',
@@ -403,6 +413,7 @@ function openGame(type) {
   else if (type === 'g690c5548') init_g690c5548(content);
   else if (type === 'g72251d0e') init_g72251d0e(content);
   else if (type === 'gae84ccb5') init_gae84ccb5(content);
+  else if (type === 'gf2c90829') init_gf2c90829(content);
   else if (type === 'maze') initMaze(content);
   else if (type === 'memory') initMemory(content);
   else if (type === 'puzzle') initPuzzle(content);
@@ -1196,184 +1207,7 @@ function init_g72251d0e(container) {
 }
 }
 // === gae84ccb5 ===
-function init_gae84ccb5(container) {
-  var DURATION = 30; // 游戏时长（秒）
-  var state, spawnTimer, gameLoop, keyHandler;
-
-  function buildHTML() {
-    var lanesHTML = '';
-    var keysHTML = '';
-    var labels = ['D', 'F', 'J', 'K'];
-    for (var i = 0; i < 4; i++) {
-      lanesHTML += '<div id="rt-lane2-' + i + '" style="width:64px;height:240px;background:#fff;border:2px solid #e2e8f0;border-radius:10px;position:relative;overflow:hidden;">'
-        + '<div style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);width:44px;height:44px;border:3px dashed #e2e8f0;border-radius:50%;"></div>'
-        + '</div>';
-      keysHTML += '<div class="rt-key2" data-lane="' + i + '" style="width:64px;height:44px;background:#fff;border:2px solid #e2e8f0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;color:#64748b;cursor:pointer;user-select:none;">' + labels[i] + '</div>';
-    }
-    container.innerHTML = ''
-      + '<div style="text-align:center;">'
-      + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">'
-      + '<span style="font-size:1rem;font-weight:700;">RhythmTap</span>'
-      + '<span style="font-size:0.9rem;color:#7c3aed;font-weight:700;">分: <span id="rt-score2">0</span></span>'
-      + '<span style="font-size:0.85rem;color:#64748b;">⏱ <span id="rt-time2">' + DURATION + '</span>s</span>'
-      + '</div>'
-      + '<div id="rt-combo2" style="font-size:0.9rem;min-height:22px;color:#f59e0b;font-weight:600;"></div>'
-      + '<div style="display:flex;justify-content:center;gap:8px;margin:6px 0;">' + lanesHTML + '</div>'
-      + '<div style="display:flex;justify-content:center;gap:8px;margin:6px 0;">' + keysHTML + '</div>'
-      + '<div id="rt-feedback2" style="font-size:1.8rem;font-weight:700;min-height:36px;"></div>'
-      + '<button class="btn" style="margin-top:4px;" onclick="init_gae84ccb5(document.getElementById(\'panelContent\'));event.stopPropagation();">🔄 重新开始</button>'
-      + '<div id="rt-result2" style="display:none;margin-top:8px;font-size:1.1rem;font-weight:700;color:#7c3aed;"></div>'
-      + '</div>';
-  }
-
-  function reset() {
-    if (spawnTimer) clearInterval(spawnTimer);
-    if (gameLoop) cancelAnimationFrame(gameLoop);
-    if (keyHandler) document.removeEventListener('keydown', keyHandler);
-    state = { score: 0, combo: 0, maxCombo: 0, notes: [], noteId: 0, playing: true, timeLeft: DURATION };
-    buildHTML();
-    bindEvents();
-    startGame();
-  }
-
-  function bindEvents() {
-    var keyMap = { 'd': 0, 'f': 1, 'j': 2, 'k': 3 };
-    keyHandler = function(e) {
-      var lane = keyMap[e.key.toLowerCase()];
-      if (lane !== undefined) { e.preventDefault(); hit(lane); }
-    };
-    document.addEventListener('keydown', keyHandler);
-
-    var keys = container.querySelectorAll('.rt-key2');
-    for (var i = 0; i < keys.length; i++) {
-      keys[i].addEventListener('mousedown', function(e) {
-        hit(parseInt(e.currentTarget.dataset.lane));
-      });
-    }
-  }
-
-  function hit(lane) {
-    if (!state.playing) return;
-    var keyEl = container.querySelector('.rt-key2[data-lane="' + lane + '"]');
-    var laneEl = container.querySelector('#rt-lane2-' + lane);
-
-    // 找该轨道最接近底部的音符
-    var notes = state.notes.filter(function(n) { return n.lane === lane && !n.hit && !n.miss; });
-    if (notes.length === 0) {
-      // 空按 — 红色
-      state.combo = 0;
-      if (keyEl) { keyEl.style.background = '#fee2e2'; keyEl.style.borderColor = '#ef4444'; keyEl.style.color = '#dc2626'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 150); }
-      if (laneEl) { laneEl.style.boxShadow = '0 0 12px rgba(239,68,68,0.4)'; laneEl.style.borderColor = '#ef4444'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
-      updateUI(); showFB('Miss', '#ef4444'); return;
-    }
-
-    var best = notes[0], bestDist = Math.abs(best.y - 235);
-    for (var i = 1; i < notes.length; i++) {
-      var d = Math.abs(notes[i].y - 235);
-      if (d < bestDist) { best = notes[i]; bestDist = d; }
-    }
-
-    if (bestDist < 30) { // Perfect — 绿色
-      best.hit = true; state.score += 10; state.combo++;
-      if (state.combo > state.maxCombo) state.maxCombo = state.combo;
-      if (best.el) { best.el.style.background = '#10b981'; best.el.style.transform = 'translateX(-50%) scale(1.6)'; best.el.style.boxShadow = '0 0 24px rgba(16,185,129,0.7)'; }
-      if (keyEl) { keyEl.style.background = '#d1fae5'; keyEl.style.borderColor = '#10b981'; keyEl.style.color = '#059669'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 120); }
-      if (laneEl) { laneEl.style.boxShadow = '0 0 14px rgba(16,185,129,0.5)'; laneEl.style.borderColor = '#10b981'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
-      showFB('Perfect!', '#10b981');
-    } else if (bestDist < 60) { // Good — 绿色
-      best.hit = true; state.score += 5; state.combo++;
-      if (state.combo > state.maxCombo) state.maxCombo = state.combo;
-      if (best.el) { best.el.style.background = '#34d399'; best.el.style.transform = 'translateX(-50%) scale(1.3)'; best.el.style.boxShadow = '0 0 16px rgba(16,185,129,0.5)'; }
-      if (keyEl) { keyEl.style.background = '#d1fae5'; keyEl.style.borderColor = '#34d399'; keyEl.style.color = '#059669'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 120); }
-      if (laneEl) { laneEl.style.boxShadow = '0 0 10px rgba(16,185,129,0.35)'; laneEl.style.borderColor = '#34d399'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
-      showFB('Good', '#34d399');
-    } else { // Miss — 红色
-      state.combo = 0;
-      if (keyEl) { keyEl.style.background = '#fee2e2'; keyEl.style.borderColor = '#ef4444'; keyEl.style.color = '#dc2626'; setTimeout(function() { keyEl.style.background = '#fff'; keyEl.style.borderColor = '#e2e8f0'; keyEl.style.color = '#64748b'; }, 150); }
-      if (laneEl) { laneEl.style.boxShadow = '0 0 12px rgba(239,68,68,0.4)'; laneEl.style.borderColor = '#ef4444'; setTimeout(function() { laneEl.style.boxShadow = ''; laneEl.style.borderColor = '#e2e8f0'; }, 200); }
-      showFB('Miss', '#ef4444');
-    }
-    updateUI();
-  }
-
-  function showFB(text, color) {
-    var el = container.querySelector('#rt-feedback2');
-    if (!el) return;
-    el.textContent = text; el.style.color = color;
-    clearTimeout(el._t); el._t = setTimeout(function() { el.textContent = ''; }, 400);
-  }
-
-  function spawnNote() {
-    if (!state.playing) return;
-    var lane = Math.floor(Math.random() * 4);
-    var note = { id: state.noteId++, lane: lane, y: -40, hit: false, miss: false, el: null };
-    var laneEl = container.querySelector('#rt-lane2-' + lane);
-    var nd = document.createElement('div');
-    nd.style.cssText = 'position:absolute;left:50%;transform:translateX(-50%);width:40px;height:40px;border-radius:50%;background:#10b981;transition:none;';
-    nd.style.top = note.y + 'px';
-    laneEl.appendChild(nd);
-    note.el = nd;
-    state.notes.push(note);
-  }
-
-  function updateNotes() {
-    for (var i = state.notes.length - 1; i >= 0; i--) {
-      var n = state.notes[i];
-      if (n.hit || n.miss) {
-        if (n.el && n.el.parentNode) n.el.parentNode.removeChild(n.el);
-        state.notes.splice(i, 1);
-        continue;
-      }
-      n.y += 1.8;
-      if (n.el) n.el.style.top = n.y + 'px';
-      if (n.y > 290) {
-        n.miss = true; state.combo = 0;
-        if (n.el) { n.el.style.background = '#ef4444'; n.el.style.boxShadow = '0 0 12px rgba(239,68,68,0.5)'; }
-        updateUI(); showFB('Miss', '#ef4444');
-      }
-    }
-  }
-
-  function updateUI() {
-    var s = container.querySelector('#rt-score2');
-    if (s) s.textContent = state.score;
-    var c = container.querySelector('#rt-combo2');
-    if (c) c.textContent = state.combo > 0 ? '🔥 ' + state.combo + ' 连击' : '';
-    var t = container.querySelector('#rt-time2');
-    if (t) t.textContent = state.timeLeft;
-  }
-
-  function countdown() {
-    if (!state.playing) return;
-    state.timeLeft--;
-    updateUI();
-    if (state.timeLeft <= 0) endGame();
-  }
-
-  function startGame() {
-    state.playing = true;
-    spawnTimer = setInterval(spawnNote, 700);
-    var timeTimer = setInterval(countdown, 1000);
-    function loop() {
-      if (!state.playing) { clearInterval(timeTimer); return; }
-      updateNotes();
-      gameLoop = requestAnimationFrame(loop);
-    }
-    gameLoop = requestAnimationFrame(loop);
-  }
-
-  function endGame() {
-    state.playing = false;
-    if (spawnTimer) clearInterval(spawnTimer);
-    if (gameLoop) cancelAnimationFrame(gameLoop);
-    var res = container.querySelector('#rt-result2');
-    if (res) {
-      res.style.display = 'block';
-      res.innerHTML = '🎉 游戏结束！得分: <b>' + state.score + '</b> &nbsp;|&nbsp; 最高连击: <b>' + state.maxCombo + '</b>';
-    }
-  }
-
-  reset();
+function init_gae84ccb5(container) {var score=0,round=0,currentAnswer=null,options=[],locked=false;var scoreEl=document.createElement('div');scoreEl.className='ccg-score';scoreEl.textContent='得分: 0';var header=document.createElement('div');header.className='ccg-header';header.innerHTML='<div class="ccg-title">颜色猜谜</div>';header.appendChild(scoreEl);var rgbDisplay=document.createElement('div');rgbDisplay.className='ccg-rgb-display';var rgbValue=document.createElement('div');rgbValue.className='ccg-rgb-value';rgbDisplay.appendChild(rgbValue);var optionsContainer=document.createElement('div');optionsContainer.className='ccg-options';var feedback=document.createElement('div');feedback.className='ccg-feedback';var restartBtn=document.createElement('button');restartBtn.className='ccg-btn';restartBtn.textContent='重新开始';restartBtn.addEventListener('click',function(){newRound();});container.appendChild(header);container.appendChild(rgbDisplay);container.appendChild(optionsContainer);container.appendChild(feedback);container.appendChild(restartBtn);function randomColor(){return 'rgb('+Math.floor(Math.random()*256)+','+Math.floor(Math.random()*256)+','+Math.floor(Math.random()*256)+')';}function rgbToText(rgb){var match=rgb.match(/\d+/g);return 'rgb('+match[0]+', '+match[1]+', '+match[2]+')';}function newRound(){locked=false;feedback.textContent='';optionsContainer.innerHTML='';round++;var correctColor=randomColor();currentAnswer=correctColor;rgbValue.textContent=correctColor;var colors=[correctColor];while(colors.length<6){var candidate=randomColor();if(!colors.includes(candidate)){colors.push(candidate);}}for(var i=colors.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var temp=colors[i];colors[i]=colors[j];colors[j]=temp;}options=[];for(var k=0;k<6;k++){var div=document.createElement('div');div.className='ccg-option';div.style.backgroundColor=colors[k];div.dataset.color=colors[k];div.addEventListener('click',function(e){if(locked)return;var selected=this.dataset.color;checkAnswer(selected,this);});optionsContainer.appendChild(div);options.push(div);}updateScore();}function checkAnswer(selected,el){locked=true;if(selected===currentAnswer){score++;feedback.textContent='正确！';el.classList.add('correct');setTimeout(newRound,800);}else{feedback.textContent='错误，正确答案是 '+rgbToText(currentAnswer);el.classList.add('wrong');options.forEach(function(opt){if(opt.dataset.color===currentAnswer){opt.classList.add('correct');}});setTimeout(newRound,1200);}updateScore();}function updateScore(){scoreEl.textContent='得分: '+score+' / 回合: '+round;}newRound();}
 }
 // === maze ===
 // ========================= 迷宫游戏 =========================
