@@ -97,6 +97,8 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 /* === g1b8a479c === */
 /* === g1b8a479c === */
 
+/* === g2fb3cb4c === */
+.em-match-container{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;padding:20px;border-radius:12px;max-width:680px;margin:0 auto;box-sizing:border-box;user-select:none}.em-match-container *{box-sizing:border-box}.em-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.em-title{font-size:24px;font-weight:600;color:#1e293b;margin:0}.em-stats{display:flex;gap:20px;align-items:center}.em-moves{font-size:14px;color:#64748b;background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:6px 12px}.em-btn{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:6px 12px;font-size:14px;color:#1e293b;cursor:pointer;transition:background .2s,color .2s}.em-btn:hover{background:#f1f5f9}.em-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;justify-items:center}.em-card{width:100%;aspect-ratio:1;background:#fff;border:1px solid #e2e8f0;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:32px;transition:transform .15s,box-shadow .15s;position:relative;transform-style:preserve-3d}.em-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.05)}.em-card.flipped{transform:rotateY(180deg)}.em-card.matched{border-color:#10b981;background:#ecfdf5;cursor:default}.em-card-inner{position:absolute;width:100%;height:100%;backface-visibility:hidden;display:flex;align-items:center;justify-content:center}.em-card-face{display:flex;align-items:center;justify-content:center;width:100%;height:100%}.em-card-back{background:#fff;color:#7c3aed;font-weight:600;font-size:28px}.em-card-front{transform:rotateY(180deg);background:#fff}.em-message{text-align:center;margin-top:16px;font-size:18px;font-weight:500;color:#10b981;min-height:24px}.em-message.win{color:#10b981}.em-message.lose{color:#ef4444}@media(max-width:480px){.em-match-container{padding:12px}.em-grid{gap:8px}.em-card{font-size:24px}.em-title{font-size:20px}}
 /* === g554863fb === */
 .ttt-container{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;padding:20px;border-radius:12px;max-width:480px;margin:0 auto;color:#1e293b}.ttt-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.ttt-title{font-size:20px;font-weight:600;color:#1e293b}.ttt-score{font-size:14px;color:#64748b;background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:4px 12px}.ttt-board{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:#fff;padding:12px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.05)}.ttt-cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:#f8f9fc;border:1px solid #e2e8f0;border-radius:8px;cursor:pointer;font-size:40px;font-weight:700;color:#1e293b;transition:background 0.2s}.ttt-cell:hover{background:#eef2f7}.ttt-cell:disabled{cursor:default;background:#f8f9fc}.ttt-cell.ttt-x{color:#7c3aed}.ttt-cell.ttt-o{color:#06b6d4}.ttt-status{margin-top:16px;text-align:center;font-size:16px;color:#64748b;min-height:24px}.ttt-status.ttt-win{color:#10b981;font-weight:600;animation:ttt-pulse 0.5s ease-in-out 3}.ttt-status.ttt-lose{color:#ef4444;font-weight:600;animation:ttt-pulse 0.5s ease-in-out 3}.ttt-status.ttt-draw{color:#f59e0b;font-weight:600}.ttt-restart{margin-top:12px;display:block;width:100%;padding:10px;background:#7c3aed;color:#fff;border:none;border-radius:8px;font-size:16px;cursor:pointer;transition:background 0.2s}.ttt-restart:hover{background:#6d28d9}.ttt-restart:focus{outline:2px solid #a78bfa}@keyframes ttt-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}.ttt-cell:focus-visible{outline:2px solid #7c3aed;outline-offset:1px}@media(max-width:480px){.ttt-container{padding:12px}.ttt-cell{font-size:32px}}
 /* === g690c5548 === */
@@ -289,6 +291,13 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
       <div class="tags">经典小游戏</div>
     </div>
   </div>
+<div class="game-card" onclick="openGame('g2fb3cb4c')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc'/><rect x='4' y='4' width='20' height='20' rx='3' fill='#ffffff' stroke='#e2e8f0'/><text x='14' y='18' font-size='12' text-anchor='middle' fill='#7c3aed'>?</text><rect x='32' y='4' width='20' height='20' rx='3' fill='#ffffff' stroke='#e2e8f0'/><text x='42' y='18' font-size='12' text-anchor='middle' fill='#06b6d4'>?</text><rect x='4' y='32' width='20' height='20' rx='3' fill='#ffffff' stroke='#e2e8f0'/><text x='14' y='46' font-size='12' text-anchor='middle' fill='#10b981'>?</text><rect x='32' y='32' width='20' height='20' rx='3' fill='#ffffff' stroke='#e2e8f0'/><text x='42' y='46' font-size='12' text-anchor='middle' fill='#f59e0b'>?</text></svg></div>
+    <div class="info">
+      <div class="name">Emoji Match</div>
+      <div class="tags">记忆配对</div>
+    </div>
+  </div>
 <div class="game-card" onclick="openGame('g554863fb')">
     <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc'/><line x1='18' y1='8' x2='18' y2='48' stroke='#cbd5e1' stroke-width='2'/><line x1='38' y1='8' x2='38' y2='48' stroke='#cbd5e1' stroke-width='2'/><line x1='8' y1='18' x2='48' y2='18' stroke='#cbd5e1' stroke-width='2'/><line x1='8' y1='38' x2='48' y2='38' stroke='#cbd5e1' stroke-width='2'/><path d='M12 12 L24 24 M24 12 L12 24' stroke='#7c3aed' stroke-width='3' stroke-linecap='round'/><circle cx='28' cy='28' r='6' fill='none' stroke='#06b6d4' stroke-width='3'/><path d='M32 32 L44 44 M44 32 L32 44' stroke='#7c3aed' stroke-width='3' stroke-linecap='round'/></svg></div>
     <div class="info">
@@ -390,6 +399,7 @@ function openGame(type) {
     g0cae2419: '打字极速',
     g1819fe04: 'Breakout Bricks',
     g1b8a479c: '贪吃蛇',
+    g2fb3cb4c: 'Emoji Match',
     g554863fb: 'Tic-Tac-Toe 井字棋',
     g690c5548: '反应速度测试 Reaction Rush',
     g72251d0e: '扫雷 / Minesweeper',
@@ -409,6 +419,7 @@ function openGame(type) {
   else if (type === 'g0cae2419') init_g0cae2419(content);
   else if (type === 'g1819fe04') init_g1819fe04(content);
   else if (type === 'g1b8a479c') init_g1b8a479c(content);
+  else if (type === 'g2fb3cb4c') init_g2fb3cb4c(content);
   else if (type === 'g554863fb') init_g554863fb(content);
   else if (type === 'g690c5548') init_g690c5548(content);
   else if (type === 'g72251d0e') init_g72251d0e(content);
@@ -658,6 +669,164 @@ function init_g024c11de(container) {
 }
 // === g1819fe04 ===
 function init_g1819fe04(container) {
+  // Emoji set for 8 pairs
+  const emojis = ['😀','😎','😍','🤔','🤗','😴','🤯','🥳'];
+  // Create card data (duplicate and shuffle)
+  let cards = [...emojis, ...emojis];
+  // Shuffle function
+  function shuffle(arr){
+    for(let i=arr.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [arr[i],arr[j]]=[arr[j],arr[i]];
+    }
+    return arr;
+  }
+  cards = shuffle(cards);
+
+  // Game state
+  let opened = []; // indices of currently flipped cards
+  let matched = new Set();
+  let moves = 0;
+  let lock = false;
+
+  // Build DOM
+  container.innerHTML = `
+    <div class="em-match-container">
+      <div class="em-header">
+        <h2 class="em-title">Emoji Match</h2>
+        <div class="em-stats">
+          <span class="em-moves" id="em-moves">Moves: 0</span>
+          <button class="em-btn" id="em-restart">🔄 Restart</button>
+        </div>
+      </div>
+      <div class="em-grid" id="em-grid"></div>
+      <div class="em-message" id="em-message"></div>
+    </div>
+  `;
+
+  const grid = container.querySelector('#em-grid');
+  const movesEl = container.querySelector('#em-moves');
+  const messageEl = container.querySelector('#em-message');
+  const restartBtn = container.querySelector('#em-restart');
+
+  // Create card elements
+  cards.forEach((emoji, index) => {
+    const card = document.createElement('div');
+    card.className = 'em-card';
+    card.dataset.index = index;
+    card.dataset.emoji = emoji;
+    card.innerHTML = `
+      <div class="em-card-inner em-card-back">?</div>
+      <div class="em-card-inner em-card-front">${emoji}</div>
+    `;
+    grid.appendChild(card);
+  });
+
+  // Update moves display
+  function updateMoves(){
+    movesEl.textContent = 'Moves: ' + moves;
+  }
+
+  // Check win
+  function checkWin(){
+    if(matched.size === cards.length){
+      messageEl.textContent = '🎉 You win! Great memory!';
+      messageEl.className = 'em-message win';
+      // Optional confetti animation (simple)
+      // Could use CSS animation, but keep simple
+    }
+  }
+
+  // Card click handler
+  function handleCardClick(e){
+    const card = e.target.closest('.em-card');
+    if(!card || lock || matched.has(card.dataset.index) || opened.includes(card.dataset.index)) return;
+
+    // Flip card
+    card.classList.add('flipped');
+    opened.push(card.dataset.index);
+
+    if(opened.length === 2){
+      moves++;
+      updateMoves();
+      lock = true;
+
+      const [idx1, idx2] = opened;
+      const card1 = grid.children[idx1];
+      const card2 = grid.children[idx2];
+      const emoji1 = card1.dataset.emoji;
+      const emoji2 = card2.dataset.emoji;
+
+      if(emoji1 === emoji2){
+        // Match!
+        matched.add(idx1);
+        matched.add(idx2);
+        card1.classList.add('matched');
+        card2.classList.add('matched');
+        opened = [];
+        lock = false;
+        checkWin();
+      } else {
+        // No match: flip back after 800ms
+        setTimeout(() => {
+          card1.classList.remove('flipped');
+          card2.classList.remove('flipped');
+          opened = [];
+          lock = false;
+        }, 800);
+      }
+    }
+  }
+
+  // Restart game
+  function restart(){
+    // Shuffle new cards
+    cards = shuffle([...emojis, ...emojis]);
+    // Reset state
+    opened = [];
+    matched = new Set();
+    moves = 0;
+    lock = false;
+    updateMoves();
+    messageEl.textContent = '';
+    messageEl.className = 'em-message';
+    // Rebuild grid
+    grid.innerHTML = '';
+    cards.forEach((emoji, index) => {
+      const card = document.createElement('div');
+      card.className = 'em-card';
+      card.dataset.index = index;
+      card.dataset.emoji = emoji;
+      card.innerHTML = `
+        <div class="em-card-inner em-card-back">?</div>
+        <div class="em-card-inner em-card-front">${emoji}</div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  // Event listeners
+  grid.addEventListener('click', handleCardClick);
+  restartBtn.addEventListener('click', restart);
+
+  // Keyboard support: 1-8 keys to flip first 8 cards? Not necessary, but could add arrows? For simplicity, we support mouse only.
+  // But requirement says keyboard priority, we can add number keys to select cards? Might be overkill. We'll add simple: press 'r' to restart.
+  container.addEventListener('keydown', function(e){
+    if(e.key.toLowerCase() === 'r'){
+      restart();
+    }
+  });
+
+  // Focus container for keyboard
+  container.tabIndex = 0;
+  container.focus();
+
+  // Initial update
+  updateMoves();
+}
+}
+// === g554863fb ===
+function init_g554863fb(container) {
   let board = ['', '', '', '', '', '', '', '', ''];
   let currentPlayer = 'X';
   let gameOver = false;
