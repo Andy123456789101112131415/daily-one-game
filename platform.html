@@ -107,6 +107,8 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 .rr-container{width:100%;max-width:680px;margin:0 auto;background:#f8f9fc;border-radius:16px;padding:20px;box-sizing:border-box;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:#1e293b}.rr-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.05);text-align:center}.rr-title{font-size:24px;font-weight:600;margin-bottom:8px}.rr-subtitle{font-size:14px;color:#64748b;margin-bottom:20px}.rr-status{font-size:18px;font-weight:500;margin-bottom:12px;min-height:24px}.rr-area{width:100%;height:260px;background:#f1f5f9;border:2px solid #e2e8f0;border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;transition:background 0.2s;font-size:28px;font-weight:600;color:#1e293b;margin-bottom:20px}.rr-area.waiting{background:#f1f5f9;border-color:#e2e8f0;color:#64748b}.rr-area.ready{background:#fff;border-color:#f59e0b;color:#f59e0b}.rr-area.go{background:#10b981;border-color:#10b981;color:#fff}.rr-area.too-early{background:#ef4444;border-color:#ef4444;color:#fff}.rr-area.result{background:#f1f5f9;border-color:#e2e8f0;color:#1e293b}.rr-info{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.rr-score{font-size:16px;color:#64748b}.rr-btn{background:#7c3aed;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:16px;cursor:pointer;transition:background 0.2s}.rr-btn:hover{background:#6d28d9}.rr-btn:active{transform:scale(0.98)}.rr-result-text{font-size:20px;font-weight:600;color:#10b981}.rr-result-text.fail{color:#ef4444}.rr-highlight{animation:rr-pulse 0.5s ease}.@keyframes rr-pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}@media(max-width:600px){.rr-container{padding:10px}.rr-area{height:200px;font-size:24px}.rr-title{font-size:20px}}
 /* === g72251d0e === */
 .ms-game { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8f9fc; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; max-width: 680px; margin: 0 auto; } .ms-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; } .ms-title { font-size: 20px; font-weight: 600; color: #1e293b; } .ms-controls { display: flex; gap: 8px; } .ms-btn { border: 1px solid #e2e8f0; background: #ffffff; color: #1e293b; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 14px; font-family: inherit; } .ms-btn:hover { background: #f1f5f9; } .ms-btn:active { transform: scale(0.97); } .ms-board { display: inline-grid; gap: 2px; background: #e2e8f0; padding: 2px; border-radius: 4px; } .ms-cell { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 2px; cursor: pointer; user-select: none; transition: background 0.1s; } .ms-cell:hover { background: #f1f5f9; } .ms-cell.revealed { background: #f8f9fc; border-color: #cbd5e1; cursor: default; } .ms-cell.flagged { background: #fef9c3; color: #f59e0b; } .ms-cell.mine { background: #fee2e2; color: #ef4444; } .ms-cell.mine-hit { background: #fecaca; } .ms-cell.n1 { color: #3b82f6; } .ms-cell.n2 { color: #10b981; } .ms-cell.n3 { color: #ef4444; } .ms-cell.n4 { color: #7c3aed; } .ms-cell.n5 { color: #f59e0b; } .ms-cell.n6 { color: #06b6d4; } .ms-cell.n7 { color: #1e293b; } .ms-cell.n8 { color: #64748b; } .ms-status { display: flex; align-items: center; gap: 12px; font-size: 14px; color: #64748b; margin-top: 12px; } .ms-status span { font-weight: 600; color: #1e293b; }
+/* === g9e1572b1 === */
+.hdr-container{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;padding:20px;border-radius:12px;max-width:680px;margin:0 auto;box-sizing:border-box}.hdr-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}.hdr-thumb{width:56px;height:56px;border-radius:8px;border:1px solid #e2e8f0;background:#fff;flex-shrink:0}.hdr-title{font-size:20px;font-weight:600;color:#1e293b}.hdr-tag{font-size:12px;color:#64748b;margin-top:2px}.hdr-controls{display:flex;align-items:center;gap:10px;margin-bottom:12px}.hdr-moves{font-size:14px;color:#1e293b}.hdr-btn{background:#fff;border:1px solid #e2e8f0;border-radius:6px;padding:6px 12px;font-size:14px;cursor:pointer;color:#1e293b;font-family:inherit;transition:background .2s}.hdr-btn:hover{background:#f1f5f9}.hdr-board{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:#e2e8f0;padding:4px;border-radius:8px;touch-action:manipulation;user-select:none}.hdr-tile{aspect-ratio:1;background:#fff;border:none;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:600;color:#1e293b;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.1);transition:transform .15s,opacity .15s}.hdr-tile:active{transform:scale(.95)}.hdr-tile.hdr-empty{background:transparent;box-shadow:none;cursor:default}.hdr-win-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}.hdr-win-overlay.hdr-show{opacity:1;visibility:visible}.hdr-win-card{background:#fff;border-radius:16px;padding:24px 32px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,.2)}.hdr-win-card h2{margin:0 0 8px;font-size:24px;color:#10b981}.hdr-win-card p{margin:0 0 16px;color:#64748b}.hdr-win-card button{margin-top:8px}
 /* === gae84ccb5 === */
 /* === maze === */
 /* === gf2c90829 === */
@@ -328,6 +330,13 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
       <div class="tags">经典扫雷</div>
     </div>
   </div>
+<div class="game-card" onclick="openGame('g9e1572b1')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc'/><rect x='4' y='4' width='48' height='48' rx='4' fill='#fff' stroke='#e2e8f0'/><rect x='4' y='4' width='16' height='16' fill='#7c3aed'/><rect x='20' y='4' width='16' height='16' fill='#06b6d4'/><rect x='36' y='4' width='16' height='16' fill='#10b981'/><rect x='4' y='20' width='16' height='16' fill='#f59e0b'/><rect x='20' y='20' width='16' height='16' fill='#ef4444'/><rect x='36' y='20' width='16' height='16' fill='#8b5cf6'/><rect x='4' y='36' width='16' height='16' fill='#ec4899'/><rect x='20' y='36' width='16' height='16' fill='#14b8a6'/><rect x='36' y='36' width='16' height='16' fill='#f97316'/></svg></div>
+    <div class="info">
+      <div class="name">华容道拼图</div>
+      <div class="tags">滑块拼图</div>
+    </div>
+  </div>
 <div class="game-card" onclick="openGame('gae84ccb5')">
     <div class="thumb"><svg viewBox="0 0 56 56"><rect width="56" height="56" fill="#f8fafc" rx="4"/><rect x="4" y="8" width="10" height="36" rx="3" fill="#fff" stroke="#e2e8f0"/><rect x="16" y="8" width="10" height="36" rx="3" fill="#fff" stroke="#e2e8f0"/><rect x="28" y="8" width="10" height="36" rx="3" fill="#fff" stroke="#e2e8f0"/><rect x="40" y="8" width="10" height="36" rx="3" fill="#fff" stroke="#e2e8f0"/><circle cx="9" cy="18" r="3" fill="#10b981"/><circle cx="21" cy="28" r="3" fill="#10b981"/><circle cx="33" cy="12" r="3" fill="#10b981"/><rect x="4" y="46" width="10" height="6" rx="2" fill="#7c3aed"/><rect x="16" y="46" width="10" height="6" rx="2" fill="#7c3aed"/><rect x="28" y="46" width="10" height="6" rx="2" fill="#7c3aed"/><rect x="40" y="46" width="10" height="6" rx="2" fill="#7c3aed"/></svg></div>
     <div class="info">
@@ -413,6 +422,7 @@ function openGame(type) {
     g554863fb: 'Tic-Tac-Toe 井字棋',
     g690c5548: '反应速度测试 Reaction Rush',
     g72251d0e: '扫雷 / Minesweeper',
+    g9e1572b1: '华容道拼图',
     gae84ccb5: 'RhythmTap 节奏点',
     gf2c90829: 'RGB Color Guess',
     maze: 'Maze 迷宫',
@@ -434,6 +444,7 @@ function openGame(type) {
   else if (type === 'g554863fb') init_g554863fb(content);
   else if (type === 'g690c5548') init_g690c5548(content);
   else if (type === 'g72251d0e') init_g72251d0e(content);
+  else if (type === 'g9e1572b1') init_g9e1572b1(content);
   else if (type === 'gae84ccb5') init_gae84ccb5(content);
   else if (type === 'gf2c90829') init_gf2c90829(content);
   else if (type === 'maze') initMaze(content);
@@ -1387,6 +1398,149 @@ function init_g72251d0e(container) {
   }
 
   init();
+}
+}
+// === g9e1572b1 ===
+function init_g9e1572b1(container) {
+  // state
+  let tiles = []; // 1-8 and 0 for empty
+  let emptyIndex = 8;
+  let moves = 0;
+  let gameOver = false;
+
+  // create DOM
+  container.classList.add('hdr-container');
+  container.innerHTML = `
+    <div class="hdr-header">
+      <div class="hdr-thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc'/><rect x='4' y='4' width='48' height='48' rx='4' fill='#fff' stroke='#e2e8f0'/><rect x='4' y='4' width='16' height='16' fill='#7c3aed'/><rect x='20' y='4' width='16' height='16' fill='#06b6d4'/><rect x='36' y='4' width='16' height='16' fill='#10b981'/><rect x='4' y='20' width='16' height='16' fill='#f59e0b'/><rect x='20' y='20' width='16' height='16' fill='#ef4444'/><rect x='36' y='20' width='16' height='16' fill='#8b5cf6'/><rect x='4' y='36' width='16' height='16' fill='#ec4899'/><rect x='20' y='36' width='16' height='16' fill='#14b8a6'/><rect x='36' y='36' width='16' height='16' fill='#f97316'/></svg></div>
+      <div>
+        <div class="hdr-title">华容道拼图</div>
+        <div class="hdr-tag">滑块拼图</div>
+      </div>
+    </div>
+    <div class="hdr-controls">
+      <span class="hdr-moves">步数: <span id="hdr-moves-count">0</span></span>
+      <button class="hdr-btn" id="hdr-restart-btn">重新开始</button>
+    </div>
+    <div class="hdr-board" id="hdr-board"></div>
+    <div class="hdr-win-overlay" id="hdr-win-overlay">
+      <div class="hdr-win-card">
+        <h2>🎉 恭喜完成！</h2>
+        <p>你用了 <span id="hdr-final-moves">0</span> 步</p>
+        <button class="hdr-btn" id="hdr-play-again-btn">再玩一次</button>
+      </div>
+    </div>
+  `;
+
+  const board = container.querySelector('#hdr-board');
+  const movesSpan = container.querySelector('#hdr-moves-count');
+  const restartBtn = container.querySelector('#hdr-restart-btn');
+  const winOverlay = container.querySelector('#hdr-win-overlay');
+  const finalMoves = container.querySelector('#hdr-final-moves');
+  const playAgainBtn = container.querySelector('#hdr-play-again-btn');
+
+  // functions
+  function shuffle() {
+    // start from sorted, do 100 random valid moves to ensure solvable
+    tiles = [1,2,3,4,5,6,7,8,0];
+    emptyIndex = 8;
+    for (let i=0; i<100; i++) {
+      const neighbors = getNeighbors(emptyIndex);
+      const rand = Math.floor(Math.random() * neighbors.length);
+      swap(emptyIndex, neighbors[rand]);
+      moves = 0;
+      updateMovesDisplay();
+    }
+  }
+
+  function getNeighbors(index) {
+    const row = Math.floor(index / 3);
+    const col = index % 3;
+    const neighbors = [];
+    if (row > 0) neighbors.push(index - 3);
+    if (row < 2) neighbors.push(index + 3);
+    if (col > 0) neighbors.push(index - 1);
+    if (col < 2) neighbors.push(index + 1);
+    return neighbors;
+  }
+
+  function swap(i, j) {
+    [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+    emptyIndex = j;
+    moves++;
+    updateMovesDisplay();
+    renderBoard();
+    checkWin();
+  }
+
+  function renderBoard() {
+    board.innerHTML = '';
+    for (let i=0; i<9; i++) {
+      const value = tiles[i];
+      const tile = document.createElement('button');
+      tile.className = 'hdr-tile' + (value === 0 ? ' hdr-empty' : '');
+      tile.textContent = value === 0 ? '' : value;
+      tile.addEventListener('click', () => {
+        if (gameOver) return;
+        if (value === 0) return;
+        const idx = tiles.indexOf(value);
+        const neighbors = getNeighbors(emptyIndex);
+        if (neighbors.includes(idx)) {
+          swap(idx, emptyIndex);
+        }
+      });
+      board.appendChild(tile);
+    }
+  }
+
+  function checkWin() {
+    if (tiles.every((v, i) => v === i+1 || (i===8 && v===0))) {
+      gameOver = true;
+      finalMoves.textContent = moves;
+      winOverlay.classList.add('hdr-show');
+    }
+  }
+
+  function resetGame() {
+    gameOver = false;
+    winOverlay.classList.remove('hdr-show');
+    shuffle();
+    moves = 0;
+    updateMovesDisplay();
+    renderBoard();
+  }
+
+  function updateMovesDisplay() {
+    movesSpan.textContent = moves;
+  }
+
+  // keyboard support
+  document.addEventListener('keydown', (e) => {
+    if (gameOver) return;
+    let delta = 0;
+    if (e.key === 'ArrowUp') delta = -3;
+    else if (e.key === 'ArrowDown') delta = 3;
+    else if (e.key === 'ArrowLeft') delta = -1;
+    else if (e.key === 'ArrowRight') delta = 1;
+    else return;
+
+    const newIndex = emptyIndex + delta;
+    // check boundaries
+    if (newIndex < 0 || newIndex > 8) return;
+    const emptyRow = Math.floor(emptyIndex / 3);
+    const emptyCol = emptyIndex % 3;
+    const newRow = Math.floor(newIndex / 3);
+    const newCol = newIndex % 3;
+    if (Math.abs(emptyRow - newRow) + Math.abs(emptyCol - newCol) !== 1) return;
+    swap(newIndex, emptyIndex);
+  });
+
+  // event listeners
+  restartBtn.addEventListener('click', resetGame);
+  playAgainBtn.addEventListener('click', resetGame);
+
+  // init
+  resetGame();
 }
 }
 // === gae84ccb5 ===
