@@ -121,6 +121,8 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 .pong-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;width:100%;background:#f8f9fc;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;user-select:none}.pong-card{background:#fff;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.05);border:1px solid #e2e8f0;padding:20px;width:min(680px,100%);box-sizing:border-box}.pong-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;color:#1e293b;font-weight:600}.pong-score{display:flex;gap:24px;align-items:center}.pong-score span{font-size:24px;min-width:40px;text-align:center}.pong-score .pong-left{color:#06b6d4}.pong-score .pong-right{color:#ef4444}.pong-canvas-container{position:relative;width:100%;aspect-ratio:2/1;background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;margin-bottom:16px}.pong-canvas{width:100%;height:100%;display:block}.pong-message{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,255,255,.85);padding:12px 24px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 4px 12px rgba(0,0,0,.1);font-size:20px;font-weight:700;color:#1e293b;pointer-events:none;opacity:0;transition:opacity .3s}.pong-message.show{opacity:1}.pong-controls{display:flex;justify-content:center;gap:16px;margin-top:12px;flex-wrap:wrap}.pong-btn{background:#fff;color:#1e293b;border:1px solid #e2e8f0;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,border-color .2s}.pong-btn:hover{background:#f1f5f9;border-color:#cbd5e1}.pong-btn:active{background:#e2e8f0}.pong-btn-primary{background:#7c3aed;color:#fff;border-color:#7c3aed}.pong-btn-primary:hover{background:#6d28d9;border-color:#6d28d9}.pong-info{display:flex;justify-content:center;gap:24px;margin-top:8px;color:#64748b;font-size:12px;flex-wrap:wrap}.pong-info span::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;background:#06b6d4}.pong-info span:nth-child(2)::before{background:#ef4444}.pong-reset{background:#f59e0b;color:#fff;border-color:#f59e0b}.pong-reset:hover{background:#d97706;border-color:#d97706}
 /* === gf2c90829 === */
 .ccg-container{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;color:#1e293b;padding:20px;border-radius:12px;max-width:680px;margin:0 auto;box-sizing:border-box}.ccg-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.ccg-title{font-size:1.5em;font-weight:600}.ccg-score{font-size:1.2em;color:#64748b}.ccg-rgb-display{background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:20px;text-align:center;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.ccg-rgb-value{font-size:2em;font-weight:700;letter-spacing:2px;font-family:monospace}.ccg-options{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}.ccg-option{aspect-ratio:1;border-radius:8px;border:2px solid #e2e8f0;cursor:pointer;transition:transform 0.1s, box-shadow 0.1s;background:#ffffff}.ccg-option:hover{transform:scale(1.02);box-shadow:0 2px 6px rgba(0,0,0,0.1)}.ccg-option:active{transform:scale(0.98)}.ccg-option.correct{animation:ccg-pulse 0.5s ease;border-color:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,0.2)}.ccg-option.wrong{animation:ccg-shake 0.5s ease;border-color:#ef4444}.ccg-feedback{min-height:30px;text-align:center;font-size:1.1em;color:#64748b;margin-bottom:10px}.ccg-btn{background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:10px 20px;font-size:1em;cursor:pointer;color:#1e293b;transition:background 0.2s;display:block;margin:0 auto}.ccg-btn:hover{background:#f1f5f9}.ccg-btn:disabled{opacity:0.6;cursor:not-allowed}@keyframes ccg-pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}@keyframes ccg-shake{0%{transform:translateX(0)}25%{transform:translateX(-5px)}50%{transform:translateX(5px)}75%{transform:translateX(-5px)}100%{transform:translateX(0)}}@media(max-width:480px){.ccg-container{padding:10px}.ccg-rgb-value{font-size:1.5em}.ccg-options{grid-template-columns:repeat(3,1fr);gap:8px}}
+/* === gfad032ce === */
+.sp-game{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;color:#1e293b;max-width:400px;margin:0 auto;padding:20px;box-sizing:border-box;}.sp-board{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:#fff;padding:8px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border:1px solid #e2e8f0;}.sp-tile{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;border-radius:8px;cursor:pointer;user-select:none;transition:transform 0.1s, background 0.1s;color:#fff;}.sp-tile:active{transform:scale(0.95);}.sp-tile-empty{background:#f1f5f9;color:transparent;cursor:default;}.sp-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}.sp-moves{font-size:16px;font-weight:600;color:#1e293b;}.sp-restart{background:#7c3aed;color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:background 0.2s;}.sp-restart:hover{background:#6d28d9;}.sp-win{animation:sp-pop 0.5s ease;}.sp-tile-win{background:#10b981 !important;transform:scale(1.05);}@keyframes sp-pop{0%{transform:scale(1);}50%{transform:scale(1.02);}100%{transform:scale(1);}}@media(max-width:480px){.sp-game{padding:16px;}.sp-tile{font-size:20px;}}
 /* === maze === */
 /* ========== 迷宫游戏 ========== */
 .maze-container {
@@ -387,6 +389,13 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
       <div class="tags">颜色猜谜</div>
     </div>
   </div>
+<div class="game-card" onclick="openGame('gfad032ce')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc'/><g transform='translate(4,4)'><rect width='48' height='48' rx='6' fill='#fff' stroke='#e2e8f0'/><g font-family='Arial' font-size='10' text-anchor='middle' dominant-baseline='central' fill='#fff'><rect x='0' y='0' width='12' height='12' rx='2' fill='#7c3aed'/><text x='6' y='6'>1</text><rect x='12' y='0' width='12' height='12' rx='2' fill='#06b6d4'/><text x='18' y='6'>2</text><rect x='0' y='12' width='12' height='12' rx='2' fill='#10b981'/><text x='6' y='18'>3</text><rect x='12' y='12' width='12' height='12' rx='2' fill='#f59e0b'/><text x='18' y='18'>4</text><rect x='24' y='0' width='12' height='12' rx='2' fill='#ef4444'/><text x='30' y='6'>5</text><rect x='24' y='12' width='12' height='12' rx='2' fill='#64748b'/><text x='30' y='18'>6</text></g></g></svg></div>
+    <div class="info">
+      <div class="name">数字华容道 Sliding Puzzle</div>
+      <div class="tags">数字滑块 逻辑</div>
+    </div>
+  </div>
 <div class="game-card" onclick="openGame('maze')">
     <div class="thumb maze"><svg viewBox="0 0 48 48"><rect width="48" height="48" fill="#f8fafc"/><rect x="0" y="0" width="48" height="6" fill="#334155"/><rect x="0" y="0" width="6" height="48" fill="#334155"/><rect x="0" y="42" width="48" height="6" fill="#334155"/><rect x="42" y="0" width="6" height="48" fill="#334155"/><rect x="14" y="12" width="20" height="6" fill="#334155"/><rect x="14" y="12" width="6" height="18" fill="#334155"/><rect x="34" y="18" width="6" height="12" fill="#334155"/><rect x="20" y="30" width="20" height="6" fill="#334155"/><rect x="8" y="24" width="8" height="6" fill="#334155"/><circle cx="3" cy="45" r="2.5" fill="#06b6d4"/><rect x="42" y="30" width="6" height="3" rx="1.5" fill="#10b981"/></svg></div>
     <div class="info">
@@ -465,6 +474,7 @@ function openGame(type) {
     gba38edce: '迷宫探险 Maze Runner',
     gbccbb7f3: 'Pong Battle 乒乓球对战',
     gf2c90829: 'RGB Color Guess',
+    gfad032ce: '数字华容道 Sliding Puzzle',
     maze: 'Maze 迷宫',
     memory: 'Memory Match',
     puzzle: 'Number Puzzle',
@@ -491,6 +501,7 @@ function openGame(type) {
   else if (type === 'gba38edce') init_gba38edce(content);
   else if (type === 'gbccbb7f3') init_gbccbb7f3(content);
   else if (type === 'gf2c90829') init_gf2c90829(content);
+  else if (type === 'gfad032ce') init_gfad032ce(content);
   else if (type === 'maze') initMaze(content);
   else if (type === 'memory') initMemory(content);
   else if (type === 'puzzle') initPuzzle(content);
@@ -1802,6 +1813,183 @@ function init_gbccbb7f3(container) { const c = container; c.innerHTML = `<div cl
 }
 // === gf2c90829 ===
 function init_gf2c90829(container) {var score=0,round=0,currentAnswer=null,options=[],locked=false;var scoreEl=document.createElement('div');scoreEl.className='ccg-score';scoreEl.textContent='得分: 0';var header=document.createElement('div');header.className='ccg-header';header.innerHTML='<div class="ccg-title">颜色猜谜</div>';header.appendChild(scoreEl);var rgbDisplay=document.createElement('div');rgbDisplay.className='ccg-rgb-display';var rgbValue=document.createElement('div');rgbValue.className='ccg-rgb-value';rgbDisplay.appendChild(rgbValue);var optionsContainer=document.createElement('div');optionsContainer.className='ccg-options';var feedback=document.createElement('div');feedback.className='ccg-feedback';var restartBtn=document.createElement('button');restartBtn.className='ccg-btn';restartBtn.textContent='重新开始';restartBtn.addEventListener('click',function(){newRound();});container.appendChild(header);container.appendChild(rgbDisplay);container.appendChild(optionsContainer);container.appendChild(feedback);container.appendChild(restartBtn);function randomColor(){return 'rgb('+Math.floor(Math.random()*256)+','+Math.floor(Math.random()*256)+','+Math.floor(Math.random()*256)+')';}function rgbToText(rgb){var match=rgb.match(/\d+/g);return 'rgb('+match[0]+', '+match[1]+', '+match[2]+')';}function newRound(){locked=false;feedback.textContent='';optionsContainer.innerHTML='';round++;var correctColor=randomColor();currentAnswer=correctColor;rgbValue.textContent=correctColor;var colors=[correctColor];while(colors.length<6){var candidate=randomColor();if(!colors.includes(candidate)){colors.push(candidate);}}for(var i=colors.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var temp=colors[i];colors[i]=colors[j];colors[j]=temp;}options=[];for(var k=0;k<6;k++){var div=document.createElement('div');div.className='ccg-option';div.style.backgroundColor=colors[k];div.dataset.color=colors[k];div.addEventListener('click',function(e){if(locked)return;var selected=this.dataset.color;checkAnswer(selected,this);});optionsContainer.appendChild(div);options.push(div);}updateScore();}function checkAnswer(selected,el){locked=true;if(selected===currentAnswer){score++;feedback.textContent='正确！';el.classList.add('correct');setTimeout(newRound,800);}else{feedback.textContent='错误，正确答案是 '+rgbToText(currentAnswer);el.classList.add('wrong');options.forEach(function(opt){if(opt.dataset.color===currentAnswer){opt.classList.add('correct');}});setTimeout(newRound,1200);}updateScore();}function updateScore(){scoreEl.textContent='得分: '+score+' / 回合: '+round;}newRound();}
+}
+// === gfad032ce ===
+function init_gfad032ce(container) {
+  // 游戏状态
+  var board = [];
+  var emptyIndex = 15;
+  var moves = 0;
+  var gameWon = false;
+
+  // 初始化棋盘（打乱保证可解）
+  function initBoard() {
+    board = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0];
+    // 打乱：随机移动空白格多次（保证可解）
+    for (var i = 0; i < 1000; i++) {
+      var possibleMoves = getPossibleMoves(emptyIndex);
+      var randomMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+      // 交换
+      board[emptyIndex] = board[randomMove];
+      board[randomMove] = 0;
+      emptyIndex = randomMove;
+    }
+    // 确保不是已完成状态
+    if (isSolved()) {
+      // 交换最后两个非零数字（保持可解）
+      board[14] = 13;
+      board[13] = 14;
+      // 调整空位
+      // 因为空位在15，但我们交换了13和14，不影响空位
+    }
+    moves = 0;
+    gameWon = false;
+  }
+
+  // 获取空白格可移动的邻居索引
+  function getPossibleMoves(empty) {
+    var moves = [];
+    var row = Math.floor(empty / 4);
+    var col = empty % 4;
+    // 上
+    if (row > 0) moves.push(empty - 4);
+    // 下
+    if (row < 3) moves.push(empty + 4);
+    // 左
+    if (col > 0) moves.push(empty - 1);
+    // 右
+    if (col < 3) moves.push(empty + 1);
+    return moves;
+  }
+
+  // 检查是否胜利
+  function isSolved() {
+    for (var i = 0; i < 15; i++) {
+      if (board[i] !== i + 1) return false;
+    }
+    return board[15] === 0;
+  }
+
+  // 渲染棋盘
+  function render() {
+    var boardEl = container.querySelector('.sp-board');
+    boardEl.innerHTML = '';
+    for (var i = 0; i < 16; i++) {
+      var tile = document.createElement('div');
+      tile.className = 'sp-tile';
+      if (board[i] === 0) {
+        tile.classList.add('sp-tile-empty');
+        tile.textContent = '';
+      } else {
+        tile.textContent = board[i];
+        // 根据数字分配颜色（可选）
+        var colors = ['#7c3aed', '#06b6d4', '#10b981', '#f59e0b'];
+        // 简单分配：数字1-4用紫，5-8青，9-12绿，13-15金
+        var colorIndex = Math.floor((board[i] - 1) / 4);
+        tile.style.background = colors[colorIndex];
+      }
+      tile.dataset.index = i;
+      tile.addEventListener('click', handleTileClick);
+      boardEl.appendChild(tile);
+    }
+    // 更新步数
+    var movesEl = container.querySelector('.sp-moves');
+    movesEl.textContent = '步数: ' + moves;
+    // 检测胜利
+    if (isSolved() && !gameWon) {
+      gameWon = true;
+      var header = container.querySelector('.sp-header');
+      header.classList.add('sp-win');
+      // 可以添加庆祝效果（简单闪烁）
+      var tiles = container.querySelectorAll('.sp-tile:not(.sp-tile-empty)');
+      for (var j = 0; j < tiles.length; j++) {
+        tiles[j].classList.add('sp-tile-win');
+      }
+      // 显示胜利信息
+      setTimeout(function() {
+        alert('恭喜！你用了 ' + moves + ' 步完成！');
+      }, 100);
+    }
+  }
+
+  // 处理点击
+  function handleTileClick(e) {
+    if (gameWon) return;
+    var index = parseInt(e.target.dataset.index);
+    // 检查是否可移动（与空白相邻）
+    var possible = getPossibleMoves(emptyIndex);
+    if (possible.indexOf(index) !== -1) {
+      // 交换
+      board[emptyIndex] = board[index];
+      board[index] = 0;
+      emptyIndex = index;
+      moves++;
+      render();
+    }
+  }
+
+  // 键盘控制
+  function handleKeydown(e) {
+    if (gameWon) return;
+    var key = e.key;
+    var row = Math.floor(emptyIndex / 4);
+    var col = emptyIndex % 4;
+    var target = -1;
+    if (key === 'ArrowUp' && row < 3) { // 上移：空白格向下移动，数字向上
+      target = emptyIndex + 4;
+    } else if (key === 'ArrowDown' && row > 0) {
+      target = emptyIndex - 4;
+    } else if (key === 'ArrowLeft' && col < 3) {
+      target = emptyIndex + 1;
+    } else if (key === 'ArrowRight' && col > 0) {
+      target = emptyIndex - 1;
+    }
+    if (target !== -1) {
+      e.preventDefault();
+      // 交换
+      board[emptyIndex] = board[target];
+      board[target] = 0;
+      emptyIndex = target;
+      moves++;
+      render();
+    }
+  }
+
+  // 重新开始
+  function restart() {
+    initBoard();
+    var header = container.querySelector('.sp-header');
+    header.classList.remove('sp-win');
+    var tiles = container.querySelectorAll('.sp-tile');
+    for (var i = 0; i < tiles.length; i++) {
+      tiles[i].classList.remove('sp-tile-win');
+    }
+    render();
+  }
+
+  // 构建HTML结构
+  container.innerHTML = '<div class="sp-game">' +
+    '<div class="sp-header">' +
+      '<span class="sp-moves">步数: 0</span>' +
+      '<button class="sp-restart">重新开始</button>' +
+    '</div>' +
+    '<div class="sp-board"></div>' +
+  '</div>';
+
+  // 绑定事件
+  var restartBtn = container.querySelector('.sp-restart');
+  restartBtn.addEventListener('click', restart);
+  document.addEventListener('keydown', handleKeydown);
+
+  // 初始化
+  initBoard();
+  render();
+
+  // 清理函数（可选）
+  return function() {
+    document.removeEventListener('keydown', handleKeydown);
+  };
+}
 }
 // === maze ===
 // ========================= 迷宫游戏 =========================
