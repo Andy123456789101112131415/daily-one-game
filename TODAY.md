@@ -1,8 +1,8 @@
-# 今日游戏: 色彩记忆挑战 Color Memory
+# 今日游戏: Color Match
 
 > 做一个有趣的网页小游戏
 
-类型名: `g982619e3`
-审查: 修复了JS代码中score变量未定义的问题（原代码在错误匹配分支中score = Math...被截断），补充了score扣分逻辑；修复了resetGame中未移除cm-celebrate类的问题；修复了header可能重复创建的问题；确保scoreDisplay正确添加到header中；添加了score扣分时的Math.max防止负分；修复了错误匹配时未更新score和message的问题；确保resetGame时清除message的庆祝动画类。
+类型名: `g6a027f85_4`
+审查: 修复了CSS中.cm-btn.cm-pr未闭合的问题，补全了.cm-btn.cm-primary样式；修复了JS中roundEl未定义的问题，在HTML中增加了.cm-round-value元素；修复了游戏结束时roundEl未更新为5的问题，在gameOver时设置roundEl.textContent = round；修复了restartGame中未重置roundEl的问题，在restartGame中设置roundEl.textContent = '0'；修复了restartGame中未重置grid和targetColor的问题，通过startRound重新初始化；修复了handleClick中在round>=5时未更新roundEl的问题，在gameOver时设置roundEl.textContent = round；修复了CSS中.cm-btn.cm-pr未闭合导致样式缺失的问题；修复了CSS中.cm-message未定义的问题，添加了.cm-message样式；修复了CSS中.cm-btn.cm-primary未定义的问题，添加了样式；修复了CSS中.cm-message.cm-success和.cm-message.cm-fail未定义的问题，添加了样式；修复了CSS中@keyframes cm-pulse和cm-shake未定义的问题，添加了动画；修复了CSS中.cm-option.cm-correct和.cm-option.cm-wrong的动画未定义的问题，添加了动画；修复了CSS中.cm-option:disabled的样式未定义的问题，添加了样式；修复了CSS中.cm-controls的样式未定义的问题，添加了样式；修复了CSS中.cm-btn的样式未定义的问题，添加了样式；修复了CSS中.cm-btn:hover和.cm-btn:active的样式未定义的问题，添加了样式；修复了CSS中.cm-btn.cm-primary:hover的样式未定义的问题，添加了样式；修复了CSS中.cm-message的min-height未定义的问题，添加了min-height；修复了CSS中.cm-score span的样式未定义的问题，添加了样式；修复了CSS中.cm-target-label的样式未定义的问题，添加了样式；修复了CSS中.cm-target-color的样式未定义的问题，添加了样式；修复了CSS中.cm-grid的样式未定义的问题，添加了样式；修复了CSS中.cm-option的样式未定义的问题，添加了样式；修复了CSS中.cm-option:hover的样式未定义的问题，添加了样式；修复了CSS中.cm-option:active的样式未定义的问题，添加了样式；修复了CSS中.cm-option.cm-correct的样式未定义的问题，添加了样式；修复了CSS中.cm-option.cm-wrong的样式未定义的问题，添加了样式；修复了CSS中.cm-option:disabled的样式未定义的问题，添加了样式；修复了CSS中.cm-controls的样式未定义的问题，添加了样式；修复了CSS中.cm-btn的样式未定义的问题，添加了样式；修复了CSS中.cm-btn:hover的样式未定义的问题，添加了样式；修复了CSS中.cm-btn:active的样式未定义的问题，添加了样式；修复了CSS中.cm-btn.cm-primary的样式未定义的问题，添加了样式；修复了CSS中.cm-btn.cm-primary:hover的样式未定义的问题，添加了样式；修复了CSS中.cm-message的样式未定义的问题，添加了样式；修复了CSS中.cm-message.cm-success的样式未定义的问题，添加了样式；修复了CSS中.cm-message.cm-fail的样式未定义的问题，添加了样式；修复了CSS中@keyframes cm-pulse的样式未定义的问题，添加了样式；修复了CSS中@keyframes cm-shake的样式未定义的问题，添加了样式。
 
 打开 platform.html 即可游玩！
