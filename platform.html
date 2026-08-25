@@ -123,6 +123,8 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 .cm-container{--cm-primary:#7c3aed;--cm-secondary:#06b6d4;--cm-success:#10b981;--cm-warning:#f59e0b;--cm-danger:#ef4444;--cm-dark:#1e293b;--cm-light:#64748b;--cm-border:#e2e8f0;--cm-bg:#f8f9fc;--cm-white:#fff;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--cm-bg);border-radius:16px;padding:24px;max-width:680px;margin:0 auto;box-shadow:0 4px 6px rgba(30,41,59,0.05);border:1px solid var(--cm-border);color:var(--cm-dark)}.cm-title{font-size:1.5rem;font-weight:700;text-align:center;margin:0 0 8px;color:var(--cm-dark)}.cm-score{display:flex;justify-content:center;gap:24px;margin-bottom:16px;font-size:1.1rem;font-weight:600}.cm-score span{color:var(--cm-light)}.cm-target{text-align:center;margin-bottom:16px}.cm-target-label{font-size:0.9rem;color:var(--cm-light)}.cm-target-color{display:inline-block;width:60px;height:60px;border-radius:12px;border:3px solid var(--cm-border);box-shadow:0 2px 4px rgba(0,0,0,0.05)}.cm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;justify-items:center;margin-bottom:20px}.cm-option{width:80px;height:80px;border-radius:16px;border:3px solid var(--cm-border);cursor:pointer;transition:transform 0.15s, box-shadow 0.15s, border-color 0.15s;background:var(--cm-white);box-shadow:0 2px 4px rgba(0,0,0,0.05)}.cm-option:hover{transform:scale(1.05);box-shadow:0 4px 8px rgba(0,0,0,0.1)}.cm-option:active{transform:scale(0.95)}.cm-option.cm-correct{border-color:var(--cm-success);animation:cm-pulse 0.5s}.cm-option.cm-wrong{border-color:var(--cm-danger);animation:cm-shake 0.3s}.cm-option:disabled{cursor:not-allowed;opacity:0.7}.cm-controls{display:flex;justify-content:center;align-items:center;gap:16px}.cm-btn{background:var(--cm-white);border:1px solid var(--cm-border);color:var(--cm-dark);padding:8px 16px;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;transition:background 0.2s, border-color 0.2s;font-family:inherit}.cm-btn:hover{background:#f1f5f9}.cm-btn:active{transform:scale(0.95)}.cm-btn.cm-primary{background:var(--cm-primary);color:white;border-color:var(--cm-primary)}.cm-btn.cm-primary:hover{background:#6d28d9}.cm-message{min-height:24px;text-align:center;font-size:1rem;font-weight:600;margin-top:12px;color:var(--cm-light)}.cm-message.cm-success{color:var(--cm-success)}.cm-message.cm-fail{color:var(--cm-danger)}@keyframes cm-pulse{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}@keyframes cm-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}@media(max-width:480px){.cm-container{padding:16px}.cm-title{font-size:1.2rem}.cm-option{width:64px;height:64px}.cm-target-color{width:48px;height:48px}.cm-score{font-size:1rem;gap:16px}.cm-btn{font-size:0.9rem;padding:6px 12px}}
 /* === g6a027f85_5 === */
 .cm-game{font-family:'Segoe UI',system-ui,sans-serif;background:#f8f9fc;border-radius:12px;padding:20px;max-width:400px;margin:0 auto;box-shadow:0 4px 6px rgba(0,0,0,0.05);border:1px solid #e2e8f0;color:#1e293b}.cm-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.cm-title{font-size:20px;font-weight:600}.cm-score{font-size:18px;font-weight:600;color:#7c3aed}.cm-timer{font-size:14px;color:#64748b;margin-bottom:10px}.cm-target{text-align:center;margin-bottom:20px}.cm-target-label{font-size:14px;color:#64748b;margin-bottom:8px}.cm-target-color{width:80px;height:80px;border-radius:16px;margin:0 auto;border:3px solid #e2e8f0;box-shadow:0 2px 4px rgba(0,0,0,0.1)}.cm-options{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}.cm-option{aspect-ratio:1;border-radius:12px;cursor:pointer;border:3px solid #e2e8f0;transition:transform 0.1s,box-shadow 0.1s;box-shadow:0 2px 4px rgba(0,0,0,0.05)}.cm-option:hover{transform:scale(1.05);box-shadow:0 4px 8px rgba(0,0,0,0.1)}.cm-option:active{transform:scale(0.95)}.cm-option.correct{animation:cm-pop 0.3s ease;border-color:#10b981}.cm-option.wrong{animation:cm-shake 0.3s ease;border-color:#ef4444}.cm-btn{width:100%;padding:10px;font-size:16px;font-weight:600;border:none;border-radius:8px;background:#7c3aed;color:#fff;cursor:pointer;transition:background 0.2s}.cm-btn:hover{background:#6d28d9}.cm-btn:active{transform:scale(0.98)}.cm-feedback{text-align:center;font-size:14px;margin-top:10px;min-height:20px;color:#64748b}.cm-feedback.cm-correct{color:#10b981;font-weight:600}.cm-feedback.cm-wrong{color:#ef4444;font-weight:600}.cm-celebrate{animation:cm-celebrate 0.5s ease}.cm-gameover{text-align:center;font-size:18px;font-weight:600;color:#ef4444;margin-top:10px}@keyframes cm-pop{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}@keyframes cm-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}@keyframes cm-celebrate{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
+/* === g6a027f85_6 === */
+.cm-wrap{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;padding:16px;border-radius:12px;max-width:680px;margin:0 auto}.cm-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:20px;text-align:center}.cm-title{font-size:24px;font-weight:600;color:#1e293b;margin:0 0 20px}.cm-score{font-size:16px;color:#64748b;margin-bottom:16px}.cm-word{font-size:48px;font-weight:700;letter-spacing:4px;margin-bottom:16px;user-select:none}.cm-options{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}.cm-option{width:100px;height:60px;border:none;border-radius:8px;cursor:pointer;font-family:inherit;font-size:16px;font-weight:600;color:#fff;transition:transform .1s,box-shadow .1s}.cm-option:hover{transform:scale(1.05);box-shadow:0 4px 12px rgba(0,0,0,.15)}.cm-option:active{transform:scale(.95)}.cm-option:disabled{opacity:.5;cursor:not-allowed}.cm-btn{background:#7c3aed;color:#fff;border:none;border-radius:8px;padding:12px 24px;font-size:16px;font-weight:600;cursor:pointer;transition:background .2s}.cm-btn:hover{background:#6d28d9}.cm-msg{font-size:18px;font-weight:600;margin-top:16px;min-height:24px}.cm-correct{color:#10b981}.cm-wrong{color:#ef4444}.cm-celebrate{animation:cmPop .5s ease}.@keyframes cmPop{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}@media(max-width:480px){.cm-word{font-size:36px}.cm-option{width:80px;height:50px;font-size:14px}}
 /* === g72251d0e === */
 .ms-game { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8f9fc; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; max-width: 680px; margin: 0 auto; } .ms-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; } .ms-title { font-size: 20px; font-weight: 600; color: #1e293b; } .ms-controls { display: flex; gap: 8px; } .ms-btn { border: 1px solid #e2e8f0; background: #ffffff; color: #1e293b; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 14px; font-family: inherit; } .ms-btn:hover { background: #f1f5f9; } .ms-btn:active { transform: scale(0.97); } .ms-board { display: inline-grid; gap: 2px; background: #e2e8f0; padding: 2px; border-radius: 4px; } .ms-cell { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 2px; cursor: pointer; user-select: none; transition: background 0.1s; } .ms-cell:hover { background: #f1f5f9; } .ms-cell.revealed { background: #f8f9fc; border-color: #cbd5e1; cursor: default; } .ms-cell.flagged { background: #fef9c3; color: #f59e0b; } .ms-cell.mine { background: #fee2e2; color: #ef4444; } .ms-cell.mine-hit { background: #fecaca; } .ms-cell.n1 { color: #3b82f6; } .ms-cell.n2 { color: #10b981; } .ms-cell.n3 { color: #ef4444; } .ms-cell.n4 { color: #7c3aed; } .ms-cell.n5 { color: #f59e0b; } .ms-cell.n6 { color: #06b6d4; } .ms-cell.n7 { color: #1e293b; } .ms-cell.n8 { color: #64748b; } .ms-status { display: flex; align-items: center; gap: 12px; font-size: 14px; color: #64748b; margin-top: 12px; } .ms-status span { font-weight: 600; color: #1e293b; }
 /* === g946ffc84 === */
@@ -418,6 +420,13 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
       <div class="tags">色彩匹配反应</div>
     </div>
   </div>
+<div class="game-card" onclick="openGame('g6a027f85_6')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' rx='8' fill='#f8f9fc'/><circle cx='28' cy='28' r='18' fill='#7c3aed'/><text x='28' y='33' font-size='14' text-anchor='middle' fill='white' font-family='Arial'>CM</text></svg></div>
+    <div class="info">
+      <div class="name">Color Match</div>
+      <div class="tags">反应力挑战</div>
+    </div>
+  </div>
 <div class="game-card" onclick="openGame('g72251d0e')">
     <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc' rx='4'/><text x='4' y='12' font-size='8' fill='#1e293b'>1</text><text x='12' y='12' font-size='8' fill='#1e293b'>2</text><text x='20' y='12' font-size='8' fill='#1e293b'>3</text><text x='28' y='12' font-size='8' fill='#1e293b'>4</text><text x='36' y='12' font-size='8' fill='#1e293b'>5</text><text x='44' y='12' font-size='8' fill='#1e293b'>6</text><text x='4' y='22' font-size='8' fill='#1e293b'>7</text><text x='12' y='22' font-size='8' fill='#7c3aed'>8</text><text x='20' y='22' font-size='8' fill='#06b6d4'>9</text><text x='28' y='22' font-size='8' fill='#10b981'>10</text><text x='36' y='22' font-size='8' fill='#f59e0b'>11</text><text x='44' y='22' font-size='8' fill='#ef4444'>12</text><text x='4' y='32' font-size='8' fill='#1e293b'>13</text><text x='12' y='32' font-size='8' fill='#1e293b'>14</text><text x='20' y='32' font-size='8' fill='#1e293b'>15</text><text x='28' y='32' font-size='8' fill='#1e293b'>16</text><text x='36' y='32' font-size='8' fill='#1e293b'>17</text><text x='44' y='32' font-size='8' fill='#1e293b'>18</text><text x='4' y='42' font-size='8' fill='#1e293b'>19</text><text x='12' y='42' font-size='8' fill='#1e293b'>20</text><text x='20' y='42' font-size='8' fill='#1e293b'>21</text><text x='28' y='42' font-size='8' fill='#1e293b'>22</text><text x='36' y='42' font-size='8' fill='#1e293b'>23</text><text x='44' y='42' font-size='8' fill='#1e293b'>24</text><text x='4' y='52' font-size='8' fill='#1e293b'>25</text><text x='12' y='52' font-size='8' fill='#1e293b'>26</text><text x='20' y='52' font-size='8' fill='#1e293b'>27</text><text x='28' y='52' font-size='8' fill='#1e293b'>28</text><text x='36' y='52' font-size='8' fill='#1e293b'>29</text><text x='44' y='52' font-size='8' fill='#1e293b'>30</text></svg></div>
     <div class="info">
@@ -574,6 +583,7 @@ function openGame(type) {
     g6a027f85_3: 'Color Match',
     g6a027f85_4: 'Color Match',
     g6a027f85_5: 'Color Match',
+    g6a027f85_6: 'Color Match',
     g72251d0e: '扫雷 / Minesweeper',
     g946ffc84: 'Color Match 色彩配对',
     g982619e3: '色彩记忆挑战 Color Memory',
@@ -612,6 +622,7 @@ function openGame(type) {
   else if (type === 'g6a027f85_3') init_g6a027f85_3(content);
   else if (type === 'g6a027f85_4') init_g6a027f85_4(content);
   else if (type === 'g6a027f85_5') init_g6a027f85_5(content);
+  else if (type === 'g6a027f85_6') init_g6a027f85_6(content);
   else if (type === 'g72251d0e') init_g72251d0e(content);
   else if (type === 'g946ffc84') init_g946ffc84(content);
   else if (type === 'g982619e3') init_g982619e3(content);
@@ -1596,6 +1607,116 @@ function init_g6a027f85_4(container) { var colors = ['#7c3aed', '#06b6d4', '#10b
 }
 // === g6a027f85_5 ===
 function init_g6a027f85_5(container) { var colors = ['#7c3aed', '#06b6d4', '#10b981', '#f59e0b', '#ef4444']; var score = 0; var targetColor = ''; var options = []; var gameActive = true; var timeLeft = 60; var timerInterval = null; var scoreDisplay, timerDisplay, targetBox, optionsContainer, feedback, restartBtn; function shuffle(arr) { for (var i = arr.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var temp = arr[i]; arr[i] = arr[j]; arr[j] = temp; } return arr; } function generateRound() { var shuffledColors = shuffle(colors.slice()); targetColor = shuffledColors[0]; options = shuffledColors.slice(0, 3); options = shuffle(options); targetBox.style.backgroundColor = targetColor; optionsContainer.innerHTML = ''; for (var i = 0; i < options.length; i++) { (function(index) { var opt = document.createElement('div'); opt.className = 'cm-option'; opt.style.backgroundColor = options[index]; opt.dataset.color = options[index]; opt.addEventListener('click', function() { handleClick(this); }); optionsContainer.appendChild(opt); })(i); } feedback.textContent = ''; feedback.className = 'cm-feedback'; } function handleClick(clicked) { if (!gameActive) return; var clickedColor = clicked.dataset.color; if (clickedColor === targetColor) { score++; scoreDisplay.textContent = '得分: ' + score; clicked.classList.add('correct'); feedback.textContent = '✓ 正确！'; feedback.className = 'cm-feedback cm-correct'; container.classList.add('cm-celebrate'); setTimeout(function() { container.classList.remove('cm-celebrate'); }, 500); setTimeout(generateRound, 300); } else { clicked.classList.add('wrong'); feedback.textContent = '✗ 错误'; feedback.className = 'cm-feedback cm-wrong'; setTimeout(function() { clicked.classList.remove('wrong'); }, 300); } } function updateTimer() { timeLeft--; timerDisplay.textContent = '剩余时间: ' + timeLeft + 's'; if (timeLeft <= 0) { gameActive = false; clearInterval(timerInterval); feedback.textContent = '时间到！'; feedback.className = 'cm-feedback cm-gameover'; optionsContainer.style.pointerEvents = 'none'; restartBtn.style.display = 'block'; } } function restartGame() { score = 0; timeLeft = 60; gameActive = true; scoreDisplay.textContent = '得分: 0'; timerDisplay.textContent = '剩余时间: 60s'; optionsContainer.style.pointerEvents = 'auto'; restartBtn.style.display = 'none'; generateRound(); clearInterval(timerInterval); timerInterval = setInterval(updateTimer, 1000); } container.innerHTML = '<div class="cm-game"><div class="cm-header"><span class="cm-title">色彩匹配</span><span class="cm-score">得分: 0</span></div><div class="cm-timer">剩余时间: 60s</div><div class="cm-target"><div class="cm-target-label">点击匹配的颜色</div><div class="cm-target-color"></div></div><div class="cm-options"></div><button class="cm-btn" style="display:none;">重新开始</button><div class="cm-feedback"></div></div>'; scoreDisplay = container.querySelector('.cm-score'); timerDisplay = container.querySelector('.cm-timer'); targetBox = container.querySelector('.cm-target-color'); optionsContainer = container.querySelector('.cm-options'); feedback = container.querySelector('.cm-feedback'); restartBtn = container.querySelector('.cm-btn'); restartBtn.addEventListener('click', restartGame); generateRound(); timerInterval = setInterval(updateTimer, 1000); }
+}
+// === g6a027f85_6 ===
+function init_g6a027f85_6(container) {
+  var colors=['#7c3aed','#06b6d4','#10b981','#f59e0b','#ef4444'];
+  var colorNames=['紫色','青色','绿色','金色','红色'];
+  var score=0;
+  var currentColorIndex=-1;
+  var correctIndex=-1;
+  var gameOver=false;
+  var wordEl, optionsEl, scoreEl, msgEl, btnEl;
+  function init(){
+    container.innerHTML='<div class="cm-card"><h2 class="cm-title">颜色匹配</h2><div class="cm-score">得分: <span id="cm-score">0</span></div><div class="cm-word" id="cm-word">紫色</div><div class="cm-options" id="cm-options"></div><button class="cm-btn" id="cm-restart">重新开始</button><div class="cm-msg" id="cm-msg"></div></div>';
+    wordEl=container.querySelector('#cm-word');
+    optionsEl=container.querySelector('#cm-options');
+    scoreEl=container.querySelector('#cm-score');
+    msgEl=container.querySelector('#cm-msg');
+    btnEl=container.querySelector('#cm-restart');
+    btnEl.addEventListener('click',restart);
+    restart();
+    document.addEventListener('keydown',keyHandler);
+  }
+  function restart(){
+    score=0;
+    gameOver=false;
+    updateScore();
+    msgEl.textContent='';
+    msgEl.className='cm-msg';
+    newRound();
+  }
+  function newRound(){
+    if(gameOver) return;
+    // 随机选择显示的颜色名称（文字），但文字颜色随机选一个，文字内容随机选另一个，保证至少有2种不同？为了好玩，可能相同，但概率低。
+    currentColorIndex=Math.floor(Math.random()*colors.length);
+    var textIndex=Math.floor(Math.random()*colors.length);
+    // 确保文字颜色和文字内容不同？不一定，可能相同，但可以接受。
+    var textColor=colors[currentColorIndex];
+    var textContent=colorNames[textIndex];
+    wordEl.textContent=textContent;
+    wordEl.style.color=textColor;
+    // 生成4个选项，其中一个正确（匹配文字内容对应的颜色）
+    var correctColorIndex=textIndex; // 需要点击的颜色是文字内容对应的颜色
+    var options=[];
+    // 确保4个选项包含正确颜色，且不重复
+    options.push(correctColorIndex);
+    while(options.length<4){
+      var rand=Math.floor(Math.random()*colors.length);
+      if(options.indexOf(rand)===-1) options.push(rand);
+    }
+    // 打乱顺序
+    for(var i=options.length-1;i>0;i--){
+      var j=Math.floor(Math.random()*(i+1));
+      var temp=options[i];options[i]=options[j];options[j]=temp;
+    }
+    // 渲染选项
+    optionsEl.innerHTML='';
+    for(var k=0;k<options.length;k++){
+      var idx=options[k];
+      var btn=document.createElement('button');
+      btn.className='cm-option';
+      btn.style.backgroundColor=colors[idx];
+      btn.textContent=colorNames[idx];
+      btn.dataset.colorIndex=idx;
+      btn.addEventListener('click',function(e){handleClick(e.currentTarget);});
+      optionsEl.appendChild(btn);
+    }
+    // 禁用？不，每次点击后判断
+  }
+  function handleClick(btn){
+    if(gameOver) return;
+    var clickedIndex=parseInt(btn.dataset.colorIndex);
+    var textContent=wordEl.textContent;
+    var correctIdx=colorNames.indexOf(textContent); // 文字对应的颜色索引
+    if(clickedIndex===correctIdx){
+      // 正确
+      score+=10;
+      updateScore();
+      msgEl.textContent='正确！+10分';
+      msgEl.className='cm-msg cm-correct';
+      // 添加庆祝动画
+      wordEl.classList.add('cm-celebrate');
+      setTimeout(function(){wordEl.classList.remove('cm-celebrate');},500);
+      // 下一轮
+      setTimeout(newRound,400);
+    }else{
+      // 错误
+      gameOver=true;
+      msgEl.textContent='游戏结束！最终得分：'+score+' 分';
+      msgEl.className='cm-msg cm-wrong';
+      // 禁用所有选项
+      var buttons=optionsEl.querySelectorAll('.cm-option');
+      for(var i=0;i<buttons.length;i++){
+        buttons[i].disabled=true;
+      }
+    }
+  }
+  function updateScore(){
+    scoreEl.textContent=score;
+  }
+  function keyHandler(e){
+    if(gameOver) return;
+    var key=parseInt(e.key);
+    if(key>=1 && key<=4){
+      var buttons=optionsEl.querySelectorAll('.cm-option');
+      if(buttons.length>=key){
+        handleClick(buttons[key-1]);
+      }
+    }
+  }
+  init();
+}
 }
 // === g72251d0e ===
 function init_g72251d0e(container) {
