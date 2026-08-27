@@ -97,6 +97,8 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 .cm-game{background:#f8f9fc;border-radius:12px;padding:16px;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:#1e293b;max-width:680px;margin:0 auto;user-select:none}.cm-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.cm-title{font-size:20px;font-weight:600}.cm-score{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:4px 12px;box-shadow:0 1px 3px rgba(0,0,0,0.05)}.cm-target{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:12px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-around;box-shadow:0 1px 2px rgba(0,0,0,0.03)}.cm-target-label{font-size:14px;color:#64748b}.cm-target-color{width:48px;height:48px;border-radius:50%;border:2px solid #e2e8f0;cursor:pointer;transition:transform 0.1s}.cm-target-color:active{transform:scale(0.95)}.cm-options{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}.cm-option{aspect-ratio:1;border-radius:12px;border:2px solid #e2e8f0;cursor:pointer;transition:transform 0.1s,box-shadow 0.1s}.cm-option:hover{transform:scale(1.02)}.cm-option:active{transform:scale(0.97)}.cm-option.cm-disabled{opacity:0.5;pointer-events:none}.cm-controls{display:flex;gap:8px;justify-content:center;margin-top:12px}.cm-btn{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:8px 16px;font-size:14px;cursor:pointer;color:#1e293b;transition:background 0.2s;box-shadow:0 1px 2px rgba(0,0,0,0.03)}.cm-btn:hover{background:#f1f5f9}.cm-message{text-align:center;margin-top:12px;font-size:16px;min-height:24px}.cm-celebrate{animation:cm-pop 0.5s ease}.cm-fail{animation:cm-shake 0.5s ease}@keyframes cm-pop{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}@keyframes cm-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 /* === g1819fe04 === */
 /* === g1b8a479c === */
+/* === g18303d5c === */
+.mfp-container *{box-sizing:border-box;margin:0;padding:0}.mfp-container{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;border-radius:12px;padding:20px;max-width:680px;margin:0 auto;color:#1e293b;user-select:none}.mfp-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.mfp-title{font-size:1.5rem;font-weight:600}.mfp-score{font-size:1rem;color:#64748b}.mfp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}.mfp-card{aspect-ratio:1;background:#fff;border:2px solid #e2e8f0;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:bold;transition:transform .2s,box-shadow .2s;position:relative}.mfp-card:hover{box-shadow:0 2px 8px rgba(0,0,0,0.05)}.mfp-card.flipped{background:#fff;border-color:#7c3aed;transform:rotateY(180deg)}.mfp-card.matched{background:#e6f7ed;border-color:#10b981;cursor:default}.mfp-card.matched::after{content:'✓';position:absolute;color:#10b981;font-size:1.5rem}.mfp-card .symbol{opacity:0;transition:opacity .2s}.mfp-card.flipped .symbol,.mfp-card.matched .symbol{opacity:1}.mfp-btn{background:#7c3aed;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:1rem;cursor:pointer;transition:background .2s}.mfp-btn:hover{background:#6d28d9}.mfp-message{text-align:center;font-size:1.2rem;font-weight:600;margin-top:10px;min-height:30px}.mfp-message.win{color:#10b981}.mfp-message.lose{color:#ef4444}
 /* === g1b8a479c === */
 
 /* === g24185024 === */
@@ -327,6 +329,13 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
     <div class="info">
       <div class="name">Breakout Bricks</div>
       <div class="tags">打砖块小游戏</div>
+    </div>
+  </div>
+<div class="game-card" onclick="openGame('g18303d5c')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' rx='8' fill='#f8f9fc'/><rect x='4' y='4' width='22' height='22' rx='4' fill='#7c3aed'/><rect x='30' y='4' width='22' height='22' rx='4' fill='#06b6d4'/><rect x='4' y='30' width='22' height='22' rx='4' fill='#10b981'/><rect x='30' y='30' width='22' height='22' rx='4' fill='#f59e0b'/></svg></div>
+    <div class="info">
+      <div class="name">记忆翻牌 Memory Flip</div>
+      <div class="tags">记忆配对翻牌</div>
     </div>
   </div>
 <div class="game-card" onclick="openGame('g1b8a479c')">
@@ -570,6 +579,7 @@ function openGame(type) {
     g0cae2419: '打字极速',
     g145543df: 'Color Match 色块消消乐',
     g1819fe04: 'Breakout Bricks',
+    g18303d5c: '记忆翻牌 Memory Flip',
     g1b8a479c: '贪吃蛇',
     g24185024: 'Brick Breaker 弹球打砖块',
     g2cfe5ffd: '数字合成2048',
@@ -609,6 +619,7 @@ function openGame(type) {
   else if (type === 'g0cae2419') init_g0cae2419(content);
   else if (type === 'g145543df') init_g145543df(content);
   else if (type === 'g1819fe04') init_g1819fe04(content);
+  else if (type === 'g18303d5c') init_g18303d5c(content);
   else if (type === 'g1b8a479c') init_g1b8a479c(content);
   else if (type === 'g24185024') init_g24185024(content);
   else if (type === 'g2cfe5ffd') init_g2cfe5ffd(content);
@@ -880,7 +891,199 @@ function init_g024c11de(container) {
 function init_g145543df(container) { var colors = ['#7c3aed', '#06b6d4', '#10b981', '#f59e0b', '#ef4444']; var gameState = { targetIndex: 0, score: 0, options: [0, 1, 2, 3], locked: false, round: 0 }; var messageEl, scoreEl, targetEl, optionsEls; function shuffle(arr) { for (var i = arr.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var temp = arr[i]; arr[i] = arr[j]; arr[j] = temp; } return arr; } function newRound() { gameState.round++; gameState.locked = false; gameState.targetIndex = Math.floor(Math.random() * colors.length); var opts = [0, 1, 2, 3]; gameState.options = shuffle(opts); if (gameState.score >= 5) { endGame(true); return; } targetEl.style.backgroundColor = colors[gameState.targetIndex]; for (var i = 0; i < 4; i++) { var optIndex = gameState.options[i]; optionsEls[i].style.backgroundColor = colors[optIndex]; optionsEls[i].classList.remove('cm-disabled'); } messageEl.textContent = '选择与目标色相同的色块'; } function handleSelect(index) { if (gameState.locked) return; gameState.locked = true; var selectedIndex = gameState.options[index]; if (selectedIndex === gameState.targetIndex) { gameState.score++; scoreEl.textContent = '得分: ' + gameState.score; messageEl.textContent = '正确！'; messageEl.classList.add('cm-celebrate'); setTimeout(function() { messageEl.classList.remove('cm-celebrate'); newRound(); }, 500); } else { messageEl.textContent = '错误！看准颜色'; messageEl.classList.add('cm-fail'); setTimeout(function() { messageEl.classList.remove('cm-fail'); gameState.locked = false; }, 500); } } function endGame(win) { messageEl.textContent = win ? '恭喜通关！得分: ' + gameState.score : '游戏结束'; for (var i = 0; i < 4; i++) { optionsEls[i].classList.add('cm-disabled'); } } function resetGame() { gameState.score = 0; gameState.round = 0; scoreEl.textContent = '得分: 0'; messageEl.textContent = ''; newRound(); } container.innerHTML = '<div class="cm-game"><div class="cm-header"><span class="cm-title">色块消消乐</span><span class="cm-score" id="cm-score">得分: 0</span></div><div class="cm-target"><span class="cm-target-label">目标色</span><div class="cm-target-color" id="cm-target"></div></div><div class="cm-options" id="cm-options"><div class="cm-option" data-index="0"></div><div class="cm-option" data-index="1"></div><div class="cm-option" data-index="2"></div><div class="cm-option" data-index="3"></div></div><div class="cm-controls"><button class="cm-btn" id="cm-reset">重来</button></div><div class="cm-message" id="cm-message"></div></div>'; var scoreEl = container.querySelector('#cm-score'); var targetEl = container.querySelector('#cm-target'); var optionsEls = container.querySelectorAll('.cm-option'); var resetBtn = container.querySelector('#cm-reset'); var messageEl = container.querySelector('#cm-message'); for (var i = 0; i < optionsEls.length; i++) { (function(index) { optionsEls[index].addEventListener('click', function() { handleSelect(index); }); })(i); } resetBtn.addEventListener('click', resetGame); newRound(); }
 }
 // === g1819fe04 ===
-function init_g1819fe04(container) { var canvas = document.createElement('canvas'); canvas.className = 'bb-canvas'; var wrap = document.createElement('div'); wrap.className = 'bb-canvas-wrap'; wrap.appendChild(canvas); var header = document.createElement('div'); header.className = 'bb-header'; var title = document.createElement('span'); title.className = 'bb-title'; title.textContent = '砖块破坏者'; var scoreSpan = document.createElement('span'); scoreSpan.className = 'bb-score'; scoreSpan.textContent = '分数: 0'; header.appendChild(title); header.appendChild(scoreSpan); var controls = document.createElement('div'); controls.className = 'bb-controls'; var restartBtn = document.createElement('button'); restartBtn.className = 'bb-btn'; restartBtn.textContent = '🔄 重来'; controls.appendChild(restartBtn); var messageDiv = document.createElement('div'); messageDiv.className = 'bb-message'; var messageText = document.createElement('div'); messageText.className = 'bb-message-text'; var restartMsgBtn = document.createElement('button'); restartMsgBtn.className = 'bb-btn bb-restart'; restartMsgBtn.textContent = '再来一局'; messageDiv.appendChild(messageText); messageDiv.appendChild(restartMsgBtn); wrap.appendChild(messageDiv); container.appendChild(header); container.appendChild(wrap); container.appendChild(controls); var ctx = canvas.getContext('2d'); var W, H; function resize() { W = wrap.clientWidth; H = W * 0.6; canvas.width = W; canvas.height = H; } resize(); window.addEventListener('resize', resize); var score = 0; var gameOver = false; var won = false; var paused = false; var paddle = { width: 80, height: 12, x: 0, y: 0, speed: 6 }; var ball = { radius: 8, x: 0, y: 0, dx: 3, dy: 3, speed: 3 }; var bricks = []; var brickRows = 5; var brickCols = 8; var brickWidth, brickHeight; var brickPadding = 2; var brickOffsetTop = 30; var brickOffsetLeft = 0; function initGame() { score = 0; gameOver = false; won = false; scoreSpan.textContent = '分数: 0'; messageDiv.classList.remove('show'); paddle.width = Math.min(100, W * 0.2); paddle.height = 12; paddle.x = (W - paddle.width) / 2; paddle.y = H - 20; ball.radius = Math.max(6, Math.min(10, W * 0.02)); ball.x = W / 2; ball.y = H - 30; ball.dx = ball.speed * (Math.random() > 0.5 ? 1 : -1); ball.dy = -ball.speed; brickWidth = (W - (brickCols + 1) * brickPadding) / brickCols; brickHeight = 18; brickOffsetLeft = brickPadding; bricks = []; for (var r = 0; r < brickRows; r++) { for (var c = 0; c < brickCols; c++) { bricks.push({ x: brickOffsetLeft + c * (brickWidth + brickPadding), y: brickOffsetTop + r * (brickHeight + brickPadding), width: brickWidth, height: brickHeight, alive: true, color: getBrickColor(r) }); } } draw(); } function getBrickColor(row) { var colors = ['#7c3aed', '#06b6d4', '#10b981', '#f59e0b', '#ef4444']; return colors[row % colors.length]; } function draw() { ctx.clearRect(0, 0, W, H); bricks.forEach(function(b) { if (b.alive) { ctx.fillStyle = b.color; ctx.fillRect(b.x, b.y, b.width, b.height); } }); ctx.fillStyle = '#1e293b'; ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height); ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2); ctx.fillStyle = '#1e293b'; ctx.fill(); } function update() { if (gameOver || won) return; ball.x += ball.dx; ball.y += ball.dy; if (ball.x + ball.radius > W || ball.x - ball.radius < 0) { ball.dx = -ball.dx; } if (ball.y - ball.radius < 0) { ball.dy = -ball.dy; } if (ball.y + ball.radius > H) { gameOver = true; showMessage('游戏结束'); return; } if (ball.y + ball.radius > paddle.y && ball.y + ball.radius < paddle.y + paddle.height && ball.x > paddle.x - ball.radius && ball.x < paddle.x + paddle.width + ball.radius && ball.dy > 0) { ball.dy = -ball.dy; } for (var i = 0; i < bricks.length; i++) { var b = bricks[i]; if (b.alive && ball.x + ball.radius > b.x && ball.x - ball.radius < b.x + b.width && ball.y + ball.radius > b.y && ball.y - ball.radius < b.y + b.height) { b.alive = false; score += 10; scoreSpan.textContent = '分数: ' + score; if (ball.x < b.x || ball.x > b.x + b.width) { ball.dx = -ball.dx; } else { ball.dy = -ball.dy; } break; } } if (bricks.every(function(b) { return !b.alive; })) { won = true; showMessage('恭喜通关！'); } draw(); } function showMessage(text) { messageText.textContent = text; messageDiv.classList.add('show'); } function gameLoop() { update(); requestAnimationFrame(gameLoop); } var keys = {}; document.addEventListener('keydown', function(e) { keys[e.key] = true; if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') e.preventDefault(); }); document.addEventListener('keyup', function(e) { keys[e.key] = false; }); restartBtn.addEventListener('click', function() { initGame(); }); restartMsgBtn.addEventListener('click', function() { initGame(); }); initGame(); gameLoop(); }
+function init_g1819fe04(container) {
+  // 卡片符号集，共8对
+  const symbols = ['🍎','🍊','🍋','🍇','🍓','🍒','🥝','🍑'];
+  let cards = [];
+  let flipped = [];
+  let matched = 0;
+  let lock = false;
+  let attempts = 0;
+  let score = 0;
+  let message = '';
+
+  // 创建卡片数组（每个符号出现两次）
+  function shuffle(arr){
+    for(let i=arr.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [arr[i],arr[j]]=[arr[j],arr[i]];
+    }
+    return arr;
+  }
+
+  function initGame(){
+    cards = [];
+    flipped = [];
+    matched = 0;
+    lock = false;
+    attempts = 0;
+    score = 0;
+    message = '';
+
+    // 构建双倍符号并洗牌
+    let deck = symbols.concat(symbols);
+    deck = shuffle(deck);
+
+    // 构建卡片对象
+    cards = deck.map((sym, idx) => ({
+      id: idx,
+      symbol: sym,
+      isFlipped: false,
+      isMatched: false
+    }));
+
+    render();
+  }
+
+  function render(){
+    // 构建头部
+    container.innerHTML = `
+      <div class="mfp-header">
+        <div class="mfp-title">记忆翻牌</div>
+        <div class="mfp-score">得分: <span id="mfp-score-val">${score}</span> | 翻牌: <span id="mfp-attempts">${attempts}</span></div>
+      </div>
+      <div class="mfp-grid" id="mfp-grid"></div>
+      <div style="text-align:center;">
+        <button class="mfp-btn" id="mfp-restart">🔄 重来</button>
+      </div>
+      <div class="mfp-message" id="mfp-message">${message}</div>
+    `;
+
+    const grid = container.querySelector('#mfp-grid');
+    const restartBtn = container.querySelector('#mfp-restart');
+    const scoreEl = container.querySelector('#mfp-score-val');
+    const attemptsEl = container.querySelector('#mfp-attempts');
+    const messageEl = container.querySelector('#mfp-message');
+
+    // 生成卡片DOM
+    cards.forEach((card, idx) => {
+      const cardDiv = document.createElement('div');
+      cardDiv.className = 'mfp-card';
+      cardDiv.dataset.index = idx;
+      cardDiv.innerHTML = `<span class="symbol">${card.symbol}</span>`;
+      if(card.isFlipped || card.isMatched) cardDiv.classList.add('flipped');
+      if(card.isMatched) cardDiv.classList.add('matched');
+      cardDiv.addEventListener('click', () => handleCardClick(idx));
+      grid.appendChild(cardDiv);
+    });
+
+    // 更新分数显示
+    scoreEl.textContent = score;
+    attemptsEl.textContent = attempts;
+    messageEl.textContent = message;
+
+    // 绑定重来按钮
+    restartBtn.addEventListener('click', initGame);
+
+    // 键盘支持：按R重来，数字键1-8? 但这里简单点，只支持R和空格
+    function keyHandler(e){
+      if(e.key === 'r' || e.key === 'R'){
+        initGame();
+      }
+    }
+    container.addEventListener('keydown', keyHandler);
+    // 注意：container需要tabindex才能接收键盘事件，但为了简单，我们只绑定到document？但要求事件绑定在container内，所以给container加tabindex
+    container.setAttribute('tabindex', '0');
+    container.focus();
+
+    // 保存清理函数（可选）
+    container._cleanup = () => {
+      container.removeEventListener('keydown', keyHandler);
+    };
+  }
+
+  function handleCardClick(idx){
+    if(lock) return;
+    const card = cards[idx];
+    if(card.isMatched || card.isFlipped) return;
+
+    // 翻转卡片
+    card.isFlipped = true;
+    flipped.push(idx);
+    attempts++;
+
+    // 更新UI：找到对应DOM并添加flipped类
+    const cardDivs = container.querySelectorAll('.mfp-card');
+    const targetDiv = cardDivs[idx];
+    targetDiv.classList.add('flipped');
+
+    // 更新分数和翻牌数
+    updateStats();
+
+    // 如果翻了两张
+    if(flipped.length === 2){
+      lock = true;
+      const [i1, i2] = flipped;
+      const card1 = cards[i1];
+      const card2 = cards[i2];
+
+      if(card1.symbol === card2.symbol){
+        // 匹配成功
+        card1.isMatched = true;
+        card2.isMatched = true;
+        card1.isFlipped = false;
+        card2.isFlipped = false;
+        matched++;
+        score += 10;
+
+        // 更新DOM：移除flipped，添加matched
+        const div1 = cardDivs[i1];
+        const div2 = cardDivs[i2];
+        div1.classList.remove('flipped');
+        div2.classList.remove('flipped');
+        div1.classList.add('matched');
+        div2.classList.add('matched');
+
+        // 更新统计和消息
+        updateStats();
+        if(matched === 8){
+          message = '🎉 恭喜你赢了！';
+          messageEl.classList.add('win');
+          messageEl.textContent = message;
+        } else {
+          message = '配对成功！';
+          messageEl.textContent = message;
+        }
+        // 解锁
+        lock = false;
+        flipped = [];
+      } else {
+        // 不匹配
+        message = '再试一次';
+        messageEl.textContent = message;
+        // 延迟翻转回去
+        setTimeout(() => {
+          card1.isFlipped = false;
+          card2.isFlipped = false;
+          const div1 = cardDivs[i1];
+          const div2 = cardDivs[i2];
+          div1.classList.remove('flipped');
+          div2.classList.remove('flipped');
+          flipped = [];
+          lock = false;
+        }, 800);
+      }
+    }
+  }
+
+  function updateStats(){
+    const scoreEl = container.querySelector('#mfp-score-val');
+    const attemptsEl = container.querySelector('#mfp-attempts');
+    if(scoreEl) scoreEl.textContent = score;
+    if(attemptsEl) attemptsEl.textContent = attempts;
+  }
+
+  // 初始化
+  initGame();
+
+  // 返回清理函数（可选）
+  return function cleanup(){
+    if(container._cleanup) container._cleanup();
+  };
+}
+}
+// === g1b8a479c ===
+function init_g1b8a479c(container) { var canvas = document.createElement('canvas'); canvas.className = 'bb-canvas'; var wrap = document.createElement('div'); wrap.className = 'bb-canvas-wrap'; wrap.appendChild(canvas); var header = document.createElement('div'); header.className = 'bb-header'; var title = document.createElement('span'); title.className = 'bb-title'; title.textContent = '砖块破坏者'; var scoreSpan = document.createElement('span'); scoreSpan.className = 'bb-score'; scoreSpan.textContent = '分数: 0'; header.appendChild(title); header.appendChild(scoreSpan); var controls = document.createElement('div'); controls.className = 'bb-controls'; var restartBtn = document.createElement('button'); restartBtn.className = 'bb-btn'; restartBtn.textContent = '🔄 重来'; controls.appendChild(restartBtn); var messageDiv = document.createElement('div'); messageDiv.className = 'bb-message'; var messageText = document.createElement('div'); messageText.className = 'bb-message-text'; var restartMsgBtn = document.createElement('button'); restartMsgBtn.className = 'bb-btn bb-restart'; restartMsgBtn.textContent = '再来一局'; messageDiv.appendChild(messageText); messageDiv.appendChild(restartMsgBtn); wrap.appendChild(messageDiv); container.appendChild(header); container.appendChild(wrap); container.appendChild(controls); var ctx = canvas.getContext('2d'); var W, H; function resize() { W = wrap.clientWidth; H = W * 0.6; canvas.width = W; canvas.height = H; } resize(); window.addEventListener('resize', resize); var score = 0; var gameOver = false; var won = false; var paused = false; var paddle = { width: 80, height: 12, x: 0, y: 0, speed: 6 }; var ball = { radius: 8, x: 0, y: 0, dx: 3, dy: 3, speed: 3 }; var bricks = []; var brickRows = 5; var brickCols = 8; var brickWidth, brickHeight; var brickPadding = 2; var brickOffsetTop = 30; var brickOffsetLeft = 0; function initGame() { score = 0; gameOver = false; won = false; scoreSpan.textContent = '分数: 0'; messageDiv.classList.remove('show'); paddle.width = Math.min(100, W * 0.2); paddle.height = 12; paddle.x = (W - paddle.width) / 2; paddle.y = H - 20; ball.radius = Math.max(6, Math.min(10, W * 0.02)); ball.x = W / 2; ball.y = H - 30; ball.dx = ball.speed * (Math.random() > 0.5 ? 1 : -1); ball.dy = -ball.speed; brickWidth = (W - (brickCols + 1) * brickPadding) / brickCols; brickHeight = 18; brickOffsetLeft = brickPadding; bricks = []; for (var r = 0; r < brickRows; r++) { for (var c = 0; c < brickCols; c++) { bricks.push({ x: brickOffsetLeft + c * (brickWidth + brickPadding), y: brickOffsetTop + r * (brickHeight + brickPadding), width: brickWidth, height: brickHeight, alive: true, color: getBrickColor(r) }); } } draw(); } function getBrickColor(row) { var colors = ['#7c3aed', '#06b6d4', '#10b981', '#f59e0b', '#ef4444']; return colors[row % colors.length]; } function draw() { ctx.clearRect(0, 0, W, H); bricks.forEach(function(b) { if (b.alive) { ctx.fillStyle = b.color; ctx.fillRect(b.x, b.y, b.width, b.height); } }); ctx.fillStyle = '#1e293b'; ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height); ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2); ctx.fillStyle = '#1e293b'; ctx.fill(); } function update() { if (gameOver || won) return; ball.x += ball.dx; ball.y += ball.dy; if (ball.x + ball.radius > W || ball.x - ball.radius < 0) { ball.dx = -ball.dx; } if (ball.y - ball.radius < 0) { ball.dy = -ball.dy; } if (ball.y + ball.radius > H) { gameOver = true; showMessage('游戏结束'); return; } if (ball.y + ball.radius > paddle.y && ball.y + ball.radius < paddle.y + paddle.height && ball.x > paddle.x - ball.radius && ball.x < paddle.x + paddle.width + ball.radius && ball.dy > 0) { ball.dy = -ball.dy; } for (var i = 0; i < bricks.length; i++) { var b = bricks[i]; if (b.alive && ball.x + ball.radius > b.x && ball.x - ball.radius < b.x + b.width && ball.y + ball.radius > b.y && ball.y - ball.radius < b.y + b.height) { b.alive = false; score += 10; scoreSpan.textContent = '分数: ' + score; if (ball.x < b.x || ball.x > b.x + b.width) { ball.dx = -ball.dx; } else { ball.dy = -ball.dy; } break; } } if (bricks.every(function(b) { return !b.alive; })) { won = true; showMessage('恭喜通关！'); } draw(); } function showMessage(text) { messageText.textContent = text; messageDiv.classList.add('show'); } function gameLoop() { update(); requestAnimationFrame(gameLoop); } var keys = {}; document.addEventListener('keydown', function(e) { keys[e.key] = true; if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') e.preventDefault(); }); document.addEventListener('keyup', function(e) { keys[e.key] = false; }); restartBtn.addEventListener('click', function() { initGame(); }); restartMsgBtn.addEventListener('click', function() { initGame(); }); initGame(); gameLoop(); }
 }
 // === g2cfe5ffd ===
 function init_g2cfe5ffd(container) {var grid=null,score=0,gameOver=false;function init(){container.innerHTML='<div class="d2048-wrap"><div class="d2048-header"><div class="d2048-score">分数: <span id="score">0</span></div><button class="d2048-btn" id="resetBtn">重新开始</button></div><div class="d2048-grid" id="grid"></div></div><div class="d2048-overlay hidden" id="overlay"><div class="d2048-overlay-content"><h2 id="overlayTitle"></h2><p id="overlayMsg"></p><button class="d2048-newgame" id="newGameBtn">再来一局</button></div></div><div class="d2048-msg" id="msg"></div>';grid=Array(4).fill().map(()=>Array(4).fill(0));score=0;gameOver=false;updateScore();renderGrid();addNewTile();addNewTile();var overlay=container.querySelector('#overlay');if(overlay)overlay.classList.add('hidden');var resetBtn=container.querySelector('#resetBtn');if(resetBtn)resetBtn.addEventListener('click',init);var newGameBtn=container.querySelector('#newGameBtn');if(newGameBtn)newGameBtn.addEventListener('click',init);container.addEventListener('keydown',handleKey);container.tabIndex=0;container.style.outline='none';container.focus();}function renderGrid(){var gridEl=container.querySelector('#grid');if(!gridEl)return;gridEl.innerHTML='';for(var r=0;r<4;r++){for(var c=0;c<4;c++){var cell=document.createElement('div');cell.className='d2048-cell';var val=grid[r][c];if(val!==0){cell.textContent=val;cell.dataset.value=val;}else{cell.textContent='';cell.dataset.value='';}gridEl.appendChild(cell);}}}function addNewTile(){var empty=[];for(var r=0;r<4;r++){for(var c=0;c<4;c++){if(grid[r][c]===0)empty.push({r:r,c:c});}}if(empty.length===0)return;var pos=empty[Math.floor(Math.random()*empty.length)];grid[pos.r][pos.c]=Math.random()<0.9?2:4;}function handleKey(e){if(gameOver)return;var key=e.key;var moved=false;if(key==='ArrowUp'||key==='w'||key==='W'){moved=moveUp();}else if(key==='ArrowDown'||key==='s'||key==='S'){moved=moveDown();}else if(key==='ArrowLeft'||key==='a'||key==='A'){moved=moveLeft();}else if(key==='ArrowRight'||key==='d'||key==='D'){moved=moveRight();}else return;if(moved){addNewTile();renderGrid();updateScore();checkGameStatus();}}function moveLeft(){var moved=false;for(var r=0;r<4;r++){var row=grid[r].filter(v=>v!==0);for(var i=0;i<row.length-1;i++){if(row[i]===row[i+1]){row[i]*=2;score+=row[i];row.splice(i+1,1);moved=true;}}while(row.length<4)row.push(0);for(var c=0;c<4;c++){if(grid[r][c]!==row[c])moved=true;grid[r][c]=row[c];}}return moved;}function moveRight(){var moved=false;for(var r=0;r<4;r++){var row=grid[r].filter(v=>v!==0);for(var i=row.length-1;i>0;i--){if(row[i]===row[i-1]){row[i]*=2;score+=row[i];row.splice(i-1,1);moved=true;}}while(row.length<4)row.unshift(0);for(var c=0;c<4;c++){if(grid[r][c]!==row[c])moved=true;grid[r][c]=row[c];}}return moved;}function moveUp(){var moved=false;for(var c=0;c<4;c++){var col=[];for(var r=0;r<4;r++)col.push(grid[r][c]);col=col.filter(v=>v!==0);for(var i=0;i<col.length-1;i++){if(col[i]===col[i+1]){col[i]*=2;score+=col[i];col.splice(i+1,1);moved=true;}}while(col.length<4)col.push(0);for(var r=0;r<4;r++){if(grid[r][c]!==col[r])moved=true;grid[r][c]=col[r];}}return moved;}function moveDown(){var moved=false;for(var c=0;c<4;c++){var col=[];for(var r=0;r<4;r++)col.push(grid[r][c]);col=col.filter(v=>v!==0);for(var i=col.length-1;i>0;i--){if(col[i]===col[i-1]){col[i]*=2;score+=col[i];col.splice(i-1,1);moved=true;}}while(col.length<4)col.unshift(0);for(var r=0;r<4;r++){if(grid[r][c]!==col[r])moved=true;grid[r][c]=col[r];}}return moved;}function updateScore(){var scoreEl=container.querySelector('#score');if(scoreEl)scoreEl.textContent=score;}function checkGameStatus(){var has2048=false;var hasEmpty=false;for(var r=0;r<4;r++){for(var c=0;c<4;c++){if(grid[r][c]===2048)has2048=true;if(grid[r][c]===0)hasEmpty=true;}}if(has2048){gameOver=true;showOverlay('恭喜你！','你合成2048了！');return;}if(!hasEmpty&&!canMove()){gameOver=true;showOverlay('游戏结束','没有可移动的方块了');return;}}function canMove(){for(var r=0;r<4;r++){for(var c=0;c<4;c++){if(c<3&&grid[r][c]===grid[r][c+1])return true;if(r<3&&grid[r][c]===grid[r+1][c])return true;}}return false;}function showOverlay(title,msg){var overlay=container.querySelector('#overlay');var titleEl=container.querySelector('#overlayTitle');var msgEl=container.querySelector('#overlayMsg');if(overlay&&titleEl&&msgEl){titleEl.textContent=title;msgEl.textContent=msg;overlay.classList.remove('hidden');}showMsg(title,msg);}function showMsg(title,msg){var msgEl=container.querySelector('#msg');if(!msgEl)return;msgEl.textContent=title+' '+msg;msgEl.classList.add('show');setTimeout(function(){msgEl.classList.remove('show');},2000);}init();}
