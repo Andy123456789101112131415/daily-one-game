@@ -99,6 +99,21 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 /* === g1b8a479c === */
 /* === g18303d5c === */
 .mfp-container *{box-sizing:border-box;margin:0;padding:0}.mfp-container{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;border-radius:12px;padding:20px;max-width:680px;margin:0 auto;color:#1e293b;user-select:none}.mfp-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.mfp-title{font-size:1.5rem;font-weight:600}.mfp-score{font-size:1rem;color:#64748b}.mfp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}.mfp-card{aspect-ratio:1;background:#fff;border:2px solid #e2e8f0;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:bold;transition:transform .2s,box-shadow .2s;position:relative}.mfp-card:hover{box-shadow:0 2px 8px rgba(0,0,0,0.05)}.mfp-card.flipped{background:#fff;border-color:#7c3aed;transform:rotateY(180deg)}.mfp-card.matched{background:#e6f7ed;border-color:#10b981;cursor:default}.mfp-card.matched::after{content:'✓';position:absolute;color:#10b981;font-size:1.5rem}.mfp-card .symbol{opacity:0;transition:opacity .2s}.mfp-card.flipped .symbol,.mfp-card.matched .symbol{opacity:1}.mfp-btn{background:#7c3aed;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:1rem;cursor:pointer;transition:background .2s}.mfp-btn:hover{background:#6d28d9}.mfp-message{text-align:center;font-size:1.2rem;font-weight:600;margin-top:10px;min-height:30px}.mfp-message.win{color:#10b981}.mfp-message.lose{color:#ef4444}
+/* === g185dd181 === */
+.mm-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; padding: 20px; max-width: 640px; margin: 0 auto; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: #1e293b; }
+.mm-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.mm-title { font-size: 20px; font-weight: 600; }
+.mm-score { font-size: 18px; color: #64748b; }
+.mm-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 400px; margin: 0 auto; }
+.mm-card-btn { aspect-ratio: 1; border-radius: 10px; border: 2px solid #e2e8f0; background: #f8f9fc; cursor: pointer; font-size: 32px; display: flex; align-items: center; justify-content: center; transition: transform 0.1s, background 0.2s; }
+.mm-card-btn.flipped { background: #fff; border-color: #7c3aed; }
+.mm-card-btn.matched { background: #10b981; border-color: #10b981; color: #fff; }
+.mm-card-btn:active { transform: scale(0.95); }
+.mm-button { background: #7c3aed; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-size: 16px; cursor: pointer; margin-top: 16px; }
+.mm-button:hover { background: #6d28d9; }
+.mm-message { text-align: center; margin-top: 12px; font-weight: 500; min-height: 24px; }
+.mm-win { color: #10b981; }
+.mm-lose { color: #ef4444; }
 /* === g1b8a479c === */
 
 /* === g24185024 === */
@@ -340,6 +355,13 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
     <div class="info">
       <div class="name">记忆翻牌 Memory Flip</div>
       <div class="tags">记忆配对翻牌</div>
+    </div>
+  </div>
+<div class="game-card" onclick="openGame('g185dd181')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc'/><rect x='8' y='8' width='18' height='18' rx='3' fill='#7c3aed'/><rect x='30' y='8' width='18' height='18' rx='3' fill='#06b6d4'/><rect x='8' y='30' width='18' height='18' rx='3' fill='#10b981'/><rect x='30' y='30' width='18' height='18' rx='3' fill='#f59e0b'/><text x='28' y='52' font-size='10' fill='#64748b' text-anchor='middle'>配对</text></svg></div>
+    <div class="info">
+      <div class="name">Memory Match 记忆配对</div>
+      <div class="tags">记忆力·配对·翻牌</div>
     </div>
   </div>
 <div class="game-card" onclick="openGame('g1b8a479c')">
@@ -598,6 +620,7 @@ function openGame(type) {
     g145543df: 'Color Match 色块消消乐',
     g1819fe04: 'Breakout Bricks',
     g18303d5c: '记忆翻牌 Memory Flip',
+    g185dd181: 'Memory Match 记忆配对',
     g1b8a479c: '贪吃蛇',
     g24185024: 'Brick Breaker 弹球打砖块',
     g2cfe5ffd: '数字合成2048',
@@ -640,6 +663,7 @@ function openGame(type) {
   else if (type === 'g145543df') init_g145543df(content);
   else if (type === 'g1819fe04') init_g1819fe04(content);
   else if (type === 'g18303d5c') init_g18303d5c(content);
+  else if (type === 'g185dd181') init_g185dd181(content);
   else if (type === 'g1b8a479c') init_g1b8a479c(content);
   else if (type === 'g24185024') init_g24185024(content);
   else if (type === 'g2cfe5ffd') init_g2cfe5ffd(content);
@@ -1102,6 +1126,99 @@ function init_g1819fe04(container) {
   return function cleanup(){
     if(container._cleanup) container._cleanup();
   };
+}
+}
+// === g185dd181 ===
+function init_g185dd181(container) {
+  const symbols = ['🍎','🍌','🍇','🍒','🍓','🍑','🍍','🥝'];
+  let cards = [];
+  let flipped = [];
+  let matched = 0;
+  let attempts = 0;
+  let lock = false;
+
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function init() {
+    // 重置状态
+    cards = shuffle([...symbols, ...symbols]);
+    flipped = [];
+    matched = 0;
+    attempts = 0;
+    lock = false;
+
+    // 构建DOM
+    container.innerHTML = `
+      <div class="mm-card">
+        <div class="mm-head">
+          <span class="mm-title">记忆配对</span>
+          <span class="mm-score">尝试: <span id="mm-attempts">0</span></span>
+        </div>
+        <div class="mm-grid" id="mm-grid">
+          ${cards.map((sym, i) => `<button class="mm-card-btn" data-index="${i}" data-symbol="${sym}">?</button>`).join('')}
+        </div>
+        <div style="text-align:center;">
+          <button class="mm-button" id="mm-restart">重新开始</button>
+        </div>
+        <div class="mm-message" id="mm-message"></div>
+      </div>
+    `;
+
+    // 事件绑定
+    const grid = container.querySelector('#mm-grid');
+    const restartBtn = container.querySelector('#mm-restart');
+    const attemptsSpan = container.querySelector('#mm-attempts');
+    const messageDiv = container.querySelector('#mm-message');
+
+    grid.addEventListener('click', (e) => {
+      const btn = e.target.closest('.mm-card-btn');
+      if (!btn || lock || btn.classList.contains('flipped') || btn.classList.contains('matched')) return;
+
+      const idx = parseInt(btn.dataset.index);
+      btn.classList.add('flipped');
+      btn.textContent = cards[idx];
+      flipped.push(btn);
+
+      if (flipped.length === 2) {
+        attempts++;
+        attemptsSpan.textContent = attempts;
+        lock = true;
+        const [first, second] = flipped;
+        if (first.dataset.symbol === second.dataset.symbol) {
+          first.classList.add('matched');
+          second.classList.add('matched');
+          matched++;
+          flipped = [];
+          lock = false;
+          if (matched === symbols.length) {
+            messageDiv.textContent = '🎉 恭喜你赢了！';
+            messageDiv.classList.add('mm-win');
+          }
+        } else {
+          setTimeout(() => {
+            first.classList.remove('flipped');
+            second.classList.remove('flipped');
+            first.textContent = '?';
+            second.textContent = '?';
+            flipped = [];
+            lock = false;
+          }, 800);
+        }
+      }
+    });
+
+    restartBtn.addEventListener('click', () => {
+      init();
+    });
+  }
+
+  init();
 }
 }
 // === g1b8a479c ===

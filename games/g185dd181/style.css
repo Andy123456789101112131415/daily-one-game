@@ -1,0 +1,14 @@
+.mm-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; padding: 20px; max-width: 640px; margin: 0 auto; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: #1e293b; }
+.mm-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.mm-title { font-size: 20px; font-weight: 600; }
+.mm-score { font-size: 18px; color: #64748b; }
+.mm-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 400px; margin: 0 auto; }
+.mm-card-btn { aspect-ratio: 1; border-radius: 10px; border: 2px solid #e2e8f0; background: #f8f9fc; cursor: pointer; font-size: 32px; display: flex; align-items: center; justify-content: center; transition: transform 0.1s, background 0.2s; }
+.mm-card-btn.flipped { background: #fff; border-color: #7c3aed; }
+.mm-card-btn.matched { background: #10b981; border-color: #10b981; color: #fff; }
+.mm-card-btn:active { transform: scale(0.95); }
+.mm-button { background: #7c3aed; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-size: 16px; cursor: pointer; margin-top: 16px; }
+.mm-button:hover { background: #6d28d9; }
+.mm-message { text-align: center; margin-top: 12px; font-weight: 500; min-height: 24px; }
+.mm-win { color: #10b981; }
+.mm-lose { color: #ef4444; }
