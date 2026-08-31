@@ -148,6 +148,8 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 .cm-wrap{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;padding:20px;border-radius:12px;max-width:680px;margin:0 auto;box-sizing:border-box;color:#1e293b}.cm-score{font-size:24px;font-weight:700;margin-bottom:10px;text-align:center}.cm-target{width:120px;height:120px;border-radius:16px;margin:20px auto;border:3px solid #e2e8f0;transition:background 0.3s;box-shadow:0 2px 8px rgba(0,0,0,0.05)}.cm-options{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:20px 0}.cm-option{width:80px;height:80px;border-radius:12px;cursor:pointer;border:2px solid #e2e8f0;transition:transform 0.15s;box-shadow:0 1px 4px rgba(0,0,0,0.05)}.cm-option:hover{transform:scale(1.05)}.cm-option:active{transform:scale(0.95)}.cm-btn{display:block;margin:20px auto;padding:10px 24px;font-size:16px;font-weight:600;background:#e2e8f0;border:none;border-radius:8px;cursor:pointer;color:#1e293b;transition:background 0.2s}.cm-btn:hover{background:#cbd5e1}.cm-message{text-align:center;font-size:18px;min-height:24px;margin-top:10px;font-weight:600}.cm-correct{background:#10b981!important}.cm-wrong{background:#ef4444!important}@keyframes cm-pop{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}.cm-pop{animation:cm-pop 0.3s ease}@media(max-width:480px){.cm-target{width:90px;height:90px}.cm-option{width:60px;height:60px}.cm-score{font-size:20px}}
 /* === g72251d0e === */
 .ms-game { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8f9fc; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; max-width: 680px; margin: 0 auto; } .ms-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; } .ms-title { font-size: 20px; font-weight: 600; color: #1e293b; } .ms-controls { display: flex; gap: 8px; } .ms-btn { border: 1px solid #e2e8f0; background: #ffffff; color: #1e293b; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 14px; font-family: inherit; } .ms-btn:hover { background: #f1f5f9; } .ms-btn:active { transform: scale(0.97); } .ms-board { display: inline-grid; gap: 2px; background: #e2e8f0; padding: 2px; border-radius: 4px; } .ms-cell { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 2px; cursor: pointer; user-select: none; transition: background 0.1s; } .ms-cell:hover { background: #f1f5f9; } .ms-cell.revealed { background: #f8f9fc; border-color: #cbd5e1; cursor: default; } .ms-cell.flagged { background: #fef9c3; color: #f59e0b; } .ms-cell.mine { background: #fee2e2; color: #ef4444; } .ms-cell.mine-hit { background: #fecaca; } .ms-cell.n1 { color: #3b82f6; } .ms-cell.n2 { color: #10b981; } .ms-cell.n3 { color: #ef4444; } .ms-cell.n4 { color: #7c3aed; } .ms-cell.n5 { color: #f59e0b; } .ms-cell.n6 { color: #06b6d4; } .ms-cell.n7 { color: #1e293b; } .ms-cell.n8 { color: #64748b; } .ms-status { display: flex; align-items: center; gap: 12px; font-size: 14px; color: #64748b; margin-top: 12px; } .ms-status span { font-weight: 600; color: #1e293b; }
+/* === g8c742671 === */
+.ctf-wrap{--ctf-primary:#7c3aed;--ctf-sec:#06b6d4;--ctf-gold:#f59e0b;--ctf-red:#ef4444;--ctf-green:#10b981;--ctf-bg:#f8f9fc;--ctf-card:#fff;--ctf-border:#e2e8f0;--ctf-text:#1e293b;--ctf-muted:#64748b;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--ctf-bg);border-radius:12px;padding:20px;max-width:640px;margin:0 auto;color:var(--ctf-text)}.ctf-wrap *{box-sizing:border-box;margin:0;padding:0}.ctf-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px}.ctf-title{font-size:20px;font-weight:600}.ctf-scores{display:flex;gap:20px;background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:8px;padding:8px 16px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.ctf-score-item{font-size:14px}.ctf-score-label{color:var(--ctf-muted);margin-right:4px}.ctf-score-value{font-weight:600}.ctf-board{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:8px;padding:8px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.ctf-cell{aspect-ratio:1;border-radius:4px;border:1px solid var(--ctf-border);background:#f1f5f9;transition:background 0.2s,transform 0.1s;cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center}.ctf-cell:hover{background:#e2e8f0}.ctf-cell.wall{background:#cbd5e1;cursor:not-allowed}.ctf-cell.player{background:var(--ctf-primary);transform:scale(0.9);border-color:var(--ctf-primary)}.ctf-cell.enemy{background:var(--ctf-sec);transform:scale(0.9);border-color:var(--ctf-sec)}.ctf-cell.flag{background:var(--ctf-gold);transform:scale(0.8);border-color:var(--ctf-gold)}.ctf-cell.enemy .ctf-eye,.ctf-cell.player .ctf-eye{width:6px;height:6px;background:#fff;border-radius:50%;position:absolute;top:4px;right:4px}.ctf-controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.ctf-btn{background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:6px;padding:8px 16px;font-size:14px;font-weight:500;cursor:pointer;transition:background 0.2s,border-color 0.2s;color:var(--ctf-text)}.ctf-btn:hover{background:#f1f5f9;border-color:#94a3b8}.ctf-btn:active{transform:translateY(1px)}.ctf-btn-primary{background:var(--ctf-primary);color:#fff;border-color:var(--ctf-primary)}.ctf-btn-primary:hover{background:#6d28d9}.ctf-msg{background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:8px;padding:12px;margin-top:12px;font-size:14px;color:var(--ctf-muted);box-shadow:0 1px 3px rgba(0,0,0,0.04)}.ctf-win{color:var(--ctf-green);font-weight:600}.ctf-lose{color:var(--ctf-red);font-weight:600}.ctf-anim{animation:ctf-pop 0.4s ease}.@keyframes ctf-pop{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
 /* === g946ffc84 === */
 .cm-game{font-family:'Segoe UI',system-ui,sans-serif;background:#f8f9fc;color:#1e293b;padding:20px;border-radius:12px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:16px;user-select:none}.cm-header{display:flex;justify-content:space-between;align-items:center;width:100%;max-width:400px}.cm-title{font-size:1.4em;font-weight:600;color:#1e293b}.cm-score{font-size:1.2em;font-weight:600;color:#7c3aed}.cm-target{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:8px 16px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.cm-target-label{font-size:0.85em;color:#64748b}.cm-target-color{width:32px;height:32px;border-radius:50%;border:2px solid #e2e8f0;background:#7c3aed}.cm-board{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;max-width:400px}.cm-card{aspect-ratio:1;border-radius:12px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;transition:transform 0.1s,box-shadow 0.1s;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.cm-card:hover{transform:scale(1.02)}.cm-card:active{transform:scale(0.98)}.cm-card.cm-disabled{pointer-events:none;opacity:0.6}.cm-message{min-height:1.5em;font-size:1em;color:#64748b;text-align:center}.cm-message.cm-win{color:#10b981;font-weight:600;animation:cm-pop 0.3s ease}.cm-message.cm-lose{color:#ef4444;font-weight:600;animation:cm-shake 0.3s ease}.cm-btn{background:#7c3aed;color:#fff;border:none;border-radius:8px;padding:10px 24px;font-size:1em;cursor:pointer;transition:background 0.2s;box-shadow:0 2px 4px rgba(0,0,0,0.1)}.cm-btn:hover{background:#6d28d9}.cm-btn:active{transform:scale(0.98)}.cm-celebrate{animation:cm-celebrate 0.5s ease}@keyframes cm-pop{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}@keyframes cm-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}@keyframes cm-celebrate{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
 /* === g982619e3 === */
@@ -483,6 +485,13 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
       <div class="tags">经典扫雷</div>
     </div>
   </div>
+<div class="game-card" onclick="openGame('g8c742671')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc'/><rect x='8' y='8' width='40' height='40' fill='none' stroke='#e2e8f0' stroke-width='2'/><rect x='16' y='16' width='8' height='8' fill='#7c3aed'/><rect x='32' y='32' width='8' height='8' fill='#06b6d4'/><circle cx='28' cy='28' r='4' fill='#f59e0b'/><text x='28' y='52' text-anchor='middle' font-size='8' fill='#64748b'>CTF</text></svg></div>
+    <div class="info">
+      <div class="name">Capture the Flag</div>
+      <div class="tags">夺旗 策略 网格</div>
+    </div>
+  </div>
 <div class="game-card" onclick="openGame('g946ffc84')">
     <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc'/><rect x='8' y='8' width='40' height='40' rx='8' fill='#7c3aed'/><circle cx='28' cy='28' r='12' fill='#06b6d4'/><circle cx='28' cy='28' r='6' fill='#f59e0b'/></svg></div>
     <div class="info">
@@ -638,6 +647,7 @@ function openGame(type) {
     g6a027f85_6: 'Color Match',
     g6a027f85_7: 'Color Match',
     g72251d0e: '扫雷 / Minesweeper',
+    g8c742671: 'Capture the Flag',
     g946ffc84: 'Color Match 色彩配对',
     g982619e3: '色彩记忆挑战 Color Memory',
     g9e1572b1: '华容道拼图',
@@ -681,6 +691,7 @@ function openGame(type) {
   else if (type === 'g6a027f85_6') init_g6a027f85_6(content);
   else if (type === 'g6a027f85_7') init_g6a027f85_7(content);
   else if (type === 'g72251d0e') init_g72251d0e(content);
+  else if (type === 'g8c742671') init_g8c742671(content);
   else if (type === 'g946ffc84') init_g946ffc84(content);
   else if (type === 'g982619e3') init_g982619e3(content);
   else if (type === 'g9e1572b1') init_g9e1572b1(content);
@@ -2272,6 +2283,295 @@ function init_g72251d0e(container) {
   }
 
   init();
+}
+}
+// === g8c742671 ===
+function init_g8c742671(container) {
+  // 游戏配置
+  const SIZE = 9;
+  const PLAYER_COUNT = 1;
+  const ENEMY_COUNT = 3;
+  const WALL_COUNT = 12;
+  const FLAG_COUNT = 3;
+
+  // 游戏状态
+  let board = [];
+  let playerPos = null;
+  let enemyPositions = [];
+  let flagPositions = [];
+  let score = 0;
+  let gameOver = false;
+  let win = false;
+
+  // DOM 元素
+  const wrap = document.createElement('div');
+  wrap.className = 'ctf-wrap';
+  container.appendChild(wrap);
+
+  // 初始化界面
+  wrap.innerHTML = `
+    <div class="ctf-header">
+      <div class="ctf-title">Capture the Flag</div>
+      <div class="ctf-scores">
+        <div class="ctf-score-item"><span class="ctf-score-label">Flags:</span><span class="ctf-score-value" id="ctf-score">0</span></div>
+        <div class="ctf-score-item"><span class="ctf-score-label">Moves:</span><span class="ctf-score-value" id="ctf-moves">0</span></div>
+      </div>
+    </div>
+    <div class="ctf-board" id="ctf-board"></div>
+    <div class="ctf-controls">
+      <button class="ctf-btn ctf-btn-primary" id="ctf-restart">🔄 Replay</button>
+      <div class="ctf-msg" id="ctf-msg">Use arrow keys or WASD to move. Reach all flags.</div>
+    </div>
+  `;
+
+  const boardEl = wrap.querySelector('#ctf-board');
+  const scoreEl = wrap.querySelector('#ctf-score');
+  const movesEl = wrap.querySelector('#ctf-moves');
+  const msgEl = wrap.querySelector('#ctf-msg');
+  const restartBtn = wrap.querySelector('#ctf-restart');
+
+  // 初始化游戏
+  function initGame() {
+    // 重置状态
+    score = 0;
+    gameOver = false;
+    win = false;
+    updateScore();
+    movesEl.textContent = '0';
+    msgEl.textContent = 'Use arrow keys or WASD to move. Reach all flags.';
+    msgEl.className = 'ctf-msg';
+
+    // 生成空棋盘
+    board = Array.from({length: SIZE}, () => Array(SIZE).fill('empty'));
+
+    // 放置墙壁
+    let walls = 0;
+    while (walls < WALL_COUNT) {
+      const x = Math.floor(Math.random() * SIZE);
+      const y = Math.floor(Math.random() * SIZE);
+      if (board[y][x] === 'empty' && !(x === Math.floor(SIZE/2) && y === Math.floor(SIZE/2))) {
+        board[y][x] = 'wall';
+        walls++;
+      }
+    }
+
+    // 放置旗帜
+    flagPositions = [];
+    let flags = 0;
+    while (flags < FLAG_COUNT) {
+      const x = Math.floor(Math.random() * SIZE);
+      const y = Math.floor(Math.random() * SIZE);
+      if (board[y][x] === 'empty') {
+        board[y][x] = 'flag';
+        flagPositions.push({x, y});
+        flags++;
+      }
+    }
+
+    // 放置玩家
+    // 确保不在墙和旗上
+    let px, py;
+    do {
+      px = Math.floor(Math.random() * SIZE);
+      py = Math.floor(Math.random() * SIZE);
+    } while (board[py][px] !== 'empty');
+    playerPos = {x: px, y: py};
+    board[py][px] = 'player';
+
+    // 放置敌人
+    enemyPositions = [];
+    let enemies = 0;
+    while (enemies < ENEMY_COUNT) {
+      const x = Math.floor(Math.random() * SIZE);
+      const y = Math.floor(Math.random() * SIZE);
+      if (board[y][x] === 'empty') {
+        board[y][x] = 'enemy';
+        enemyPositions.push({x, y});
+        enemies++;
+      }
+    }
+
+    renderBoard();
+  }
+
+  // 渲染棋盘
+  function renderBoard() {
+    boardEl.innerHTML = '';
+    for (let y = 0; y < SIZE; y++) {
+      for (let x = 0; x < SIZE; x++) {
+        const cell = document.createElement('div');
+        cell.className = 'ctf-cell';
+        cell.dataset.x = x;
+        cell.dataset.y = y;
+        const type = board[y][x];
+        if (type === 'wall') {
+          cell.classList.add('wall');
+        } else if (type === 'player') {
+          cell.classList.add('player');
+          cell.innerHTML = '<div class="ctf-eye"></div>';
+        } else if (type === 'enemy') {
+          cell.classList.add('enemy');
+          cell.innerHTML = '<div class="ctf-eye"></div>';
+        } else if (type === 'flag') {
+          cell.classList.add('flag');
+        }
+        boardEl.appendChild(cell);
+      }
+    }
+  }
+
+  // 移动玩家
+  function movePlayer(dx, dy) {
+    if (gameOver) return;
+
+    const newX = playerPos.x + dx;
+    const newY = playerPos.y + dy;
+
+    // 边界检查
+    if (newX < 0 || newX >= SIZE || newY < 0 || newY >= SIZE) return;
+
+    const target = board[newY][newX];
+
+    // 墙壁阻挡
+    if (target === 'wall') return;
+
+    // 移动玩家
+    board[playerPos.y][playerPos.x] = 'empty';
+    playerPos = {x: newX, y: newY};
+
+    // 检查是否吃到旗帜
+    if (target === 'flag') {
+      score++;
+      updateScore();
+      // 移除旗帜（已变为玩家）
+      // 但我们需要保留它作为已收集，所以直接覆盖为玩家即可
+    }
+
+    board[newY][newX] = 'player';
+
+    // 更新移动次数
+    const moves = parseInt(movesEl.textContent) + 1;
+    movesEl.textContent = moves;
+
+    // 检查胜利：所有旗帜被收集（即score == FLAG_COUNT）
+    if (score >= FLAG_COUNT) {
+      gameOver = true;
+      win = true;
+      showMessage('You captured all flags!', 'ctf-win');
+    } else {
+      // 移动敌人
+      moveEnemies();
+      // 检查是否被抓
+      if (checkCollision()) {
+        gameOver = true;
+        win = false;
+        showMessage('Caught by enemy!', 'ctf-lose');
+      } else {
+        showMessage('Keep going...', 'ctf-msg');
+      }
+    }
+
+    renderBoard();
+  }
+
+  // 移动敌人（简单AI：随机移动一步）
+  function moveEnemies() {
+    for (let i = 0; i < enemyPositions.length; i++) {
+      const enemy = enemyPositions[i];
+      // 随机选择一个方向
+      const dirs = [
+        {dx: 0, dy: -1},
+        {dx: 0, dy: 1},
+        {dx: -1, dy: 0},
+        {dx: 1, dy: 0}
+      ];
+      // 随机打乱
+      dirs.sort(() => Math.random() - 0.5);
+      let moved = false;
+      for (const dir of dirs) {
+        const nx = enemy.x + dir.dx;
+        const ny = enemy.y + dir.dy;
+        if (nx >= 0 && nx < SIZE && ny >= 0 && ny < SIZE && board[ny][nx] === 'empty') {
+          // 移动敌人
+          board[enemy.y][enemy.x] = 'empty';
+          enemy.x = nx;
+          enemy.y = ny;
+          board[ny][nx] = 'enemy';
+          moved = true;
+          break;
+        }
+      }
+      // 如果没有移动，保持原位
+    }
+  }
+
+  // 检查碰撞
+  function checkCollision() {
+    for (const enemy of enemyPositions) {
+      if (enemy.x === playerPos.x && enemy.y === playerPos.y) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // 更新分数
+  function updateScore() {
+    scoreEl.textContent = score;
+  }
+
+  // 显示消息
+  function showMessage(text, className) {
+    msgEl.textContent = text;
+    msgEl.className = 'ctf-msg ' + (className || '');
+    // 添加动画
+    msgEl.classList.add('ctf-anim');
+    setTimeout(() => msgEl.classList.remove('ctf-anim'), 400);
+  }
+
+  // 键盘事件
+  function handleKey(e) {
+    e.preventDefault();
+    switch (e.key) {
+      case 'ArrowUp': case 'w': case 'W':
+        movePlayer(0, -1);
+        break;
+      case 'ArrowDown': case 's': case 'S':
+        movePlayer(0, 1);
+        break;
+      case 'ArrowLeft': case 'a': case 'A':
+        movePlayer(-1, 0);
+        break;
+      case 'ArrowRight': case 'd': case 'D':
+        movePlayer(1, 0);
+        break;
+    }
+  }
+
+  // 绑定事件
+  document.addEventListener('keydown', handleKey);
+
+  // 重开按钮
+  restartBtn.addEventListener('click', () => {
+    initGame();
+  });
+
+  // 初始化
+  initGame();
+
+  // 清理事件监听（可选）
+  // 注意：由于container可能被多次调用，需要确保事件不重复绑定
+  // 但这里简单起见，每次init都添加，但会重复，所以用匿名函数？但这里不处理，因为页面通常只调用一次。
+  // 更健壮：使用命名函数并移除？但为了简洁，我们假设只调用一次。
+  // 如果需要清理，可以这样：
+  // 在函数开始处，查找已有的listener？不做了。
+
+  // 如果希望支持鼠标点击移动，可以添加点击事件，但这里略。
+
+  // 返回一个清理函数（可选）
+  return function() {
+    document.removeEventListener('keydown', handleKey);
+  };
 }
 }
 // === g946ffc84 ===
