@@ -148,8 +148,10 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 .cm-wrap{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;padding:20px;border-radius:12px;max-width:680px;margin:0 auto;box-sizing:border-box;color:#1e293b}.cm-score{font-size:24px;font-weight:700;margin-bottom:10px;text-align:center}.cm-target{width:120px;height:120px;border-radius:16px;margin:20px auto;border:3px solid #e2e8f0;transition:background 0.3s;box-shadow:0 2px 8px rgba(0,0,0,0.05)}.cm-options{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:20px 0}.cm-option{width:80px;height:80px;border-radius:12px;cursor:pointer;border:2px solid #e2e8f0;transition:transform 0.15s;box-shadow:0 1px 4px rgba(0,0,0,0.05)}.cm-option:hover{transform:scale(1.05)}.cm-option:active{transform:scale(0.95)}.cm-btn{display:block;margin:20px auto;padding:10px 24px;font-size:16px;font-weight:600;background:#e2e8f0;border:none;border-radius:8px;cursor:pointer;color:#1e293b;transition:background 0.2s}.cm-btn:hover{background:#cbd5e1}.cm-message{text-align:center;font-size:18px;min-height:24px;margin-top:10px;font-weight:600}.cm-correct{background:#10b981!important}.cm-wrong{background:#ef4444!important}@keyframes cm-pop{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}.cm-pop{animation:cm-pop 0.3s ease}@media(max-width:480px){.cm-target{width:90px;height:90px}.cm-option{width:60px;height:60px}.cm-score{font-size:20px}}
 /* === g72251d0e === */
 .ms-game { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8f9fc; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; max-width: 680px; margin: 0 auto; } .ms-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; } .ms-title { font-size: 20px; font-weight: 600; color: #1e293b; } .ms-controls { display: flex; gap: 8px; } .ms-btn { border: 1px solid #e2e8f0; background: #ffffff; color: #1e293b; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 14px; font-family: inherit; } .ms-btn:hover { background: #f1f5f9; } .ms-btn:active { transform: scale(0.97); } .ms-board { display: inline-grid; gap: 2px; background: #e2e8f0; padding: 2px; border-radius: 4px; } .ms-cell { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 2px; cursor: pointer; user-select: none; transition: background 0.1s; } .ms-cell:hover { background: #f1f5f9; } .ms-cell.revealed { background: #f8f9fc; border-color: #cbd5e1; cursor: default; } .ms-cell.flagged { background: #fef9c3; color: #f59e0b; } .ms-cell.mine { background: #fee2e2; color: #ef4444; } .ms-cell.mine-hit { background: #fecaca; } .ms-cell.n1 { color: #3b82f6; } .ms-cell.n2 { color: #10b981; } .ms-cell.n3 { color: #ef4444; } .ms-cell.n4 { color: #7c3aed; } .ms-cell.n5 { color: #f59e0b; } .ms-cell.n6 { color: #06b6d4; } .ms-cell.n7 { color: #1e293b; } .ms-cell.n8 { color: #64748b; } .ms-status { display: flex; align-items: center; gap: 12px; font-size: 14px; color: #64748b; margin-top: 12px; } .ms-status span { font-weight: 600; color: #1e293b; }
+/* === g7aed9adc === */
+.mflip-wrap{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;padding:16px;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:12px;user-select:none;}.mflip-header{display:flex;justify-content:space-between;width:100%;max-width:400px;align-items:center;}.mflip-title{font-size:18px;font-weight:600;color:#1e293b;}.mflip-score{font-size:16px;color:#64748b;}.mflip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:400px;}.mflip-card{aspect-ratio:1;background:#fff;border:2px solid #e2e8f0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:bold;color:#1e293b;cursor:pointer;transition:transform 0.15s,background 0.15s;}.mflip-card.flipped{background:#7c3aed;color:#fff;border-color:#7c3aed;transform:scale(0.95);}.mflip-card.matched{background:#10b981;color:#fff;border-color:#10b981;cursor:default;}.mflip-card:active{transform:scale(0.9);}.mflip-restart{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:8px 16px;font-size:14px;color:#1e293b;cursor:pointer;transition:background 0.2s;}.mflip-restart:hover{background:#f1f5f9;}.mflip-message{font-size:14px;color:#64748b;min-height:20px;text-align:center;}.mflip-win{color:#10b981;font-weight:600;}
 /* === g8c742671 === */
-.ctf-wrap{--ctf-primary:#7c3aed;--ctf-sec:#06b6d4;--ctf-gold:#f59e0b;--ctf-red:#ef4444;--ctf-green:#10b981;--ctf-bg:#f8f9fc;--ctf-card:#fff;--ctf-border:#e2e8f0;--ctf-text:#1e293b;--ctf-muted:#64748b;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--ctf-bg);border-radius:12px;padding:20px;max-width:640px;margin:0 auto;color:var(--ctf-text)}.ctf-wrap *{box-sizing:border-box;margin:0;padding:0}.ctf-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px}.ctf-title{font-size:20px;font-weight:600}.ctf-scores{display:flex;gap:20px;background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:8px;padding:8px 16px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.ctf-score-item{font-size:14px}.ctf-score-label{color:var(--ctf-muted);margin-right:4px}.ctf-score-value{font-weight:600}.ctf-board{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:8px;padding:8px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.ctf-cell{aspect-ratio:1;border-radius:4px;border:1px solid var(--ctf-border);background:#f1f5f9;transition:background 0.2s,transform 0.1s;cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center}.ctf-cell:hover{background:#e2e8f0}.ctf-cell.wall{background:#cbd5e1;cursor:not-allowed}.ctf-cell.player{background:var(--ctf-primary);transform:scale(0.9);border-color:var(--ctf-primary)}.ctf-cell.enemy{background:var(--ctf-sec);transform:scale(0.9);border-color:var(--ctf-sec)}.ctf-cell.flag{background:var(--ctf-gold);transform:scale(0.8);border-color:var(--ctf-gold)}.ctf-cell.enemy .ctf-eye,.ctf-cell.player .ctf-eye{width:6px;height:6px;background:#fff;border-radius:50%;position:absolute;top:4px;right:4px}.ctf-controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.ctf-btn{background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:6px;padding:8px 16px;font-size:14px;cursor:pointer;transition:background 0.2s}.ctf-btn:hover{background:#f1f5f9}.ctf-btn-primary{background:var(--ctf-primary);color:#fff;border-color:var(--ctf-primary)}.ctf-btn-primary:hover{background:#6d28d9}.ctf-msg{font-size:14px;color:var(--ctf-muted);flex:1;min-width:200px}.ctf-msg.win{color:var(--ctf-green);font-weight:600}.ctf-msg.lose{color:var(--ctf-red);font-weight:600}
+.ctf-wrap{--ctf-primary:#7c3aed;--ctf-sec:#06b6d4;--ctf-gold:#f59e0b;--ctf-red:#ef4444;--ctf-green:#10b981;--ctf-bg:#f8f9fc;--ctf-card:#fff;--ctf-border:#e2e8f0;--ctf-text:#1e293b;--ctf-muted:#64748b;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--ctf-bg);border-radius:12px;padding:20px;max-width:640px;margin:0 auto;color:var(--ctf-text)}.ctf-wrap *{box-sizing:border-box;margin:0;padding:0}.ctf-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px}.ctf-title{font-size:20px;font-weight:600}.ctf-scores{display:flex;gap:20px;background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:8px;padding:8px 16px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.ctf-score-item{font-size:14px}.ctf-score-label{color:var(--ctf-muted);margin-right:4px}.ctf-score-value{font-weight:600}.ctf-board{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:8px;padding:8px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.ctf-cell{aspect-ratio:1;border-radius:4px;border:1px solid var(--ctf-border);background:#f1f5f9;transition:background 0.2s,transform 0.1s;cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center}.ctf-cell:hover{background:#e2e8f0}.ctf-cell.wall{background:#cbd5e1;cursor:not-allowed}.ctf-cell.player{background:var(--ctf-primary);transform:scale(0.9);border-color:var(--ctf-primary)}.ctf-cell.enemy{background:var(--ctf-sec);transform:scale(0.9);border-color:var(--ctf-sec)}.ctf-cell.flag{background:var(--ctf-gold);transform:scale(0.8);border-color:var(--ctf-gold)}.ctf-cell.enemy .ctf-eye,.ctf-cell.player .ctf-eye{width:6px;height:6px;background:#fff;border-radius:50%;position:absolute;top:4px;right:4px}.ctf-controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.ctf-btn{background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:6px;padding:8px 16px;font-size:14px;font-weight:500;cursor:pointer;transition:background 0.2s,border-color 0.2s;color:var(--ctf-text)}.ctf-btn:hover{background:#f1f5f9;border-color:#94a3b8}.ctf-btn:active{transform:translateY(1px)}.ctf-btn-primary{background:var(--ctf-primary);color:#fff;border-color:var(--ctf-primary)}.ctf-btn-primary:hover{background:#6d28d9}.ctf-msg{background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:8px;padding:12px;margin-top:12px;font-size:14px;color:var(--ctf-muted);box-shadow:0 1px 3px rgba(0,0,0,0.04)}.ctf-win{color:var(--ctf-green);font-weight:600}.ctf-lose{color:var(--ctf-red);font-weight:600}.ctf-anim{animation:ctf-pop 0.4s ease}.@keyframes ctf-pop{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
 /* === g946ffc84 === */
 .cm-game{font-family:'Segoe UI',system-ui,sans-serif;background:#f8f9fc;color:#1e293b;padding:20px;border-radius:12px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:16px;user-select:none}.cm-header{display:flex;justify-content:space-between;align-items:center;width:100%;max-width:400px}.cm-title{font-size:1.4em;font-weight:600;color:#1e293b}.cm-score{font-size:1.2em;font-weight:600;color:#7c3aed}.cm-target{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:8px 16px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.cm-target-label{font-size:0.85em;color:#64748b}.cm-target-color{width:32px;height:32px;border-radius:50%;border:2px solid #e2e8f0;background:#7c3aed}.cm-board{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;max-width:400px}.cm-card{aspect-ratio:1;border-radius:12px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;transition:transform 0.1s,box-shadow 0.1s;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.cm-card:hover{transform:scale(1.02)}.cm-card:active{transform:scale(0.98)}.cm-card.cm-disabled{pointer-events:none;opacity:0.6}.cm-message{min-height:1.5em;font-size:1em;color:#64748b;text-align:center}.cm-message.cm-win{color:#10b981;font-weight:600;animation:cm-pop 0.3s ease}.cm-message.cm-lose{color:#ef4444;font-weight:600;animation:cm-shake 0.3s ease}.cm-btn{background:#7c3aed;color:#fff;border:none;border-radius:8px;padding:10px 24px;font-size:1em;cursor:pointer;transition:background 0.2s;box-shadow:0 2px 4px rgba(0,0,0,0.1)}.cm-btn:hover{background:#6d28d9}.cm-btn:active{transform:scale(0.98)}.cm-celebrate{animation:cm-celebrate 0.5s ease}@keyframes cm-pop{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}@keyframes cm-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}@keyframes cm-celebrate{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
 /* === g982619e3 === */
@@ -485,6 +487,13 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
       <div class="tags">经典扫雷</div>
     </div>
   </div>
+<div class="game-card" onclick="openGame('g7aed9adc')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect x='4' y='4' width='48' height='48' rx='8' fill='#f8f9fc' stroke='#e2e8f0'/><rect x='12' y='16' width='24' height='24' rx='4' fill='#fff' stroke='#7c3aed' stroke-width='2'/><rect x='20' y='24' width='16' height='16' rx='4' fill='#7c3aed'/><rect x='28' y='16' width='16' height='16' rx='4' fill='#06b6d4'/><rect x='12' y='32' width='16' height='16' rx='4' fill='#10b981'/><rect x='28' y='32' width='16' height='16' rx='4' fill='#f59e0b'/></svg></div>
+    <div class="info">
+      <div class="name">Memory Flip 记忆翻转</div>
+      <div class="tags">记忆翻牌配对</div>
+    </div>
+  </div>
 <div class="game-card" onclick="openGame('g8c742671')">
     <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc'/><rect x='8' y='8' width='40' height='40' fill='none' stroke='#e2e8f0' stroke-width='2'/><rect x='16' y='16' width='8' height='8' fill='#7c3aed'/><rect x='32' y='32' width='8' height='8' fill='#06b6d4'/><circle cx='28' cy='28' r='4' fill='#f59e0b'/><text x='28' y='52' text-anchor='middle' font-size='8' fill='#64748b'>CTF</text></svg></div>
     <div class="info">
@@ -647,6 +656,7 @@ function openGame(type) {
     g6a027f85_6: 'Color Match',
     g6a027f85_7: 'Color Match',
     g72251d0e: '扫雷 / Minesweeper',
+    g7aed9adc: 'Memory Flip 记忆翻转',
     g8c742671: 'Capture the Flag',
     g946ffc84: 'Color Match 色彩配对',
     g982619e3: '色彩记忆挑战 Color Memory',
@@ -691,6 +701,7 @@ function openGame(type) {
   else if (type === 'g6a027f85_6') init_g6a027f85_6(content);
   else if (type === 'g6a027f85_7') init_g6a027f85_7(content);
   else if (type === 'g72251d0e') init_g72251d0e(content);
+  else if (type === 'g7aed9adc') init_g7aed9adc(content);
   else if (type === 'g8c742671') init_g8c742671(content);
   else if (type === 'g946ffc84') init_g946ffc84(content);
   else if (type === 'g982619e3') init_g982619e3(content);
@@ -2283,6 +2294,122 @@ function init_g72251d0e(container) {
   }
 
   init();
+}
+}
+// === g7aed9adc ===
+function init_g7aed9adc(container) {
+  // 游戏配置
+  const symbols = ['🍎','🍊','🍋','🍇','🍓','🍒','🍑','🥝'];
+  let cards = [];
+  let flipped = [];
+  let matched = 0;
+  let moves = 0;
+  let lock = false;
+
+  // 创建DOM结构
+  container.innerHTML = `
+    <div class='mflip-wrap'>
+      <div class='mflip-header'>
+        <span class='mflip-title'>记忆翻转</span>
+        <span class='mflip-score'>步数: <span id='mflip-moves'>0</span></span>
+      </div>
+      <div class='mflip-grid' id='mflip-grid'></div>
+      <button class='mflip-restart' id='mflip-restart'>🔄 重来</button>
+      <div class='mflip-message' id='mflip-msg'></div>
+    </div>
+  `;
+
+  const grid = container.querySelector('#mflip-grid');
+  const movesSpan = container.querySelector('#mflip-moves');
+  const msg = container.querySelector('#mflip-msg');
+  const restartBtn = container.querySelector('#mflip-restart');
+
+  // 初始化游戏
+  function initGame() {
+    // 生成卡片对：每种符号两张
+    cards = [...symbols, ...symbols];
+    // 打乱
+    for (let i = cards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [cards[i], cards[j]] = [cards[j], cards[i]];
+    }
+    // 渲染
+    grid.innerHTML = cards.map((symbol, index) => 
+      `<div class='mflip-card' data-index='${index}' data-symbol='${symbol}'>?</div>`
+    ).join('');
+    // 重置状态
+    flipped = [];
+    matched = 0;
+    moves = 0;
+    lock = false;
+    updateMoves();
+    msg.textContent = '';
+  }
+
+  // 更新步数
+  function updateMoves() {
+    movesSpan.textContent = moves;
+  }
+
+  // 检查胜利
+  function checkWin() {
+    if (matched === symbols.length) {
+      msg.textContent = '🎉 恭喜！你赢了！';
+      msg.classList.add('mflip-win');
+    }
+  }
+
+  // 处理卡片点击
+  function handleCardClick(e) {
+    const card = e.target.closest('.mflip-card');
+    if (!card || lock) return;
+    const index = card.dataset.index;
+    // 忽略已匹配或已翻转的卡片
+    if (card.classList.contains('matched') || card.classList.contains('flipped')) return;
+
+    // 翻转卡片
+    card.classList.add('flipped');
+    card.textContent = card.dataset.symbol;
+    flipped.push(card);
+
+    // 如果翻了两张
+    if (flipped.length === 2) {
+      moves++;
+      updateMoves();
+      const [card1, card2] = flipped;
+      const sym1 = card1.dataset.symbol;
+      const sym2 = card2.dataset.symbol;
+
+      if (sym1 === sym2) {
+        // 匹配成功
+        card1.classList.add('matched');
+        card2.classList.add('matched');
+        card1.classList.remove('flipped');
+        card2.classList.remove('flipped');
+        matched++;
+        flipped = [];
+        checkWin();
+      } else {
+        // 不匹配，延迟翻回
+        lock = true;
+        setTimeout(() => {
+          card1.classList.remove('flipped');
+          card2.classList.remove('flipped');
+          card1.textContent = '?';
+          card2.textContent = '?';
+          flipped = [];
+          lock = false;
+        }, 800);
+      }
+    }
+  }
+
+  // 事件绑定
+  grid.addEventListener('click', handleCardClick);
+  restartBtn.addEventListener('click', initGame);
+
+  // 启动游戏
+  initGame();
 }
 }
 // === g8c742671 ===
