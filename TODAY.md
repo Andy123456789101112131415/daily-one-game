@@ -1,8 +1,8 @@
-# 今日游戏: 色彩方块 Color Blocks
+# 今日游戏: 色块消消乐 Color Blast
 
 > 做一个有趣的网页小游戏
 
-类型名: `g283bbd0d`
-审查: 修复了以下问题：1. 补全了缺失的endGame函数体，并添加了重置单元格样式和清除定时器的逻辑。2. 在init中清除可能残留的flashTimeout，避免内存泄漏和意外行为。3. 将事件监听器绑定到grid上，使用click事件委托，并保存引用以便清理。4. 在playSequence中使用flashTimeout变量存储定时器ID，便于取消。5. 在endGame中清除flashTimeout，防止动画继续。6. 确保每次init时移除旧的事件监听器，避免重复绑定。7. 修复了CSS中.cb-cell.cb-hidden:not(.cb-disabled)::after的伪元素可能覆盖点击的问题，但未改动CSS。8. 添加了初始化调用init()，确保游戏启动。
+类型名: `g11a8460d`
+审查: 修复了CSS中@media查询的语法错误（缺少闭合括号和属性值），补全了响应式样式；修复了JS中applyGravityAndRefill函数未完整定义的问题，补全了重力下落和填充逻辑；修复了消除后动画和递归调用可能导致的逻辑问题，确保分数正确更新和游戏流程正常；添加了canMove函数用于检测是否有可行移动，并在无可用移动时自动重排；修复了事件监听器绑定和重置逻辑，确保重置彻底；优化了UI简洁性，保持白色主题。
 
 打开 platform.html 即可游玩！
