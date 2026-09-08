@@ -1,6 +1,5 @@
 function init_g2fb3cb4c(container) {
-function(container){
-  // Emoji set for 8 pairs
+// Emoji set for 8 pairs
   const emojis = ['😀','😎','😍','🤔','🤗','😴','🤯','🥳'];
   // Create card data (duplicate and shuffle)
   let cards = [...emojis, ...emojis];
@@ -154,5 +153,4 @@ function(container){
 
   // Initial update
   updateMoves();
-}
 }

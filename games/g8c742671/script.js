@@ -1,6 +1,5 @@
 function init_g8c742671(container) {
-function(container){
-  // 游戏配置
+// 游戏配置
   const SIZE = 9;
   const PLAYER_COUNT = 1;
   const ENEMY_COUNT = 3;
@@ -285,5 +284,4 @@ function(container){
   return function() {
     document.removeEventListener('keydown', handleKey);
   };
-}
 }

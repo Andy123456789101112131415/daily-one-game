@@ -1,6 +1,5 @@
 function init_g72251d0e(container) {
-function(container) {
-  const BOARD_SIZE = 10;
+const BOARD_SIZE = 10;
   const MINE_COUNT = 15;
   let board = [];
   let revealed = [];
@@ -204,5 +203,4 @@ function(container) {
   }
 
   init();
-}
 }

@@ -1,6 +1,5 @@
 function init_g18303d5c(container) {
-function(container){
-  // 卡片符号集，共8对
+// 卡片符号集，共8对
   const symbols = ['🍎','🍊','🍋','🍇','🍓','🍒','🥝','🍑'];
   let cards = [];
   let flipped = [];
@@ -188,5 +187,4 @@ function(container){
   return function cleanup(){
     if(container._cleanup) container._cleanup();
   };
-}
 }

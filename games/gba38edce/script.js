@@ -1,6 +1,5 @@
 function init_gba38edce(container) {
-function(container){
-  // 迷宫配置
+// 迷宫配置
   const COLS = 15, ROWS = 11;
   const CELL_SIZE = 32;
   const WALL = 1, PATH = 0;
@@ -200,5 +199,4 @@ function(container){
   return function cleanup() {
     document.removeEventListener('keydown', handleKey);
   };
-}
 }

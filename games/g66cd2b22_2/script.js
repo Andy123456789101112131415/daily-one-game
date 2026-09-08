@@ -1,6 +1,5 @@
 function init_g66cd2b22_2(container) {
-function(container){
-    var board = [];
+var board = [];
     var emptyIndex = 15;
     var moves = 0;
     var gameOver = false;
@@ -143,5 +142,4 @@ function(container){
     // To be safe, we can use container-specific event, but document is okay.
 
     init();
-}
 }

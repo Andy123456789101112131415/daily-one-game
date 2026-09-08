@@ -1,6 +1,5 @@
 function init_g9e1572b1(container) {
-function(container){
-  // state
+// state
   let tiles = []; // 1-8 and 0 for empty
   let emptyIndex = 8;
   let moves = 0;
@@ -139,5 +138,4 @@ function(container){
 
   // init
   resetGame();
-}
 }

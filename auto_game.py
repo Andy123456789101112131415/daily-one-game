@@ -24,14 +24,13 @@ BUILTIN_TYPES = {"maze", "sudoku", "wordsearch", "puzzle", "ascii", "memory"}
 
 
 def get_existing_types():
-    """扫描 platform.html，返回所有已存在的游戏类型名"""
-    html = PLATFORM_FILE.read_text(encoding="utf-8")
+    """扫描 games/ 目录（真源），返回所有已存在的游戏类型名"""
     types = set(BUILTIN_TYPES)
-    for m in re.finditer(r"\n\s{4}(\w+):\s*'[^']*',", html):
-        name = m.group(1)
-        if name not in ("if","else","var","let","const","function","return",
-                        "new","this","true","false","null","typeof","for","while"):
-            types.add(name)
+    games_dir = BASE_DIR / "games"
+    if games_dir.exists():
+        for d in games_dir.iterdir():
+            if d.is_dir() and (d / "script.js").exists():
+                types.add(d.name)
     return types
 
 
@@ -181,6 +180,21 @@ def review_and_fix(api_key, title, css, js_init):
         return css, js_init, "解析失败"
 
 
+def sanitize_js_init(js_init):
+    """去除AI返回的 js_init 中多余的一层 function(container){...} 包装。
+
+    AI 常把「JS函数体」错误地返回成完整函数，导致 script.js 出现双重 function。
+    这里统一剥离：开头 function(container){ 和结尾对应的 }。
+    """
+    js = js_init.strip()
+    m = re.match(r'^function\s*\(container\)\s*\{', js)
+    if m:
+        js = js[m.end():]
+        if js.rstrip().endswith('}'):
+            js = js.rstrip()[:-1]
+    return js.strip()
+
+
 def create_game_folder(type_name, title, icon, tags, thumb, css, js_init):
     """创建游戏独立文件夹（game/{type_name}/）"""
     gd = BASE_DIR / "games" / type_name
@@ -297,7 +311,7 @@ def main():
     tags = result.get("tags", "AI生成")
     thumb = result.get("thumb", "")
     css = result["css"]
-    js_init = result["js_init"]
+    js_init = sanitize_js_init(result["js_init"])
 
     type_name = make_unique_type(title + idea, existing)
     existing.add(type_name)
@@ -321,18 +335,26 @@ def main():
     # 第二步：AI 审查修复
     print(f"\n🔍 第二步：AI 审查并修复 bug")
     fixed_css, fixed_js, changes = review_and_fix(api_key, title, css, js_init)
+    fixed_js = sanitize_js_init(fixed_js)  # 审查结果可能再次带多余 function 包装
 
     if changes and "无需修改" not in changes and "解析失败" not in changes and "跳过" not in changes:
-        html = PLATFORM_FILE.read_text(encoding="utf-8")
-        html = html.replace(css, fixed_css)
-        html = html.replace(js_init, fixed_js)
+        # 关键：把修复写回 games/{type_name}/ 源文件（script.js 才是真源）
+        gd = BASE_DIR / "games" / type_name
+        (gd / "style.css").write_text(fixed_css, encoding="utf-8")
+        (gd / "script.js").write_text(
+            f"function init_{type_name}(container) {{\n{fixed_js}\n}}",
+            encoding="utf-8")
 
-        # 🔍 审查后再次语法检查
+        # 从源文件重新构建 platform.html
+        build_platform()
+
+        # 最后再做一次语法检查兜底
+        html = PLATFORM_FILE.read_text(encoding="utf-8")
         html, fixes2 = syntax_check(html)
         if fixes2:
             changes += " + 语法自动修复"
+            PLATFORM_FILE.write_text(html, encoding="utf-8")
 
-        PLATFORM_FILE.write_text(html, encoding="utf-8")
         os.system(f'git add games/{type_name}/ platform.html && git commit -m "🔧 审查修复: {changes[:50]}" && git push')
         print(f"📦 第二次提交: 修复完成 - {changes}")
     else:

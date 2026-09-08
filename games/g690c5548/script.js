@@ -1,6 +1,5 @@
 function init_g690c5548(container) {
-function(container){
-  // State
+// State
   let state = 'idle'; // idle, waiting, ready, go, too-early, result
   let timeoutId = null;
   let startTime = 0;
@@ -138,5 +137,4 @@ function(container){
   
   // Initial state
   setState('idle');
-}
 }

@@ -1,6 +1,5 @@
 function init_g7aed9adc(container) {
-function(container){
-  // 游戏配置
+// 游戏配置
   const symbols = ['🍎','🍊','🍋','🍇','🍓','🍒','🍑','🥝'];
   let cards = [];
   let flipped = [];
@@ -112,5 +111,4 @@ function(container){
 
   // 启动游戏
   initGame();
-}
 }

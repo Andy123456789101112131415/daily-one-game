@@ -1,6 +1,5 @@
 function init_g6a027f85_6(container) {
-function(container){
-  var colors=['#7c3aed','#06b6d4','#10b981','#f59e0b','#ef4444'];
+var colors=['#7c3aed','#06b6d4','#10b981','#f59e0b','#ef4444'];
   var colorNames=['紫色','青色','绿色','金色','红色'];
   var score=0;
   var currentColorIndex=-1;
@@ -106,5 +105,4 @@ function(container){
     }
   }
   init();
-}
 }

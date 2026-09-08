@@ -1,6 +1,5 @@
 function init_g554863fb(container) {
-function(container) {
-  let board = ['', '', '', '', '', '', '', '', ''];
+let board = ['', '', '', '', '', '', '', '', ''];
   let currentPlayer = 'X';
   let gameOver = false;
   let scores = { win: 0, lose: 0, draw: 0 };
@@ -196,5 +195,4 @@ function(container) {
   }
 
   createBoard();
-}
 }

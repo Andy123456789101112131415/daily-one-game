@@ -1,6 +1,5 @@
 function init_g185dd181(container) {
-function(container) {
-  const symbols = ['🍎','🍌','🍇','🍒','🍓','🍑','🍍','🥝'];
+const symbols = ['🍎','🍌','🍇','🍒','🍓','🍑','🍍','🥝'];
   let cards = [];
   let flipped = [];
   let matched = 0;
@@ -89,5 +88,4 @@ function(container) {
   }
 
   init();
-}
 }

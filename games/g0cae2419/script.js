@@ -1,6 +1,5 @@
 function init_g0cae2419(container) {
-function(container){
-  // 段落库
+// 段落库
   const paragraphs = [
     "The quick brown fox jumps over the lazy dog while the sun sets over the quiet hills.",
     "Programming is the art of telling a computer what to do, and it requires patience and logic.",
@@ -197,5 +196,4 @@ function(container){
   // 初始显示
   pickText();
   resetBtn.disabled = true;
-}
 }

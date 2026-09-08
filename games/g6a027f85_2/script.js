@@ -1,6 +1,5 @@
 function init_g6a027f85_2(container) {
-function(container){
-  // 游戏状态
+// 游戏状态
   let score=0;
   let targetColor='';
   let colorOptions=[];
@@ -83,5 +82,4 @@ function(container){
   
   // 初始化
   init();
-}
 }

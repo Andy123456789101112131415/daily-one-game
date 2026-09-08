@@ -1,6 +1,5 @@
 function init_g6a027f85_9(container) {
-function(container){
-  // 状态变量
+// 状态变量
   let score = 0;
   let targetColor = '';
   let colors = [];
@@ -114,5 +113,4 @@ function(container){
 
   // 启动新回合
   newRound();
-}
 }

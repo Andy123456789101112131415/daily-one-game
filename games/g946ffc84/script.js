@@ -1,6 +1,5 @@
 function init_g946ffc84(container) {
-function(container){
-  // 内部状态
+// 内部状态
   var colors = ['#7c3aed', '#06b6d4', '#10b981', '#f59e0b', '#ef4444'];
   var targetColor = '';
   var score = 0;
@@ -163,5 +162,4 @@ function(container){
 
   // 初始化第一轮
   resetGame();
-}
 }

@@ -1,6 +1,5 @@
 function init_g6a027f85_3(container) {
-function(container){
-  // 颜色库
+// 颜色库
   const COLORS = ['#7c3aed','#06b6d4','#10b981','#f59e0b','#ef4444'];
   let currentColors = [];  // 当前显示的颜色
   let currentIndex = 0;    // 当前要匹配的索引
@@ -117,5 +116,4 @@ function(container){
 
   // 启动
   newGame();
-}
 }

@@ -1,6 +1,5 @@
 function init_gfad032ce(container) {
-function(container){
-  // 游戏状态
+// 游戏状态
   var board = [];
   var emptyIndex = 15;
   var moves = 0;
@@ -173,5 +172,4 @@ function(container){
   return function() {
     document.removeEventListener('keydown', handleKeydown);
   };
-}
 }
