@@ -1,8 +1,8 @@
-# 今日游戏: 数字拼图 2048 Merge
+# 今日游戏: 圈地大作战 / Territory
 
 > 做一个有趣的网页小游戏
 
-类型名: `g2a945102`
-审查: 1. 补全被截断的 JS：原代码在 move() 的 else 分支处中断，缺少 up/down 逻辑、canMove、checkState、showOverlay、reset、键盘/触摸事件绑定及初始化调用，已全部补全。2. 补全被截断的 CSS：#g2048-overlay 的 flex 声明不完整，已补全并新增 .show 显示类、h3/p/button 样式，保证遮罩层正常显示与白色简洁主题。3. 修复重置不彻底：reset() 现在清空 tileEls、tilesBox、分数、uid、locked 并隐藏遮罩，重新生成两个初始方块。4. 修复胜利/失败判定：新增 checkState() 检测 2048 胜利与无路可走失败，并弹出遮罩提示。5. 修复事件绑定：新增键盘方向键/WASD、触摸滑动、重来按钮、遮罩点击关闭等监听器，均绑定一次避免内存泄漏。6. 修复边界条件：metrics() 在宽度为 0 时仍能返回有效 cell（避免除零/NaN），slide 中合并后跳过下一项防止重复合并，move 中通过 id 比较准确判断是否发生移动。7. 修复分数更新：合并时累加分数并在 render 中同步显示，best 自动更新。8. 保持 UI 简洁白色主题，无花哨元素，响应式布局完整。
+类型名: `g20999852`
+审查: 1. 修复JS被截断：补全 tcPlaceStone 的回合切换、tcUpdateScores、tcCheckWin、tcShowResult 及事件绑定与初始化。2. 修复变量/作用域：所有函数与常量完整定义，tcContainer 使用传入的 container。3. 事件绑定：在 tcBoardEl 上使用事件委托绑定一次点击，重来按钮绑定 tcInit，避免重复绑定与内存泄漏。4. 游戏逻辑：实现四子连线判胜、棋盘填满判和、实时分数统计与显示、回合指示更新。5. 边界条件：点击解析加 isNaN 与越界检查，落子前再次校验坐标与占用，防止数组越界和重复落子。6. CSS：补全被截断的 .primary:hover，新增 .tc-turn-indicator/.tc-turn-dot/.tc-message 样式与移动端媒体查询，board-wrap 加 overflow:auto 防溢出，cell 加 box-sizing 防边框撑破。7. UI：保持简洁白色主题，仅保留必要配色与重来按钮。
 
 打开 platform.html 即可游玩！
