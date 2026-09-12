@@ -1,8 +1,8 @@
-# 今日游戏: 圈地大作战 / Territory
+# 今日游戏: 数字拼图 2048
 
 > 做一个有趣的网页小游戏
 
-类型名: `g20999852`
-审查: 1. 修复JS被截断：补全 tcPlaceStone 的回合切换、tcUpdateScores、tcCheckWin、tcShowResult 及事件绑定与初始化。2. 修复变量/作用域：所有函数与常量完整定义，tcContainer 使用传入的 container。3. 事件绑定：在 tcBoardEl 上使用事件委托绑定一次点击，重来按钮绑定 tcInit，避免重复绑定与内存泄漏。4. 游戏逻辑：实现四子连线判胜、棋盘填满判和、实时分数统计与显示、回合指示更新。5. 边界条件：点击解析加 isNaN 与越界检查，落子前再次校验坐标与占用，防止数组越界和重复落子。6. CSS：补全被截断的 .primary:hover，新增 .tc-turn-indicator/.tc-turn-dot/.tc-message 样式与移动端媒体查询，board-wrap 加 overflow:auto 防溢出，cell 加 box-sizing 防边框撑破。7. UI：保持简洁白色主题，仅保留必要配色与重来按钮。
+类型名: `gbfdcd24a`
+审查: 1. 修复了原JS中 move() 函数被截断的问题，补全了上下方向移动逻辑（原代码在 else 分支处中断，导致语法错误、游戏无法运行）。2. 补全了 isGameOver() 判定函数，原代码缺失该函数，导致无法判定失败。3. 补全了 reset() 重置函数，原代码缺失，重来按钮无法工作。4. 补全了键盘事件监听（方向键/WASD）与触屏滑动事件绑定，原代码缺失。5. 修复了 slide() 中未使用的 merged 变量（无害但清理）。6. 修复了 render() 中重复声明 pad 变量的问题。7. 补全了 CSS 中被截断的 .pz-btn.primary 样式，并补充 .pz-hint 样式，确保白色简洁主题完整。8. 添加了 window resize 监听以在窗口尺寸变化时重新计算格子大小，避免布局错位。9. 胜利/失败时设置 over 标志并弹出提示，避免重复触发。10. 确保重来按钮彻底重置分数、棋盘、状态与动画映射。
 
 打开 platform.html 即可游玩！
