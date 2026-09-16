@@ -34,6 +34,7 @@ function render() {
 function tryMove(pos) {
   if (solved) return;
   var empty = tiles.indexOf(0);
+  if (empty < 0) return;
   var r1 = Math.floor(pos / size), c1 = pos % size;
   var r2 = Math.floor(empty / size), c2 = empty % size;
   var dist = Math.abs(r1 - r2) + Math.abs(c1 - c2);
@@ -49,10 +50,12 @@ function checkWin() {
   for (var i = 0; i < total - 1; i++) {
     if (tiles[i] !== i + 1) return;
   }
+  if (tiles[total - 1] !== 0) return;
   solved = true;
   if (best === null || moves < best) best = moves;
   msgEl.textContent = '完成！用时 ' + moves + ' 步';
   msgEl.classList.add('nm-win');
+  render();
   showOverlay();
 }
 
@@ -91,12 +94,20 @@ function solvable(arr) {
   return (rowFromBottom % 2 === 0) ? (inv % 2 === 1) : (inv % 2 === 0);
 }
 
+function isSolvedAlready() {
+  for (var i = 0; i < total - 1; i++) {
+    if (tiles[i] !== i + 1) return false;
+  }
+  return tiles[total - 1] === 0;
+}
+
 function shuffle() {
   hideOverlay();
   solved = false;
   moves = 0;
   msgEl.textContent = '点击空格旁的方块移动';
   msgEl.classList.remove('nm-win');
+  var attempts = 0;
   do {
     tiles = [];
     for (var i = 0; i < total; i++) tiles.push(i);
@@ -104,80 +115,25 @@ function shuffle() {
       var j = Math.floor(Math.random() * (k + 1));
       var t = tiles[k]; tiles[k] = tiles[j]; tiles[j] = t;
     }
-  } while (!solvable(tiles) || isSolvedAlready());
+    attempts++;
+  } while ((!solvable(tiles) || isSolvedAlready()) && attempts < 1000);
   render();
 }
 
-function isSolvedAlready() {
-  for (var i = 0; i < total - 1; i++) {
-    if (tiles[i] !== i + 1) return false;
-  }
-  return true;
+function init() {
+  boardEl = document.getElementById('nm-board');
+  movesEl = document.getElementById('nm-moves');
+  bestEl = document.getElementById('nm-best');
+  msgEl = document.getElementById('nm-msg');
+  overlayEl = document.getElementById('nm-overlay');
+  var resetBtn = document.getElementById('nm-reset');
+  if (resetBtn) resetBtn.addEventListener('click', shuffle);
+  shuffle();
 }
 
-function buildUI() {
-  container.innerHTML = '';
-  var wrap = document.createElement('div');
-  wrap.className = 'nm-wrap';
-
-  var head = document.createElement('div');
-  head.className = 'nm-head';
-  var stats = document.createElement('div');
-  stats.className = 'nm-stats';
-  var s1 = document.createElement('div');
-  s1.className = 'nm-stat';
-  s1.innerHTML = '步数<b class="nm-moves">0</b>';
-  var s2 = document.createElement('div');
-  s2.className = 'nm-stat';
-  s2.innerHTML = '最佳<b class="nm-best">-</b>';
-  stats.appendChild(s1);
-  stats.appendChild(s2);
-  var res = document.createElement('button');
-  res.className = 'nm-btn nm-alt';
-  res.textContent = '🔄 重来';
-  res.addEventListener('click', shuffle);
-  head.appendChild(stats);
-  head.appendChild(res);
-
-  var pos = document.createElement('div');
-  pos.className = 'nm-pos';
-  var board = document.createElement('div');
-  board.className = 'nm-board';
-  var ov = document.createElement('div');
-  ov.className = 'nm-overlay';
-  ov.style.display = 'none';
-  pos.appendChild(board);
-  pos.appendChild(ov);
-
-  var msg = document.createElement('div');
-  msg.className = 'nm-msg';
-  msg.textContent = '点击空格旁的方块移动';
-
-  wrap.appendChild(head);
-  wrap.appendChild(pos);
-  wrap.appendChild(msg);
-  container.appendChild(wrap);
-
-  boardEl = board;
-  movesEl = s1.querySelector('.nm-moves');
-  bestEl = s2.querySelector('.nm-best');
-  msgEl = msg;
-  overlayEl = ov;
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
 }
-
-buildUI();
-shuffle();
-
-container.addEventListener('keydown', function (e) {
-  if (solved) return;
-  var empty = tiles.indexOf(0);
-  var r = Math.floor(empty / size), c = empty % size;
-  var target = -1;
-  if (e.key === 'ArrowUp' && r < size - 1) target = idx(r + 1, c);
-  else if (e.key === 'ArrowDown' && r > 0) target = idx(r - 1, c);
-  else if (e.key === 'ArrowLeft' && c < size - 1) target = idx(r, c + 1);
-  else if (e.key === 'ArrowRight' && c > 0) target = idx(r, c - 1);
-  if (target >= 0) { e.preventDefault(); tryMove(target); }
-});
-container.setAttribute('tabindex', '0');
 }
