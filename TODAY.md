@@ -1,8 +1,19 @@
-# 今日游戏: 数字合并 2048
+# 今日游戏: 数字迷宫 Number Maze
 
 > 做一个有趣的网页小游戏
 
-类型名: `g7d6fee9a`
-审查: 1. 补全被截断的 CSS（v1024/v2048/vbig 样式、overlay 显示样式、hint、动画关键帧），修复 overlay 无样式导致无法显示的问题。2. 补全被截断的 JS：move 函数中 r2/c2 赋值与写入逻辑、canMove、updateScore、showOverlay/hideOverlay、reset、undo、onKey 及事件绑定与初始化。3. 修复胜利/失败判定：达成 2048 时显示提示，无可移动方块时置 over 并显示结束。4. 修复撤销：移动前 pushHistory 保存快照，undo 恢复棋盘与分数并重置 over/won。5. 修复重置不彻底：reset 清空 history、newFlag、over、won 并重新初始化棋盘与两个随机块。6. 事件绑定：重来、撤销、再来一局按钮均绑定；键盘支持方向键与 WASD 并 preventDefault 防止页面滚动。7. 边界处理：emptyCells 为空时 addRandom 直接返回；canMove 检查空位与相邻相等；slide 过滤 0 并正确合并。8. 分数更新：每次有效移动累加 gainedTotal 并刷新最高分。9. 保持简洁白色主题，无多余花哨元素。
+类型名: `gdde7cd56_2`
+审查: 1. 修复CSS中 .nm-msg 的拼写错误 'align-item' -> 'align-items'，并补全 justify-content 与各状态配色类（nm-info/nm-win/nm-lose），避免消息样式缺失。
+2. 补全被截断的CSS，新增 .nm-overlay 覆盖层样式，保证胜利/失败弹层正常显示且不溢出。
+3. 修复 genLevel 中 targetVal 逻辑混乱：原代码先取随机格值再覆盖为1/2，导致 targetVal 可能为1、出现无法胜利或起始值错误；现统一将起点设为2、targetVal=2，并保证相邻格为1，逻辑自洽。
+4. 修复胜利判定：原 targetVal===size*size 在起点被强制改为2后仍可达成，但原逻辑存在 targetVal 被错误重置的问题，现已修正。
+5. 修复失败判定漏洞：原代码仅在“错误移动”分支检查步数，正确移动和回退移动不会触发失败；现所有移动分支均检查 steps>=maxSteps 并调用 lose()。
+6. 修复事件监听器内存泄漏：render 每次重建 DOM 并绑定新监听器，旧节点被 innerHTML 清空后监听器随节点回收，但为避免重复绑定，改为在创建时绑定并随节点销毁；同时 overlay 按钮使用独立监听器并在重建前移除旧 overlay。
+7. 新增缺失的 🔄 重来按钮：在 overlay 中提供重来按钮，并在 header 预留 nm-reset 按钮绑定 resetGame，重置分数、关卡与状态。
+8. 新增 showOverlay 函数（原代码调用但未定义，导致胜利/失败时抛错），并确保重复调用时先移除旧 overlay。
+9. 新增 init 初始化函数并处理 DOMContentLoaded，正确获取 DOM 引用，避免 gridEl 为 null 时 render 直接返回导致空白。
+10. 增加边界检查：tryMove 中校验 r/c 范围，防止数组越界；getNeighbors 在 size=1 时返回空数组，rnd(0) 会返回 0 导致 undefined，现由 size 最小为4保证安全。
+11. 修复 updateMsg 的 className 拼接，cls 为空时不会产生多余空格类名。
+12. 统一白色简洁主题，移除花哨元素，仅保留必要状态色。
 
 打开 platform.html 即可游玩！
