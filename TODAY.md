@@ -1,19 +1,8 @@
-# 今日游戏: 数字迷宫 Number Maze
+# 今日游戏: 数字连线 Hex Merge
 
 > 做一个有趣的网页小游戏
 
-类型名: `gdde7cd56_2`
-审查: 1. 修复CSS中 .nm-msg 的拼写错误 'align-item' -> 'align-items'，并补全 justify-content 与各状态配色类（nm-info/nm-win/nm-lose），避免消息样式缺失。
-2. 补全被截断的CSS，新增 .nm-overlay 覆盖层样式，保证胜利/失败弹层正常显示且不溢出。
-3. 修复 genLevel 中 targetVal 逻辑混乱：原代码先取随机格值再覆盖为1/2，导致 targetVal 可能为1、出现无法胜利或起始值错误；现统一将起点设为2、targetVal=2，并保证相邻格为1，逻辑自洽。
-4. 修复胜利判定：原 targetVal===size*size 在起点被强制改为2后仍可达成，但原逻辑存在 targetVal 被错误重置的问题，现已修正。
-5. 修复失败判定漏洞：原代码仅在“错误移动”分支检查步数，正确移动和回退移动不会触发失败；现所有移动分支均检查 steps>=maxSteps 并调用 lose()。
-6. 修复事件监听器内存泄漏：render 每次重建 DOM 并绑定新监听器，旧节点被 innerHTML 清空后监听器随节点回收，但为避免重复绑定，改为在创建时绑定并随节点销毁；同时 overlay 按钮使用独立监听器并在重建前移除旧 overlay。
-7. 新增缺失的 🔄 重来按钮：在 overlay 中提供重来按钮，并在 header 预留 nm-reset 按钮绑定 resetGame，重置分数、关卡与状态。
-8. 新增 showOverlay 函数（原代码调用但未定义，导致胜利/失败时抛错），并确保重复调用时先移除旧 overlay。
-9. 新增 init 初始化函数并处理 DOMContentLoaded，正确获取 DOM 引用，避免 gridEl 为 null 时 render 直接返回导致空白。
-10. 增加边界检查：tryMove 中校验 r/c 范围，防止数组越界；getNeighbors 在 size=1 时返回空数组，rnd(0) 会返回 0 导致 undefined，现由 size 最小为4保证安全。
-11. 修复 updateMsg 的 className 拼接，cls 为空时不会产生多余空格类名。
-12. 统一白色简洁主题，移除花哨元素，仅保留必要状态色。
+类型名: `ga6b54796`
+审查: 1. 修复了原代码末尾被截断的 checkState 函数，补全 showOver/hideOver/showToast/resetGame/init/destroy 等缺失函数。2. 补全了 HTML 结构初始化：原代码只定义了变量但从未创建 DOM，导致 gridEl/scoreEl 等始终为 null，游戏无法渲染。3. 修复了事件监听器绑定：原代码没有绑定键盘事件和重来按钮，现添加 keydown 监听（支持方向键与 WASD）和重来按钮点击事件，并在 destroy 中移除监听避免内存泄漏。4. 修复了胜利/失败逻辑：won 标志在达成 2048 时正确触发胜利弹窗，canMove 检测无路可走时触发失败弹窗，over 状态阻止继续移动。5. 修复了重置不彻底问题：resetGame 会清空棋盘、分数、状态标志并重新生成两个初始方块，同时隐藏弹窗。6. CSS 修复：为 .hm-cell 添加 overflow:hidden 防止大数字溢出；补充 .hm-overlay、.hm-toast、.hm-btn:hover 等缺失样式；弹窗使用绝对定位覆盖棋盘，避免布局重叠。7. 保持简洁白色主题，无花哨元素，仅使用紫色系数字配色。8. 边界条件：emptyList 为空时 addCell 返回 false，move 中检查 e.length 后再生成新方块，避免数组越界和除零。
 
 打开 platform.html 即可游玩！
