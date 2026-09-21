@@ -1,0 +1,24 @@
+.m2048-wrap{width:100%;max-width:100%;box-sizing:border-box;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:#1e293b;user-select:none;-webkit-user-select:none;padding:4px}
+.m2048-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.m2048-scores{display:flex;gap:8px}
+.m2048-score{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:6px 12px;min-width:70px;text-align:center;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+.m2048-score span{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#64748b}
+.m2048-score b{font-size:18px;color:#1e293b;font-weight:700}
+.m2048-btn{background:#7c3aed;color:#fff;border:none;border-radius:10px;padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s}
+.m2048-btn:hover{background:#6d28d9}
+.m2048-btn:active{transform:translateY(1px)}
+.m2048-board{position:relative;width:100%;aspect-ratio:1/1;background:#eef1f7;border:1px solid #e2e8f0;border-radius:14px;padding:10px;box-sizing:border-box;touch-action:none}
+.m2048-grid{position:absolute;inset:10px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);gap:10px}
+.m2048-cell{background:#e2e8f0;border-radius:8px}
+.m2048-tiles{position:absolute;inset:10px;pointer-events:none}
+.m2048-tile{position:absolute;display:flex;align-items:center;justify-content:center;border-radius:8px;font-weight:700;transition:left .12s ease,top .12s ease,transform .12s ease;box-sizing:border-box}
+.m2048-tile.new{animation:m2048pop .16s ease}
+.m2048-tile.merged{animation:m2048merge .18s ease}
+@keyframes m2048pop{0%{transform:scale(.4)}100%{transform:scale(1)}}
+@keyframes m2048merge{0%{transform:scale(1)}50%{transform:scale(1.14)}100%{transform:scale(1)}}
+.m2048-over{position:absolute;inset:10px;border-radius:10px;background:rgba(248,249,252,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;z-index:5}
+.m2048-over h3{margin:0;font-size:22px;color:#1e293b}
+.m2048-over p{margin:0;font-size:14px;color:#64748b}
+.m2048-over.hide{display:none}
+.m2048-hint{margin-top:10px;text-align:center;font-size:12px;color:#64748b;line-height:1.6}
+@media(max-width:480px){.m2048-score{min-width:58px;padding:5px 8px}.m2048-score b{font-size:15px}.m2048-btn{padding:8px 12px;font-size:13px}}
