@@ -1,8 +1,8 @@
-# 今日游戏: 数字连线 Hex Merge
+# 今日游戏: 数字合成 2048 | 2048 Merge
 
 > 做一个有趣的网页小游戏
 
-类型名: `ga6b54796`
-审查: 1. 修复了原代码末尾被截断的 checkState 函数，补全 showOver/hideOver/showToast/resetGame/init/destroy 等缺失函数。2. 补全了 HTML 结构初始化：原代码只定义了变量但从未创建 DOM，导致 gridEl/scoreEl 等始终为 null，游戏无法渲染。3. 修复了事件监听器绑定：原代码没有绑定键盘事件和重来按钮，现添加 keydown 监听（支持方向键与 WASD）和重来按钮点击事件，并在 destroy 中移除监听避免内存泄漏。4. 修复了胜利/失败逻辑：won 标志在达成 2048 时正确触发胜利弹窗，canMove 检测无路可走时触发失败弹窗，over 状态阻止继续移动。5. 修复了重置不彻底问题：resetGame 会清空棋盘、分数、状态标志并重新生成两个初始方块，同时隐藏弹窗。6. CSS 修复：为 .hm-cell 添加 overflow:hidden 防止大数字溢出；补充 .hm-overlay、.hm-toast、.hm-btn:hover 等缺失样式；弹窗使用绝对定位覆盖棋盘，避免布局重叠。7. 保持简洁白色主题，无花哨元素，仅使用紫色系数字配色。8. 边界条件：emptyList 为空时 addCell 返回 false，move 中检查 e.length 后再生成新方块，避免数组越界和除零。
+类型名: `ge6ac44a1`
+审查: 1. 修复了原 move() 中未完成的逻辑（原代码在 for 循环处被截断，且存在 get 函数、map 变量等未定义/无用引用），重写为完整的行/列提取、合并、回写流程。2. 修复合并与移动判定：通过 id 对比判断是否真正移动，避免无效移动后仍生成新方块。3. 修复分数与最高分：合并时累加 score，并同步更新 best 与 localStorage。4. 新增 canMove() 与 checkState()，实现胜利（>=2048）与失败（无空格且无可合并）判定，并显示遮罩。5. 修复重来按钮：原代码未绑定点击事件，现绑定 reset，且遮罩内也提供“再来一局”。6. reset() 彻底重置 board、score、gameOver、won、tid、遮罩内容，并重新生成两个初始方块。7. 修复 layout() 中未使用的 map 变量，并增加宽度为 0 时的保护，避免除零/负尺寸。8. 增加键盘（方向键/WASD）与触摸滑动支持，触摸时 preventDefault 防止页面滚动。9. 补充 CSS 中 .m2048-over.hide、.m2048-over b、.m2048-hint 及响应式媒体查询，修复遮罩无法隐藏与移动端布局问题。10. 保持简洁白色主题，无多余花哨元素。
 
 打开 platform.html 即可游玩！
