@@ -1,8 +1,8 @@
-# 今日游戏: 数字迷宫 Number Maze
+# 今日游戏: 数字华容道 / Number Slide
 
 > 做一个有趣的网页小游戏
 
-类型名: `gdde7cd56_3`
-审查: 1. 修复变量/作用域：原代码在 render 中使用了未定义的 nextNum 逻辑且截断，补齐完整 render；新增 posOf 辅助函数。2. 事件绑定：为重新开始与提示按钮绑定监听；键盘监听改为在 document 上并做边界判断，避免越界。3. 游戏逻辑：修正 cur 初始值为 -1，正确判断起点 1、相邻性、重复点击、错误数字；到达 25 时停止计时并显示胜利；步数在每次成功连接时更新。4. 边界条件：adjacent 增加越界检查；posOf 返回 -1 时安全处理；flashBad 检查元素存在。5. 重置彻底：newGame 清除旧计时器、重置 path/steps/cur/playing 并重新渲染。6. CSS 补全被截断的 .nm-msg.nm-win 等样式，新增 .nm-msg.nm-bad、.nm-foot、.nm-btn、.nm-help，保持白色简洁主题，无花哨元素。7. 键盘交互：方向键移动光标并仅在目标为正确下一数字时确认，空格/回车确认下一步。
+类型名: `g5eabda53`
+审查: 1. 修复容器引用：原代码直接使用未定义的 container，改为 document.querySelector('.game-container') 并加空值保护。2. 补全被截断的 CSS @keyframes pulse，避免动画失效；新增移动端媒体查询防止布局断裂。3. 计时器修复：胜利后 clearInterval 并将 timerInterval 置 null，重置时彻底清理，避免内存泄漏与重复计时。4. 重置更彻底：resetGame 中移除 win 类、清空消息、重置所有状态。5. 边界检查：moveTile 增加行列越界判断，点击解析用 parseInt(...,10) 并校验 NaN。6. 新增键盘方向键支持，方向映射符合直觉（按上键移动空格下方方块上移）。7. 事件委托绑定在 boardEl 上，避免重复绑定；重置按钮加存在性判断。8. 整体用 IIFE 包裹，避免全局变量污染。9. 保持白色简洁主题，无多余花哨元素。
 
 打开 platform.html 即可游玩！
