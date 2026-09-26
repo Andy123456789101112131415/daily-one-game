@@ -1,8 +1,8 @@
-# 今日游戏: 数字记忆挑战 Number Memory
+# 今日游戏: 数字华容道 Number Slide
 
 > 做一个有趣的网页小游戏
 
-类型名: `g08612630`
-审查: 1. 修复CSS被截断的@keyframes nm-fall，补全100%关键帧（translateY(400px) rotate(360deg) opacity:0），否则彩带动画不生效。2. 修复JS被截断的resetGame函数（原代码在state.phase='show'; s处截断），补全函数体并调用startRound。3. 修复checkAnswer成功分支未设置state.phase，导致1.5秒过渡期间可重复提交刷分；新增'phase=transition'状态。4. startRound开头增加clearTimeout(state.timer)，避免残留定时器导致状态错乱。5. resetGame中补全currentNumber/input重置并调用updateScore，确保重置彻底。6. 补全事件绑定：submit按钮click、输入框Enter键、restart按钮click，原代码缺失。7. 补全初始化调用updateScore()和startRound()。8. CSS主题改为纯白背景(#fff)并加轻阴影，去除花哨；新增.nm-btn:disabled样式、.nm-message min-height防抖动、.nm-display word-break防长数字溢出、.nm-input-area flex-wrap及响应式媒体查询，修复小屏布局断裂。9. 输入框max-width:100%与box-sizing防止溢出。
+类型名: `gd07d6fd5`
+审查: 1. 补全被截断的 CSS（.ns-toast 完整样式、.ns-msg、.ns-foot）并修复 .ns-toast 定位（原 position:a 非法）。2. 补全被截断的 JS：tryMove 完整逻辑、win/startTimer/reset/setSize/事件绑定与初始化。3. 修复 shuffle 潜在死循环：cand 为空时 break，避免 do-while 无限循环。4. updatePositions 增加 map[val] 与 empt 的 null 检查，防止引用错误。5. tryMove 增加 idx 边界检查，防止数组越界。6. 修复键盘方向键逻辑：原实现方向反了（ArrowUp 应移动到空格下方 tile），现按空格位置正确映射。7. 事件委托绑定在 grid 上，避免为每个 tile 重复绑定导致内存泄漏；尺寸按钮用 IIFE 闭包正确捕获。8. 添加重来按钮绑定（.ns-restart）与 reset 彻底重置（步数、计时、toast、消息、重新洗牌）。9. 胜利时清除计时器并锁定，防止继续操作。10. 保持简洁白色主题，无花哨元素。
 
 打开 platform.html 即可游玩！
