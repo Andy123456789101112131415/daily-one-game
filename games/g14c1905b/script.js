@@ -7,6 +7,7 @@ let score = 0;
 let lock = false;
 let timerInterval = null;
 let seconds = 0;
+let gameStarted = false;
 
 const totalPairs = 8;
 const gridSize = 4;
@@ -53,6 +54,27 @@ function shuffle(arr) {
   return arr;
 }
 
+function startTimer() {
+  if (timerInterval) return;
+  timerInterval = setInterval(() => {
+    seconds++;
+    timeEl.textContent = seconds + 's';
+  }, 1000);
+}
+
+function stopTimer() {
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+}
+
+function updateStats() {
+  movesEl.textContent = moves;
+  pairsEl.textContent = matchedPairs + '/' + totalPairs;
+  scoreEl.textContent = score;
+}
+
 function initGame() {
   board = [];
   flippedCards = [];
@@ -61,11 +83,10 @@ function initGame() {
   score = 0;
   lock = false;
   seconds = 0;
-  if (timerInterval) clearInterval(timerInterval);
+  gameStarted = false;
+  stopTimer();
   timeEl.textContent = '0s';
-  movesEl.textContent = '0';
-  pairsEl.textContent = '0/8';
-  scoreEl.textContent = '0';
+  updateStats();
   messageEl.textContent = '点击卡片开始游戏';
 
   const numbers = [];
@@ -86,83 +107,68 @@ function initGame() {
         <div class="mf-card-back">${num}</div>
       </div>
     `;
-    card.addEventListener('click', () => flipCard(card));
+    card.addEventListener('click', () => handleCardClick(card));
     boardEl.appendChild(card);
+    board.push({ value: num, matched: false, el: card });
   });
 }
 
-function startTimer() {
-  if (timerInterval) return;
-  timerInterval = setInterval(() => {
-    seconds++;
-    timeEl.textContent = seconds + 's';
-  }, 1000);
-}
-
-function flipCard(card) {
+function handleCardClick(card) {
   if (lock) return;
   if (card.classList.contains('flipped') || card.classList.contains('matched')) return;
-  if (flippedCards.length === 2) return;
 
-  if (seconds === 0 && !timerInterval) startTimer();
+  if (!gameStarted) {
+    gameStarted = true;
+    startTimer();
+    messageEl.textContent = '加油！找出所有配对';
+  }
 
   card.classList.add('flipped');
   flippedCards.push(card);
 
   if (flippedCards.length === 2) {
     moves++;
-    movesEl.textContent = moves;
+    updateStats();
     checkMatch();
   }
 }
 
 function checkMatch() {
-  const [card1, card2] = flippedCards;
-  const val1 = parseInt(card1.dataset.value);
-  const val2 = parseInt(card2.dataset.value);
+  const [c1, c2] = flippedCards;
+  const v1 = c1.dataset.value;
+  const v2 = c2.dataset.value;
 
-  if (val1 === val2) {
-    card1.classList.add('matched');
-    card2.classList.add('matched');
-    card1.classList.remove('flipped');
-    card2.classList.remove('flipped');
+  if (v1 === v2) {
+    c1.classList.add('matched');
+    c2.classList.add('matched');
+    c1.classList.remove('flipped');
+    c2.classList.remove('flipped');
     matchedPairs++;
     score += 10;
-    pairsEl.textContent = matchedPairs + '/8';
-    scoreEl.textContent = score;
     flippedCards = [];
+    updateStats();
+
     if (matchedPairs === totalPairs) {
-      winGame();
+      stopTimer();
+      const bonus = Math.max(0, 100 - seconds * 2);
+      score += bonus;
+      updateStats();
+      messageEl.textContent = '🎉 恭喜完成！用时 ' + seconds + 's，得分 ' + score;
     }
   } else {
     lock = true;
-    card1.classList.add('wrong');
-    card2.classList.add('wrong');
+    score = Math.max(0, score - 1);
+    updateStats();
     setTimeout(() => {
-      card1.classList.remove('flipped', 'wrong');
-      card2.classList.remove('flipped', 'wrong');
+      c1.classList.remove('flipped');
+      c2.classList.remove('flipped');
       flippedCards = [];
       lock = false;
     }, 800);
   }
 }
 
-function winGame() {
-  if (timerInterval) clearInterval(timerInterval);
-  const timeBonus = Math.max(0, 300 - seconds * 5);
-  const moveBonus = Math.max(0, 100 - moves * 2);
-  score += timeBonus + moveBonus;
-  scoreEl.textContent = score;
-  messageEl.textContent = `🎉 恭喜！用时 ${seconds}s，步数 ${moves}，得分 ${score}`;
-  messageEl.style.color = '#10b981';
-  messageEl.style.fontWeight = '600';
-}
-
-restartBtn.addEventListener('click', () => {
-  messageEl.style.color = '#64748b';
-  messageEl.style.fontWeight = 'normal';
-  initGame();
-});
+restartBtn.addEventListener('click', initGame);
 
 initGame();
 }
