@@ -1,8 +1,17 @@
-# 今日游戏: 数字记忆翻牌 Memory Flip
+# 今日游戏: 数字迷阵 Number Maze
 
 > 做一个有趣的网页小游戏
 
-类型名: `g14c1905b`
-审查: 1. 修复了原JS被截断导致的语法错误（card.innerHTML 未闭合、缺少事件绑定与游戏逻辑）。2. 补全了卡片DOM结构（mf-card-inner/front/back）并正确绑定点击事件。3. 新增 startTimer/stopTimer/updateStats，修复计时器未启动、重复启动及未清理的问题。4. 修复配对逻辑：匹配时移除flipped并加matched，避免重复点击；不匹配时加锁防止连点，超时后解锁。5. 修复分数不更新：匹配+10，错误-1（不低于0），通关按时间给奖励分并更新UI。6. 修复胜利条件：matchedPairs===totalPairs 时停止计时并显示结果。7. 修复重置不彻底：initGame 重置所有状态、停止计时器、清空棋盘并重新发牌。8. 修复CSS：补全被截断的样式，新增 .mf-message/.mf-controls/.mf-btn 样式，添加移动端响应式，确保白色简洁主题、无溢出重叠。9. 增加边界保护：lock 与已翻开/已匹配卡片点击拦截，避免数组越界与重复配对。
+类型名: `g847180bb`
+审查: 1. 变量未定义：原代码直接使用 container 但未定义，导致 boardEl 等全部报错；已添加 const container=document.querySelector('.nm-wrap')。
+2. CSS 语法错误：@keyframes nm-shake 缺少结尾的 }}，导致后续样式失效；已补全。
+3. 游戏逻辑：updateHighlights 中判断 numbers[i]<currentStep 有误（应 < currentStep+1），导致已选数字高亮状态不正确；已修正。
+4. 计时器逻辑：updateTime 内调用 endGame 与 startTimer 内重复判断，可能重复触发；已移除 updateTime 中的 endGame，并在 startTimer 中加 gameActive 守卫。
+5. endGame 重复调用保护：增加 if(!gameActive) return，防止胜利后计时器再次触发失败。
+6. 重置不彻底：newGame 未清理旧 timer，可能造成多个计时器并存；已先 clearInterval。
+7. 空值判断：numbers[i] 使用 ===null 判断不严谨，补充 undefined 判断，避免 null 引用。
+8. 错误提示恢复：setTimeout 中增加 class 判断，避免覆盖胜利/失败消息。
+9. CSS 响应式：header 与 controls 增加 flex-wrap 和 gap，防止小屏溢出。
+10. 交互：点击事件通过闭包绑定索引，正常；已确保 gameActive 守卫，防止结束后继续点击。
 
 打开 platform.html 即可游玩！
