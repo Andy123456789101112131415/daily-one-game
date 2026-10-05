@@ -228,7 +228,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 /* === g83a0a564 === */
 .cmr-container{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#f8f9fc;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:#1e293b;}.cmr-header{display:flex;justify-content:space-between;width:100%;max-width:420px;padding:0 20px;margin-bottom:20px;font-size:18px;font-weight:600;}.cmr-score{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:8px 16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);}.cmr-time{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:8px 16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);}.cmr-main{background:#fff;border:1px solid #e2e8f0;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,0.06);padding:30px;max-width:420px;width:100%;}.cmr-question{font-size:48px;font-weight:700;text-align:center;margin-bottom:30px;letter-spacing:2px;}.cmr-options{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;}.cmr-option{width:90px;height:90px;border-radius:16px;border:3px solid transparent;box-shadow:0 4px 10px rgba(0,0,0,0.08);cursor:pointer;transition:transform 0.1s,box-shadow 0.2s;background:#fff;}.cmr-option:hover{transform:scale(1.05);box-shadow:0 6px 16px rgba(0,0,0,0.12);}.cmr-option:active{transform:scale(0.95);}.cmr-option.correct{border-color:#10b981;animation:cmr-pulse 0.4s;}.cmr-option.wrong{border-color:#ef4444;animation:cmr-shake 0.4s;}.cmr-option.disabled{pointer-events:none;opacity:0.6;}.cmr-btn{background:#fff;border:2px solid #7c3aed;color:#7c3aed;padding:10px 24px;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;transition:background 0.2s,color 0.2s;margin-top:20px;}.cmr-btn:hover{background:#7c3aed;color:#fff;}.cmr-btn:active{transform:scale(0.98);}.cmr-result{font-size:20px;font-weight:600;text-align:center;margin-bottom:10px;min-height:30px;}.cmr-result.success{color:#10b981;}.cmr-result.fail{color:#ef4444;}@keyframes cmr-pulse{0%{transform:scale(1);}50%{transform:scale(1.1);}100%{transform:scale(1);}}@keyframes cmr-shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-8px);}40%{transform:translateX(8px);}60%{transform:translateX(-8px);}80%{transform:translateX(8px);}}
 /* === g847180bb === */
-.nm-wrap{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;padding:16px;border-radius:12px;max-width:680px;margin:0 auto;box-sizing:border-box;}.nm-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}.nm-title{font-size:20px;font-weight:600;color:#1e293b;margin:0;}.nm-stats{display:flex;gap:12px;font-size:14px;color:#64748b;}.nm-stat span{font-weight:600;color:#1e293b;}.nm-board{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin-bottom:16px;}.nm-cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;border-radius:8px;background:#f1f5f9;color:#1e293b;cursor:pointer;user-select:none;transition:background 0.15s,transform 0.1s;border:2px solid transparent;}.nm-cell:hover{background:#e2e8f0;}.nm-cell.selected{background:#7c3aed;color:#ffffff;border-color:#6d28d9;}.nm-cell.path{background:#dbeafe;border-color:#93c5fd;}.nm-cell.visited{background:#fef3c7;border-color:#fcd34d;}.nm-cell.empty{background:transparent;border:none;cursor:default;}.nm-controls{display:flex;gap:12px;justify-content:center;margin-top:8px;}.nm-btn{padding:10px 20px;font-size:15px;font-weight:500;border:none;border-radius:8px;cursor:pointer;transition:background 0.15s;background:#7c3aed;color:#ffffff;}.nm-btn:hover{background:#6d28d9;}.nm-btn.secondary{background:#ffffff;color:#1e293b;border:1px solid #e2e8f0;}.nm-btn.secondary:hover{background:#f1f5f9;}.nm-msg{text-align:center;font-size:16px;font-weight:500;min-height:24px;margin-top:12px;color:#64748b;}.nm-msg.win{color:#10b981;animation:nm-pop 0.5s ease;}.nm-msg.lose{color:#ef4444;animation:nm-shake 0.5s ease;}@keyframes nm-pop{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}@keyframes nm-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}@media(max-width:480px){.nm-cell{font-size:18px;}.nm-title{font-size:18px;}}
+.nm-wrap{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;padding:16px;border-radius:12px;max-width:680px;margin:0 auto;box-sizing:border-box;}.nm-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px;}.nm-title{font-size:20px;font-weight:600;color:#1e293b;margin:0;}.nm-stats{display:flex;gap:12px;font-size:14px;color:#64748b;}.nm-stat span{font-weight:600;color:#1e293b;}.nm-board{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin-bottom:16px;}.nm-cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;border-radius:8px;background:#f1f5f9;color:#1e293b;cursor:pointer;user-select:none;transition:background 0.15s,transform 0.1s;border:2px solid transparent;}.nm-cell:hover{background:#e2e8f0;}.nm-cell.selected{background:#7c3aed;color:#ffffff;border-color:#6d28d9;}.nm-cell.path{background:#dbeafe;border-color:#93c5fd;}.nm-cell.visited{background:#fef3c7;border-color:#fcd34d;}.nm-cell.empty{background:transparent;border:none;cursor:default;}.nm-controls{display:flex;gap:12px;justify-content:center;margin-top:8px;flex-wrap:wrap;}.nm-btn{padding:10px 20px;font-size:15px;font-weight:500;border:none;border-radius:8px;cursor:pointer;transition:background 0.15s;background:#7c3aed;color:#ffffff;}.nm-btn:hover{background:#6d28d9;}.nm-btn.secondary{background:#ffffff;color:#1e293b;border:1px solid #e2e8f0;}.nm-btn.secondary:hover{background:#f1f5f9;}.nm-msg{text-align:center;font-size:16px;font-weight:500;min-height:24px;margin-top:12px;color:#64748b;}.nm-msg.win{color:#10b981;animation:nm-pop 0.5s ease;}.nm-msg.lose{color:#ef4444;animation:nm-shake 0.5s ease;}@keyframes nm-pop{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}@keyframes nm-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 /* === g8c742671 === */
 .ctf-wrap{--ctf-primary:#7c3aed;--ctf-sec:#06b6d4;--ctf-gold:#f59e0b;--ctf-red:#ef4444;--ctf-green:#10b981;--ctf-bg:#f8f9fc;--ctf-card:#fff;--ctf-border:#e2e8f0;--ctf-text:#1e293b;--ctf-muted:#64748b;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--ctf-bg);border-radius:12px;padding:20px;max-width:640px;margin:0 auto;color:var(--ctf-text)}.ctf-wrap *{box-sizing:border-box;margin:0;padding:0}.ctf-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px}.ctf-title{font-size:20px;font-weight:600}.ctf-scores{display:flex;gap:20px;background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:8px;padding:8px 16px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.ctf-score-item{font-size:14px}.ctf-score-label{color:var(--ctf-muted);margin-right:4px}.ctf-score-value{font-weight:600}.ctf-board{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:8px;padding:8px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.ctf-cell{aspect-ratio:1;border-radius:4px;border:1px solid var(--ctf-border);background:#f1f5f9;transition:background 0.2s,transform 0.1s;cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center}.ctf-cell:hover{background:#e2e8f0}.ctf-cell.wall{background:#cbd5e1;cursor:not-allowed}.ctf-cell.player{background:var(--ctf-primary);transform:scale(0.9);border-color:var(--ctf-primary)}.ctf-cell.enemy{background:var(--ctf-sec);transform:scale(0.9);border-color:var(--ctf-sec)}.ctf-cell.flag{background:var(--ctf-gold);transform:scale(0.8);border-color:var(--ctf-gold)}.ctf-cell.enemy .ctf-eye,.ctf-cell.player .ctf-eye{width:6px;height:6px;background:#fff;border-radius:50%;position:absolute;top:4px;right:4px}.ctf-controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.ctf-btn{background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:6px;padding:8px 16px;font-size:14px;font-weight:500;cursor:pointer;transition:background 0.2s,border-color 0.2s;color:var(--ctf-text)}.ctf-btn:hover{background:#f1f5f9;border-color:#94a3b8}.ctf-btn:active{transform:translateY(1px)}.ctf-btn-primary{background:var(--ctf-primary);color:#fff;border-color:var(--ctf-primary)}.ctf-btn-primary:hover{background:#6d28d9}.ctf-msg{background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:8px;padding:12px;margin-top:12px;font-size:14px;color:var(--ctf-muted);box-shadow:0 1px 3px rgba(0,0,0,0.04)}.ctf-win{color:var(--ctf-green);font-weight:600}.ctf-lose{color:var(--ctf-red);font-weight:600}.ctf-anim{animation:ctf-pop 0.4s ease}.@keyframes ctf-pop{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
 /* === g946ffc84 === */
@@ -4816,7 +4816,137 @@ var colors=['#7c3aed','#06b6d4','#10b981','#f59e0b','#ef4444'];var colorNames=['
 }
 // === g847180bb ===
 function init_g847180bb(container) {
-const COLS=4, ROWS=4, TOTAL=COLS*ROWS;let numbers=[], selected=[], currentStep=0, score=0, timeLeft=60, timer=null, gameActive=false;const boardEl=container.querySelector('.nm-board');const scoreEl=container.querySelector('.nm-score');const timeEl=container.querySelector('.nm-time');const msgEl=container.querySelector('.nm-msg');const restartBtn=container.querySelector('.nm-restart');const newGameBtn=container.querySelector('.nm-new');function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}function generateNumbers(){const base=[];for(let i=1;i<=TOTAL;i++)base.push(i);return shuffle(base);}function renderBoard(){boardEl.innerHTML='';for(let i=0;i<TOTAL;i++){const cell=document.createElement('div');cell.className='nm-cell';cell.dataset.index=i;if(numbers[i]===null){cell.classList.add('empty');}else{cell.textContent=numbers[i];}cell.addEventListener('click',()=>handleCellClick(i));boardEl.appendChild(cell);}updateHighlights();}function updateHighlights(){const cells=boardEl.querySelectorAll('.nm-cell');cells.forEach((cell,i)=>{cell.classList.remove('selected','path','visited');if(selected.includes(i)){cell.classList.add('selected');}else if(numbers[i]!==null&&numbers[i]<currentStep){cell.classList.add('visited');}});}function handleCellClick(index){if(!gameActive)return;if(numbers[index]===null)return;if(selected.includes(index))return;const num=numbers[index];if(num===currentStep+1){selected.push(index);currentStep++;score+=10;updateScore();updateHighlights();if(currentStep===TOTAL){endGame(true);}}else{score=Math.max(0,score-5);updateScore();msgEl.textContent='顺序错误！-5分';msgEl.className='nm-msg lose';setTimeout(()=>{if(gameActive)msgEl.textContent='';},800);}}function updateScore(){scoreEl.textContent=score;}function updateTime(){timeEl.textContent=timeLeft;if(timeLeft<=0){endGame(false);}}function startTimer(){if(timer)clearInterval(timer);timer=setInterval(()=>{timeLeft--;updateTime();if(timeLeft<=0){endGame(false);}},1000);}function endGame(win){gameActive=false;if(timer){clearInterval(timer);timer=null;}if(win){msgEl.textContent='🎉 恭喜通关！得分：'+score;msgEl.className='nm-msg win';}else{msgEl.textContent='⏰ 时间到！得分：'+score;msgEl.className='nm-msg lose';}}function newGame(){numbers=generateNumbers();selected=[];currentStep=0;score=0;timeLeft=60;gameActive=true;msgEl.textContent='';msgEl.className='nm-msg';updateScore();updateTime();renderBoard();startTimer();}restartBtn.addEventListener('click',newGame);newGameBtn.addEventListener('click',newGame);newGame();
+const COLS=4, ROWS=4, TOTAL=COLS*ROWS;
+let numbers=[], selected=[], currentStep=0, score=0, timeLeft=60, timer=null, gameActive=false;
+const container=document.querySelector('.nm-wrap');
+const boardEl=container.querySelector('.nm-board');
+const scoreEl=container.querySelector('.nm-score');
+const timeEl=container.querySelector('.nm-time');
+const msgEl=container.querySelector('.nm-msg');
+const restartBtn=container.querySelector('.nm-restart');
+const newGameBtn=container.querySelector('.nm-new');
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function generateNumbers(){
+  const base=[];
+  for(let i=1;i<=TOTAL;i++) base.push(i);
+  return shuffle(base);
+}
+
+function renderBoard(){
+  boardEl.innerHTML='';
+  for(let i=0;i<TOTAL;i++){
+    const cell=document.createElement('div');
+    cell.className='nm-cell';
+    cell.dataset.index=i;
+    if(numbers[i]===null || numbers[i]===undefined){
+      cell.classList.add('empty');
+    }else{
+      cell.textContent=numbers[i];
+    }
+    cell.addEventListener('click',()=>handleCellClick(i));
+    boardEl.appendChild(cell);
+  }
+  updateHighlights();
+}
+
+function updateHighlights(){
+  const cells=boardEl.querySelectorAll('.nm-cell');
+  cells.forEach((cell,i)=>{
+    cell.classList.remove('selected','path','visited');
+    if(selected.includes(i)){
+      cell.classList.add('selected');
+    }else if(numbers[i]!==null && numbers[i]!==undefined && numbers[i]<currentStep+1){
+      cell.classList.add('visited');
+    }
+  });
+}
+
+function handleCellClick(index){
+  if(!gameActive) return;
+  if(numbers[index]===null || numbers[index]===undefined) return;
+  if(selected.includes(index)) return;
+  const num=numbers[index];
+  if(num===currentStep+1){
+    selected.push(index);
+    currentStep++;
+    score+=10;
+    updateScore();
+    updateHighlights();
+    if(currentStep===TOTAL){
+      endGame(true);
+    }
+  }else{
+    score=Math.max(0,score-5);
+    updateScore();
+    msgEl.textContent='顺序错误！-5分';
+    msgEl.className='nm-msg lose';
+    setTimeout(()=>{
+      if(gameActive && msgEl.classList.contains('lose')){
+        msgEl.textContent='';
+        msgEl.className='nm-msg';
+      }
+    },800);
+  }
+}
+
+function updateScore(){ scoreEl.textContent=score; }
+
+function updateTime(){
+  timeEl.textContent=timeLeft;
+}
+
+function startTimer(){
+  if(timer){ clearInterval(timer); timer=null; }
+  timer=setInterval(()=>{
+    if(!gameActive) return;
+    timeLeft--;
+    updateTime();
+    if(timeLeft<=0){
+      endGame(false);
+    }
+  },1000);
+}
+
+function endGame(win){
+  if(!gameActive) return;
+  gameActive=false;
+  if(timer){ clearInterval(timer); timer=null; }
+  if(win){
+    msgEl.textContent='🎉 恭喜通关！得分：'+score;
+    msgEl.className='nm-msg win';
+  }else{
+    msgEl.textContent='⏰ 时间到！得分：'+score;
+    msgEl.className='nm-msg lose';
+  }
+}
+
+function newGame(){
+  if(timer){ clearInterval(timer); timer=null; }
+  numbers=generateNumbers();
+  selected=[];
+  currentStep=0;
+  score=0;
+  timeLeft=60;
+  gameActive=true;
+  msgEl.textContent='';
+  msgEl.className='nm-msg';
+  updateScore();
+  updateTime();
+  renderBoard();
+  startTimer();
+}
+
+restartBtn.addEventListener('click',newGame);
+newGameBtn.addEventListener('click',newGame);
+newGame();
 }
 // === g8c742671 ===
 function init_g8c742671(container) {
