@@ -7,7 +7,10 @@ var scoreEl=container.querySelector('.nm-score');
 var bestEl=container.querySelector('.nm-best');
 var toast=container.querySelector('.nm-toast');
 var cells=[];
+var toastTimer=null;
 function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a}
+function showToast(text){if(!toast)return;toast.textContent=text;toast.classList.add('nm-show');if(toastTimer)clearTimeout(toastTimer);toastTimer=setTimeout(function(){toast.classList.remove('nm-show');},1600);}
+function setMsg(text,cls){if(!msg)return;msg.textContent=text;}
 function build(){board.style.gridTemplateColumns='repeat('+N+',1fr)';board.innerHTML='';cells=[];var i,j;
 for(i=0;i<N;i++){cells[i]=[];for(j=0;j<N;j++){var d=document.createElement('div');d.className='nm-cell';d.dataset.r=i;d.dataset.c=j;d.textContent='';board.appendChild(d);cells[i][j]=d;}}
 board.addEventListener('click',onClick);}
@@ -19,54 +22,21 @@ if(!cand.length)break;var pick=cand[rnd(0,cand.length-1)];seen[pick[0]+','+pick[
 return p;}
 function newGame(){var p=genPath();size=p.length;TARGET=rnd(0,size-1);cur={r:p[0][0],c:p[0][1]};path=[cur];done=false;started=false;moves=0;render();setMsg('从起点开始，按顺序点击数字 1 → '+TARGET,'');stepsEl.textContent='0';scoreEl.textContent='0';}
 function render(){var i,j;for(i=0;i<N;i++){for(j=0;j<N;j++){var d=cells[i][j];d.className='nm-cell';d.textContent='';}}
-for(i=0;i<size;i++){var cell=cells[path[i]?'':''] ;}
-var step;
-for(step=0;step<size;step++){var rc=null;if(step<path.length)rc=path[step];}
-for(step=0;step<size;step++){var r=null;}
-for(i=0;i<size;i++){var c2=null;}
-for(i=0;i<size;i++){var pc=null;}
-for(i=0;i<size;i++){var cc=null;}
-for(i=0;i<size;i++){var x=null;}
-for(i=0;i<size;i++){var y=null;}
-for(i=0;i<size;i++){var z=null;}
-for(i=0;i<size;i++){var q=null;}
-for(i=0;i<size;i++){var w=null;}
-for(i=0;i<size;i++){var e=null;}
-for(i=0;i<size;i++){var t=null;}
-for(i=0;i<size;i++){var u=null;}
-for(i=0;i<size;i++){var o=null;}
-for(i=0;i<size;i++){var a=null;}
-for(i=0;i<size;i++){var s=null;}
-for(i=0;i<size;i++){var f=null;}
-for(i=0;i<size;i++){var g=null;}
-for(i=0;i<size;i++){var h=null;}
-for(i=0;i<size;i++){var k=null;}
-for(i=0;i<size;i++){var l=null;}
-for(i=0;i<size;i++){var m=null;}
-for(i=0;i<size;i++){var n=null;}
-for(i=0;i<size;i++){var b=null;}
-for(i=0;i<size;i++){var v=null;}
-for(i=0;i<size;i++){var d2=null;}
-for(i=0;i<size;i++){var j2=null;}
-var idx;
-for(idx=0;idx<size;idx++){var pt=path[idx];var cd=cells[pt.r][pt.c];cd.textContent=idx+1;cd.classList.add(idx===0?'nm-start':(idx===size-1?'nm-goal':'nm-path'));if(pt.r===cur.r&&pt.c===cur.c&&!done)cd.classList.add('nm-cur');}
-if(done){for(idx=0;idx<size;idx++){cells[path[idx].r][path[idx].c].classList.add('nm-done');}}}
-function setMsg(t,cls){msg.textContent=t;msg.className='nm-msg'+(cls?' '+cls:'');}
-function showToast(t,good){toast.textContent=t;toast.className='nm-toast nm-show '+(good?'nm-good':'nm-bad');setTimeout(function(){toast.className='nm-toast';},1400);}
-function onClick(ev){var t=ev.target.closest('.nm-cell');if(!t||done)return;var r=+t.dataset.r,c=+t.dataset.c;
-var next=path.length;
-if(r===cur.r&&c===cur.c)return;
-var i,j;for(i=0;i<size;i++){if(path[i].r===r&&path[i].c===c){if(i===next){cur={r:r,c:c};path.push(cur);moves++;started=true;stepsEl.textContent=String(path.length-1);scoreEl.textContent=String((path.length-1)*10);t.classList.add('nm-hit');render();setMsg('很好，继续！','nm-ok');if(path.length===size)win();}else if(i<path.length){setMsg('这个数字已经走过了','nm-err');t.classList.add('nm-bad');}else{setMsg('顺序不对，下一个应该是 '+(next+1),'nm-err');t.classList.add('nm-bad');}return;}}
-setMsg('请按数字顺序点击','nm-err');t.classList.add('nm-bad');}
-function win(){done=true;render();var score=(size-1)*10+Mth.max(0,50-size*3);var s=score;if(best===null||s>best)best=s;bestEl.textContent=String(best);scoreEl.textContent=String(s);setMsg('完成！得分 '+s,'nm-ok');showToast('🎉 通关！得分 '+s,true);}
-function hint(){if(done)return;var next=path.length;if(next<size){var p=path[next];cells[p.r][p.c].classList.add('nm-hit');setTimeout(function(){cells[p.r][p.c].classList.remove('nm-hit');},600);setMsg('提示：点亮的方块是下一步','nm-ok');}}
-var Mth=Math;
-container.querySelector('.nm-restart').addEventListener('click',function(){newGame();});
-container.querySelector('.nm-hint').addEventListener('click',hint);
+for(i=0;i<size;i++){var pt=path[i];if(!pt)continue;var cd=cells[pt.r][pt.c];if(!cd)continue;cd.textContent=i+1;cd.classList.add(i===0?'nm-start':(i===size-1?'nm-goal':'nm-path'));if(pt.r===cur.r&&pt.c===cur.c&&!done)cd.classList.add('nm-cur');}
+if(done){for(i=0;i<size;i++){var p2=path[i];if(!p2)continue;var c2=cells[p2.r][p2.c];if(c2)c2.classList.add('nm-done');}}
+if(bestEl)bestEl.textContent=best===null?'-':best;}
+function onClick(e){if(done)return;var t=e.target;if(!t||!t.classList||!t.classList.contains('nm-cell'))return;var r=parseInt(t.dataset.r,10),c=parseInt(t.dataset.c,10);if(isNaN(r)||isNaN(c))return;
+var next=path.length;if(next>=size)return;var want=path[next];if(!want)return;
+if(r===want.r&&c===want.c){path.push({r:r,c:c});cur={r:r,c:c};moves++;started=true;stepsEl.textContent=String(moves);scoreEl.textContent=String(path.length-1);
+if(path.length===size){done=true;var sc=Math.max(10,100-moves*5);scoreEl.textContent=String(sc);if(best===null||sc>best)best=sc;if(bestEl)bestEl.textContent=String(best);setMsg('完成！得分 '+sc,'');showToast('🎉 完成！得分 '+sc);}
+else{setMsg('很好，继续点击 '+path.length+' → '+TARGET,'');}
+render();}
+else{t.classList.add('nm-wrong');setTimeout(function(){t.classList.remove('nm-wrong');},300);showToast('顺序错误，请点击 '+path.length+' → '+TARGET);}}
+function reset(){newGame();showToast('已重新开始');}
 build();newGame();
-var keyHandler=function(e){if(!started&&(e.key==='ArrowUp'||e.key==='ArrowDown'||e.key==='ArrowLeft'||e.key==='ArrowRight')){started=true;}var dr=0,dc=0;if(e.key==='ArrowUp')dr=-1;else if(e.key==='ArrowDown')dr=1;else if(e.key==='ArrowLeft')dc=-1;else if(e.key==='ArrowRight')dc=1;else return;e.preventDefault();tryMove(cur.r+dr,cur.c+dc);};
-function tryMove(r,c){if(done||r<0||c<0||r>=N||c>=N)return;var i;for(i=0;i<size;i++){if(path[i].r===r&&path[i].c===c){if(i===path.length){cur={r:r,c:c};path.push(cur);stepsEl.textContent=String(path.length-1);scoreEl.textContent=String((path.length-1)*10);cells[r][c].classList.add('nm-hit');render();if(path.length===size)win();}else{setMsg('顺序不对','nm-err');}return;}}setMsg('不能跳到那里','nm-err');}
-container.addEventListener('keydown',keyHandler);
-container.setAttribute('tabindex','0');
-container.querySelector('.nm-hint-label').textContent='顺序：1 → '+TARGET;
+var resetBtn=container.querySelector('.nm-reset');
+if(resetBtn)resetBtn.addEventListener('click',reset);
+var newBtn=container.querySelector('.nm-new');
+if(newBtn)newBtn.addEventListener('click',reset);
+if(typeof window!=='undefined'){window.addEventListener('keydown',function(e){if(e.key==='r'||e.key==='R'){reset();}});}
 }
