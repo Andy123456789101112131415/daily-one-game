@@ -5,8 +5,9 @@ function idx(r,c){return r*size+c}
 function shuffle(){
   var total=size*size;
   board=[];
-  for(var i=0;i<total;i++)board.push(i);
+  for(var i=0;i<total;i++)board.push(i+1);
   empty=total-1;
+  board[empty]=total;
   var prev=-1;
   for(var k=0;k<400;k++){
     var er=Math.floor(empty/size),ec=empty%size;
@@ -15,9 +16,10 @@ function shuffle(){
     if(er<size-1)cand.push(idx(er+1,ec));
     if(ec>0)cand.push(idx(er,ec-1));
     if(ec<size-1)cand.push(idx(er,ec+1));
+    if(cand.length===0)break;
     var pick;
     do{pick=cand[Math.floor(Math.random()*cand.length)];}while(pick===prev&&cand.length>1);
-    board[empty]=board[pick];board[pick]=total-1;prev=empty;empty=pick;
+    board[empty]=board[pick];board[pick]=total;prev=empty;empty=pick;
   }
   if(isSolved())shuffle();
 }
@@ -87,22 +89,22 @@ function onKey(e){
   else if(k==='ArrowLeft'||k==='a'||k==='A'){moveDir(0,1);e.preventDefault();}
   else if(k==='ArrowRight'||k==='d'||k==='D'){moveDir(0,-1);e.preventDefault();}
 }
-wrap=document.createElement('div');
-wrap.id='ns-wrap';
-wrap.innerHTML='<div class="ns-head"><div class="ns-info"><div class="ns-chip">步数<b class="ns-mv">0</b></div><div class="ns-chip">时间<b class="ns-tm">0s</b></div></div><button class="ns-btn ns-reset" type="button">重来</button></div><div class="ns-board"></div><div class="ns-hint">点击与空格相邻的方块，或用 <kbd>方向键</kbd> / <kbd>WASD</kbd> 滑动</div>';
-container.appendChild(wrap);
-boardEl=wrap.querySelector('.ns-board');
-movesEl=wrap.querySelector('.ns-mv');
-timerEl=wrap.querySelector('.ns-tm');
-boardEl.addEventListener('click',function(e){
-  var t=e.target;
-  if(t&&t.classList&&t.classList.contains('ns-tile'))tryMove(parseInt(t.dataset.pos,10));
-});
-wrap.querySelector('.ns-reset').addEventListener('click',reset);
-container.addEventListener('keydown',onKey);
-container.setAttribute('tabindex','0');
-var total=size*size;
-board.length=0;
-for(var i=0;i<total;i++)board.push(i);
-reset();
+function init(){
+  wrap=document.getElementById('ns-wrap');
+  if(!wrap)return;
+  boardEl=wrap.querySelector('.ns-board');
+  movesEl=wrap.querySelector('.ns-moves');
+  timerEl=wrap.querySelector('.ns-timer');
+  var resetBtn=wrap.querySelector('.ns-reset');
+  if(resetBtn)resetBtn.addEventListener('click',reset);
+  boardEl.addEventListener('click',function(e){
+    var t=e.target.closest('.ns-tile');
+    if(!t||t.classList.contains('ns-empty'))return;
+    var pos=parseInt(t.dataset.pos,10);
+    if(!isNaN(pos))tryMove(pos);
+  });
+  document.addEventListener('keydown',onKey);
+  reset();
+}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 }
