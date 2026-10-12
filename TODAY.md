@@ -1,8 +1,8 @@
-# 今日游戏: 数字华容道 Number Slide
+# 今日游戏: 数字拼图 2048 Merge
 
 > 做一个有趣的网页小游戏
 
-类型名: `gd07d6fd5_3`
-审查: 1) shuffle() 初始化错误：原代码 board 填 0..total-1 且 empty=total-1，导致 isSolved 判断与 tile 值错位、空格值不统一；改为填入 1..total，空格值为 total。2) shuffle 死循环风险：cand 为空时 do-while 会无限循环，增加 cand.length===0 的 break 保护。3) 事件绑定缺失：原代码 wrap=do 截断，未绑定点击/键盘/重置按钮；新增 init() 完成 DOM 查询、点击委托、键盘监听与 reset 调用，并处理 DOMContentLoaded。4) 重置不彻底：reset 未清除旧计时器与完成遮罩，已加入 clearInterval 与 .ns-done 移除。5) 键盘方向逻辑：保持与空格相对方向一致（上键把下方块上移），并 preventDefault 防止页面滚动。6) CSS 补全被截断的 .ns-hint 规则，保持简洁白色主题，无花哨元素。7) 边界条件：点击解析 dataset.pos 校验 NaN，closest 判空，避免 null 引用与数组越界。
+类型名: `g2a945102_2`
+审查: 1. 补全被截断的CSS：overlay的pointer-events与.g24-show显示类、h3/p/cta/hint样式，并给board加overflow:hidden防止tile溢出。2. 修复JS被截断处：updateScore函数补全（原代码在best=scor处中断），补全move/checkState/showOverlay/事件绑定/init调用。3. 修复container未定义：改为document.getElementById('game')||document.body。4. 修复合并逻辑：原代码用tileData且未正确追踪merged标记，重写为基于newBoard的滑动合并，正确累加分数、标记merged、判断2048胜利。5. 修复胜利/失败判定：checkState在满盘且无可合并时显示游戏结束，合成2048时显示通关。6. 修复animating锁：移动后延迟130ms再addRandom并renderAll，避免动画期间重复输入。7. 事件绑定：键盘、触摸、重新开始、CTA按钮均正确绑定；CTA在非结束状态仅隐藏overlay。8. 边界处理：cellSize负值保护、空数组判断、方向向量校验。9. 响应式：resize时重绘tile位置。10. 保持简洁白色主题，无多余花哨元素。
 
 打开 platform.html 即可游玩！
