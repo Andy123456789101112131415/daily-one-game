@@ -6,7 +6,6 @@ var best=0;
 var won=false;
 var over=false;
 var animating=false;
-var tileEls=[];
 var wrap=container.querySelector('.m2048-wrap');
 var tilesLayer=container.querySelector('.m2048-tiles');
 var scoreEl=container.querySelector('.m2048-score-val');
@@ -113,37 +112,39 @@ function rotate(m){
 }
 
 function move(dir){
-  if(over||animating)return;
-  var old=JSON.stringify(board);
+  if(animating||over)return;
+  var moved=false;
   var gained=0;
-  var times=dir==='up'?1:dir==='right'?2:dir==='down'?3:0;
-  for(var i=0;i<times;i++)board=rotate(board);
+  var old=board.map(function(row){return row.slice();});
+  var times=dir==='left'?0:dir==='up'?1:dir==='right'?2:3;
+  for(var t=0;t<times;t++)board=rotate(board);
   for(var r=0;r<size;r++){
     var res=slideRow(board[r]);
     board[r]=res.row;
     gained+=res.gained;
   }
-  for(var j=0;j<(4-times)%4;j++)board=rotate(board);
-  if(JSON.stringify(board)===old)return;
+  for(var t2=0;t2<(4-times)%4;t2++)board=rotate(board);
+  for(var r2=0;r2<size;r2++)for(var c2=0;c2<size;c2++){
+    if(board[r2][c2]!==old[r2][c2]){moved=true;break;}
+  }
+  if(!moved)return;
   score+=gained;
   addRandom();
   render();
   if(won&&!over){
-    showOverlay('win','🎉 达成 2048！','继续挑战更高分','继续');
-    won=false;
+    over=true;
+    showOverlay('你赢了！','达到 2048，继续挑战更高分吧！');
     return;
   }
   if(!canMove()){
     over=true;
-    showOverlay('lose','游戏结束','最终得分：'+score,'再来一局');
+    showOverlay('游戏结束','没有可移动的方块了，得分：'+score);
   }
 }
 
-function showOverlay(type,title,msg,btn){
+function showOverlay(title,msg){
   overlayTitle.textContent=title;
-  overlayTitle.className='m2048-overlay-title '+type;
   overlayMsg.textContent=msg;
-  overlayBtn.textContent=btn;
   overlay.classList.add('show');
 }
 
@@ -151,7 +152,7 @@ function hideOverlay(){
   overlay.classList.remove('show');
 }
 
-function newGame(){
+function reset(){
   board=[];
   for(var r=0;r<size;r++){
     board.push([]);
@@ -167,56 +168,43 @@ function newGame(){
   render();
 }
 
-function onKey(e){
-  var k=e.key;
-  var handled=false;
-  if(k==='ArrowUp'||k==='w'||k==='W'){move('up');handled=true;}
-  else if(k==='ArrowDown'||k==='s'||k==='S'){move('down');handled=true;}
-  else if(k==='ArrowLeft'||k==='a'||k==='A'){move('left');handled=true;}
-  else if(k==='ArrowRight'||k==='d'||k==='D'){move('right');handled=true;}
-  if(handled)e.preventDefault();
-}
-
-var touchStartX=0,touchStartY=0,touching=false;
+var startX=0,startY=0,touching=false;
 function onTouchStart(e){
   if(e.touches.length!==1)return;
-  touchStartX=e.touches[0].clientX;
-  touchStartY=e.touches[0].clientY;
   touching=true;
+  startX=e.touches[0].clientX;
+  startY=e.touches[0].clientY;
+}
+function onTouchMove(e){
+  if(!touching)return;
+  e.preventDefault();
 }
 function onTouchEnd(e){
   if(!touching)return;
   touching=false;
-  if(!e.changedTouches.length)return;
-  var dx=e.changedTouches[0].clientX-touchStartX;
-  var dy=e.changedTouches[0].clientY-touchStartY;
+  var t=e.changedTouches[0];
+  if(!t)return;
+  var dx=t.clientX-startX;
+  var dy=t.clientY-startY;
   if(Math.abs(dx)<24&&Math.abs(dy)<24)return;
-  if(Math.abs(dx)>Math.abs(dy)){
-    move(dx>0?'right':'left');
-  }else{
-    move(dy>0?'down':'up');
-  }
+  if(Math.abs(dx)>Math.abs(dy))move(dx>0?'right':'left');
+  else move(dy>0?'down':'up');
 }
 
-restartBtn.addEventListener('click',newGame);
-overlayBtn.addEventListener('click',function(){
-  if(over||!overlay.classList.contains('show')){newGame();}
-  else{hideOverlay();}
-});
-container.addEventListener('keydown',onKey);
-container.setAttribute('tabindex','0');
-boardEl.addEventListener('touchstart',onTouchStart,{passive:true});
-boardEl.addEventListener('touchend',onTouchEnd,{passive:true});
-var mobBtns=container.querySelectorAll('.m2048-mobile button');
-for(var b=0;b<mobBtns.length;b++){
-  (function(btn){
-    btn.addEventListener('click',function(){
-      var d=btn.getAttribute('data-dir');
-      move(d);
-    });
-  })(mobBtns[b]);
+function onKey(e){
+  var k=e.key;
+  if(k==='ArrowLeft'||k==='a'||k==='A'){e.preventDefault();move('left');}
+  else if(k==='ArrowRight'||k==='d'||k==='D'){e.preventDefault();move('right');}
+  else if(k==='ArrowUp'||k==='w'||k==='W'){e.preventDefault();move('up');}
+  else if(k==='ArrowDown'||k==='s'||k==='S'){e.preventDefault();move('down');}
 }
-window.addEventListener('resize',function(){render();});
-newGame();
-container.focus();
+
+boardEl.addEventListener('touchstart',onTouchStart,{passive:true});
+boardEl.addEventListener('touchmove',onTouchMove,{passive:false});
+boardEl.addEventListener('touchend',onTouchEnd,{passive:true});
+document.addEventListener('keydown',onKey);
+restartBtn.addEventListener('click',reset);
+overlayBtn.addEventListener('click',reset);
+
+reset();
 }
