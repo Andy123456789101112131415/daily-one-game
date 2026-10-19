@@ -234,7 +234,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 /* === g7d6fee9a_2 === */
 *{box-sizing:border-box;margin:0;padding:0}.g2048-wrap{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;color:#1e293b;padding:16px;max-width:680px;margin:0 auto;user-select:none;-webkit-user-select:none}.g2048-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}.g2048-scores{display:flex;gap:10px}.g2048-score-box{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:8px 14px;text-align:center;min-width:82px;box-shadow:0 1px 3px rgba(30,41,59,.05)}.g2048-score-label{font-size:11px;color:#64748b;letter-spacing:.5px;text-transform:uppercase}.g2048-score-val{font-size:20px;font-weight:700;color:#1e293b;line-height:1.2}.g2048-score-val.add{animation:g2048pop .35s ease}@keyframes g2048pop{0%{transform:scale(1)}50%{transform:scale(1.25);color:#10b981}100%{transform:scale(1)}}.g2048-btn{background:#7c3aed;color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;transition:background .15s;font-family:inherit}.g2048-btn:hover{background:#6d28d9}.g2048-btn:active{transform:scale(.97)}.g2048-board{position:relative;background:#eef1f7;border:1px solid #e2e8f0;border-radius:14px;padding:10px;width:100%;aspect-ratio:1/1;max-width:480px;margin:0 auto;touch-action:none}.g2048-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:100%;height:100%}.g2048-cell{background:#e2e8f0;border-radius:8px}.g2048-tiles{position:absolute;inset:10px;pointer-events:none}.g2048-tile{position:absolute;display:flex;align-items:center;justify-content:center;border-radius:8px;font-weight:700;transition:left .12s ease,top .12s ease;will-change:left,top}.g2048-tile.new{animation:g2048appear .18s ease}@keyframes g2048appear{0%{transform:scale(0);opacity:0}100%{transform:scale(1);opacity:1}}.g2048-tile.merged{animation:g2048merge .2s ease}@keyframes g2048merge{0%{transform:scale(1)}50%{transform:scale(1.18)}100%{transform:scale(1)}}.g2048-overlay{position:absolute;inset:0;background:rgba(248,249,252,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:14px;z-index:5;gap:14px;animation:g2048fade .3s ease}@keyframes g2048fade{from{opacity:0}to{opacity:1}}.g2048-overlay-title{font-size:26px;font-weight:700}.g2048-overlay-title.win{color:#10b981}.g2048-overlay-title.lose{color:#ef4444}.g2048-overlay-sub{font-size:14px;color:#64748b}.g2048-hint{text-align:center;font-size:12px;color:#64748b;margin-top:12px}@media(max-width:520px){.g2048-score-box{min-width:64px;padding:6px 10px}.g2048-score-val{font-size:16px}.g2048-btn{padding:8px 14px;font-size:13px}.g2048-grid{gap:7px}.g2048-tiles{inset:7px}}
 /* === g7d6fee9a_3 === */
-.g2048-wrap{max-width:500px;margin:0 auto;padding:16px;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;border-radius:12px;}.g2048-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}.g2048-score-box{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:8px 16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.05);}.g2048-score-label{font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;}.g2048-score-value{font-size:20px;font-weight:700;color:#1e293b;}.g2048-btn{background:#7c3aed;color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:14px;font-weight:600;cursor:pointer;transition:background 0.2s;font-family:inherit;}.g2048-btn:hover{background:#6d28d9;}.g2048-btn:active{transform:scale(0.97);}.g2048-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:#e2e8f0;border-radius:12px;padding:8px;position:relative;}.g2048-cell{background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#1e293b;aspect-ratio:1;transition:background 0.15s,color 0.15s;box-shadow:0 1px 2px rgba(0,0,0,0.05);}.g2048-cell[data-val='2']{background:#f1f5f9;color:#1e293b;}.g2048-cell[data-val='4']{background:#e2e8f0;color:#1e293b;}.g2048-cell[data-val='8']{background:#7c3aed;color:#fff;}.g2048-cell[data-val='16']{background:#06b6d4;color:#fff;}.g2048-cell[data-val='32']{background:#10b981;color:#fff;}.g2048-cell[data-val='64']{background:#f59e0b;color:#fff;}.g2048-cell[data-val='128']{background:#ef4444;color:#fff;font-size:20px;}.g2048-cell[data-val='256']{background:#dc2626;color:#fff;font-size:20px;}.g2048-cell[data-val='512']{background:#b91c1c;color:#fff;font-size:20px;}.g2048-cell[data-val='1024']{background:#991b1b;color:#fff;font-size:16px;}.g2048-cell[data-val='2048']{background:#7c3aed;color:#fff;font-size:16px;box-shadow:0 0 12px rgba(124,58,237,0.6);}.g2048-message{text-align:center;margin-top:16px;font-size:18px;font-weight:600;color:#1e293b;min-height:28px;}.g2048-message.win{color:#10b981;}.g2048-message.lose{color:#ef4444;}.g2048-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,0.9);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}.g2048-overlay.active{opacity:1;pointer-events:auto;}.g2048-overlay-text{font-size:28px;font-weight:700;margin-bottom:16px;}.g2048-overlay-text.win{color:#10b981;}.g2048-overlay-text.lose{color:#ef4444;}@media (max-width:480px){.g2048-cell{font-size:18px;}.g2048-cell[data-val='128'],.g2048-cell[data-val='256'],.g2048-cell[data-val='512']{font-size:14px;}.g2048-cell[data-val='1024'],.g2048-cell[data-val='2048']{font-size:12px;}}
+.g2048-wrap{max-width:500px;margin:0 auto;padding:16px;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;border-radius:12px;box-sizing:border-box;}.g2048-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:8px;flex-wrap:wrap;}.g2048-score-box{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:8px 16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.05);}.g2048-score-label{font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;}.g2048-score-value{font-size:20px;font-weight:700;color:#1e293b;}.g2048-btn{background:#7c3aed;color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:14px;font-weight:600;cursor:pointer;transition:background 0.2s;font-family:inherit;}.g2048-btn:hover{background:#6d28d9;}.g2048-btn:active{transform:scale(0.97);}.g2048-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:#e2e8f0;border-radius:12px;padding:8px;position:relative;width:100%;box-sizing:border-box;}.g2048-cell{background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#1e293b;aspect-ratio:1;transition:background 0.15s,color 0.15s;box-shadow:0 1px 2px rgba(0,0,0,0.05);overflow:hidden;}.g2048-cell[data-val='2']{background:#f1f5f9;color:#1e293b;}.g2048-cell[data-val='4']{background:#e2e8f0;color:#1e293b;}.g2048-cell[data-val='8']{background:#7c3aed;color:#fff;}.g2048-cell[data-val='16']{background:#06b6d4;color:#fff;}.g2048-cell[data-val='32']{background:#10b981;color:#fff;}.g2048-cell[data-val='64']{background:#f59e0b;color:#fff;}.g2048-cell[data-val='128']{background:#ef4444;color:#fff;font-size:20px;}.g2048-cell[data-val='256']{background:#dc2626;color:#fff;font-size:20px;}.g2048-cell[data-val='512']{background:#b91c1c;color:#fff;font-size:20px;}.g2048-cell[data-val='1024']{background:#991b1b;color:#fff;font-size:16px;}.g2048-cell[data-val='2048']{background:#7c3aed;color:#fff;font-size:16px;box-shadow:0 0 12px rgba(124,58,237,0.6);}.g2048-message{text-align:center;margin-top:12px;font-size:14px;color:#64748b;min-height:20px;}.g2048-overlay{display:none;position:absolute;inset:0;background:rgba(255,255,255,0.85);border-radius:12px;align-items:center;justify-content:center;flex-direction:column;gap:12px;z-index:10;}.g2048-overlay.active{display:flex;}.g2048-overlay-text{font-size:22px;font-weight:700;color:#1e293b;}.g2048-overlay .g2048-btn{padding:10px 24px;}
 /* === g80c06596 === */
 *{box-sizing:border-box;margin:0;padding:0}.g2048-wrap{width:100%;max-width:680px;margin:0 auto;padding:16px;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;color:#1e293b;user-select:none}.g2048-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}.g2048-scores{display:flex;gap:10px}.g2048-score{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:8px 14px;text-align:center;box-shadow:0 1px 3px rgba(30,41,59,.06);min-width:88px}.g2048-score b{display:block;font-size:11px;letter-spacing:.08em;color:#64748b;font-weight:600}.g2048-score span{font-size:20px;font-weight:700;color:#1e293b}.g2048-btn{background:#7c3aed;color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:15px;font-weight:600;cursor:pointer;transition:background .15s,transform .1s;font-family:inherit}.g2048-btn:hover{background:#6d28d9}.g2048-btn:active{transform:scale(.96)}.g2048-board{position:relative;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:10px;box-shadow:0 2px 8px rgba(30,41,59,.06);aspect-ratio:1/1;width:100%}.g2048-grid{position:absolute;inset:10px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);gap:10px}.g2048-cell{background:#f1f5f9;border-radius:8px}.g2048-tiles{position:absolute;inset:10px;pointer-events:none}.g2048-tile{position:absolute;display:flex;align-items:center;justify-content:center;border-radius:8px;font-weight:700;transition:top .12s ease,left .12s ease;color:#fff}.g2048-tile.g2048-pop{animation:g2048pop .16s ease}.g2048-tile.g2048-merge{animation:g2048merge .18s ease}@keyframes g2048pop{0%{transform:scale(.4)}100%{transform:scale(1)}}@keyframes g2048merge{0%{transform:scale(1)}50%{transform:scale(1.16)}100%{transform:scale(1)}}.g2048-over{position:absolute;inset:0;background:rgba(248,249,252,.94);border-radius:14px;display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:10}.g2048-over.g2048-show{display:flex}.g2048-over h2{font-size:24px;color:#1e293b}.g2048-over p{font-size:14px;color:#64748b}.g2048-hint{margin-top:14px;text-align:center;font-size:13px;color:#64748b;line-height:1.6}
 /* === g83a0a564 === */
@@ -5334,6 +5334,7 @@ function initGame(container) {
   const overlayEl = container.querySelector('.g2048-overlay');
   const overlayText = container.querySelector('.g2048-overlay-text');
   const restartBtn = container.querySelector('.g2048-btn');
+  const overlayBtn = container.querySelector('.g2048-overlay .g2048-btn');
   let cells = [];
 
   function createGrid() {
@@ -5388,6 +5389,26 @@ function initGame(container) {
     updateGrid();
   }
 
+  function buildTraversals(dr, dc) {
+    const rows = [];
+    const cols = [];
+    for (let i = 0; i < size; i++) { rows.push(i); cols.push(i); }
+    if (dr > 0) rows.reverse();
+    if (dc > 0) cols.reverse();
+    return { r: rows, c: cols };
+  }
+
+  function canMove() {
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        if (board[r][c] === 0) return true;
+        if (c + 1 < size && board[r][c] === board[r][c + 1]) return true;
+        if (r + 1 < size && board[r][c] === board[r + 1][c]) return true;
+      }
+    }
+    return false;
+  }
+
   function move(direction) {
     if (gameOver || (won && !keepPlaying)) return;
     let moved = false;
@@ -5397,7 +5418,9 @@ function initGame(container) {
       left: { dr: 0, dc: -1 },
       right: { dr: 0, dc: 1 }
     };
-    const { dr, dc } = vectors[direction];
+    const vec = vectors[direction];
+    if (!vec) return;
+    const { dr, dc } = vec;
     const traversals = buildTraversals(dr, dc);
     const merged = Array.from({ length: size }, () => Array(size).fill(false));
 
@@ -5422,6 +5445,9 @@ function initGame(container) {
             moved = true;
             if (val * 2 === 2048 && !won) {
               won = true;
+              messageEl.textContent = '你赢了！';
+              overlayText.textContent = '你赢了！';
+              overlayEl.classList.add('active');
             }
             break;
           } else {
@@ -5434,63 +5460,22 @@ function initGame(container) {
     if (moved) {
       addRandomTile();
       updateGrid();
-      if (won && !keepPlaying) {
-        showOverlay('You Win!', 'win');
-        messageEl.textContent = '恭喜达到2048！';
-        messageEl.className = 'g2048-message win';
-      } else if (isGameOver()) {
+      if (!canMove()) {
         gameOver = true;
-        showOverlay('Game Over', 'lose');
-        messageEl.textContent = '游戏结束，再来一局吧！';
-        messageEl.className = 'g2048-message lose';
+        messageEl.textContent = '游戏结束';
+        overlayText.textContent = '游戏结束';
+        overlayEl.classList.add('active');
       }
     }
-  }
-
-  function buildTraversals(dr, dc) {
-    const r = [], c = [];
-    for (let i = 0; i < size; i++) {
-      r.push(i);
-      c.push(i);
-    }
-    if (dr > 0) r.reverse();
-    if (dc > 0) c.reverse();
-    return { r, c };
-  }
-
-  function isGameOver() {
-    for (let r = 0; r < size; r++) {
-      for (let c = 0; c < size; c++) {
-        if (board[r][c] === 0) return false;
-        if (r < size - 1 && board[r][c] === board[r + 1][c]) return false;
-        if (c < size - 1 && board[r][c] === board[r][c + 1]) return false;
-      }
-    }
-    return true;
-  }
-
-  function showOverlay(text, type) {
-    overlayText.textContent = text;
-    overlayText.className = 'g2048-overlay-text ' + type;
-    overlayEl.classList.add('active');
   }
 
   function handleKey(e) {
-    const key = e.key;
-    let dir = null;
-    if (key === 'ArrowUp' || key === 'w' || key === 'W') dir = 'up';
-    else if (key === 'ArrowDown' || key === 's' || key === 'S') dir = 'down';
-    else if (key === 'ArrowLeft' || key === 'a' || key === 'A') dir = 'left';
-    else if (key === 'ArrowRight' || key === 'd' || key === 'D') dir = 'right';
+    const map = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right', w: 'up', s: 'down', a: 'left', d: 'right', W: 'up', S: 'down', A: 'left', D: 'right' };
+    const dir = map[e.key];
     if (dir) {
       e.preventDefault();
       move(dir);
     }
-  }
-
-  function handleRestart() {
-    initBoard();
-    overlayEl.classList.remove('active');
   }
 
   function handleOverlayClick() {
@@ -5498,51 +5483,21 @@ function initGame(container) {
       keepPlaying = true;
       overlayEl.classList.remove('active');
       messageEl.textContent = '';
-      messageEl.className = 'g2048-message';
-    }
-  }
-
-  function handleTouchStart(e) {
-    if (e.touches.length !== 1) return;
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-  }
-
-  function handleTouchEnd(e) {
-    if (e.changedTouches.length !== 1) return;
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    const dy = e.changedTouches[0].clientY - touchStartY;
-    const absDx = Math.abs(dx);
-    const absDy = Math.abs(dy);
-    if (Math.max(absDx, absDy) < 20) return;
-    if (absDx > absDy) {
-      move(dx > 0 ? 'right' : 'left');
     } else {
-      move(dy > 0 ? 'down' : 'up');
+      initBoard();
     }
   }
-
-  let touchStartX = 0;
-  let touchStartY = 0;
-
-  container.addEventListener('keydown', handleKey);
-  restartBtn.addEventListener('click', handleRestart);
-  overlayEl.addEventListener('click', handleOverlayClick);
-  gridEl.addEventListener('touchstart', handleTouchStart, { passive: true });
-  gridEl.addEventListener('touchend', handleTouchEnd, { passive: true });
-
-  container.tabIndex = 0;
-  container.focus();
 
   createGrid();
   initBoard();
+  document.addEventListener('keydown', handleKey);
+  restartBtn.addEventListener('click', initBoard);
+  if (overlayBtn) overlayBtn.addEventListener('click', handleOverlayClick);
 
-  return () => {
-    container.removeEventListener('keydown', handleKey);
-    restartBtn.removeEventListener('click', handleRestart);
-    overlayEl.removeEventListener('click', handleOverlayClick);
-    gridEl.removeEventListener('touchstart', handleTouchStart);
-    gridEl.removeEventListener('touchend', handleTouchEnd);
+  return function destroy() {
+    document.removeEventListener('keydown', handleKey);
+    restartBtn.removeEventListener('click', initBoard);
+    if (overlayBtn) overlayBtn.removeEventListener('click', handleOverlayClick);
   };
 }
 }

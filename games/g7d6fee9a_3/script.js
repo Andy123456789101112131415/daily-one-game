@@ -12,6 +12,7 @@ function initGame(container) {
   const overlayEl = container.querySelector('.g2048-overlay');
   const overlayText = container.querySelector('.g2048-overlay-text');
   const restartBtn = container.querySelector('.g2048-btn');
+  const overlayBtn = container.querySelector('.g2048-overlay .g2048-btn');
   let cells = [];
 
   function createGrid() {
@@ -66,6 +67,26 @@ function initGame(container) {
     updateGrid();
   }
 
+  function buildTraversals(dr, dc) {
+    const rows = [];
+    const cols = [];
+    for (let i = 0; i < size; i++) { rows.push(i); cols.push(i); }
+    if (dr > 0) rows.reverse();
+    if (dc > 0) cols.reverse();
+    return { r: rows, c: cols };
+  }
+
+  function canMove() {
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        if (board[r][c] === 0) return true;
+        if (c + 1 < size && board[r][c] === board[r][c + 1]) return true;
+        if (r + 1 < size && board[r][c] === board[r + 1][c]) return true;
+      }
+    }
+    return false;
+  }
+
   function move(direction) {
     if (gameOver || (won && !keepPlaying)) return;
     let moved = false;
@@ -75,7 +96,9 @@ function initGame(container) {
       left: { dr: 0, dc: -1 },
       right: { dr: 0, dc: 1 }
     };
-    const { dr, dc } = vectors[direction];
+    const vec = vectors[direction];
+    if (!vec) return;
+    const { dr, dc } = vec;
     const traversals = buildTraversals(dr, dc);
     const merged = Array.from({ length: size }, () => Array(size).fill(false));
 
@@ -100,6 +123,9 @@ function initGame(container) {
             moved = true;
             if (val * 2 === 2048 && !won) {
               won = true;
+              messageEl.textContent = '你赢了！';
+              overlayText.textContent = '你赢了！';
+              overlayEl.classList.add('active');
             }
             break;
           } else {
@@ -112,63 +138,22 @@ function initGame(container) {
     if (moved) {
       addRandomTile();
       updateGrid();
-      if (won && !keepPlaying) {
-        showOverlay('You Win!', 'win');
-        messageEl.textContent = '恭喜达到2048！';
-        messageEl.className = 'g2048-message win';
-      } else if (isGameOver()) {
+      if (!canMove()) {
         gameOver = true;
-        showOverlay('Game Over', 'lose');
-        messageEl.textContent = '游戏结束，再来一局吧！';
-        messageEl.className = 'g2048-message lose';
+        messageEl.textContent = '游戏结束';
+        overlayText.textContent = '游戏结束';
+        overlayEl.classList.add('active');
       }
     }
-  }
-
-  function buildTraversals(dr, dc) {
-    const r = [], c = [];
-    for (let i = 0; i < size; i++) {
-      r.push(i);
-      c.push(i);
-    }
-    if (dr > 0) r.reverse();
-    if (dc > 0) c.reverse();
-    return { r, c };
-  }
-
-  function isGameOver() {
-    for (let r = 0; r < size; r++) {
-      for (let c = 0; c < size; c++) {
-        if (board[r][c] === 0) return false;
-        if (r < size - 1 && board[r][c] === board[r + 1][c]) return false;
-        if (c < size - 1 && board[r][c] === board[r][c + 1]) return false;
-      }
-    }
-    return true;
-  }
-
-  function showOverlay(text, type) {
-    overlayText.textContent = text;
-    overlayText.className = 'g2048-overlay-text ' + type;
-    overlayEl.classList.add('active');
   }
 
   function handleKey(e) {
-    const key = e.key;
-    let dir = null;
-    if (key === 'ArrowUp' || key === 'w' || key === 'W') dir = 'up';
-    else if (key === 'ArrowDown' || key === 's' || key === 'S') dir = 'down';
-    else if (key === 'ArrowLeft' || key === 'a' || key === 'A') dir = 'left';
-    else if (key === 'ArrowRight' || key === 'd' || key === 'D') dir = 'right';
+    const map = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right', w: 'up', s: 'down', a: 'left', d: 'right', W: 'up', S: 'down', A: 'left', D: 'right' };
+    const dir = map[e.key];
     if (dir) {
       e.preventDefault();
       move(dir);
     }
-  }
-
-  function handleRestart() {
-    initBoard();
-    overlayEl.classList.remove('active');
   }
 
   function handleOverlayClick() {
@@ -176,51 +161,21 @@ function initGame(container) {
       keepPlaying = true;
       overlayEl.classList.remove('active');
       messageEl.textContent = '';
-      messageEl.className = 'g2048-message';
-    }
-  }
-
-  function handleTouchStart(e) {
-    if (e.touches.length !== 1) return;
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-  }
-
-  function handleTouchEnd(e) {
-    if (e.changedTouches.length !== 1) return;
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    const dy = e.changedTouches[0].clientY - touchStartY;
-    const absDx = Math.abs(dx);
-    const absDy = Math.abs(dy);
-    if (Math.max(absDx, absDy) < 20) return;
-    if (absDx > absDy) {
-      move(dx > 0 ? 'right' : 'left');
     } else {
-      move(dy > 0 ? 'down' : 'up');
+      initBoard();
     }
   }
-
-  let touchStartX = 0;
-  let touchStartY = 0;
-
-  container.addEventListener('keydown', handleKey);
-  restartBtn.addEventListener('click', handleRestart);
-  overlayEl.addEventListener('click', handleOverlayClick);
-  gridEl.addEventListener('touchstart', handleTouchStart, { passive: true });
-  gridEl.addEventListener('touchend', handleTouchEnd, { passive: true });
-
-  container.tabIndex = 0;
-  container.focus();
 
   createGrid();
   initBoard();
+  document.addEventListener('keydown', handleKey);
+  restartBtn.addEventListener('click', initBoard);
+  if (overlayBtn) overlayBtn.addEventListener('click', handleOverlayClick);
 
-  return () => {
-    container.removeEventListener('keydown', handleKey);
-    restartBtn.removeEventListener('click', handleRestart);
-    overlayEl.removeEventListener('click', handleOverlayClick);
-    gridEl.removeEventListener('touchstart', handleTouchStart);
-    gridEl.removeEventListener('touchend', handleTouchEnd);
+  return function destroy() {
+    document.removeEventListener('keydown', handleKey);
+    restartBtn.removeEventListener('click', initBoard);
+    if (overlayBtn) overlayBtn.removeEventListener('click', handleOverlayClick);
   };
 }
 }
