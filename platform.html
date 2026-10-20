@@ -261,6 +261,40 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
 *{margin:0;padding:0;box-sizing:border-box}.pz-wrap{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;color:#1e293b;padding:16px;min-height:100%;display:flex;flex-direction:column;align-items:center}.pz-head{width:100%;max-width:420px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px}.pz-title{font-size:20px;font-weight:700;color:#1e293b}.pz-stats{display:flex;gap:8px}.pz-box{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:6px 12px;text-align:center;min-width:64px;box-shadow:0 1px 3px rgba(0,0,0,.04)}.pz-box .lbl{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.5px}.pz-box .val{font-size:18px;font-weight:700;color:#7c3aed}.pz-board{position:relative;width:100%;max-width:420px;aspect-ratio:1;background:#eef1f7;border:1px solid #e2e8f0;border-radius:14px;padding:8px;box-shadow:0 2px 8px rgba(0,0,0,.05);touch-action:none}.pz-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);gap:8px;width:100%;height:100%}.pz-cell{background:rgba(255,255,255,.6);border-radius:8px}.pz-tiles{position:absolute;inset:8px;pointer-events:none}.pz-tile{position:absolute;display:flex;align-items:center;justify-content:center;border-radius:8px;font-weight:700;transition:transform .12s ease,opacity .12s ease;box-shadow:0 1px 3px rgba(0,0,0,.06)}.pz-new{animation:pzpop .18s ease}.pz-merged{animation:pzmerge .18s ease}@keyframes pzpop{0%{transform:scale(.4)}100%{transform:scale(1)}}@keyframes pzmerge{0%{transform:scale(1)}50%{transform:scale(1.18)}100%{transform:scale(1)}}.pz-ctrl{display:flex;gap:10px;margin-top:14px}.pz-btn{font-family:inherit;font-size:14px;font-weight:600;padding:9px 20px;border-radius:10px;border:1px solid #e2e8f0;background:#fff;color:#1e293b;cursor:pointer;transition:all .15s;box-shadow:0 1px 3px rgba(0,0,0,.04)}.pz-btn:hover{border-color:#7c3aed;color:#7c3aed}.pz-btn:active{transform:scale(.97)}.pz-btn.primary{background:#7c3aed;border-color:#7c3aed;color:#fff}.pz-btn.primary:hover{background:#6d28d9;border-color:#6d28d9;color:#fff}.pz-hint{margin-top:12px;font-size:12px;color:#94a3b8;text-align:center}
 /* === gbfdcd24a_2 === */
 #game-container-2048{width:100%;max-width:680px;margin:0 auto;padding:16px;box-sizing:border-box;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;color:#1e293b;user-select:none;-webkit-tap-highlight-color:transparent}#game-container-2048 *{box-sizing:border-box}@media(max-width:480px){#game-container-2048{padding:8px}}#game-container-2048 .g2048-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}#game-container-2048 .g2048-title{font-size:20px;font-weight:700;color:#1e293b}#game-container-2048 .g2048-scores{display:flex;gap:8px;align-items:center}#game-container-2048 .g2048-score-box{background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:6px 12px;text-align:center;min-width:70px}#game-container-2048 .g2048-score-label{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.05em}#game-container-2048 .g2048-score-value{font-size:18px;font-weight:700;color:#1e293b}#game-container-2048 .g2048-btn{background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:8px 14px;font-size:14px;font-weight:600;color:#1e293b;cursor:pointer;transition:background .12s,border-color .12s}#game-container-2048 .g2048-btn:hover{background:#f1f5f9;border-color:#cbd5e1}#game-container-2048 .g2048-btn:active{transform:scale(.97)}#game-container-2048 .g2048-board-wrap{position:relative;background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:8px;box-shadow:0 2px 8px rgba(0,0,0,.04)}#game-container-2048 .g2048-board{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;aspect-ratio:1/1;width:100%}#game-container-2048 .g2048-cell{display:flex;align-items:center;justify-content:center;border-radius:8px;font-weight:700;background:#f1f5f9;color:#1e293b;transition:background .12s,color .12s,transform .12s;font-size:clamp(16px,5vw,30px);overflow:hidden;line-height:1}#game-container-2048 .g2048-v2{background:#ede9fe;color:#7c3aed}#game-container-2048 .g2048-v4{background:#ddd6fe;color:#7c3aed}#game-container-2048 .g2048-v8{background:#cffafe;color:#0891b2}#game-container-2048 .g2048-v16{background:#a5f3fc;color:#0891b2}#game-container-2048 .g2048-v32{background:#d1fae5;color:#059669}#game-container-2048 .g2048-v64{background:#a7f3d0;color:#059669}#game-container-2048 .g2048-v128{background:#fef3c7;color:#b45309}#game-container-2048 .g2048-v256{background:#fde68a;color:#b45309}#game-container-2048 .g2048-v512{background:#fecaca;color:#dc2626}#game-container-2048 .g2048-v1024{background:#fca5a5;color:#b91c1c}#game-container-2048 .g2048-v2048{background:#f87171;color:#ffffff}#game-container-2048 .g2048-vbig{background:#ef4444;color:#ffffff}#game-container-2048 .g2048-pop{animation:g2048pop .14s ease}#game-container-2048 .g2048-overlay{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;background:rgba(255,255,255,.92);border-radius:12px;z-index:10;gap:10px;padding:16px;text-align:center}#game-container-2048 .g2048-overlay.g2048-show{display:flex}#game-container-2048 .g2048-overlay-title{font-size:24px;font-weight:700;color:#1e293b}#game-container-2048 .g2048-overlay-title.g2048-win{color:#059669}#game-container-2048 .g2048-overlay-title.g2048-lose{color:#dc2626}#game-container-2048 .g2048-overlay-sub{font-size:14px;color:#64748b}@keyframes g2048pop{0%{transform:scale(.85)}100%{transform:scale(1)}}
+/* === gbfdcd24a_3 === */
+#g2048-root{background:#f8f9fc;border-radius:14px;padding:16px;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:#1e293b;max-width:680px;margin:0 auto;box-sizing:border-box;user-select:none;-webkit-user-select:none;touch-action:none;position:relative}
+#g2048-root *{box-sizing:border-box}
+.g2048-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.g2048-title{font-size:18px;font-weight:700;color:#1e293b}
+.g2048-scores{display:flex;gap:8px}
+.g2048-score{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:6px 12px;text-align:center;min-width:74px;box-shadow:0 1px 3px rgba(30,41,59,.05)}
+.g2048-score span{display:block;font-size:10px;color:#64748b;letter-spacing:.5px}
+.g2048-score b{font-size:17px;color:#7c3aed}
+.g2048-board{background:#e8ecf3;border-radius:12px;padding:8px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);gap:8px;aspect-ratio:1/1;width:100%;max-width:420px;margin:0 auto;position:relative}
+.g2048-cell{border-radius:8px;background:rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:clamp(16px,6vw,30px);color:#1e293b;transition:transform .08s ease;overflow:hidden}
+.g2048-cell.g2048-t2{background:#fff;color:#1e293b;border:1px solid #e2e8f0}
+.g2048-cell.g2048-t4{background:#f1f5f9;color:#1e293b;border:1px solid #e2e8f0}
+.g2048-cell.g2048-t8{background:#7c3aed;color:#fff}
+.g2048-cell.g2048-t16{background:#6d28d9;color:#fff}
+.g2048-cell.g2048-t32{background:#06b6d4;color:#fff}
+.g2048-cell.g2048-t64{background:#0891b2;color:#fff}
+.g2048-cell.g2048-t128{background:#10b981;color:#fff}
+.g2048-cell.g2048-t256{background:#059669;color:#fff}
+.g2048-cell.g2048-t512{background:#f59e0b;color:#fff}
+.g2048-cell.g2048-t1024{background:#d97706;color:#fff}
+.g2048-cell.g2048-t2048{background:#ef4444;color:#fff}
+.g2048-cell.g2048-merge{animation:g2048pop .18s ease}
+@keyframes g2048pop{0%{transform:scale(1)}50%{transform:scale(1.16)}100%{transform:scale(1)}}
+.g2048-footer{display:flex;align-items:center;justify-content:space-between;margin-top:14px;gap:10px;flex-wrap:wrap}
+.g2048-hint{font-size:12px;color:#64748b}
+.g2048-btn{background:#7c3aed;color:#fff;border:none;border-radius:10px;padding:9px 20px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s}
+.g2048-btn:hover{background:#6d28d9}
+.g2048-btn:active{transform:scale(.97)}
+.g2048-overlay{position:absolute;inset:0;background:rgba(248,249,252,.92);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;z-index:5;opacity:0;pointer-events:none;transition:opacity .25s}
+.g2048-overlay.g2048-show{opacity:1;pointer-events:auto}
+.g2048-msg{font-size:24px;font-weight:700}
+.g2048-sub{font-size:13px;color:#64748b}
+@media(max-width:480px){.g2048-title{font-size:16px}.g2048-score b{font-size:15px}}
 /* === gc14ed3c8 === */
 *{box-sizing:border-box;margin:0;padding:0}.g2048-wrap{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;color:#1e293b;padding:16px;max-width:680px;margin:0 auto;min-height:100%}.g2048-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}.g2048-scores{display:flex;gap:10px}.g2048-box{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:8px 16px;text-align:center;min-width:84px;box-shadow:0 1px 3px rgba(15,23,42,.05)}.g2048-box .lab{font-size:11px;color:#64748b;letter-spacing:.5px;text-transform:uppercase}.g2048-box .val{font-size:20px;font-weight:700;color:#1e293b}.g2048-btn{background:#7c3aed;color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s}.g2048-btn:hover{background:#6d28d9}.g2048-btn:active{transform:scale(.97)}.g2048-board{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:10px;box-shadow:0 1px 4px rgba(15,23,42,.06);position:relative;touch-action:none}.g2048-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;aspect-ratio:1/1}.g2048-cell{border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:clamp(16px,5vw,30px);background:#f1f5f9;color:transparent;transition:background .12s}.g2048-cell[data-v="2"]{background:#eef2ff;color:#4338ca}.g2048-cell[data-v="4"]{background:#e0e7ff;color:#3730a3}.g2048-cell[data-v="8"]{background:#c7d2fe;color:#312e81}.g2048-cell[data-v="16"]{background:#a5b4fc;color:#1e1b4b}.g2048-cell[data-v="32"]{background:#818cf8;color:#fff}.g2048-cell[data-v="64"]{background:#6366f1;color:#fff}.g2048-cell[data-v="128"]{background:#06b6d4;color:#fff}.g2048-cell[data-v="256"]{background:#0891b2;color:#fff}.g2048-cell[data-v="512"]{background:#10b981;color:#fff}.g2048-cell[data-v="1024"]{background:#f59e0b;color:#fff}.g2048-cell[data-v="2048"]{background:#ef4444;color:#fff}.g2048-cell[data-v="4096"]{background:#7c3aed;color:#fff}.g2048-pop{animation:g2048pop .2s ease}@keyframes g2048pop{0%{transform:scale(.7)}100%{transform:scale(1)}}.g2048-over{position:absolute;inset:0;border-radius:14px;background:rgba(248,249,252,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;opacity:0;pointer-events:none;transition:opacity .25s}.g2048-over.show{opacity:1;pointer-events:auto}.g2048-over .msg{font-size:24px;font-weight:700}.g2048-over .sub{font-size:14px;color:#64748b}.g2048-hint{margin-top:12px;font-size:13px;color:#64748b;text-align:center;line-height:1.6}
 /* === gc14ed3c8_2 === */
@@ -901,6 +935,13 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background
       <div class="tags">数字合并挑战</div>
     </div>
   </div>
+<div class="game-card" onclick="openGame('gbfdcd24a_3')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' rx='10' fill='#f8f9fc'/><rect x='6' y='6' width='20' height='20' rx='4' fill='#e2e8f0'/><rect x='30' y='6' width='20' height='20' rx='4' fill='#e2e8f0'/><rect x='6' y='30' width='20' height='20' rx='4' fill='#7c3aed'/><rect x='30' y='30' width='20' height='20' rx='4' fill='#06b6d4'/><text x='16' y='23' font-size='10' font-family='Segoe UI' fill='#64748b' text-anchor='middle'>2</text><text x='40' y='23' font-size='10' font-family='Segoe UI' fill='#64748b' text-anchor='middle'>4</text><text x='16' y='47' font-size='10' font-family='Segoe UI' fill='#ffffff' text-anchor='middle'>8</text><text x='40' y='47' font-size='10' font-family='Segoe UI' fill='#ffffff' text-anchor='middle'>16</text></svg></div>
+    <div class="info">
+      <div class="name">数字拼图 2048</div>
+      <div class="tags">合并数字挑战高分</div>
+    </div>
+  </div>
 <div class="game-card" onclick="openGame('gc14ed3c8')">
     <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' rx='12' fill='#f8f9fc'/><rect x='8' y='8' width='18' height='18' rx='4' fill='#e2e8f0'/><rect x='30' y='8' width='18' height='18' rx='4' fill='#7c3aed'/><rect x='8' y='30' width='18' height='18' rx='4' fill='#06b6d4'/><rect x='30' y='30' width='18' height='18' rx='4' fill='#10b981'/></svg></div>
     <div class="info">
@@ -1124,6 +1165,7 @@ function openGame(type) {
     gbccbb7f3: 'Pong Battle 乒乓球对战',
     gbfdcd24a: '数字拼图 2048',
     gbfdcd24a_2: '数字拼图 2048',
+    gbfdcd24a_3: '数字拼图 2048',
     gc14ed3c8: '数字合成 2048',
     gc14ed3c8_2: '数字合成 2048',
     gcb95c8fb: '数字华容道 · Number Slide',
@@ -1205,6 +1247,7 @@ function openGame(type) {
   else if (type === 'gbccbb7f3') init_gbccbb7f3(content);
   else if (type === 'gbfdcd24a') init_gbfdcd24a(content);
   else if (type === 'gbfdcd24a_2') init_gbfdcd24a_2(content);
+  else if (type === 'gbfdcd24a_3') init_gbfdcd24a_3(content);
   else if (type === 'gc14ed3c8') init_gc14ed3c8(content);
   else if (type === 'gc14ed3c8_2') init_gc14ed3c8_2(content);
   else if (type === 'gcb95c8fb') init_gcb95c8fb(content);
@@ -6641,6 +6684,185 @@ var size=4,board=[],score=0,best=0,over=false,won=false,animMap={};var palette={
 // === gbfdcd24a_2 ===
 function init_gbfdcd24a_2(container) {
 var size=4;var board=[];var score=0;var best=0;var won=false;var gameOver=false;var animating=false;var overlay=null;var boardEl=null;var scoreEl=null;var bestEl=null;var animTimer=null;function deepCopy(b){return b.map(function(r){return r.slice()})}function emptyCells(b){var cells=[];for(var i=0;i<size;i++){for(var j=0;j<size;j++){if(b[i][j]===0)cells.push([i,j])}}return cells}function addRandom(b){var cells=emptyCells(b);if(cells.length===0)return false;var pick=cells[Math.floor(Math.random()*cells.length)];var val=Math.random()<0.9?2:4;b[pick[0]][pick[1]]=val;return true}function newGame(){if(animTimer){clearTimeout(animTimer);animTimer=null}board=[];for(var i=0;i<size;i++){var row=[];for(var j=0;j<size;j++)row.push(0);board.push(row)}score=0;won=false;gameOver=false;animating=false;addRandom(board);addRandom(board);render();hideOverlay();updateScores()}function slideRow(row){var filtered=row.filter(function(v){return v!==0});var merged=[];var gained=0;for(var i=0;i<filtered.length;i++){if(i<filtered.length-1&&filtered[i]===filtered[i+1]){var m=filtered[i]*2;merged.push(m);gained+=m;if(m===2048)won=true;i++}else{merged.push(filtered[i])}}while(merged.length<size)merged.push(0);return{row:merged,gained:gained}}function rotateCW(b){var n=b.length;var res=[];for(var i=0;i<n;i++){var row=[];for(var j=0;j<n;j++){row.push(b[n-1-j][i])}res.push(row)}return res}function move(dir){if(gameOver||animating)return;var old=deepCopy(board);var gained=0;var times=dir==='left'?0:dir==='up'?3:dir==='right'?2:1;for(var t=0;t<times;t++)board=rotateCW(board);for(var i=0;i<size;i++){var result=slideRow(board[i]);board[i]=result.row;gained+=result.gained}for(var t2=0;t2<(4-times)%4;t2++)board=rotateCW(board);if(JSON.stringify(old)===JSON.stringify(board))return;score+=gained;if(score>best)best=score;animating=true;addRandom(board);render(true);updateScores();animTimer=setTimeout(function(){animTimer=null;animating=false;checkState()},140)}function canMove(){if(emptyCells(board).length>0)return true;for(var i=0;i<size;i++){for(var j=0;j<size;j++){var v=board[i][j];if(j<size-1&&board[i][j+1]===v)return true;if(i<size-1&&board[i+1][j]===v)return true}}return false}function checkState(){if(won&&!gameOver){showOverlay('win');gameOver=true;return}if(!canMove()){showOverlay('lose');gameOver=true}}function valueClass(v){if(v===0)return'';if(v<=2048)return'g2048-v'+v;return'g2048-vbig'}function render(pop){if(!boardEl)return;boardEl.innerHTML='';for(var i=0;i<size;i++){for(var j=0;j<size;j++){var v=board[i][j];var cell=document.createElement('div');cell.className='g2048-cell '+valueClass(v);cell.textContent=v===0?'':v;if(pop&&v!==0)cell.classList.add('g2048-pop');boardEl.appendChild(cell)}}}function updateScores(){if(scoreEl)scoreEl.textContent=score;if(bestEl)bestEl.textContent=best}function showOverlay(type){if(!overlay)return;var title=overlay.querySelector('.g2048-overlay-title');var sub=overlay.querySelector('.g2048-overlay-sub');if(!title||!sub)return;title.className='g2048-overlay-title';if(type==='win'){title.classList.add('g2048-win');title.textContent='You Win!';sub.textContent='达成 2048！继续挑战或重新开始。'}else{title.classList.add('g2048-lose');title.textContent='Game Over';sub.textContent='没有可移动的格子了。'}overlay.classList.add('g2048-show')}function hideOverlay(){if(overlay)overlay.classList.remove('g2048-show')}function handleKey(e){var key=e.key;var map={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down',a:'left',d:'right',w:'up',s:'down',A:'left',D:'right',W:'up',S:'down'};var dir=map[key];if(dir){e.preventDefault();move(dir)}}function init(){var root=document.getElementById('game-container-2048');if(!root)return;root.innerHTML='<div class="g2048-header"><div class="g2048-title">2048</div><div class="g2048-scores"><div class="g2048-score-box"><div class="g2048-score-label">Score</div><div class="g2048-score-value" id="g2048-score">0</div></div><div class="g2048-score-box"><div class="g2048-score-label">Best</div><div class="g2048-score-value" id="g2048-best">0</div></div><button type="button" class="g2048-btn" id="g2048-restart">重来</button></div></div><div class="g2048-board-wrap"><div class="g2048-board" id="g2048-board"></div><div class="g2048-overlay"><div class="g2048-overlay-title"></div><div class="g2048-overlay-sub"></div><button type="button" class="g2048-btn" id="g2048-overlay-btn">再来一局</button></div></div>';boardEl=document.getElementById('g2048-board');scoreEl=document.getElementById('g2048-score');bestEl=document.getElementById('g2048-best');overlay=root.querySelector('.g2048-overlay');var restartBtn=document.getElementById('g2048-restart');var overlayBtn=document.getElementById('g2048-overlay-btn');if(restartBtn)restartBtn.addEventListener('click',newGame);if(overlayBtn)overlayBtn.addEventListener('click',newGame);document.addEventListener('keydown',handleKey);newGame()}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init)}else{init()}
+}
+// === gbfdcd24a_3 ===
+function init_gbfdcd24a_3(container) {
+container.innerHTML='<div id="g2048-root"><div class="g2048-header"><div class="g2048-title">数字拼图 2048</div><div class="g2048-scores"><div class="g2048-score"><span>SCORE</span><b id="g2048-score">0</b></div><div class="g2048-score"><span>BEST</span><b id="g2048-best">0</b></div></div></div><div class="g2048-board" id="g2048-board"></div><div class="g2048-footer"><div class="g2048-hint">方向键 / WASD 移动 · 手机可滑动</div><button class="g2048-btn" id="g2048-restart">重新开始</button></div><div class="g2048-overlay" id="g2048-overlay"><div class="g2048-msg" id="g2048-msg"></div><div class="g2048-sub" id="g2048-sub"></div><button class="g2048-btn" id="g2048-again">再来一局</button></div></div>';
+  var root=container.querySelector('#g2048-root');
+  var boardEl=container.querySelector('#g2048-board');
+  var scoreEl=container.querySelector('#g2048-score');
+  var bestEl=container.querySelector('#g2048-best');
+  var overlay=container.querySelector('#g2048-overlay');
+  var msgEl=container.querySelector('#g2048-msg');
+  var subEl=container.querySelector('#g2048-sub');
+  var N=4;
+  var grid=[];
+  var score=0;
+  var best=0;
+  var merged=[];
+  var over=false;
+  var won=false;
+  var cells=[];
+  try{best=parseInt(localStorage.getItem('g2048_best')||'0',10)||0;}catch(e){best=0;}
+  bestEl.textContent=best;
+  function initBoardDom(){
+    boardEl.innerHTML='';
+    cells=[];
+    for(var i=0;i<N*N;i++){
+      var d=document.createElement('div');
+      d.className='g2048-cell';
+      boardEl.appendChild(d);
+      cells.push(d);
+    }
+  }
+  function newGrid(){
+    grid=[];
+    for(var r=0;r<N;r++){
+      var row=[];
+      for(var c=0;c<N;c++){row.push(0);}
+      grid.push(row);
+    }
+    merged=[];
+    for(var m=0;m<N;m++){var mrow=[];for(var n=0;n<N;n++){mrow.push(false);}merged.push(mrow);}
+    score=0;
+    over=false;
+    won=false;
+    scoreEl.textContent='0';
+    overlay.classList.remove('g2048-show');
+    addRandom();
+    addRandom();
+    render();
+  }
+  function addRandom(){
+    var empty=[];
+    for(var r=0;r<N;r++){for(var c=0;c<N;c++){if(grid[r][c]===0){empty.push([r,c]);}}}
+    if(empty.length===0){return;}
+    var pick=empty[Math.floor(Math.random()*empty.length)];
+    grid[pick[0]][pick[1]]=Math.random()<0.9?2:4;
+  }
+  function render(){
+    for(var r=0;r<N;r++){
+      for(var c=0;c<N;c++){
+        var v=grid[r][c];
+        var el=cells[r*N+c];
+        var cls='g2048-cell';
+        if(v>0){cls+=' g2048-t'+v;}
+        if(merged[r][c]){cls+=' g2048-merge';}
+        el.className=cls;
+        el.textContent=v>0?String(v):'';
+      }
+    }
+  }
+  function resetMerged(){
+    for(var r=0;r<N;r++){for(var c=0;c<N;c++){merged[r][c]=false;}}
+  }
+  function slideLine(line){
+    var arr=line.filter(function(x){return x!==0;});
+    var res=[];
+    var i=0;
+    while(i<arr.length){
+      if(i+1<arr.length&&arr[i]===arr[i+1]){
+        var nv=arr[i]*2;
+        res.push(nv);
+        score+=nv;
+        if(nv===2048){won=true;}
+        i+=2;
+      }else{
+        res.push(arr[i]);
+        i+=1;
+      }
+    }
+    while(res.length<N){res.push(0);}
+    return res;
+  }
+  function move(dir){
+    if(over){return;}
+    resetMerged();
+    var moved=false;
+    var r,c;
+    for(var k=0;k<N;k++){
+      var line=[];
+      var coords=[];
+      for(var t=0;t<N;t++){
+        if(dir==='left'){r=k;c=t;}
+        else if(dir==='right'){r=k;c=N-1-t;}
+        else if(dir==='up'){r=t;c=k;}
+        else{r=N-1-t;c=k;}
+        line.push(grid[r][c]);
+        coords.push([r,c]);
+      }
+      var before=line.slice();
+      var after=slideLine(line);
+      for(var p=0;p<N;p++){
+        var rr=coords[p][0];
+        var cc=coords[p][1];
+        if(grid[rr][cc]!==after[p]){moved=true;}
+        grid[rr][cc]=after[p];
+        if(after[p]!==0&&before[p]!==0&&after[p]!==before[p]){merged[rr][cc]=true;}
+      }
+    }
+    if(moved){
+      addRandom();
+      scoreEl.textContent=String(score);
+      if(score>best){best=score;bestEl.textContent=String(best);try{localStorage.setItem('g2048_best',String(best));}catch(e){}}
+      render();
+      if(won){showOverlay('恭喜达成 2048！','最终得分 '+score);over=true;return;}
+      if(!canMove()){over=true;showOverlay('游戏结束','最终得分 '+score);}
+    }
+  }
+  function canMove(){
+    for(var r=0;r<N;r++){
+      for(var c=0;c<N;c++){
+        if(grid[r][c]===0){return true;}
+        if(c+1<N&&grid[r][c]===grid[r][c+1]){return true;}
+        if(r+1<N&&grid[r][c]===grid[r+1][c]){return true;}
+      }
+    }
+    return false;
+  }
+  function showOverlay(msg,sub){
+    msgEl.textContent=msg;
+    subEl.textContent=sub;
+    overlay.classList.add('g2048-show');
+  }
+  function keyHandler(e){
+    var key=e.key;
+    var handled=true;
+    if(key==='ArrowLeft'||key==='a'||key==='A'){move('left');}
+    else if(key==='ArrowRight'||key==='d'||key==='D'){move('right');}
+    else if(key==='ArrowUp'||key==='w'||key==='W'){move('up');}
+    else if(key==='ArrowDown'||key==='s'||key==='S'){move('down');}
+    else{handled=false;}
+    if(handled){e.preventDefault();}
+  }
+  var touchStartX=0;
+  var touchStartY=0;
+  function onTouchStart(e){
+    if(e.touches.length!==1){return;}
+    touchStartX=e.touches[0].clientX;
+    touchStartY=e.touches[0].clientY;
+  }
+  function onTouchEnd(e){
+    if(e.changedTouches.length!==1){return;}
+    var dx=e.changedTouches[0].clientX-touchStartX;
+    var dy=e.changedTouches[0].clientY-touchStartY;
+    var ax=Math.abs(dx);
+    var ay=Math.abs(dy);
+    if(Math.max(ax,ay)<24){return;}
+    if(ax>ay){move(dx>0?'right':'left');}
+    else{move(dy>0?'down':'up');}
+  }
+  function restart(){newGrid();}
+  initBoardDom();
+  newGrid();
+  root.addEventListener('keydown',keyHandler);
+  document.addEventListener('keydown',keyHandler);
+  boardEl.addEventListener('touchstart',onTouchStart,{passive:true});
+  boardEl.addEventListener('touchend',onTouchEnd,{passive:true});
+  container.querySelector('#g2048-restart').addEventListener('click',restart);
+  container.querySelector('#g2048-again').addEventListener('click',restart);
+  root.setAttribute('tabindex','0');
+  root.focus();
 }
 // === gc14ed3c8 ===
 function init_gc14ed3c8(container) {
