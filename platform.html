@@ -259,6 +259,34 @@ body{margin:0;padding:0;background:#f8f9fc;font-family:'Segoe UI',system-ui,-app
 /* === maze === */
 /* === gba38edce === */
 .mzGame{background:#f8f9fc;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;display:flex;flex-direction:column;align-items:center;padding:16px;box-sizing:border-box;color:#1e293b;user-select:none}.mzHeader{width:100%;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.mzTitle{font-size:18px;font-weight:600;color:#1e293b}.mzStatus{font-size:14px;color:#64748b}.mzBoard{position:relative;background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 2px 4px rgba(0,0,0,0.05);padding:12px}.mzCanvasWrap{position:relative;display:block}.mzCanvas{display:block;background:#fff;border-radius:8px}.mzControls{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;justify-content:center}.mzBtn{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:8px 16px;font-size:14px;color:#1e293b;cursor:pointer;transition:all 0.2s}.mzBtn:hover{background:#f1f5f9;border-color:#cbd5e1}.mzBtn:active{transform:scale(0.95)}.mzBtnPrimary{background:#7c3aed;border-color:#7c3aed;color:#fff}.mzBtnPrimary:hover{background:#6d28d9;border-color:#6d28d9}.mzWinOverlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,0.8);display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:20px;font-weight:600;color:#10b981;animation:mzFadeIn 0.3s ease}.mzWinOverlay span{background:#fff;padding:12px 24px;border-radius:12px;border:2px solid #10b981;box-shadow:0 4px 6px rgba(0,0,0,0.1)}.mzGameOver{color:#ef4444}.mzControlsHint{font-size:12px;color:#64748b;margin-top:8px;text-align:center}@keyframes mzFadeIn{from{opacity:0;transform:scale(0.8)}to{opacity:1;transform:scale(1)}}@media(max-width:480px){.mzBtn{font-size:12px;padding:6px 10px}.mzTitle{font-size:16px}}
+/* === gbc5e8933 === */
+*{box-sizing:border-box;margin:0;padding:0}
+.pz-wrap{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;color:#1e293b;padding:16px;display:flex;flex-direction:column;align-items:center;gap:14px;min-height:100%;-webkit-user-select:none;user-select:none}
+.pz-head{width:100%;max-width:420px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:10px 14px;box-shadow:0 1px 3px rgba(30,41,59,.05)}
+.pz-stat{display:flex;flex-direction:column;align-items:center;min-width:64px}
+.pz-stat b{font-size:18px;font-weight:700;color:#1e293b;font-variant-numeric:tabular-nums}
+.pz-stat span{font-size:11px;color:#64748b;letter-spacing:.5px}
+.pz-btn{border:1px solid #e2e8f0;background:#fff;color:#1e293b;font-family:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:9px;cursor:pointer;transition:background .15s,border-color .15s,transform .1s;display:inline-flex;align-items:center;gap:6px}
+.pz-btn:hover{background:#f1f5f9;border-color:#cbd5e1}
+.pz-btn:active{transform:scale(.96)}
+.pz-btn.pz-primary{background:#7c3aed;border-color:#7c3aed;color:#fff}
+.pz-btn.pz-primary:hover{background:#6d28d9;border-color:#6d28d9}
+.pz-board{position:relative;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:8px;box-shadow:0 2px 8px rgba(30,41,59,.06);touch-action:manipulation}
+.pz-grid{display:grid;gap:6px}
+.pz-tile{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;border-radius:9px;cursor:pointer;transition:transform .12s ease,background .12s,color .12s;color:#fff;border:none;font-family:inherit;will-change:transform}
+.pz-tile.pz-empty{background:transparent!important;cursor:default;box-shadow:none!important;color:transparent}
+.pz-tile:not(.pz-empty):hover{filter:brightness(1.08)}
+.pz-tile.pz-locked{cursor:default}
+.pz-tile.pz-good{background:#10b981!important}
+.pz-foot{font-size:12px;color:#64748b;text-align:center;max-width:420px;line-height:1.5}
+.pz-overlay{position:absolute;inset:0;background:rgba(248,249,252,.92);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;opacity:0;pointer-events:none;transition:opacity .25s}
+.pz-overlay.pz-show{opacity:1;pointer-events:auto}
+.pz-overlay h2{font-size:22px;color:#1e293b}
+.pz-overlay p{font-size:13px;color:#64748b}
+.pz-pop{animation:pzPop .45s ease}
+@keyframes pzPop{0%{transform:scale(.85);opacity:0}60%{transform:scale(1.04)}100%{transform:scale(1);opacity:1}}
+@media(max-width:480px){.pz-tile{font-size:18px}.pz-stat b{font-size:16px}.pz-head{padding:8px 10px}}
+
 /* === gbccbb7f3 === */
 .pong-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;width:100%;background:#f8f9fc;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;user-select:none}.pong-card{background:#fff;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.05);border:1px solid #e2e8f0;padding:20px;width:min(680px,100%);box-sizing:border-box}.pong-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;color:#1e293b;font-weight:600}.pong-score{display:flex;gap:24px;align-items:center}.pong-score span{font-size:24px;min-width:40px;text-align:center}.pong-score .pong-left{color:#06b6d4}.pong-score .pong-right{color:#ef4444}.pong-canvas-container{position:relative;width:100%;aspect-ratio:2/1;background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;margin-bottom:16px}.pong-canvas{width:100%;height:100%;display:block}.pong-message{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,255,255,.85);padding:12px 24px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 4px 12px rgba(0,0,0,.1);font-size:20px;font-weight:700;color:#1e293b;pointer-events:none;opacity:0;transition:opacity .3s}.pong-message.show{opacity:1}.pong-controls{display:flex;justify-content:center;gap:16px;margin-top:12px;flex-wrap:wrap}.pong-btn{background:#fff;color:#1e293b;border:1px solid #e2e8f0;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,border-color .2s}.pong-btn:hover{background:#f1f5f9;border-color:#cbd5e1}.pong-btn:active{background:#e2e8f0}.pong-btn-primary{background:#7c3aed;color:#fff;border-color:#7c3aed}.pong-btn-primary:hover{background:#6d28d9;border-color:#6d28d9}.pong-info{display:flex;justify-content:center;gap:24px;margin-top:8px;color:#64748b;font-size:12px;flex-wrap:wrap}.pong-info span::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;background:#06b6d4}.pong-info span:nth-child(2)::before{background:#ef4444}.pong-reset{background:#f59e0b;color:#fff;border-color:#f59e0b}.pong-reset:hover{background:#d97706;border-color:#d97706}
 /* === gbfdcd24a === */
@@ -931,6 +959,13 @@ body{margin:0;padding:0;background:#f8f9fc;font-family:'Segoe UI',system-ui,-app
       <div class="tags">方向键走迷宫</div>
     </div>
   </div>
+<div class="game-card" onclick="openGame('gbc5e8933')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' rx='8' fill='#f8f9fc'/><g stroke='#e2e8f0' stroke-width='1'><rect x='8' y='8' width='40' height='40' rx='4' fill='#ffffff'/></g><g fill='#7c3aed'><rect x='11' y='11' width='10' height='10' rx='2'/><rect x='23' y='11' width='10' height='10' rx='2'/><rect x='35' y='11' width='10' height='10' rx='2'/></g><g fill='#06b6d4'><rect x='11' y='23' width='10' height='10' rx='2'/><rect x='23' y='23' width='10' height='10' rx='2'/><rect x='35' y='23' width='10' height='10' rx='2'/></g><g fill='#10b981'><rect x='11' y='35' width='10' height='10' rx='2'/><rect x='23' y='35' width='10' height='10' rx='2'/></g><rect x='35' y='35' width='10' height='10' rx='2' fill='none' stroke='#cbd5e1' stroke-width='1' stroke-dasharray='2 2'/></svg></div>
+    <div class="info">
+      <div class="name">数字华容道 15 Puzzle</div>
+      <div class="tags">滑块拼图挑战</div>
+    </div>
+  </div>
 <div class="game-card" onclick="openGame('gbccbb7f3')">
     <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc'/><rect x='2' y='2' width='52' height='52' rx='4' fill='#ffffff' stroke='#e2e8f0' stroke-width='1'/><line x1='28' y1='2' x2='28' y2='54' stroke='#e2e8f0' stroke-width='1' stroke-dasharray='4,4'/><circle cx='28' cy='28' r='4' fill='#7c3aed'/><rect x='6' y='8' width='4' height='16' rx='2' fill='#06b6d4'/><rect x='6' y='32' width='4' height='16' rx='2' fill='#ef4444'/></svg></div>
     <div class="info">
@@ -1181,6 +1216,7 @@ function openGame(type) {
     ga6b54796: '数字连线 Hex Merge',
     gae84ccb5: 'RhythmTap 节奏点',
     gba38edce: '迷宫探险 Maze Runner',
+    gbc5e8933: '数字华容道 15 Puzzle',
     gbccbb7f3: 'Pong Battle 乒乓球对战',
     gbfdcd24a: '数字拼图 2048',
     gbfdcd24a_2: '数字拼图 2048',
@@ -1265,6 +1301,7 @@ function openGame(type) {
   else if (type === 'ga6b54796') init_ga6b54796(content);
   else if (type === 'gae84ccb5') init_gae84ccb5(content);
   else if (type === 'gba38edce') init_gba38edce(content);
+  else if (type === 'gbc5e8933') init_gbc5e8933(content);
   else if (type === 'gbccbb7f3') init_gbccbb7f3(content);
   else if (type === 'gbfdcd24a') init_gbfdcd24a(content);
   else if (type === 'gbfdcd24a_2') init_gbfdcd24a_2(content);
@@ -6701,6 +6738,221 @@ function init_gba38edce(container) {
   return function cleanup() {
     document.removeEventListener('keydown', handleKey);
   };
+}
+// === gbc5e8933 ===
+function init_gbc5e8933(container) {
+const N=4;
+  const COLORS=['#7c3aed','#06b6d4','#10b981','#f59e0b','#ef4444'];
+  container.innerHTML='';
+  const wrap=document.createElement('div');
+  wrap.className='pz-wrap';
+  const head=document.createElement('div');
+  head.className='pz-head';
+  const statMoves=document.createElement('div');
+  statMoves.className='pz-stat';
+  statMoves.innerHTML='<b>0</b><span>步数</span>';
+  const statTime=document.createElement('div');
+  statTime.className='pz-stat';
+  statTime.innerHTML='<b>00:00</b><span>时间</span>';
+  const statBest=document.createElement('div');
+  statBest.className='pz-stat';
+  statBest.innerHTML='<b>--</b><span>最佳</span>';
+  const btnRestart=document.createElement('button');
+  btnRestart.className='pz-btn pz-primary';
+  btnRestart.textContent='重来';
+  head.appendChild(statMoves);
+  head.appendChild(statTime);
+  head.appendChild(statBest);
+  head.appendChild(btnRestart);
+  wrap.appendChild(head);
+  const board=document.createElement('div');
+  board.className='pz-board';
+  const grid=document.createElement('div');
+  grid.className='pz-grid';
+  board.appendChild(grid);
+  const overlay=document.createElement('div');
+  overlay.className='pz-overlay';
+  overlay.innerHTML='<h2>完成！</h2><p class="pz-msg"></p>';
+  const ovBtn=document.createElement('button');
+  ovBtn.className='pz-btn pz-primary';
+  ovBtn.textContent='再来一局';
+  overlay.appendChild(ovBtn);
+  board.appendChild(overlay);
+  wrap.appendChild(board);
+  const foot=document.createElement('div');
+  foot.className='pz-foot';
+  foot.textContent='点击空格旁的方块滑动，或用方向键移动。把 1–15 按顺序排好即获胜。';
+  wrap.appendChild(foot);
+  container.appendChild(wrap);
+  const movesEl=statMoves.querySelector('b');
+  const timeEl=statTime.querySelector('b');
+  const bestEl=statBest.querySelector('b');
+  const msgEl=overlay.querySelector('.pz-msg');
+  let tiles=[];
+  let empty=15;
+  let moves=0;
+  let timer=null;
+  let seconds=0;
+  let playing=false;
+  let best=null;
+  try{ const s=localStorage.getItem('pz_best_moves'); if(s) best=parseInt(s,10); }catch(e){ best=null; }
+  if(best&&best>0){ bestEl.textContent=best; }
+  function tileColor(v){ return COLORS[(v-1)%COLORS.length]; }
+  function computeSize(){
+    const w=Math.min(container.clientWidth||420,420)-32;
+    const size=Math.max(200,Math.min(w,380));
+    return size;
+  }
+  function layout(){
+    const size=computeSize();
+    const gap=6;
+    const cell=(size-gap*(N-1))/N;
+    grid.style.gridTemplateColumns='repeat('+N+','+cell+'px)';
+    grid.style.gridTemplateRows='repeat('+N+','+cell+'px)';
+    grid.style.gap=gap+'px';
+    grid.style.width=size+'px';
+    grid.style.height=size+'px';
+    grid.querySelectorAll('.pz-tile').forEach(function(t){
+      t.style.fontSize=Math.round(cell*0.34)+'px';
+    });
+  }
+  function solved(){
+    for(let i=0;i<15;i++){ if(tiles[i]!==i+1) return false; }
+    return tiles[15]===0;
+  }
+  function fmt(s){
+    const m=Math.floor(s/60);
+    const ss=s%60;
+    return (m<10?'0':'')+m+':'+(ss<10?'0':'')+ss;
+  }
+  function startTimer(){
+    if(timer) return;
+    timer=setInterval(function(){
+      if(!playing) return;
+      seconds++;
+      timeEl.textContent=fmt(seconds);
+    },1000);
+  }
+  function stopTimer(){ if(timer){ clearInterval(timer); timer=null; } }
+  function render(){
+    grid.innerHTML='';
+    for(let i=0;i<16;i++){
+      const v=tiles[i];
+      const btn=document.createElement('button');
+      btn.className='pz-tile'+(v===0?' pz-empty':'');
+      btn.textContent=v===0?'':String(v);
+      if(v!==0){
+        btn.style.background=tileColor(v);
+      }
+      btn.dataset.idx=String(i);
+      btn.addEventListener('click',function(){ onTileClick(i); });
+      grid.appendChild(btn);
+    }
+    layout();
+  }
+  function isAdjacent(a,b){
+    const ra=Math.floor(a/N), ca=a%N;
+    const rb=Math.floor(b/N), cb=b%N;
+    return (Math.abs(ra-rb)+Math.abs(ca-cb))===1;
+  }
+  function onTileClick(i){
+    if(!playing) return;
+    if(i===empty) return;
+    if(!isAdjacent(i,empty)) return;
+    swap(i,empty);
+    empty=i;
+    afterMove();
+  }
+  function swap(a,b){
+    const t=tiles[a]; tiles[a]=tiles[b]; tiles[b]=t;
+  }
+  function afterMove(){
+    moves++;
+    movesEl.textContent=String(moves);
+    render();
+    if(solved()){
+      playing=false;
+      stopTimer();
+      const done=document.createElement('div');
+      done.className='pz-pop';
+      grid.appendChild(done);
+      msgEl.textContent='步数 '+moves+' · 用时 '+fmt(seconds);
+      overlay.classList.add('pz-show');
+      if(best===null||moves<best){
+        best=moves;
+        bestEl.textContent=String(best);
+        try{ localStorage.setItem('pz_best_moves',String(best)); }catch(e){}
+        msgEl.textContent+=' · 新纪录！';
+      }
+    }
+  }
+  function moveByDir(dr,dc){
+    if(!playing) return;
+    const er=Math.floor(empty/N), ec=empty%N;
+    const tr=er+dr, tc=ec+dc;
+    if(tr<0||tr>=N||tc<0||tc>=N) return;
+    const target=tr*N+tc;
+    swap(target,empty);
+    empty=target;
+    afterMove();
+  }
+  function keyHandler(e){
+    const map={ArrowUp:[-1,0],ArrowDown:[1,0],ArrowLeft:[0,-1],ArrowRight:[0,1],w:[-1,0],s:[1,0],a:[0,-1],d:[0,1],W:[-1,0],S:[1,0],A:[0,-1],D:[0,1]};
+    const m=map[e.key];
+    if(!m) return;
+    e.preventDefault();
+    moveByDir(m[0],m[1]);
+  }
+  function shuffle(){
+    tiles=[];
+    for(let i=1;i<N*N;i++) tiles.push(i);
+    tiles.push(0);
+    empty=15;
+    let last=-1;
+    for(let k=0;k<400;k++){
+      const er=Math.floor(empty/N), ec=empty%N;
+      const cand=[];
+      if(er>0) cand.push(empty-N);
+      if(er<N-1) cand.push(empty+N);
+      if(ec>0) cand.push(empty-1);
+      if(ec<N-1) cand.push(empty+1);
+      const pick=cand.filter(function(x){ return x!==last; });
+      const src=pick.length?pick[Math.floor(Math.random()*pick.length)]:cand[Math.floor(Math.random()*cand.length)];
+      swap(src,empty);
+      last=empty;
+      empty=src;
+    }
+    if(solved()) shuffle();
+  }
+  function newGame(){
+    stopTimer();
+    shuffle();
+    moves=0;
+    seconds=0;
+    playing=true;
+    movesEl.textContent='0';
+    timeEl.textContent='00:00';
+    overlay.classList.remove('pz-show');
+    render();
+    startTimer();
+  }
+  btnRestart.addEventListener('click',function(e){ e.stopPropagation(); newGame(); });
+  ovBtn.addEventListener('click',function(e){ e.stopPropagation(); newGame(); });
+  wrap.addEventListener('keydown',keyHandler);
+  wrap.tabIndex=0;
+  document.addEventListener('keydown',function(e){
+    if(e.key&&(e.key.indexOf('Arrow')===0||'wasdWASD'.indexOf(e.key)>=0)){
+      const active=document.activeElement;
+      if(active&&(active.tagName==='INPUT'||active.tagName==='TEXTAREA')) return;
+      keyHandler(e);
+    }
+  });
+  let resizeTimer=null;
+  window.addEventListener('resize',function(){
+    if(resizeTimer) clearTimeout(resizeTimer);
+    resizeTimer=setTimeout(layout,120);
+  });
+  newGame();
 }
 // === gbccbb7f3 ===
 function init_gbccbb7f3(container) {
