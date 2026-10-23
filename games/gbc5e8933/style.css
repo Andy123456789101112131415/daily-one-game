@@ -9,18 +9,15 @@
 .pz-btn:active{transform:scale(.96)}
 .pz-btn.pz-primary{background:#7c3aed;border-color:#7c3aed;color:#fff}
 .pz-btn.pz-primary:hover{background:#6d28d9;border-color:#6d28d9}
-.pz-board{position:relative;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:8px;box-shadow:0 2px 8px rgba(30,41,59,.06);touch-action:manipulation}
+.pz-board{position:relative;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:8px;box-shadow:0 2px 8px rgba(30,41,59,.06);touch-action:manipulation;max-width:100%}
 .pz-grid{display:grid;gap:6px}
 .pz-tile{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;border-radius:9px;cursor:pointer;transition:transform .12s ease,background .12s,color .12s;color:#fff;border:none;font-family:inherit;will-change:transform}
 .pz-tile.pz-empty{background:transparent!important;cursor:default;box-shadow:none!important;color:transparent}
 .pz-tile:not(.pz-empty):hover{filter:brightness(1.08)}
 .pz-tile.pz-locked{cursor:default}
 .pz-tile.pz-good{background:#10b981!important}
-.pz-foot{font-size:12px;color:#64748b;text-align:center;max-width:420px;line-height:1.5}
-.pz-overlay{position:absolute;inset:0;background:rgba(248,249,252,.92);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;opacity:0;pointer-events:none;transition:opacity .25s}
-.pz-overlay.pz-show{opacity:1;pointer-events:auto}
+.pz-overlay{position:absolute;inset:0;background:rgba(255,255,255,.94);border-radius:14px;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:20px;text-align:center;z-index:5}
+.pz-overlay.pz-show{display:flex}
 .pz-overlay h2{font-size:22px;color:#1e293b}
-.pz-overlay p{font-size:13px;color:#64748b}
-.pz-pop{animation:pzPop .45s ease}
-@keyframes pzPop{0%{transform:scale(.85);opacity:0}60%{transform:scale(1.04)}100%{transform:scale(1);opacity:1}}
-@media(max-width:480px){.pz-tile{font-size:18px}.pz-stat b{font-size:16px}.pz-head{padding:8px 10px}}
+.pz-overlay p{font-size:14px;color:#64748b}
+.pz-foot{font-size:12px;color:#64748b;text-align:center;max-width:420px;line-height:1.5}
