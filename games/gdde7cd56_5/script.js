@@ -69,71 +69,62 @@ function nmRender() {
       else if (dir === 'down') dr = 1;
       else if (dir === 'left') dc = -1;
       else if (dir === 'right') dc = 1;
-      nmTryMove(nmPlayerPos.r + dr, nmPlayerPos.c + dc);
+      const nr = nmPlayerPos.r + dr;
+      const nc = nmPlayerPos.c + dc;
+      if (nr >= 0 && nr < nmSize && nc >= 0 && nc < nmSize) {
+        nmTryMove(nr, nc);
+      }
     });
   });
 
-  nmContainer.addEventListener('keydown', function(e) {
-    if (nmGameOver) return;
-    let dr = 0, dc = 0;
-    if (e.key === 'ArrowUp') dr = -1;
-    else if (e.key === 'ArrowDown') dr = 1;
-    else if (e.key === 'ArrowLeft') dc = -1;
-    else if (e.key === 'ArrowRight') dc = 1;
-    else return;
-    e.preventDefault();
-    nmTryMove(nmPlayerPos.r + dr, nmPlayerPos.c + dc);
-  });
+  document.addEventListener('keydown', nmHandleKeydown);
+}
 
-  nmContainer.setAttribute('tabindex', '0');
-  nmContainer.focus();
+function nmHandleKeydown(e) {
+  if (nmGameOver) return;
+  let dr = 0, dc = 0;
+  if (e.key === 'ArrowUp') dr = -1;
+  else if (e.key === 'ArrowDown') dr = 1;
+  else if (e.key === 'ArrowLeft') dc = -1;
+  else if (e.key === 'ArrowRight') dc = 1;
+  else return;
+  e.preventDefault();
+  const nr = nmPlayerPos.r + dr;
+  const nc = nmPlayerPos.c + dc;
+  if (nr >= 0 && nr < nmSize && nc >= 0 && nc < nmSize) {
+    nmTryMove(nr, nc);
+  }
 }
 
 function nmTryMove(r, c) {
-  if (r < 0 || r >= nmSize || c < 0 || c >= nmSize) return;
+  if (nmGameOver) return;
   const dr = Math.abs(r - nmPlayerPos.r);
   const dc = Math.abs(c - nmPlayerPos.c);
   if (dr + dc !== 1) return;
   const val = nmGrid[r][c];
-  if (val === 0 || nmGameOver) return;
-  nmPlayerPos = {r:r,c:c};
-  nmSteps++;
-  if (r === 3 && c === 3) {
+  if (val === 0) {
+    nmPlayerPos = {r, c};
+    nmSteps++;
     nmGameOver = true;
     nmWin = true;
     if (nmSteps < nmBest) nmBest = nmSteps;
-    nmUpdate();
-    nmShowMessage('🎉 你赢了！步数: ' + nmSteps, 'win');
+    nmRender();
+    const msgEl = nmContainer.querySelector('#nm-message');
+    msgEl.textContent = '恭喜你到达终点！用了 ' + nmSteps + ' 步';
+    msgEl.className = 'nm-message nm-win';
+    return;
+  }
+  if (val > nmSteps) {
+    nmPlayerPos = {r, c};
+    nmSteps++;
+    nmRender();
+    const msgEl = nmContainer.querySelector('#nm-message');
+    msgEl.textContent = '移动成功，当前步数 ' + nmSteps;
+    msgEl.className = 'nm-message nm-info';
   } else {
-    nmUpdate();
+    const msgEl = nmContainer.querySelector('#nm-message');
+    msgEl.textContent = '数字太大，无法移动';
+    msgEl.className = 'nm-message nm-lose';
   }
 }
-
-function nmUpdate() {
-  const stepsEl = nmContainer.querySelector('#nm-steps');
-  if (stepsEl) stepsEl.textContent = nmSteps;
-  const bestEl = nmContainer.querySelector('#nm-best');
-  if (bestEl) bestEl.textContent = nmBest === Infinity ? '—' : nmBest;
-  const cells = nmContainer.querySelectorAll('.nm-cell');
-  cells.forEach(function(cell) {
-    const r = parseInt(cell.dataset.r);
-    const c = parseInt(cell.dataset.c);
-    cell.classList.toggle('nm-active', r === nmPlayerPos.r && c === nmPlayerPos.c);
-    if (nmGameOver) cell.classList.add('nm-disabled');
-  });
-}
-
-function nmShowMessage(text, type) {
-  const msgEl = nmContainer.querySelector('#nm-message');
-  if (!msgEl) return;
-  msgEl.textContent = text;
-  msgEl.className = 'nm-message nm-' + type;
-  if (type === 'win') {
-    msgEl.style.animation = 'none';
-    void msgEl.offsetWidth;
-    msgEl.style.animation = 'nmPop 0.4s ease';
-  }
-}
-
-nmInit();
 }
