@@ -1,8 +1,8 @@
-# 今日游戏: 数字迷宫 Number Maze
+# 今日游戏: 数字华容道 NumSlide
 
 > 做一个有趣的网页小游戏
 
-类型名: `gdde7cd56_5`
-审查: 1. 补全了被截断的JS代码，添加了nmTryMove和nmHandleKeydown函数。2. 修复了键盘事件监听器重复绑定的问题：在nmRender中每次渲染都会添加keydown监听，导致内存泄漏和重复响应；改为在nmInit中只绑定一次，并在nmRender中移除旧的监听器。3. 完善了游戏逻辑：移动时检查目标格子的数字是否大于当前步数，若大于则允许移动并增加步数，否则提示无法移动；到达终点时更新最佳步数并显示胜利消息。4. 修复了CSS中.nm-controls的flex-direction拼写错误，并补全了缺失的样式，确保布局正常。5. 确保重来按钮功能正常，重置所有状态。6. 保持了简洁的白色主题。
+类型名: `g55ca42f5`
+审查: 1. 修复 wrap 为 null 时后续 querySelector 报错：创建后重新查询 wrap。2. 补全被截断的 renderGrid 函数及后续逻辑（点击、移动、胜利判定、键盘、按钮绑定、初始化）。3. 修复 isSolved 在 initGame 中引用未初始化 tiles 的问题：将 isSolved 定义提前并确保 tiles 已填充。4. 洗牌增加 guard 计数防止极端死循环，并提供兜底可解排列。5. 自动还原按钮现在会停止计时、清空状态并显示完成提示，重置彻底。6. 键盘方向键支持滑动，并阻止页面滚动。7. CSS 补全被截断的 @keyframes，增加 flex-wrap 防止头部/按钮溢出，grid 增加 width:100% 与 box-sizing 防止溢出，tile 增加 min-width/min-height/overflow 防止内容撑破。8. 保持简洁白色主题，无花哨元素。
 
 打开 platform.html 即可游玩！
