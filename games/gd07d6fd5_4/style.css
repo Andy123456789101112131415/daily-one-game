@@ -1,0 +1,151 @@
+/* 数字华容道样式 */
+.ns-container {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #f8f9fc;
+  color: #1e293b;
+  padding: 20px;
+  box-sizing: border-box;
+  max-width: 680px;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border: 1px solid #e2e8f0;
+  position: relative;
+  user-select: none;
+}
+.ns-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.ns-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+.ns-stats {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+  color: #64748b;
+}
+.ns-stats span {
+  font-weight: 600;
+  color: #1e293b;
+}
+.ns-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  background: #e2e8f0;
+  padding: 8px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  aspect-ratio: 1 / 1;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ns-tile {
+  background: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1e293b;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border: 1px solid #e2e8f0;
+  aspect-ratio: 1 / 1;
+}
+.ns-tile:active {
+  transform: scale(0.96);
+}
+.ns-tile.ns-empty {
+  background: #f1f5f9;
+  box-shadow: none;
+  border: 1px dashed #cbd5e1;
+  cursor: default;
+}
+.ns-tile.ns-correct {
+  background: #10b981;
+  color: white;
+  border-color: #10b981;
+}
+.ns-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+.ns-btn {
+  background: #7c3aed;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  font-family: inherit;
+}
+.ns-btn:hover {
+  background: #6d28d9;
+}
+.ns-btn:active {
+  transform: scale(0.98);
+}
+.ns-btn.ns-secondary {
+  background: #ffffff;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+}
+.ns-btn.ns-secondary:hover {
+  background: #f1f5f9;
+}
+.ns-win-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 24px 32px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  text-align: center;
+  border: 1px solid #e2e8f0;
+  z-index: 10;
+  animation: ns-pop 0.3s ease;
+}
+.ns-win-message h2 {
+  margin: 0 0 8px;
+  color: #10b981;
+  font-size: 24px;
+}
+.ns-win-message p {
+  margin: 0 0 16px;
+  color: #64748b;
+}
+@keyframes ns-pop {
+  0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+@media (max-width: 480px) {
+  .ns-container {
+    padding: 12px;
+  }
+  .ns-tile {
+    font-size: 18px;
+  }
+  .ns-stats {
+    font-size: 12px;
+  }
+  .ns-title {
+    font-size: 16px;
+  }
+}
