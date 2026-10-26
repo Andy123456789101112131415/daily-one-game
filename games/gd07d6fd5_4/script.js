@@ -100,8 +100,9 @@ function initGame(container) {
     const col = index % SIZE;
     const emptyRow = Math.floor(emptyIndex / SIZE);
     const emptyCol = emptyIndex % SIZE;
-    if ((row === emptyRow && Math.abs(col - emptyCol) === 1) || (col === emptyCol && Math.abs(row - emptyRow) === 1)) {
-      swapTiles(index, emptyIndex);
+    if (Math.abs(row - emptyRow) + Math.abs(col - emptyCol) === 1) {
+      [tiles[index], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[index]];
+      emptyIndex = index;
       moves++;
       movesSpan.textContent = moves;
       renderBoard();
@@ -109,65 +110,34 @@ function initGame(container) {
     }
   }
 
-  function swapTiles(i, j) {
-    [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
-    emptyIndex = i;
-  }
-
   function checkWin() {
-    for (let i = 0; i < SIZE * SIZE - 1; i++) {
-      if (tiles[i] !== i + 1) return false;
+    for (let i = 0; i < tiles.length - 1; i++) {
+      if (tiles[i] !== i + 1) return;
     }
-    if (tiles[SIZE * SIZE - 1] === 0) {
-      gameActive = false;
-      clearInterval(timerInterval);
-      winMessage.style.display = 'block';
-      return true;
-    }
-    return false;
+    if (tiles[tiles.length - 1] !== 0) return;
+    gameActive = false;
+    clearInterval(timerInterval);
+    winMessage.style.display = 'block';
   }
 
-  function startTimer() {
+  function startNewGame() {
     clearInterval(timerInterval);
     seconds = 0;
+    moves = 0;
+    movesSpan.textContent = '0';
     timeSpan.textContent = '0s';
+    winMessage.style.display = 'none';
+    tiles = generatePuzzle();
+    emptyIndex = tiles.indexOf(0);
+    gameActive = true;
+    renderBoard();
     timerInterval = setInterval(() => {
       seconds++;
       timeSpan.textContent = seconds + 's';
     }, 1000);
   }
 
-  function startNewGame() {
-    tiles = generatePuzzle();
-    emptyIndex = tiles.indexOf(0);
-    moves = 0;
-    movesSpan.textContent = '0';
-    gameActive = true;
-    winMessage.style.display = 'none';
-    renderBoard();
-    startTimer();
-  }
-
-  playAgainBtn.addEventListener('click', () => {
-    winMessage.style.display = 'none';
-    startNewGame();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (!gameActive) return;
-    const key = e.key;
-    let targetIndex = -1;
-    const emptyRow = Math.floor(emptyIndex / SIZE);
-    const emptyCol = emptyIndex % SIZE;
-    if (key === 'ArrowUp' && emptyRow < SIZE - 1) targetIndex = emptyIndex + SIZE;
-    else if (key === 'ArrowDown' && emptyRow > 0) targetIndex = emptyIndex - SIZE;
-    else if (key === 'ArrowLeft' && emptyCol < SIZE - 1) targetIndex = emptyIndex + 1;
-    else if (key === 'ArrowRight' && emptyCol > 0) targetIndex = emptyIndex - 1;
-    if (targetIndex !== -1) {
-      e.preventDefault();
-      handleTileClick(targetIndex);
-    }
-  });
+  playAgainBtn.addEventListener('click', startNewGame);
 
   startNewGame();
 }
