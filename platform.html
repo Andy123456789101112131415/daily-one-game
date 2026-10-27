@@ -517,6 +517,8 @@ body{margin:0;padding:0;background:#f8f9fc;font-family:'Segoe UI',system-ui,-app
 *{margin:0;padding:0;box-sizing:border-box}.nm-wrap{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;color:#1e293b;padding:16px;max-width:680px;margin:0 auto;min-height:100%}.nm-head{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:12px 14px;box-shadow:0 1px 3px rgba(15,23,42,.05)}.nm-thumb{width:56px;height:56px;border-radius:12px;overflow:hidden;flex:0 0 56px;border:1px solid #e2e8f0}.nm-thumb svg{display:block;width:100%;height:100%}.nm-meta{flex:1;min-width:0}.nm-name{font-size:17px;font-weight:700;letter-spacing:.2px}.nm-tag{font-size:12px;color:#64748b;margin-top:3px}.nm-stats{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap;justify-content:flex-end}.nm-chip{background:#f8f9fc;border:1px solid #e2e8f0;border-radius:10px;padding:6px 10px;font-size:12px;color:#64748b;text-align:center;min-width:64px}.nm-chip b{display:block;font-size:16px;color:#1e293b;font-weight:700;line-height:1.2}.nm-bar{display:flex;gap:8px;align-items:center;margin:14px 0 10px;flex-wrap:wrap}.nm-btn{font-family:inherit;font-size:13px;font-weight:600;border:1px solid #e2e8f0;background:#fff;color:#1e293b;border-radius:10px;padding:9px 14px;cursor:pointer;transition:.15s;box-shadow:0 1px 2px rgba(15,23,42,.04)}.nm-btn:hover{border-color:#7c3aed;color:#7c3aed}.nm-btn:active{transform:translateY(1px)}.nm-btn.nm-primary{background:#7c3aed;border-color:#7c3aed;color:#fff}.nm-btn.nm-primary:hover{background:#6d28d9;color:#fff}.nm-hint{font-size:12px;color:#64748b;margin-left:auto}.nm-board{display:grid;gap:8px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:12px;box-shadow:0 1px 3px rgba(15,23,42,.05);touch-action:manipulation}.nm-cell{position:relative;aspect-ratio:1/1;border-radius:12px;border:1.5px solid #e2e8f0;background:#f8f9fc;font-size:clamp(15px,5vw,22px);font-weight:700;color:#1e293b;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;transition:.15s}.nm-cell:hover{border-color:#c4b5fd}.nm-cell.nm-start{background:#ede9fe;border-color:#7c3aed;color:#5b21b6}.nm-cell.nm-goal{background:#dcfce7;border-color:#16a34a;color:#166534}.nm-cell.nm-path{background:#f5f3ff;border-color:#a78bfa;color:#5b21b6}.nm-cell.nm-cur{box-shadow:0 0 0 3px rgba(124,58,237,.25)}.nm-cell.nm-done{background:#dcfce7;border-color:#16a34a;color:#166534}.nm-cell.nm-wrong{animation:nm-shake .3s}@keyframes nm-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}.nm-msg{font-size:13px;color:#64748b;margin:10px 0 0;min-height:18px}.nm-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#1e293b;color:#fff;font-size:13px;padding:10px 16px;border-radius:10px;opacity:0;pointer-events:none;transition:.25s;z-index:99}.nm-toast.nm-show{opacity:1;transform:translateX(-50%) translateY(0)}@media(max-width:420px){.nm-head{flex-wrap:wrap}.nm-stats{width:100%;justify-content:flex-start;margin-left:0}}
 /* === gdde7cd56_5 === */
 .nm-game{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;padding:20px;border-radius:12px;max-width:680px;margin:0 auto;box-sizing:border-box}.nm-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.nm-title{font-size:1.4rem;font-weight:600;color:#1e293b;margin:0}.nm-btn{background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:8px 16px;font-size:0.95rem;font-weight:500;color:#1e293b;cursor:pointer;transition:all 0.15s;font-family:inherit}.nm-btn:hover{background:#f1f5f9;border-color:#cbd5e1}.nm-btn:active{transform:scale(0.97)}.nm-btn.nm-primary{background:#7c3aed;color:#ffffff;border-color:#7c3aed}.nm-btn.nm-primary:hover{background:#6d28d9}.nm-status{display:flex;gap:16px;margin-bottom:12px;font-size:0.95rem;color:#64748b}.nm-status span{font-weight:600;color:#1e293b}.nm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}.nm-cell{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:#ffffff;border:2px solid #e2e8f0;border-radius:10px;font-size:1.5rem;font-weight:600;color:#1e293b;cursor:pointer;transition:all 0.15s;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.nm-cell:hover:not(.nm-disabled){border-color:#7c3aed;background:#f5f3ff}.nm-cell.nm-active{border-color:#7c3aed;background:#ede9fe;box-shadow:0 0 0 3px rgba(124,58,237,0.15)}.nm-cell.nm-disabled{opacity:0.5;cursor:default}.nm-cell.nm-start{background:#e0f2fe;border-color:#06b6d4}.nm-cell.nm-goal{background:#fef3c7;border-color:#f59e0b}.nm-message{text-align:center;padding:12px;border-radius:8px;font-weight:500;margin-bottom:12px;min-height:24px}.nm-message.nm-win{background:#d1fae5;color:#065f46;border:1px solid #10b981}.nm-message.nm-lose{background:#fee2e2;color:#991b1b;border:1px solid #ef4444}.nm-message.nm-info{background:#f1f5f9;color:#475569;border:1px solid #e2e8f0}.nm-footer{display:flex;justify-content:center;gap:12px}.nm-controls{display:flex;flex-direction:column;align-items:center;gap:12px}.nm-hint{font-size:0.9rem;color:#64748b}.nm-dpad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:180px}.nm-dpad .nm-btn{width:100%;padding:8px 0;font-size:1.2rem}.nm-empty{visibility:hidden}
+/* === gdde7cd56_6 === */
+.nm-root{background:#f8f9fc;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;box-sizing:border-box}.nm-card{background:#ffffff;border:1px solid #e2e8f0;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,0.05);padding:24px;max-width:680px;width:100%;box-sizing:border-box}.nm-header{display:flex;align-items:center;gap:16px;margin-bottom:20px}.nm-thumb{width:56px;height:56px;border-radius:12px;overflow:hidden;flex-shrink:0;border:1px solid #e2e8f0}.nm-title{font-size:20px;font-weight:600;color:#1e293b;margin:0}.nm-subtitle{font-size:14px;color:#64748b;margin:4px 0 0}.nm-stats{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-size:16px;color:#1e293b}.nm-score{font-weight:600;color:#7c3aed}.nm-timer{font-weight:600;color:#06b6d4}.nm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 auto 20px;max-width:360px}.nm-cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#1e293b;background:#f1f5f9;border:2px solid #e2e8f0;border-radius:12px;cursor:pointer;transition:all 0.15s ease;user-select:none}.nm-cell:hover{background:#e2e8f0}.nm-cell.nm-active{background:#7c3aed;color:#ffffff;border-color:#7c3aed}.nm-cell.nm-correct{background:#10b981;color:#ffffff;border-color:#10b981}.nm-cell.nm-wrong{background:#ef4444;color:#ffffff;border-color:#ef4444;animation:nm-shake 0.3s ease}@keyframes nm-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}.nm-controls{display:flex;justify-content:center;gap:12px;margin-bottom:16px}.nm-btn{padding:10px 24px;border-radius:10px;border:1px solid #e2e8f0;background:#ffffff;color:#1e293b;font-size:16px;font-weight:500;cursor:pointer;transition:all 0.15s ease;font-family:inherit}.nm-btn:hover{background:#f1f5f9}.nm-btn-primary{background:#7c3aed;color:#ffffff;border-color:#7c3aed}.nm-btn-primary:hover{background:#6d28d9}.nm-message{text-align:center;font-size:18px;font-weight:600;min-height:28px;margin-bottom:8px}.nm-message.nm-win{color:#10b981}.nm-message.nm-lose{color:#ef4444}.nm-message.nm-info{color:#64748b}.nm-progress{height:6px;background:#e2e8f0;border-radius:3px;overflow:hidden;margin-bottom:16px}.nm-progress-bar{height:100%;background:#06b6d4;width:0%;transition:width 0.3s ease}.nm-footer{font-size:13px;color:#64748b;text-align:center}@media(max-width:480px){.nm-card{padding:16px}.nm-cell{font-size:22px}.nm-title{font-size:18px}.nm-stats{font-size:14px}}
 /* === ge6ac44a1 === */
 .m2048-wrap{width:100%;max-width:100%;box-sizing:border-box;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:#1e293b;user-select:none;-webkit-user-select:none;padding:4px}
 .m2048-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;flex-wrap:wrap}
@@ -1214,6 +1216,13 @@ body{margin:0;padding:0;background:#f8f9fc;font-family:'Segoe UI',system-ui,-app
       <div class="tags">数字迷宫挑战</div>
     </div>
   </div>
+<div class="game-card" onclick="openGame('gdde7cd56_6')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' rx='8' fill='#f8f9fc'/><rect x='8' y='8' width='8' height='8' rx='2' fill='#7c3aed'/><rect x='18' y='8' width='8' height='8' rx='2' fill='#e2e8f0'/><rect x='28' y='8' width='8' height='8' rx='2' fill='#06b6d4'/><rect x='38' y='8' width='8' height='8' rx='2' fill='#e2e8f0'/><rect x='8' y='18' width='8' height='8' rx='2' fill='#e2e8f0'/><rect x='18' y='18' width='8' height='8' rx='2' fill='#10b981'/><rect x='28' y='18' width='8' height='8' rx='2' fill='#e2e8f0'/><rect x='38' y='18' width='8' height='8' rx='2' fill='#f59e0b'/><rect x='8' y='28' width='8' height='8' rx='2' fill='#06b6d4'/><rect x='18' y='28' width='8' height='8' rx='2' fill='#e2e8f0'/><rect x='28' y='28' width='8' height='8' rx='2' fill='#ef4444'/><rect x='38' y='28' width='8' height='8' rx='2' fill='#e2e8f0'/><rect x='8' y='38' width='8' height='8' rx='2' fill='#e2e8f0'/><rect x='18' y='38' width='8' height='8' rx='2' fill='#f59e0b'/><rect x='28' y='38' width='8' height='8' rx='2' fill='#e2e8f0'/><rect x='38' y='38' width='8' height='8' rx='2' fill='#7c3aed'/></svg></div>
+    <div class="info">
+      <div class="name">数字迷宫 Number Maze</div>
+      <div class="tags">数字迷宫挑战</div>
+    </div>
+  </div>
 <div class="game-card" onclick="openGame('ge6ac44a1')">
     <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' rx='8' fill='#f8f9fc'/><rect x='6' y='6' width='21' height='21' rx='4' fill='#ede9fe'/><text x='16.5' y='21' font-size='11' font-family='system-ui' font-weight='700' fill='#7c3aed' text-anchor='middle'>2</text><rect x='29' y='6' width='21' height='21' rx='4' fill='#cffafe'/><text x='39.5' y='21' font-size='11' font-family='system-ui' font-weight='700' fill='#06b6d4' text-anchor='middle'>4</text><rect x='6' y='29' width='21' height='21' rx='4' fill='#d1fae5'/><text x='16.5' y='44' font-size='11' font-family='system-ui' font-weight='700' fill='#10b981' text-anchor='middle'>8</text><rect x='29' y='29' width='21' height='21' rx='4' fill='#fef3c7'/><text x='39.5' y='44' font-size='10' font-family='system-ui' font-weight='700' fill='#f59e0b' text-anchor='middle'>16</text></svg></div>
     <div class="info">
@@ -1384,6 +1393,7 @@ function openGame(type) {
     gdde7cd56_3: '数字迷宫 Number Maze',
     gdde7cd56_4: '数字迷宫 Number Maze',
     gdde7cd56_5: '数字迷宫 Number Maze',
+    gdde7cd56_6: '数字迷宫 Number Maze',
     ge6ac44a1: '数字合成 2048 | 2048 Merge',
     gf2be41e2: 'Color Memory',
     gf2c90829: 'RGB Color Guess',
@@ -1472,6 +1482,7 @@ function openGame(type) {
   else if (type === 'gdde7cd56_3') init_gdde7cd56_3(content);
   else if (type === 'gdde7cd56_4') init_gdde7cd56_4(content);
   else if (type === 'gdde7cd56_5') init_gdde7cd56_5(content);
+  else if (type === 'gdde7cd56_6') init_gdde7cd56_6(content);
   else if (type === 'ge6ac44a1') init_ge6ac44a1(content);
   else if (type === 'gf2be41e2') init_gf2be41e2(content);
   else if (type === 'gf2c90829') init_gf2c90829(content);
@@ -8075,6 +8086,211 @@ function nmTryMove(r, c) {
     msgEl.className = 'nm-message nm-lose';
   }
 }
+}
+// === gdde7cd56_6 ===
+function init_gdde7cd56_6(container) {
+let container = arguments[0];
+container.innerHTML = '';
+const root = document.createElement('div');
+root.className = 'nm-root';
+container.appendChild(root);
+const card = document.createElement('div');
+card.className = 'nm-card';
+root.appendChild(card);
+const header = document.createElement('div');
+header.className = 'nm-header';
+header.innerHTML = `<div class='nm-thumb'><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' rx='8' fill='#f8f9fc'/><rect x='8' y='8' width='8' height='8' rx='2' fill='#7c3aed'/><rect x='18' y='8' width='8' height='8' rx='2' fill='#e2e8f0'/><rect x='28' y='8' width='8' height='8' rx='2' fill='#06b6d4'/><rect x='38' y='8' width='8' height='8' rx='2' fill='#e2e8f0'/><rect x='8' y='18' width='8' height='8' rx='2' fill='#e2e8f0'/><rect x='18' y='18' width='8' height='8' rx='2' fill='#10b981'/><rect x='28' y='18' width='8' height='8' rx='2' fill='#e2e8f0'/><rect x='38' y='18' width='8' height='8' rx='2' fill='#f59e0b'/><rect x='8' y='28' width='8' height='8' rx='2' fill='#06b6d4'/><rect x='18' y='28' width='8' height='8' rx='2' fill='#e2e8f0'/><rect x='28' y='28' width='8' height='8' rx='2' fill='#ef4444'/><rect x='38' y='28' width='8' height='8' rx='2' fill='#e2e8f0'/><rect x='8' y='38' width='8' height='8' rx='2' fill='#e2e8f0'/><rect x='18' y='38' width='8' height='8' rx='2' fill='#f59e0b'/><rect x='28' y='38' width='8' height='8' rx='2' fill='#e2e8f0'/><rect x='38' y='38' width='8' height='8' rx='2' fill='#7c3aed'/></svg></div><div><h1 class='nm-title'>数字迷宫</h1><p class='nm-subtitle'>按顺序点击数字 1 到 9</p></div>`;
+card.appendChild(header);
+const stats = document.createElement('div');
+stats.className = 'nm-stats';
+stats.innerHTML = `<span>得分: <span class='nm-score'>0</span></span><span>时间: <span class='nm-timer'>0.0s</span></span>`;
+card.appendChild(stats);
+const scoreSpan = stats.querySelector('.nm-score');
+const timerSpan = stats.querySelector('.nm-timer');
+const grid = document.createElement('div');
+grid.className = 'nm-grid';
+card.appendChild(grid);
+const message = document.createElement('div');
+message.className = 'nm-message nm-info';
+message.textContent = '点击开始游戏';
+card.appendChild(message);
+const progress = document.createElement('div');
+progress.className = 'nm-progress';
+progress.innerHTML = '<div class="nm-progress-bar"></div>';
+card.appendChild(progress);
+const progressBar = progress.querySelector('.nm-progress-bar');
+const controls = document.createElement('div');
+controls.className = 'nm-controls';
+const startBtn = document.createElement('button');
+startBtn.className = 'nm-btn nm-btn-primary';
+startBtn.textContent = '开始游戏';
+controls.appendChild(startBtn);
+const resetBtn = document.createElement('button');
+resetBtn.className = 'nm-btn';
+resetBtn.textContent = '🔄 重来';
+controls.appendChild(resetBtn);
+card.appendChild(controls);
+const footer = document.createElement('div');
+footer.className = 'nm-footer';
+footer.textContent = '键盘: 数字键 1-9 或方向键移动+回车';
+card.appendChild(footer);
+let cells = [];
+let numbers = [];
+let currentIndex = 0;
+let score = 0;
+let timer = null;
+let startTime = 0;
+let isPlaying = false;
+let selectedIndex = 0;
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+function initGrid() {
+  grid.innerHTML = '';
+  cells = [];
+  numbers = shuffle([1,2,3,4,5,6,7,8,9]);
+  for (let i = 0; i < 9; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'nm-cell';
+    cell.textContent = numbers[i];
+    cell.dataset.index = i;
+    cell.addEventListener('click', () => handleCellClick(i));
+    grid.appendChild(cell);
+    cells.push(cell);
+  }
+  selectedIndex = 0;
+  updateSelection();
+}
+function updateSelection() {
+  cells.forEach((c, i) => {
+    if (i === selectedIndex && isPlaying) {
+      c.classList.add('nm-active');
+    } else {
+      c.classList.remove('nm-active');
+    }
+  });
+}
+function handleCellClick(index) {
+  if (!isPlaying) return;
+  selectedIndex = index;
+  updateSelection();
+  checkNumber(index);
+}
+function checkNumber(index) {
+  if (!isPlaying) return;
+  const expected = currentIndex + 1;
+  const cell = cells[index];
+  if (numbers[index] === expected) {
+    cell.classList.add('nm-correct');
+    cell.classList.remove('nm-active');
+    cell.style.pointerEvents = 'none';
+    currentIndex++;
+    score += 10;
+    scoreSpan.textContent = score;
+    progressBar.style.width = (currentIndex / 9 * 100) + '%';
+    if (currentIndex === 9) {
+      endGame(true);
+    }
+  } else {
+    cell.classList.add('nm-wrong');
+    setTimeout(() => {
+      cell.classList.remove('nm-wrong');
+    }, 300);
+    score = Math.max(0, score - 5);
+    scoreSpan.textContent = score;
+  }
+}
+function startGame() {
+  if (isPlaying) return;
+  isPlaying = true;
+  currentIndex = 0;
+  score = 0;
+  scoreSpan.textContent = score;
+  progressBar.style.width = '0%';
+  message.textContent = '找到数字 1';
+  message.className = 'nm-message nm-info';
+  initGrid();
+  startTime = Date.now();
+  timer = setInterval(() => {
+    const elapsed = (Date.now() - startTime) / 1000;
+    timerSpan.textContent = elapsed.toFixed(1) + 's';
+  }, 100);
+  startBtn.textContent = '游戏中...';
+  startBtn.disabled = true;
+  resetBtn.disabled = false;
+}
+function endGame(win) {
+  isPlaying = false;
+  clearInterval(timer);
+  startBtn.textContent = '开始游戏';
+  startBtn.disabled = false;
+  if (win) {
+    const elapsed = (Date.now() - startTime) / 1000;
+    message.textContent = `🎉 胜利! 用时 ${elapsed.toFixed(1)}s 得分 ${score}`;
+    message.className = 'nm-message nm-win';
+    cells.forEach(c => c.style.pointerEvents = 'none');
+  } else {
+    message.textContent = '游戏结束';
+    message.className = 'nm-message nm-lose';
+  }
+}
+function resetGame() {
+  isPlaying = false;
+  clearInterval(timer);
+  currentIndex = 0;
+  score = 0;
+  scoreSpan.textContent = 0;
+  timerSpan.textContent = '0.0s';
+  progressBar.style.width = '0%';
+  message.textContent = '点击开始游戏';
+  message.className = 'nm-message nm-info';
+  startBtn.textContent = '开始游戏';
+  startBtn.disabled = false;
+  initGrid();
+  cells.forEach(c => c.style.pointerEvents = 'auto');
+}
+startBtn.addEventListener('click', startGame);
+resetBtn.addEventListener('click', resetGame);
+container.addEventListener('keydown', (e) => {
+  if (!isPlaying) return;
+  const key = e.key;
+  if (key >= '1' && key <= '9') {
+    e.preventDefault();
+    const num = parseInt(key);
+    const idx = numbers.indexOf(num);
+    if (idx !== -1) {
+      selectedIndex = idx;
+      updateSelection();
+      checkNumber(idx);
+    }
+  } else if (key === 'ArrowUp') {
+    e.preventDefault();
+    selectedIndex = (selectedIndex - 3 + 9) % 9;
+    updateSelection();
+  } else if (key === 'ArrowDown') {
+    e.preventDefault();
+    selectedIndex = (selectedIndex + 3) % 9;
+    updateSelection();
+  } else if (key === 'ArrowLeft') {
+    e.preventDefault();
+    selectedIndex = (selectedIndex - 1 + 9) % 9;
+    updateSelection();
+  } else if (key === 'ArrowRight') {
+    e.preventDefault();
+    selectedIndex = (selectedIndex + 1) % 9;
+    updateSelection();
+  } else if (key === 'Enter') {
+    e.preventDefault();
+    checkNumber(selectedIndex);
+  }
+});
+container.tabIndex = 0;
+initGrid();
+resetGame();
 }
 // === ge6ac44a1 ===
 function init_ge6ac44a1(container) {
