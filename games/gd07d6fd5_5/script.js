@@ -8,6 +8,7 @@ let startTime = null;
 let timerInterval = null;
 let gameWon = false;
 
+const container = document.querySelector('.ns-container');
 const boardEl = container.querySelector('.ns-board');
 const movesEl = container.querySelector('.ns-moves');
 const timeEl = container.querySelector('.ns-time');
@@ -41,25 +42,6 @@ function stopTimer() {
   }
 }
 
-function shuffleBoard() {
-  board = Array.from({ length: totalTiles }, (_, i) => i);
-  // 随机移动合法步数来打乱
-  let prevEmpty = emptyIndex;
-  for (let i = 0; i < 200; i++) {
-    const neighbors = getNeighbors(emptyIndex);
-    const valid = neighbors.filter(n => n !== prevEmpty);
-    const pick = valid[Math.floor(Math.random() * valid.length)];
-    board[emptyIndex] = board[pick];
-    board[pick] = totalTiles - 1;
-    prevEmpty = emptyIndex;
-    emptyIndex = pick;
-  }
-  // 确保不是已解决状态
-  if (isSolved()) {
-    shuffleBoard();
-  }
-}
-
 function getNeighbors(index) {
   const row = Math.floor(index / size);
   const col = index % size;
@@ -76,6 +58,25 @@ function isSolved() {
     if (board[i] !== i + 1) return false;
   }
   return board[totalTiles - 1] === totalTiles - 1;
+}
+
+function shuffleBoard() {
+  board = Array.from({ length: totalTiles }, (_, i) => i);
+  emptyIndex = totalTiles - 1;
+  let prevEmpty = emptyIndex;
+  for (let i = 0; i < 200; i++) {
+    const neighbors = getNeighbors(emptyIndex);
+    const valid = neighbors.filter(n => n !== prevEmpty);
+    if (valid.length === 0) continue;
+    const pick = valid[Math.floor(Math.random() * valid.length)];
+    board[emptyIndex] = board[pick];
+    board[pick] = totalTiles - 1;
+    prevEmpty = emptyIndex;
+    emptyIndex = pick;
+  }
+  if (isSolved()) {
+    shuffleBoard();
+  }
 }
 
 function renderBoard() {
@@ -103,9 +104,9 @@ function handleTileClick(e) {
   const tile = e.target.closest('.ns-tile');
   if (!tile || tile.classList.contains('ns-empty')) return;
   const index = parseInt(tile.dataset.index, 10);
+  if (isNaN(index)) return;
   const neighbors = getNeighbors(index);
   if (!neighbors.includes(emptyIndex)) return;
-  // 交换
   board[emptyIndex] = board[index];
   board[index] = totalTiles - 1;
   emptyIndex = index;
@@ -115,65 +116,24 @@ function handleTileClick(e) {
   if (isSolved()) {
     gameWon = true;
     stopTimer();
-    const elapsed = startTime ? Date.now() - startTime : 0;
-    messageEl.textContent = '🎉 恭喜完成！用时 ' + formatTime(elapsed) + '，步数 ' + moves;
-    messageEl.className = 'ns-message ns-win';
-    messageEl.style.display = 'block';
+    messageEl.textContent = '🎉 恭喜！你完成了！';
   }
 }
 
-function handleKeyDown(e) {
-  if (gameWon) return;
-  const key = e.key;
-  const row = Math.floor(emptyIndex / size);
-  const col = emptyIndex % size;
-  let targetIndex = -1;
-  if (key === 'ArrowUp' && row < size - 1) targetIndex = emptyIndex + size;
-  else if (key === 'ArrowDown' && row > 0) targetIndex = emptyIndex - size;
-  else if (key === 'ArrowLeft' && col < size - 1) targetIndex = emptyIndex + 1;
-  else if (key === 'ArrowRight' && col > 0) targetIndex = emptyIndex - 1;
-  if (targetIndex === -1) return;
-  e.preventDefault();
-  board[emptyIndex] = board[targetIndex];
-  board[targetIndex] = totalTiles - 1;
-  emptyIndex = targetIndex;
-  moves++;
-  movesEl.textContent = moves;
-  renderBoard();
-  if (isSolved()) {
-    gameWon = true;
-    stopTimer();
-    const elapsed = startTime ? Date.now() - startTime : 0;
-    messageEl.textContent = '🎉 恭喜完成！用时 ' + formatTime(elapsed) + '，步数 ' + moves;
-    messageEl.className = 'ns-message ns-win';
-    messageEl.style.display = 'block';
-  }
-}
-
-function restartGame() {
+function resetGame() {
+  stopTimer();
   gameWon = false;
   moves = 0;
   movesEl.textContent = '0';
-  messageEl.style.display = 'none';
-  messageEl.className = 'ns-message';
-  stopTimer();
-  startTime = null;
   timeEl.textContent = '0:00';
+  messageEl.textContent = '';
   shuffleBoard();
   renderBoard();
   startTimer();
 }
 
-// 初始化
-shuffleBoard();
-renderBoard();
-startTimer();
-
-// 事件绑定
 boardEl.addEventListener('click', handleTileClick);
-restartBtn.addEventListener('click', restartGame);
-container.addEventListener('keydown', handleKeyDown);
+restartBtn.addEventListener('click', resetGame);
 
-// 清理定时器（可选，但为了健壮性）
-container.addEventListener('ns-cleanup', () => stopTimer());
+resetGame();
 }
