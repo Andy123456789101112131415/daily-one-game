@@ -1,8 +1,17 @@
-# 今日游戏: 数字合并 2048 Merge
+# 今日游戏: 数字华容道 Number Slide
 
 > 做一个有趣的网页小游戏
 
-类型名: `g7836f25a_4`
-审查: 1. 补全被截断的 slide 函数与后续逻辑（向量表、移动/合并、分数累加、胜利/失败判定、canMove、键盘/触摸/重置事件绑定、初始化）。2. 修复合并逻辑：使用 nt.merged 与 t.merged 防止同一回合重复合并，合并后正确清空源格并累加分数。3. 修复胜利判定：合并出 2048 时设置 won 并显示 overlay，同时将 won 复位避免重复弹出。4. 修复失败判定：canMove 检查空格与相邻同值，无路可走时 over=true 并显示结束遮罩。5. 修复重置不彻底：initBoard 清空 tileEls、gridEl.innerHTML、重建格子并重置分数/状态。6. 修复除零/空引用：cellSize 在宽度为 0 时返回 0；renderTiles 中移除动画回调增加空值保护。7. 补全 CSS：overlay 的 display/flex 布局、g2048-show 显示类、按钮样式与白色简洁主题。8. 事件绑定：键盘、触摸（passive）、resize 重建格子，重来按钮与遮罩按钮均绑定 initBoard，避免重复绑定与内存泄漏。9. 响应式：board 使用 aspect-ratio 与 max-width，resize 时重建格子保证布局不溢出。
+类型名: `gd07d6fd5_5`
+审查: 1. 修复了变量未定义：添加了 container 的声明，确保 boardEl 等元素能正确获取。
+2. 修复了 shuffleBoard 中的死循环风险：添加了 valid.length === 0 的检查，避免无限递归。
+3. 补全了 handleTileClick 函数：增加了移动计数更新、重新渲染、胜利检测和计时停止。
+4. 添加了 resetGame 函数：重置所有状态（计时器、步数、消息、棋盘），并重新开始计时。
+5. 正确绑定了事件监听器：棋盘点击和重开按钮。
+6. 修复了 CSS 中 .ns-message 样式不完整的问题，补全了 color 和 min-height。
+7. 确保游戏逻辑完整：点击可移动方块会交换、更新步数、检查胜利。
+8. 边界条件处理：在 handleTileClick 中检查 index 是否为 NaN。
+9. 重置时彻底清理计时器，避免内存泄漏。
+10. 保持简洁白色主题，无花哨元素。
 
 打开 platform.html 即可游玩！
