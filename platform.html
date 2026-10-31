@@ -488,6 +488,8 @@ body{margin:0;padding:0;background:#f8f9fc;font-family:'Segoe UI',system-ui,-app
   margin: 0 0 16px;
   color: #64748b;
 }
+/* === gd07d6fd5_5 === */
+.ns-game{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:16px;box-sizing:border-box}.ns-container{width:100%;max-width:680px;background:#ffffff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.05);border:1px solid #e2e8f0;padding:24px;box-sizing:border-box}.ns-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px}.ns-title{font-size:20px;font-weight:600;color:#1e293b;margin:0}.ns-stats{display:flex;gap:16px;font-size:14px;color:#64748b}.ns-stats span{font-weight:600;color:#1e293b}.ns-board{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:#f1f5f9;padding:12px;border-radius:12px;border:1px solid #e2e8f0;margin-bottom:20px;aspect-ratio:1/1;max-width:400px;margin-left:auto;margin-right:auto}.ns-tile{display:flex;align-items:center;justify-content:center;background:#ffffff;border-radius:8px;font-size:clamp(18px,5vw,28px);font-weight:600;color:#1e293b;cursor:pointer;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,0.08);transition:transform 0.15s,box-shadow 0.15s;border:1px solid #e2e8f0}.ns-tile:hover{box-shadow:0 2px 8px rgba(0,0,0,0.12)}.ns-tile.ns-empty{background:transparent;border:none;box-shadow:none;cursor:default}.ns-tile.ns-movable{color:#7c3aed;border-color:#c4b5fd}.ns-tile.ns-movable:hover{background:#f5f3ff}.ns-controls{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.ns-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;border:1px solid #e2e8f0;background:#ffffff;color:#1e293b;transition:all 0.15s;font-family:inherit}.ns-btn:hover{background:#f8f9fc;border-color:#cbd5e1}.ns-btn.ns-primary{background:#7c3aed;color:#ffffff;border-color:#7c3aed}.ns-btn.ns-primary:hover{background:#6d28d9}.ns-btn:active{transform:scale(0.97)}.ns-message{text-align:center;padding:16px;font-size:18px;font-weight:600;border-radius:8px;margin-bottom:16px;animation:ns-pop 0.4s ease}.ns-message.ns-win{background:#ecfdf5;color:#10b981;border:1px solid #a7f3d0}.ns-message.ns-lose{background:#fef2f2;color:#ef4444;border:1px solid #fecaca}@keyframes ns-pop{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}.ns-footer{text-align:center;font-size:12px;color:#94a3b8;margin-top:16px}@media (max-width:480px){.ns-container{padding:16px}.ns-board{gap:6px;padding:8px}.ns-tile{font-size:20px}}
 /* === gdde7cd56 === */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 .nm-wrap { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8f9fc; color: #1e293b; padding: 16px; max-width: 680px; margin: 0 auto; min-height: 100%; }
@@ -1199,6 +1201,13 @@ body{margin:0;padding:0;background:#f8f9fc;font-family:'Segoe UI',system-ui,-app
       <div class="tags">滑动拼图挑战</div>
     </div>
   </div>
+<div class="game-card" onclick="openGame('gd07d6fd5_5')">
+    <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc'/><rect x='8' y='8' width='40' height='40' rx='4' fill='#ffffff' stroke='#e2e8f0' stroke-width='1.5'/><g fill='#7c3aed' font-family='system-ui' font-size='10' text-anchor='middle'><text x='18' y='22'>1</text><text x='38' y='22'>2</text><text x='18' y='42'>3</text><text x='38' y='42' fill='#94a3b8'>4</text></g></svg></div>
+    <div class="info">
+      <div class="name">数字华容道 Number Slide</div>
+      <div class="tags">滑动拼图挑战</div>
+    </div>
+  </div>
 <div class="game-card" onclick="openGame('gdde7cd56')">
     <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' rx='10' fill='#f8f9fc'/><rect x='8' y='8' width='18' height='18' rx='4' fill='#7c3aed'/><rect x='30' y='8' width='18' height='18' rx='4' fill='#06b6d4'/><rect x='8' y='30' width='18' height='18' rx='4' fill='#10b981'/><rect x='30' y='30' width='18' height='18' rx='4' fill='#e2e8f0'/><text x='17' y='22' font-size='11' fill='#fff' text-anchor='middle' font-family='system-ui'>1</text><text x='39' y='22' font-size='11' fill='#fff' text-anchor='middle' font-family='system-ui'>2</text><text x='17' y='44' font-size='11' fill='#fff' text-anchor='middle' font-family='system-ui'>3</text></svg></div>
     <div class="info">
@@ -1408,6 +1417,7 @@ function openGame(type) {
     gd07d6fd5_2: '数字华容道 Number Slide',
     gd07d6fd5_3: '数字华容道 Number Slide',
     gd07d6fd5_4: '数字华容道 Number Slide',
+    gd07d6fd5_5: '数字华容道 Number Slide',
     gdde7cd56: '数字迷宫 Number Maze',
     gdde7cd56_2: '数字迷宫 Number Maze',
     gdde7cd56_3: '数字迷宫 Number Maze',
@@ -1499,6 +1509,7 @@ function openGame(type) {
   else if (type === 'gd07d6fd5_2') init_gd07d6fd5_2(content);
   else if (type === 'gd07d6fd5_3') init_gd07d6fd5_3(content);
   else if (type === 'gd07d6fd5_4') init_gd07d6fd5_4(content);
+  else if (type === 'gd07d6fd5_5') init_gd07d6fd5_5(content);
   else if (type === 'gdde7cd56') init_gdde7cd56(content);
   else if (type === 'gdde7cd56_2') init_gdde7cd56_2(content);
   else if (type === 'gdde7cd56_3') init_gdde7cd56_3(content);
@@ -7667,6 +7678,186 @@ function initGame(container) {
 
   startNewGame();
 }
+}
+// === gd07d6fd5_5 ===
+function init_gd07d6fd5_5(container) {
+const size = 4;
+const totalTiles = size * size;
+let board = [];
+let emptyIndex = totalTiles - 1;
+let moves = 0;
+let startTime = null;
+let timerInterval = null;
+let gameWon = false;
+
+const boardEl = container.querySelector('.ns-board');
+const movesEl = container.querySelector('.ns-moves');
+const timeEl = container.querySelector('.ns-time');
+const messageEl = container.querySelector('.ns-message');
+const restartBtn = container.querySelector('.ns-restart');
+
+function formatTime(ms) {
+  const sec = Math.floor(ms / 1000);
+  const min = Math.floor(sec / 60);
+  const s = sec % 60;
+  return min + ':' + (s < 10 ? '0' : '') + s;
+}
+
+function updateTimer() {
+  if (!startTime) return;
+  const elapsed = Date.now() - startTime;
+  timeEl.textContent = formatTime(elapsed);
+}
+
+function startTimer() {
+  if (timerInterval) clearInterval(timerInterval);
+  startTime = Date.now();
+  timerInterval = setInterval(updateTimer, 200);
+  updateTimer();
+}
+
+function stopTimer() {
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+}
+
+function shuffleBoard() {
+  board = Array.from({ length: totalTiles }, (_, i) => i);
+  // 随机移动合法步数来打乱
+  let prevEmpty = emptyIndex;
+  for (let i = 0; i < 200; i++) {
+    const neighbors = getNeighbors(emptyIndex);
+    const valid = neighbors.filter(n => n !== prevEmpty);
+    const pick = valid[Math.floor(Math.random() * valid.length)];
+    board[emptyIndex] = board[pick];
+    board[pick] = totalTiles - 1;
+    prevEmpty = emptyIndex;
+    emptyIndex = pick;
+  }
+  // 确保不是已解决状态
+  if (isSolved()) {
+    shuffleBoard();
+  }
+}
+
+function getNeighbors(index) {
+  const row = Math.floor(index / size);
+  const col = index % size;
+  const neighbors = [];
+  if (row > 0) neighbors.push(index - size);
+  if (row < size - 1) neighbors.push(index + size);
+  if (col > 0) neighbors.push(index - 1);
+  if (col < size - 1) neighbors.push(index + 1);
+  return neighbors;
+}
+
+function isSolved() {
+  for (let i = 0; i < totalTiles - 1; i++) {
+    if (board[i] !== i + 1) return false;
+  }
+  return board[totalTiles - 1] === totalTiles - 1;
+}
+
+function renderBoard() {
+  boardEl.innerHTML = '';
+  for (let i = 0; i < totalTiles; i++) {
+    const tile = document.createElement('div');
+    tile.className = 'ns-tile';
+    const val = board[i];
+    if (val === totalTiles - 1) {
+      tile.classList.add('ns-empty');
+    } else {
+      tile.textContent = val + 1;
+      const neighbors = getNeighbors(i);
+      if (neighbors.includes(emptyIndex)) {
+        tile.classList.add('ns-movable');
+      }
+      tile.dataset.index = i;
+    }
+    boardEl.appendChild(tile);
+  }
+}
+
+function handleTileClick(e) {
+  if (gameWon) return;
+  const tile = e.target.closest('.ns-tile');
+  if (!tile || tile.classList.contains('ns-empty')) return;
+  const index = parseInt(tile.dataset.index, 10);
+  const neighbors = getNeighbors(index);
+  if (!neighbors.includes(emptyIndex)) return;
+  // 交换
+  board[emptyIndex] = board[index];
+  board[index] = totalTiles - 1;
+  emptyIndex = index;
+  moves++;
+  movesEl.textContent = moves;
+  renderBoard();
+  if (isSolved()) {
+    gameWon = true;
+    stopTimer();
+    const elapsed = startTime ? Date.now() - startTime : 0;
+    messageEl.textContent = '🎉 恭喜完成！用时 ' + formatTime(elapsed) + '，步数 ' + moves;
+    messageEl.className = 'ns-message ns-win';
+    messageEl.style.display = 'block';
+  }
+}
+
+function handleKeyDown(e) {
+  if (gameWon) return;
+  const key = e.key;
+  const row = Math.floor(emptyIndex / size);
+  const col = emptyIndex % size;
+  let targetIndex = -1;
+  if (key === 'ArrowUp' && row < size - 1) targetIndex = emptyIndex + size;
+  else if (key === 'ArrowDown' && row > 0) targetIndex = emptyIndex - size;
+  else if (key === 'ArrowLeft' && col < size - 1) targetIndex = emptyIndex + 1;
+  else if (key === 'ArrowRight' && col > 0) targetIndex = emptyIndex - 1;
+  if (targetIndex === -1) return;
+  e.preventDefault();
+  board[emptyIndex] = board[targetIndex];
+  board[targetIndex] = totalTiles - 1;
+  emptyIndex = targetIndex;
+  moves++;
+  movesEl.textContent = moves;
+  renderBoard();
+  if (isSolved()) {
+    gameWon = true;
+    stopTimer();
+    const elapsed = startTime ? Date.now() - startTime : 0;
+    messageEl.textContent = '🎉 恭喜完成！用时 ' + formatTime(elapsed) + '，步数 ' + moves;
+    messageEl.className = 'ns-message ns-win';
+    messageEl.style.display = 'block';
+  }
+}
+
+function restartGame() {
+  gameWon = false;
+  moves = 0;
+  movesEl.textContent = '0';
+  messageEl.style.display = 'none';
+  messageEl.className = 'ns-message';
+  stopTimer();
+  startTime = null;
+  timeEl.textContent = '0:00';
+  shuffleBoard();
+  renderBoard();
+  startTimer();
+}
+
+// 初始化
+shuffleBoard();
+renderBoard();
+startTimer();
+
+// 事件绑定
+boardEl.addEventListener('click', handleTileClick);
+restartBtn.addEventListener('click', restartGame);
+container.addEventListener('keydown', handleKeyDown);
+
+// 清理定时器（可选，但为了健壮性）
+container.addEventListener('ns-cleanup', () => stopTimer());
 }
 // === gdde7cd56 ===
 function init_gdde7cd56(container) {
