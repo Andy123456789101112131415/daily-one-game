@@ -7,6 +7,7 @@ var solved=false;
 var startTime=0;
 var timerId=null;
 var boardEl=null;
+var container=null;
 
 function fmtTime(ms){var s=Math.floor(ms/1000);var m=Math.floor(s/60);s=s%60;return (m<10?'0':'')+m+':'+(s<10?'0':'')+s}
 
@@ -25,6 +26,7 @@ function shuffle(){
   var steps=total*total*8;
   for(var k=0;k<steps;k++){
     var nb=neighbors(blank).filter(function(x){return x!==last});
+    if(!nb.length)continue;
     var pick=nb[Math.floor(Math.random()*nb.length)];
     tiles[blank]=tiles[pick];
     tiles[pick]=total-1;
@@ -69,6 +71,7 @@ function render(){
 
 function tryMove(idx){
   if(solved)return;
+  if(idx<0||idx>=size*size)return;
   var ok=neighbors(emptyIdx).indexOf(idx)>=0;
   if(!ok)return;
   tiles[emptyIdx]=tiles[idx];
@@ -92,6 +95,7 @@ function startTimer(){
 function win(){
   solved=true;
   if(timerId){clearInterval(timerId);timerId=null}
+  container.querySelector('.ns-time').textContent=fmtTime(startTime?Date.now()-startTime:0);
   container.querySelector('.ns-overlay').classList.add('ns-show');
   container.querySelector('.ns-winmoves').textContent=moves;
   container.querySelector('.ns-wintime').textContent=fmtTime(startTime?Date.now()-startTime:0);
@@ -116,30 +120,31 @@ function onKey(e){
   else if(e.key==='ArrowDown'&&r>0)target=emptyIdx-size;
   else if(e.key==='ArrowLeft'&&c<size-1)target=emptyIdx+1;
   else if(e.key==='ArrowRight'&&c>0)target=emptyIdx-1;
-  if(target>=0){e.preventDefault();tryMove(target)}
+  if(target>=0){e.preventDefault();tryMove(target);}
 }
 
-container.innerHTML='<div class="ns-wrap">'+
-'<div class="ns-head"><div class="ns-thumb">'+thumb+'</div><div><div class="ns-title">数字华容道 Number Slide</div><div class="ns-tag">滑块拼图挑战</div></div></div>'+
-'<div class="ns-stats"><div class="ns-stat"><b class="ns-moves">0</b><span>步数</span></div><div class="ns-stat"><b class="ns-time">00:00</b><span>用时</span></div></div>'+
-'<div class="ns-board"><div class="ns-overlay"><h3>完成!</h3><p>步数 <b class="ns-winmoves">0</b> · 用时 <b class="ns-wintime">00:00</b></p><button class="ns-btn ns-primary ns-again">再来一局</button></div></div>'+
-'<div class="ns-actions"><button class="ns-btn ns-primary ns-reset">🔄 重新开始</button></div>'+
-'<div class="ns-hint">点击空格旁的数字滑动，或用方向键移动</div>'+
-'</div>';
-
-buildLayout();
-
-boardEl.addEventListener('click',function(e){
+function onBoardClick(e){
   var t=e.target.closest('.ns-tile');
-  if(!t)return;
+  if(!t||!boardEl.contains(t))return;
   var idx=parseInt(t.getAttribute('data-idx'),10);
-  if(!isNaN(idx))tryMove(idx);
-});
+  if(isNaN(idx))return;
+  tryMove(idx);
+}
 
-container.querySelector('.ns-reset').addEventListener('click',reset);
-container.querySelector('.ns-again').addEventListener('click',reset);
-container.addEventListener('keydown',onKey);
-container.setAttribute('tabindex','0');
+function init(root){
+  container=root||document.querySelector('.ns-wrap');
+  if(!container)return;
+  buildLayout();
+  boardEl.addEventListener('click',onBoardClick);
+  var resetBtn=container.querySelector('.ns-reset');
+  if(resetBtn)resetBtn.addEventListener('click',reset);
+  document.addEventListener('keydown',onKey);
+  reset();
+}
 
-reset();
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',function(){init();});
+}else{
+  init();
+}
 }
