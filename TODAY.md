@@ -1,8 +1,8 @@
-# 今日游戏: 数字华容道 Number Slide
+# 今日游戏: 数字合并 2048 Merge
 
 > 做一个有趣的网页小游戏
 
-类型名: `gd07d6fd5_6`
-审查: 1. 补全被截断的CSS（.ns-btn.ns-primary 未闭合）并补充 .ns-overlay 胜利遮罩样式；为 .ns-tile 增加 min-width/min-height/overflow 防止网格溢出。2. 补全被截断的JS：onKey 的 ArrowDown/ArrowLeft/ArrowRight 分支、事件绑定与初始化逻辑。3. 修复 container 未定义：新增全局 container 并在 init 中赋值。4. 修复键盘方向逻辑错误（原 ArrowUp 条件与目标索引方向不一致），改为按空白块位置正确移动相邻块。5. 新增 onBoardClick 事件委托处理鼠标/触摸点击，之前完全缺失点击交互。6. 新增 .ns-reset 重来按钮绑定，reset 会清除计时器、重置步数/时间/遮罩并重新洗牌。7. shuffle 中 neighbors 过滤后可能为空数组导致 pick 为 undefined，增加空数组保护。8. tryMove 增加索引边界检查防止数组越界。9. win 时同步更新 .ns-time 显示最终用时。10. 初始化使用 DOMContentLoaded 判断，避免脚本在 DOM 未就绪时执行导致 null 引用。
+类型名: `g7836f25a_5`
+审查: 1. 修复 render() 中 cell.textCont 截断导致的语法错误，改为 textContent 并补全渲染逻辑。2. 补全 CSS 中 mg-overlay 被截断的样式，并新增 .mg-show 显示类、h3/p 样式与 .mg-hint 样式；overlay 默认 display:none，避免遮挡棋盘。3. 修复 move() 中 moved 判断逻辑：原代码对 right/up/down 方向比较的是同一数组元素导致永远相等，现统一比较原始行与结果行，正确判断是否发生移动。4. 新增 slideLine() 合并算法、canMove() 失败判定、hasWon() 胜利判定、updateBest() 最高分持久化，修复分数不更新、无法胜利/失败的问题。5. 新增 resetGame() 彻底重置 grid/score/over/won/keepGoing 并隐藏 overlay，重来按钮与结束按钮均调用它，重置彻底。6. 新增键盘事件 handleKey 支持方向键与 WASD，并 preventDefault 防止页面滚动；新增触摸滑动支持，passive:true 避免阻塞。7. 新增 overlay 的 oBtn.onclick 在隐藏时置空，避免重复绑定与内存泄漏。8. 边界处理：addRandom 空列表直接返回、touch 事件对 touches/changedTouches 判空、localStorage 读写 try/catch 包裹。9. CSS 增加 .mg-cell overflow:hidden 防止大数字溢出，保持简洁白色主题。
 
 打开 platform.html 即可游玩！
