@@ -92,10 +92,34 @@ function initGame(container) {
         handleSubmit();
       }
     });
-    submitBtn.addEventListener('click', handleSubmit);
-    restartBtn.addEventListener('click', function() {
-      restartGame();
+
+    submitBtn.addEventListener('click', function() {
+      if (isInputEnabled) {
+        handleSubmit();
+      }
     });
+
+    restartBtn.addEventListener('click', function() {
+      resetGame();
+    });
+  }
+
+  function updateStats() {
+    const scoreSpan = document.getElementById('mm-score');
+    const roundSpan = document.getElementById('mm-round');
+    if (scoreSpan) scoreSpan.textContent = score;
+    if (roundSpan) roundSpan.textContent = round;
+  }
+
+  function updateProgress() {
+    progressContainer.innerHTML = '';
+    dotElements = [];
+    for (let i = 0; i < maxRounds; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'mm-progress-dot' + (i < round - 1 ? ' active' : '');
+      progressContainer.appendChild(dot);
+      dotElements.push(dot);
+    }
   }
 
   function generateSequence(length) {
@@ -106,188 +130,120 @@ function initGame(container) {
     return seq;
   }
 
-  function updateStats() {
-    const scoreSpan = container.querySelector('#mm-score');
-    const roundSpan = container.querySelector('#mm-round');
-    if (scoreSpan) scoreSpan.textContent = score;
-    if (roundSpan) roundSpan.textContent = round;
-  }
-
-  function updateProgressDots() {
-    progressContainer.innerHTML = '';
-    dotElements = [];
-    for (let i = 0; i < sequence.length; i++) {
-      const dot = document.createElement('div');
-      dot.className = 'mm-dot';
-      if (i < currentIndex) {
-        dot.classList.add('correct');
-      } else if (i === currentIndex) {
-        dot.classList.add('active');
-      }
-      progressContainer.appendChild(dot);
-      dotElements.push(dot);
-    }
-  }
-
-  function showMessage(text, type) {
-    if (!messageElement) return;
-    messageElement.textContent = text;
-    messageElement.className = 'mm-message ' + (type || '');
-  }
-
-  function clearMessage() {
-    if (!messageElement) return;
-    messageElement.textContent = '';
-    messageElement.className = 'mm-message';
-  }
-
-  function showSequenceForRound() {
-    if (!numberElement || !sequenceElement) return;
+  function showSequence() {
+    isShowing = true;
+    isInputEnabled = false;
+    inputElement.disabled = true;
+    submitBtn.disabled = true;
     numberElement.style.display = 'none';
     sequenceElement.style.display = 'block';
-    sequenceElement.textContent = '';
-    let i = 0;
-    function showNextDigit() {
-      if (i < sequence.length) {
-        sequenceElement.textContent = sequence[i];
-        i++;
-        showTimeout = setTimeout(showNextDigit, 600);
-      } else {
-        showTimeout = setTimeout(function() {
-          sequenceElement.style.display = 'none';
-          numberElement.style.display = 'block';
-          numberElement.textContent = '?';
-          isShowing = false;
-          isInputEnabled = true;
-          inputElement.disabled = false;
-          submitBtn.disabled = false;
-          inputElement.value = '';
-          inputElement.focus();
-          clearMessage();
-          updateProgressDots();
-          showMessage('输入你看到的数字序列', 'info');
-        }, 500);
-      }
-    }
-    showNextDigit();
-  }
+    sequenceElement.textContent = sequence.join('');
+    messageElement.textContent = '请记住这个数字序列';
 
-  function startRound() {
-    clearTimeout(timer);
-    clearTimeout(showTimeout);
-    isInputEnabled = false;
-    isShowing = true;
-    const length = baseLength + round - 1;
-    sequence = generateSequence(length);
-    currentIndex = 0;
-    if (numberElement) {
-      numberElement.textContent = '准备...';
-      numberElement.style.display = 'block';
-    }
-    if (sequenceElement) {
+    showTimeout = setTimeout(function() {
       sequenceElement.style.display = 'none';
-    }
-    if (inputElement) {
+      numberElement.style.display = 'block';
+      numberElement.textContent = '?';
+      messageElement.textContent = '请输入你看到的数字序列';
+      isShowing = false;
+      isInputEnabled = true;
+      inputElement.disabled = false;
+      submitBtn.disabled = false;
       inputElement.value = '';
-      inputElement.disabled = true;
-    }
-    if (submitBtn) submitBtn.disabled = true;
-    updateStats();
-    updateProgressDots();
-    clearMessage();
-    showMessage('记住出现的数字序列', 'info');
-    timer = setTimeout(function() {
-      showSequenceForRound();
-    }, 800);
+      inputElement.focus();
+    }, 2000);
   }
 
   function handleSubmit() {
     if (!isInputEnabled) return;
     const userInput = inputElement.value.trim();
-    if (!userInput) {
-      showMessage('请输入数字', 'error');
+    if (userInput === '') {
+      messageElement.textContent = '请输入数字';
       return;
     }
-    const correctSequence = sequence.join('');
-    if (userInput === correctSequence) {
-      score += sequence.length * 10;
+    if (!/^\d+$/.test(userInput)) {
+      messageElement.textContent = '只能输入数字';
+      return;
+    }
+    const correct = sequence.join('');
+    if (userInput === correct) {
+      score += 10 * round;
+      messageElement.textContent = '正确！';
       updateStats();
-      showMessage('正确！', 'success');
-      celebrate();
-      isInputEnabled = false;
-      inputElement.disabled = true;
-      submitBtn.disabled = true;
       round++;
       if (round > maxRounds) {
         endGame(true);
-        return;
-      }
-      timer = setTimeout(function() {
+      } else {
+        updateStats();
+        updateProgress();
         startRound();
-      }, 1000);
-    } else {
-      showMessage('错误！正确的序列是：' + correctSequence, 'error');
-      const displayEl = container.querySelector('.mm-display');
-      if (displayEl) {
-        displayEl.classList.add('mm-shake');
-        setTimeout(function() {
-          displayEl.classList.remove('mm-shake');
-        }, 400);
       }
-      isInputEnabled = false;
-      inputElement.disabled = true;
-      submitBtn.disabled = true;
+    } else {
+      messageElement.textContent = '错误！正确序列是：' + correct;
       endGame(false);
     }
   }
 
-  function celebrate() {
-    for (let i = 0; i < 12; i++) {
-      const span = document.createElement('span');
-      span.className = 'mm-celebration';
-      span.textContent = '★';
-      span.style.left = Math.random() * 80 + 10 + '%';
-      span.style.top = Math.random() * 40 + 30 + '%';
-      span.style.color = ['#7c3aed', '#06b6d4', '#10b981', '#f59e0b'][Math.floor(Math.random() * 4)];
-      span.style.animationDelay = Math.random() * 0.3 + 's';
-      container.appendChild(span);
-      setTimeout(function() {
-        if (span.parentNode) span.parentNode.removeChild(span);
-      }, 1500);
+  function startRound() {
+    if (round > maxRounds) {
+      endGame(true);
+      return;
     }
+    sequence = generateSequence(baseLength + round - 1);
+    currentIndex = 0;
+    updateStats();
+    updateProgress();
+    showSequence();
   }
 
-  function endGame(won) {
+  function endGame(win) {
     isInputEnabled = false;
     inputElement.disabled = true;
     submitBtn.disabled = true;
-    if (won) {
-      showMessage('恭喜你完成所有轮次！最终得分：' + score, 'success');
-      celebrate();
+    if (win) {
+      messageElement.textContent = '恭喜你完成所有轮次！最终得分：' + score;
     } else {
-      showMessage('游戏结束！最终得分：' + score, 'error');
+      messageElement.textContent = '游戏结束！最终得分：' + score;
     }
-    restartBtn.textContent = '再玩一次';
+    if (timer) {
+      clearTimeout(timer);
+      timer = null;
+    }
+    if (showTimeout) {
+      clearTimeout(showTimeout);
+      showTimeout = null;
+    }
   }
 
-  function restartGame() {
-    clearTimeout(timer);
-    clearTimeout(showTimeout);
+  function resetGame() {
+    if (timer) {
+      clearTimeout(timer);
+      timer = null;
+    }
+    if (showTimeout) {
+      clearTimeout(showTimeout);
+      showTimeout = null;
+    }
+    sequence = [];
+    currentIndex = 0;
     score = 0;
     round = 1;
     isShowing = false;
     isInputEnabled = false;
-    sequence = [];
-    currentIndex = 0;
+    inputElement.value = '';
+    inputElement.disabled = true;
+    submitBtn.disabled = true;
+    numberElement.textContent = '';
+    sequenceElement.textContent = '';
+    sequenceElement.style.display = 'none';
+    numberElement.style.display = 'block';
+    messageElement.textContent = '';
     updateStats();
-    progressContainer.innerHTML = '';
-    dotElements = [];
-    clearMessage();
-    restartBtn.textContent = '重新开始';
+    updateProgress();
     startRound();
   }
 
   createUI();
-  startRound();
+  resetGame();
 }
 }
