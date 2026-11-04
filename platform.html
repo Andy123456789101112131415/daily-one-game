@@ -255,6 +255,8 @@ body{margin:0;padding:0;background:#f8f9fc;font-family:'Segoe UI',system-ui,-app
 .nm-wrap{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;padding:16px;border-radius:12px;max-width:680px;margin:0 auto;box-sizing:border-box;}.nm-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px;}.nm-title{font-size:20px;font-weight:600;color:#1e293b;margin:0;}.nm-stats{display:flex;gap:12px;font-size:14px;color:#64748b;}.nm-stat span{font-weight:600;color:#1e293b;}.nm-board{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin-bottom:16px;}.nm-cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;border-radius:8px;background:#f1f5f9;color:#1e293b;cursor:pointer;user-select:none;transition:background 0.15s,transform 0.1s;border:2px solid transparent;}.nm-cell:hover{background:#e2e8f0;}.nm-cell.selected{background:#7c3aed;color:#ffffff;border-color:#6d28d9;}.nm-cell.path{background:#dbeafe;border-color:#93c5fd;}.nm-cell.visited{background:#fef3c7;border-color:#fcd34d;}.nm-cell.empty{background:transparent;border:none;cursor:default;}.nm-controls{display:flex;gap:12px;justify-content:center;margin-top:8px;flex-wrap:wrap;}.nm-btn{padding:10px 20px;font-size:15px;font-weight:500;border:none;border-radius:8px;cursor:pointer;transition:background 0.15s;background:#7c3aed;color:#ffffff;}.nm-btn:hover{background:#6d28d9;}.nm-btn.secondary{background:#ffffff;color:#1e293b;border:1px solid #e2e8f0;}.nm-btn.secondary:hover{background:#f1f5f9;}.nm-msg{text-align:center;font-size:16px;font-weight:500;min-height:24px;margin-top:12px;color:#64748b;}.nm-msg.win{color:#10b981;animation:nm-pop 0.5s ease;}.nm-msg.lose{color:#ef4444;animation:nm-shake 0.5s ease;}@keyframes nm-pop{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}@keyframes nm-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 /* === g8c742671 === */
 .ctf-wrap{--ctf-primary:#7c3aed;--ctf-sec:#06b6d4;--ctf-gold:#f59e0b;--ctf-red:#ef4444;--ctf-green:#10b981;--ctf-bg:#f8f9fc;--ctf-card:#fff;--ctf-border:#e2e8f0;--ctf-text:#1e293b;--ctf-muted:#64748b;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--ctf-bg);border-radius:12px;padding:20px;max-width:640px;margin:0 auto;color:var(--ctf-text)}.ctf-wrap *{box-sizing:border-box;margin:0;padding:0}.ctf-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px}.ctf-title{font-size:20px;font-weight:600}.ctf-scores{display:flex;gap:20px;background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:8px;padding:8px 16px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.ctf-score-item{font-size:14px}.ctf-score-label{color:var(--ctf-muted);margin-right:4px}.ctf-score-value{font-weight:600}.ctf-board{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:8px;padding:8px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.ctf-cell{aspect-ratio:1;border-radius:4px;border:1px solid var(--ctf-border);background:#f1f5f9;transition:background 0.2s,transform 0.1s;cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center}.ctf-cell:hover{background:#e2e8f0}.ctf-cell.wall{background:#cbd5e1;cursor:not-allowed}.ctf-cell.player{background:var(--ctf-primary);transform:scale(0.9);border-color:var(--ctf-primary)}.ctf-cell.enemy{background:var(--ctf-sec);transform:scale(0.9);border-color:var(--ctf-sec)}.ctf-cell.flag{background:var(--ctf-gold);transform:scale(0.8);border-color:var(--ctf-gold)}.ctf-cell.enemy .ctf-eye,.ctf-cell.player .ctf-eye{width:6px;height:6px;background:#fff;border-radius:50%;position:absolute;top:4px;right:4px}.ctf-controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.ctf-btn{background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:6px;padding:8px 16px;font-size:14px;font-weight:500;cursor:pointer;transition:background 0.2s,border-color 0.2s;color:var(--ctf-text)}.ctf-btn:hover{background:#f1f5f9;border-color:#94a3b8}.ctf-btn:active{transform:translateY(1px)}.ctf-btn-primary{background:var(--ctf-primary);color:#fff;border-color:var(--ctf-primary)}.ctf-btn-primary:hover{background:#6d28d9}.ctf-msg{background:var(--ctf-card);border:1px solid var(--ctf-border);border-radius:8px;padding:12px;margin-top:12px;font-size:14px;color:var(--ctf-muted);box-shadow:0 1px 3px rgba(0,0,0,0.04)}.ctf-win{color:var(--ctf-green);font-weight:600}.ctf-lose{color:var(--ctf-red);font-weight:600}.ctf-anim{animation:ctf-pop 0.4s ease}.@keyframes ctf-pop{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
+/* === g90bea762 === */
+.mm-game{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;padding:16px;border-radius:12px;max-width:680px;margin:0 auto;box-sizing:border-box;color:#1e293b;user-select:none;position:relative;overflow:hidden;min-height:400px;display:flex;flex-direction:column}.mm-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px}.mm-title{font-size:18px;font-weight:600;color:#1e293b}.mm-stats{display:flex;gap:16px;font-size:14px;color:#64748b}.mm-stats span{font-weight:600;color:#1e293b}.mm-main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px}.mm-display{background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:20px 30px;min-width:200px;min-height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.04);transition:all 0.3s ease}.mm-number{font-size:48px;font-weight:700;color:#7c3aed;letter-spacing:4px;transition:all 0.2s}.mm-sequence{font-size:28px;color:#06b6d4;letter-spacing:8px;font-weight:600}.mm-input-area{display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center}.mm-input{font-size:24px;padding:12px 16px;border:2px solid #e2e8f0;border-radius:8px;width:180px;text-align:center;font-family:inherit;outline:none;transition:border-color 0.2s;color:#1e293b;background:#ffffff}.mm-input:focus{border-color:#7c3aed}.mm-btn{font-family:inherit;font-size:16px;font-weight:600;padding:12px 24px;border-radius:8px;border:none;cursor:pointer;transition:all 0.2s;background:#7c3aed;color:#ffffff;box-shadow:0 2px 4px rgba(124,58,237,0.2)}.mm-btn:hover{background:#6d28d9;transform:translateY(-1px);box-shadow:0 4px 8px rgba(124,58,237,0.3)}.mm-btn:active{transform:translateY(0)}.mm-btn:disabled{background:#cbd5e1;color:#94a3b8;cursor:not-allowed;transform:none;box-shadow:none}.mm-btn-secondary{background:#ffffff;color:#1e293b;border:1px solid #e2e8f0}.mm-btn-secondary:hover{background:#f1f5f9;border-color:#cbd5e1}.mm-btn-secondary:disabled{background:#f8f9fc;color:#94a3b8}.mm-message{font-size:16px;font-weight:500;min-height:24px;text-align:center;transition:all 0.3s}.mm-message.success{color:#10b981}.mm-message.error{color:#ef4444}.mm-message.info{color:#f59e0b}.mm-progress{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}.mm-dot{width:12px;height:12px;border-radius:50%;background:#e2e8f0;transition:background 0.3s}.mm-dot.active{background:#7c3aed}.mm-dot.correct{background:#10b981}.mm-dot.wrong{background:#ef4444}.mm-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px}.mm-celebration{position:absolute;pointer-events:none;font-size:24px;animation:mm-float 1s ease-out forwards}@keyframes mm-float{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-60px) scale(1.5)}}@keyframes mm-shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}.mm-shake{animation:mm-shake 0.4s ease}@media (max-width:480px){.mm-number{font-size:36px}.mm-sequence{font-size:22px}.mm-input{font-size:20px;width:140px;padding:10px 12px}.mm-btn{font-size:14px;padding:10px 18px}}
 /* === g946ffc84 === */
 .cm-game{font-family:'Segoe UI',system-ui,sans-serif;background:#f8f9fc;color:#1e293b;padding:20px;border-radius:12px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:16px;user-select:none}.cm-header{display:flex;justify-content:space-between;align-items:center;width:100%;max-width:400px}.cm-title{font-size:1.4em;font-weight:600;color:#1e293b}.cm-score{font-size:1.2em;font-weight:600;color:#7c3aed}.cm-target{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:8px 16px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.cm-target-label{font-size:0.85em;color:#64748b}.cm-target-color{width:32px;height:32px;border-radius:50%;border:2px solid #e2e8f0;background:#7c3aed}.cm-board{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;max-width:400px}.cm-card{aspect-ratio:1;border-radius:12px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;transition:transform 0.1s,box-shadow 0.1s;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.cm-card:hover{transform:scale(1.02)}.cm-card:active{transform:scale(0.98)}.cm-card.cm-disabled{pointer-events:none;opacity:0.6}.cm-message{min-height:1.5em;font-size:1em;color:#64748b;text-align:center}.cm-message.cm-win{color:#10b981;font-weight:600;animation:cm-pop 0.3s ease}.cm-message.cm-lose{color:#ef4444;font-weight:600;animation:cm-shake 0.3s ease}.cm-btn{background:#7c3aed;color:#fff;border:none;border-radius:8px;padding:10px 24px;font-size:1em;cursor:pointer;transition:background 0.2s;box-shadow:0 2px 4px rgba(0,0,0,0.1)}.cm-btn:hover{background:#6d28d9}.cm-btn:active{transform:scale(0.98)}.cm-celebrate{animation:cm-celebrate 0.5s ease}@keyframes cm-pop{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}@keyframes cm-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}@keyframes cm-celebrate{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
 /* === g982619e3 === */
@@ -1110,6 +1112,13 @@ body{margin:0;padding:0;background:#f8f9fc;font-family:'Segoe UI',system-ui,-app
       <div class="tags">夺旗 策略 网格</div>
     </div>
   </div>
+<div class="game-card" onclick="openGame('g90bea762')">
+    <div class="thumb"><svg viewBox='0 0 56 56'><rect width='56' height='56' fill='#f8f9fc'/><rect x='4' y='4' width='48' height='48' rx='6' fill='#ffffff' stroke='#e2e8f0' stroke-width='1'/><text x='28' y='34' font-family='Segoe UI, sans-serif' font-size='20' font-weight='bold' fill='#7c3aed' text-anchor='middle'>3</text><text x='28' y='46' font-family='Segoe UI, sans-serif' font-size='10' fill='#64748b' text-anchor='middle'>7 2 9</text></svg></div>
+    <div class="info">
+      <div class="name">数字记忆挑战 Memory Matrix</div>
+      <div class="tags">记忆数字序列</div>
+    </div>
+  </div>
 <div class="game-card" onclick="openGame('g946ffc84')">
     <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' fill='#f8f9fc'/><rect x='8' y='8' width='40' height='40' rx='8' fill='#7c3aed'/><circle cx='28' cy='28' r='12' fill='#06b6d4'/><circle cx='28' cy='28' r='6' fill='#f59e0b'/></svg></div>
     <div class="info">
@@ -1449,6 +1458,7 @@ function openGame(type) {
     g83a0a564: 'Color Match Rush',
     g847180bb: '数字迷阵 Number Maze',
     g8c742671: 'Capture the Flag',
+    g90bea762: '数字记忆挑战 Memory Matrix',
     g946ffc84: 'Color Match 色彩配对',
     g982619e3: '色彩记忆挑战 Color Memory',
     g9e1572b1: '华容道拼图',
@@ -1544,6 +1554,7 @@ function openGame(type) {
   else if (type === 'g83a0a564') init_g83a0a564(content);
   else if (type === 'g847180bb') init_g847180bb(content);
   else if (type === 'g8c742671') init_g8c742671(content);
+  else if (type === 'g90bea762') init_g90bea762(content);
   else if (type === 'g946ffc84') init_g946ffc84(content);
   else if (type === 'g982619e3') init_g982619e3(content);
   else if (type === 'g9e1572b1') init_g9e1572b1(content);
@@ -6593,6 +6604,300 @@ function init_g8c742671(container) {
   return function() {
     document.removeEventListener('keydown', handleKey);
   };
+}
+// === g90bea762 ===
+function init_g90bea762(container) {
+function initGame(container) {
+  let sequence = [];
+  let currentIndex = 0;
+  let score = 0;
+  let round = 1;
+  let isShowing = false;
+  let isInputEnabled = false;
+  let timer = null;
+  let showTimeout = null;
+  let dotElements = [];
+  let inputElement = null;
+  let numberElement = null;
+  let sequenceElement = null;
+  let messageElement = null;
+  let submitBtn = null;
+  let restartBtn = null;
+  let progressContainer = null;
+
+  const baseLength = 3;
+  const maxRounds = 10;
+
+  function createUI() {
+    container.innerHTML = '';
+    container.classList.add('mm-game');
+
+    const header = document.createElement('div');
+    header.className = 'mm-header';
+    const title = document.createElement('div');
+    title.className = 'mm-title';
+    title.textContent = '数字记忆挑战';
+    const stats = document.createElement('div');
+    stats.className = 'mm-stats';
+    stats.innerHTML = '<div>得分 <span id="mm-score">0</span></div><div>轮次 <span id="mm-round">1</span>/10</div>';
+    header.appendChild(title);
+    header.appendChild(stats);
+
+    const main = document.createElement('div');
+    main.className = 'mm-main';
+
+    const display = document.createElement('div');
+    display.className = 'mm-display';
+    numberElement = document.createElement('div');
+    numberElement.className = 'mm-number';
+    sequenceElement = document.createElement('div');
+    sequenceElement.className = 'mm-sequence';
+    sequenceElement.style.display = 'none';
+    display.appendChild(numberElement);
+    display.appendChild(sequenceElement);
+
+    const inputArea = document.createElement('div');
+    inputArea.className = 'mm-input-area';
+    inputElement = document.createElement('input');
+    inputElement.className = 'mm-input';
+    inputElement.type = 'text';
+    inputElement.inputMode = 'numeric';
+    inputElement.placeholder = '输入数字';
+    inputElement.disabled = true;
+    inputElement.maxLength = 10;
+    submitBtn = document.createElement('button');
+    submitBtn.className = 'mm-btn';
+    submitBtn.textContent = '提交';
+    submitBtn.disabled = true;
+    inputArea.appendChild(inputElement);
+    inputArea.appendChild(submitBtn);
+
+    messageElement = document.createElement('div');
+    messageElement.className = 'mm-message';
+
+    progressContainer = document.createElement('div');
+    progressContainer.className = 'mm-progress';
+
+    const buttons = document.createElement('div');
+    buttons.className = 'mm-buttons';
+    restartBtn = document.createElement('button');
+    restartBtn.className = 'mm-btn mm-btn-secondary';
+    restartBtn.textContent = '重新开始';
+    buttons.appendChild(restartBtn);
+
+    main.appendChild(display);
+    main.appendChild(inputArea);
+    main.appendChild(messageElement);
+    main.appendChild(progressContainer);
+    main.appendChild(buttons);
+
+    container.appendChild(header);
+    container.appendChild(main);
+
+    inputElement.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && isInputEnabled) {
+        e.preventDefault();
+        handleSubmit();
+      }
+    });
+    submitBtn.addEventListener('click', handleSubmit);
+    restartBtn.addEventListener('click', function() {
+      restartGame();
+    });
+  }
+
+  function generateSequence(length) {
+    const seq = [];
+    for (let i = 0; i < length; i++) {
+      seq.push(Math.floor(Math.random() * 10));
+    }
+    return seq;
+  }
+
+  function updateStats() {
+    const scoreSpan = container.querySelector('#mm-score');
+    const roundSpan = container.querySelector('#mm-round');
+    if (scoreSpan) scoreSpan.textContent = score;
+    if (roundSpan) roundSpan.textContent = round;
+  }
+
+  function updateProgressDots() {
+    progressContainer.innerHTML = '';
+    dotElements = [];
+    for (let i = 0; i < sequence.length; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'mm-dot';
+      if (i < currentIndex) {
+        dot.classList.add('correct');
+      } else if (i === currentIndex) {
+        dot.classList.add('active');
+      }
+      progressContainer.appendChild(dot);
+      dotElements.push(dot);
+    }
+  }
+
+  function showMessage(text, type) {
+    if (!messageElement) return;
+    messageElement.textContent = text;
+    messageElement.className = 'mm-message ' + (type || '');
+  }
+
+  function clearMessage() {
+    if (!messageElement) return;
+    messageElement.textContent = '';
+    messageElement.className = 'mm-message';
+  }
+
+  function showSequenceForRound() {
+    if (!numberElement || !sequenceElement) return;
+    numberElement.style.display = 'none';
+    sequenceElement.style.display = 'block';
+    sequenceElement.textContent = '';
+    let i = 0;
+    function showNextDigit() {
+      if (i < sequence.length) {
+        sequenceElement.textContent = sequence[i];
+        i++;
+        showTimeout = setTimeout(showNextDigit, 600);
+      } else {
+        showTimeout = setTimeout(function() {
+          sequenceElement.style.display = 'none';
+          numberElement.style.display = 'block';
+          numberElement.textContent = '?';
+          isShowing = false;
+          isInputEnabled = true;
+          inputElement.disabled = false;
+          submitBtn.disabled = false;
+          inputElement.value = '';
+          inputElement.focus();
+          clearMessage();
+          updateProgressDots();
+          showMessage('输入你看到的数字序列', 'info');
+        }, 500);
+      }
+    }
+    showNextDigit();
+  }
+
+  function startRound() {
+    clearTimeout(timer);
+    clearTimeout(showTimeout);
+    isInputEnabled = false;
+    isShowing = true;
+    const length = baseLength + round - 1;
+    sequence = generateSequence(length);
+    currentIndex = 0;
+    if (numberElement) {
+      numberElement.textContent = '准备...';
+      numberElement.style.display = 'block';
+    }
+    if (sequenceElement) {
+      sequenceElement.style.display = 'none';
+    }
+    if (inputElement) {
+      inputElement.value = '';
+      inputElement.disabled = true;
+    }
+    if (submitBtn) submitBtn.disabled = true;
+    updateStats();
+    updateProgressDots();
+    clearMessage();
+    showMessage('记住出现的数字序列', 'info');
+    timer = setTimeout(function() {
+      showSequenceForRound();
+    }, 800);
+  }
+
+  function handleSubmit() {
+    if (!isInputEnabled) return;
+    const userInput = inputElement.value.trim();
+    if (!userInput) {
+      showMessage('请输入数字', 'error');
+      return;
+    }
+    const correctSequence = sequence.join('');
+    if (userInput === correctSequence) {
+      score += sequence.length * 10;
+      updateStats();
+      showMessage('正确！', 'success');
+      celebrate();
+      isInputEnabled = false;
+      inputElement.disabled = true;
+      submitBtn.disabled = true;
+      round++;
+      if (round > maxRounds) {
+        endGame(true);
+        return;
+      }
+      timer = setTimeout(function() {
+        startRound();
+      }, 1000);
+    } else {
+      showMessage('错误！正确的序列是：' + correctSequence, 'error');
+      const displayEl = container.querySelector('.mm-display');
+      if (displayEl) {
+        displayEl.classList.add('mm-shake');
+        setTimeout(function() {
+          displayEl.classList.remove('mm-shake');
+        }, 400);
+      }
+      isInputEnabled = false;
+      inputElement.disabled = true;
+      submitBtn.disabled = true;
+      endGame(false);
+    }
+  }
+
+  function celebrate() {
+    for (let i = 0; i < 12; i++) {
+      const span = document.createElement('span');
+      span.className = 'mm-celebration';
+      span.textContent = '★';
+      span.style.left = Math.random() * 80 + 10 + '%';
+      span.style.top = Math.random() * 40 + 30 + '%';
+      span.style.color = ['#7c3aed', '#06b6d4', '#10b981', '#f59e0b'][Math.floor(Math.random() * 4)];
+      span.style.animationDelay = Math.random() * 0.3 + 's';
+      container.appendChild(span);
+      setTimeout(function() {
+        if (span.parentNode) span.parentNode.removeChild(span);
+      }, 1500);
+    }
+  }
+
+  function endGame(won) {
+    isInputEnabled = false;
+    inputElement.disabled = true;
+    submitBtn.disabled = true;
+    if (won) {
+      showMessage('恭喜你完成所有轮次！最终得分：' + score, 'success');
+      celebrate();
+    } else {
+      showMessage('游戏结束！最终得分：' + score, 'error');
+    }
+    restartBtn.textContent = '再玩一次';
+  }
+
+  function restartGame() {
+    clearTimeout(timer);
+    clearTimeout(showTimeout);
+    score = 0;
+    round = 1;
+    isShowing = false;
+    isInputEnabled = false;
+    sequence = [];
+    currentIndex = 0;
+    updateStats();
+    progressContainer.innerHTML = '';
+    dotElements = [];
+    clearMessage();
+    restartBtn.textContent = '重新开始';
+    startRound();
+  }
+
+  createUI();
+  startRound();
+}
 }
 // === g946ffc84 ===
 function init_g946ffc84(container) {
