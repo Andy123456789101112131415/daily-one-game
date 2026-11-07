@@ -1,3 +1,176 @@
 function init_g5831a5fc(container) {
-function initGame(container){const size=4;let board=[];let emptyPos={row:0,col:0};let moves=0;let startTime=null;let timerInterval=null;let gameWon=false;const winMessage='恭喜你，完成了！';const loseMessage='';const boardEl=document.createElement('div');boardEl.className='ns-board';const headerEl=document.createElement('div');headerEl.className='ns-header';const titleEl=document.createElement('h2');titleEl.className='ns-title';titleEl.textContent='数字华容道';const statsEl=document.createElement('div');statsEl.className='ns-stats';const movesSpan=document.createElement('span');movesSpan.id='ns-moves';const timeSpan=document.createElement('span');timeSpan.id='ns-time';statsEl.innerHTML='步数: <span id=\'ns-moves\'>0</span> | 时间: <span id=\'ns-time\'>0:00</span>';headerEl.appendChild(titleEl);headerEl.appendChild(statsEl);const controlsEl=document.createElement('div');controlsEl.className='ns-controls';const restartBtn=document.createElement('button');restartBtn.className='ns-btn';restartBtn.textContent='重来';const shuffleBtn=document.createElement('button');shuffleBtn.className='ns-btn ns-secondary';shuffleBtn.textContent='随机打乱';controlsEl.appendChild(restartBtn);controlsEl.appendChild(shuffleBtn);const messageEl=document.createElement('div');messageEl.className='ns-message';container.innerHTML='';container.appendChild(headerEl);container.appendChild(boardEl);container.appendChild(controlsEl);container.appendChild(messageEl);function initBoard(){board=[];let num=1;for(let r=0;r<size;r++){board[r]=[];for(let c=0;c<size;c++){if(r===size-1&&c===size-1){board[r][c]=0;emptyPos={row:r,col:c};}else{board[r][c]=num++;}}}}function shuffleBoard(){initBoard();for(let i=0;i<1000;i++){const dirs=[[0,1],[0,-1],[1,0],[-1,0]];const dir=dirs[Math.floor(Math.random()*4)];const newRow=emptyPos.row+dir[0];const newCol=emptyPos.col+dir[1];if(newRow>=0&&newRow<size&&newCol>=0&&newCol<size){board[emptyPos.row][emptyPos.col]=board[newRow][newCol];board[newRow][newCol]=0;emptyPos={row:newRow,col:newCol};}}if(isSolved()){shuffleBoard();}}function isSolved(){let expected=1;for(let r=0;r<size;r++){for(let c=0;c<size;c++){if(r===size-1&&c===size-1){if(board[r][c]!==0)return false;}else{if(board[r][c]!==expected++)return false;}}}return true;}function renderBoard(){boardEl.innerHTML='';boardEl.style.gridTemplateColumns=`repeat(${size},1fr)`;for(let r=0;r<size;r++){for(let c=0;c<size;c++){const val=board[r][c];const tile=document.createElement('div');tile.className='ns-tile';if(val===0){tile.classList.add('ns-empty');tile.textContent='';}else{tile.textContent=val;if(val===r*size+c+1){tile.classList.add('ns-correct');}}tile.addEventListener('click',()=>handleTileClick(r,c));boardEl.appendChild(tile);}}}function handleTileClick(row,col){if(gameWon)return;const dr=Math.abs(row-emptyPos.row);const dc=Math.abs(col-emptyPos.col);if(dr+dc===1){board[emptyPos.row][emptyPos.col]=board[row][col];board[row][col]=0;emptyPos={row,col};moves++;updateStats();renderBoard();if(isSolved()){gameWon=true;clearInterval(timerInterval);messageEl.textContent=winMessage;messageEl.className='ns-message ns-win';}}}function updateStats(){const movesEl=container.querySelector('#ns-moves');if(movesEl)movesEl.textContent=moves;const timeEl=container.querySelector('#ns-time');if(timeEl){if(startTime){const elapsed=Math.floor((Date.now()-startTime)/1000);const mins=Math.floor(elapsed/60);const secs=elapsed%60;timeEl.textContent=`${mins}:${secs.toString().padStart(2,'0')}`;}else{timeEl.textContent='0:00';}}}function startTimer(){if(timerInterval)clearInterval(timerInterval);startTime=Date.now();updateStats();timerInterval=setInterval(updateStats,1000);}function resetGame(){gameWon=false;moves=0;clearInterval(timerInterval);timerInterval=null;startTime=null;messageEl.textContent='';messageEl.className='ns-message';shuffleBoard();renderBoard();updateStats();startTimer();}function handleKeyDown(e){if(gameWon)return;const key=e.key;let dr=0,dc=0;switch(key){case 'ArrowUp':dr=-1;break;case 'ArrowDown':dr=1;break;case 'ArrowLeft':dc=-1;break;case 'ArrowRight':dc=1;break;default:return;}e.preventDefault();const newRow=emptyPos.row+dr;const newCol=emptyPos.col+dc;if(newRow>=0&&newRow<size&&newCol>=0&&newCol<size){board[emptyPos.row][emptyPos.col]=board[newRow][newCol];board[newRow][newCol]=0;emptyPos={row:newRow,col:newCol};moves++;updateStats();renderBoard();if(isSolved()){gameWon=true;clearInterval(timerInterval);messageEl.textContent=winMessage;messageEl.className='ns-message ns-win';}}}restartBtn.addEventListener('click',resetGame);shuffleBtn.addEventListener('click',()=>{gameWon=false;moves=0;clearInterval(timerInterval);timerInterval=null;startTime=null;messageEl.textContent='';messageEl.className='ns-message';shuffleBoard();renderBoard();updateStats();startTimer();});container.addEventListener('keydown',handleKeyDown);resetGame();const cleanup=()=>{container.removeEventListener('keydown',handleKeyDown);clearInterval(timerInterval);};return cleanup;}
+function initGame(container) {
+  const size = 4;
+  let board = [];
+  let emptyPos = { row: 0, col: 0 };
+  let moves = 0;
+  let startTime = null;
+  let timerInterval = null;
+  let gameWon = false;
+  const winMessage = '恭喜你，完成了！';
+
+  const boardEl = document.createElement('div');
+  boardEl.className = 'ns-board';
+  const headerEl = document.createElement('div');
+  headerEl.className = 'ns-header';
+  const titleEl = document.createElement('h2');
+  titleEl.className = 'ns-title';
+  titleEl.textContent = '数字华容道';
+  const statsEl = document.createElement('div');
+  statsEl.className = 'ns-stats';
+  statsEl.innerHTML = '步数: <span id="ns-moves">0</span> | 时间: <span id="ns-time">0:00</span>';
+  headerEl.appendChild(titleEl);
+  headerEl.appendChild(statsEl);
+
+  const controlsEl = document.createElement('div');
+  controlsEl.className = 'ns-controls';
+  const restartBtn = document.createElement('button');
+  restartBtn.className = 'ns-btn';
+  restartBtn.textContent = '重来';
+  const shuffleBtn = document.createElement('button');
+  shuffleBtn.className = 'ns-btn ns-secondary';
+  shuffleBtn.textContent = '随机打乱';
+  controlsEl.appendChild(restartBtn);
+  controlsEl.appendChild(shuffleBtn);
+
+  const messageEl = document.createElement('div');
+  messageEl.className = 'ns-message';
+
+  container.innerHTML = '';
+  container.appendChild(headerEl);
+  container.appendChild(boardEl);
+  container.appendChild(controlsEl);
+  container.appendChild(messageEl);
+
+  function initBoard() {
+    board = [];
+    let num = 1;
+    for (let r = 0; r < size; r++) {
+      board[r] = [];
+      for (let c = 0; c < size; c++) {
+        if (r === size - 1 && c === size - 1) {
+          board[r][c] = 0;
+          emptyPos = { row: r, col: c };
+        } else {
+          board[r][c] = num++;
+        }
+      }
+    }
+  }
+
+  function shuffleBoard() {
+    initBoard();
+    for (let i = 0; i < 1000; i++) {
+      const dirs = [[0, 1], [0, -1], [1, 0], [-1, 0]];
+      const dir = dirs[Math.floor(Math.random() * 4)];
+      const newRow = emptyPos.row + dir[0];
+      const newCol = emptyPos.col + dir[1];
+      if (newRow >= 0 && newRow < size && newCol >= 0 && newCol < size) {
+        board[emptyPos.row][emptyPos.col] = board[newRow][newCol];
+        board[newRow][newCol] = 0;
+        emptyPos = { row: newRow, col: newCol };
+      }
+    }
+    if (isSolved()) {
+      shuffleBoard();
+    }
+  }
+
+  function isSolved() {
+    let expected = 1;
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        if (r === size - 1 && c === size - 1) {
+          if (board[r][c] !== 0) return false;
+        } else {
+          if (board[r][c] !== expected++) return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  function renderBoard() {
+    boardEl.innerHTML = '';
+    boardEl.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        const val = board[r][c];
+        const tile = document.createElement('div');
+        tile.className = 'ns-tile';
+        if (val === 0) {
+          tile.classList.add('ns-empty');
+          tile.textContent = '';
+        } else {
+          tile.textContent = val;
+          if (val === r * size + c + 1) {
+            tile.classList.add('ns-correct');
+          }
+        }
+        tile.addEventListener('click', () => handleTileClick(r, c));
+        boardEl.appendChild(tile);
+      }
+    }
+  }
+
+  function handleTileClick(row, col) {
+    if (gameWon) return;
+    const dr = Math.abs(row - emptyPos.row);
+    const dc = Math.abs(col - emptyPos.col);
+    if (dr + dc === 1) {
+      board[emptyPos.row][emptyPos.col] = board[row][col];
+      board[row][col] = 0;
+      emptyPos = { row, col };
+      moves++;
+      updateStats();
+      renderBoard();
+      if (isSolved()) {
+        gameWon = true;
+        clearInterval(timerInterval);
+        messageEl.textContent = winMessage;
+      }
+    }
+  }
+
+  function updateStats() {
+    document.getElementById('ns-moves').textContent = moves;
+    if (startTime) {
+      const elapsed = Math.floor((Date.now() - startTime) / 1000);
+      const mins = Math.floor(elapsed / 60);
+      const secs = elapsed % 60;
+      document.getElementById('ns-time').textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+  }
+
+  function startTimer() {
+    if (timerInterval) clearInterval(timerInterval);
+    startTime = Date.now();
+    timerInterval = setInterval(updateStats, 1000);
+  }
+
+  function resetGame() {
+    clearInterval(timerInterval);
+    timerInterval = null;
+    startTime = null;
+    moves = 0;
+    gameWon = false;
+    messageEl.textContent = '';
+    document.getElementById('ns-moves').textContent = '0';
+    document.getElementById('ns-time').textContent = '0:00';
+    initBoard();
+    renderBoard();
+  }
+
+  function newGame() {
+    resetGame();
+    shuffleBoard();
+    renderBoard();
+    startTimer();
+  }
+
+  restartBtn.addEventListener('click', newGame);
+  shuffleBtn.addEventListener('click', newGame);
+
+  newGame();
+}
 }
