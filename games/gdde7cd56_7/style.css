@@ -98,57 +98,18 @@
   background: #fffbeb;
   color: #f59e0b;
 }
-.nm-cell.nm-target::after {
-  content: '';
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #f59e0b;
-}
 .nm-message {
   text-align: center;
-  font-size: 16px;
-  font-weight: 500;
-  min-height: 24px;
-  margin-top: 8px;
-  color: #64748b;
-  transition: color 0.3s ease;
-}
-.nm-message.nm-win {
-  color: #10b981;
-  animation: nm-pulse 0.6s ease 2;
-}
-.nm-message.nm-lose {
-  color: #ef4444;
-  animation: nm-shake 0.4s ease 2;
-}
-@keyframes nm-pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-@keyframes nm-shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-4px); }
-  75% { transform: translateX(4px); }
-}
-.nm-footer {
-  display: flex;
-  justify-content: space-between;
   font-size: 14px;
   color: #64748b;
-  margin-top: 8px;
+  margin-top: 12px;
+  min-height: 20px;
 }
-.nm-footer span {
+.nm-steps {
+  font-size: 14px;
+  color: #64748b;
+}
+.nm-steps span {
+  color: #7c3aed;
   font-weight: 600;
-  color: #1e293b;
-}
-@media (max-width: 480px) {
-  .nm-container { padding: 12px; }
-  .nm-grid { gap: 6px; padding: 6px; }
-  .nm-cell { font-size: clamp(16px, 5vw, 22px); border-radius: 10px; }
-  .nm-score { font-size: 16px; }
-  .nm-reset-btn { padding: 6px 12px; font-size: 13px; }
 }
