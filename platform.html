@@ -581,6 +581,161 @@ body{margin:0;padding:0;background:#f8f9fc;font-family:'Segoe UI',system-ui,-app
 .nm-game{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f8f9fc;padding:20px;border-radius:12px;max-width:680px;margin:0 auto;box-sizing:border-box}.nm-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.nm-title{font-size:1.4rem;font-weight:600;color:#1e293b;margin:0}.nm-btn{background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:8px 16px;font-size:0.95rem;font-weight:500;color:#1e293b;cursor:pointer;transition:all 0.15s;font-family:inherit}.nm-btn:hover{background:#f1f5f9;border-color:#cbd5e1}.nm-btn:active{transform:scale(0.97)}.nm-btn.nm-primary{background:#7c3aed;color:#ffffff;border-color:#7c3aed}.nm-btn.nm-primary:hover{background:#6d28d9}.nm-status{display:flex;gap:16px;margin-bottom:12px;font-size:0.95rem;color:#64748b}.nm-status span{font-weight:600;color:#1e293b}.nm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}.nm-cell{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:#ffffff;border:2px solid #e2e8f0;border-radius:10px;font-size:1.5rem;font-weight:600;color:#1e293b;cursor:pointer;transition:all 0.15s;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,0.04)}.nm-cell:hover:not(.nm-disabled){border-color:#7c3aed;background:#f5f3ff}.nm-cell.nm-active{border-color:#7c3aed;background:#ede9fe;box-shadow:0 0 0 3px rgba(124,58,237,0.15)}.nm-cell.nm-disabled{opacity:0.5;cursor:default}.nm-cell.nm-start{background:#e0f2fe;border-color:#06b6d4}.nm-cell.nm-goal{background:#fef3c7;border-color:#f59e0b}.nm-message{text-align:center;padding:12px;border-radius:8px;font-weight:500;margin-bottom:12px;min-height:24px}.nm-message.nm-win{background:#d1fae5;color:#065f46;border:1px solid #10b981}.nm-message.nm-lose{background:#fee2e2;color:#991b1b;border:1px solid #ef4444}.nm-message.nm-info{background:#f1f5f9;color:#475569;border:1px solid #e2e8f0}.nm-footer{display:flex;justify-content:center;gap:12px}.nm-controls{display:flex;flex-direction:column;align-items:center;gap:12px}.nm-hint{font-size:0.9rem;color:#64748b}.nm-dpad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:180px}.nm-dpad .nm-btn{width:100%;padding:8px 0;font-size:1.2rem}.nm-empty{visibility:hidden}
 /* === gdde7cd56_6 === */
 .nm-root{background:#f8f9fc;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;box-sizing:border-box}.nm-card{background:#ffffff;border:1px solid #e2e8f0;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,0.05);padding:24px;max-width:680px;width:100%;box-sizing:border-box}.nm-header{display:flex;align-items:center;gap:16px;margin-bottom:20px}.nm-thumb{width:56px;height:56px;border-radius:12px;overflow:hidden;flex-shrink:0;border:1px solid #e2e8f0}.nm-title{font-size:20px;font-weight:600;color:#1e293b;margin:0}.nm-subtitle{font-size:14px;color:#64748b;margin:4px 0 0}.nm-stats{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-size:16px;color:#1e293b}.nm-score{font-weight:600;color:#7c3aed}.nm-timer{font-weight:600;color:#06b6d4}.nm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 auto 20px;max-width:360px}.nm-cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#1e293b;background:#f1f5f9;border:2px solid #e2e8f0;border-radius:12px;cursor:pointer;transition:all 0.15s ease;user-select:none}.nm-cell:hover{background:#e2e8f0}.nm-cell.nm-active{background:#7c3aed;color:#ffffff;border-color:#7c3aed}.nm-cell.nm-correct{background:#10b981;color:#ffffff;border-color:#10b981}.nm-cell.nm-wrong{background:#ef4444;color:#ffffff;border-color:#ef4444;animation:nm-shake 0.3s ease}@keyframes nm-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}.nm-controls{display:flex;justify-content:center;gap:12px;margin-bottom:16px}.nm-btn{padding:10px 24px;border-radius:10px;border:1px solid #e2e8f0;background:#ffffff;color:#1e293b;font-size:16px;font-weight:500;cursor:pointer;transition:all 0.15s ease;font-family:inherit}.nm-btn:hover{background:#f1f5f9}.nm-btn-primary{background:#7c3aed;color:#ffffff;border-color:#7c3aed}.nm-btn-primary:hover{background:#6d28d9}.nm-message{margin:16px 0;padding:12px;border-radius:8px;text-align:center;font-size:16px;font-weight:500}.nm-info{background:#e0f2fe;color:#0369a1}.nm-success{background:#d1fae5;color:#065f46}.nm-error{background:#fee2e2;color:#991b1b}.nm-progress{height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden;margin-bottom:16px}.nm-progress-bar{height:100%;width:0%;background:#7c3aed;transition:width 0.3s ease}.nm-footer{text-align:center;font-size:14px;color:#64748b;margin-top:16px}
+/* === gdde7cd56_7 === */
+/* 数字迷宫样式 */
+.nm-container {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #f8f9fc;
+  padding: 16px;
+  border-radius: 16px;
+  max-width: 680px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  color: #1e293b;
+}
+.nm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.nm-score {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+}
+.nm-score span {
+  color: #7c3aed;
+}
+.nm-reset-btn {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e293b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nm-reset-btn:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+.nm-reset-btn:active {
+  transform: scale(0.97);
+}
+.nm-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 16px 0;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e2e8f0;
+}
+.nm-cell {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(18px, 6vw, 28px);
+  font-weight: 600;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  color: #1e293b;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+.nm-cell:hover:not(.nm-blocked) {
+  border-color: #7c3aed;
+  background: #f5f3ff;
+}
+.nm-cell.nm-blocked {
+  background: #f1f5f9;
+  color: #94a3b8;
+  cursor: not-allowed;
+  border-color: #e2e8f0;
+}
+.nm-cell.nm-current {
+  border-color: #06b6d4;
+  background: #ecfeff;
+  color: #06b6d4;
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
+}
+.nm-cell.nm-visited {
+  background: #f0fdf4;
+  border-color: #10b981;
+  color: #10b981;
+}
+.nm-cell.nm-target {
+  border-color: #f59e0b;
+  background: #fffbeb;
+  color: #f59e0b;
+}
+.nm-cell.nm-target::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f59e0b;
+}
+.nm-message {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  min-height: 24px;
+  margin-top: 8px;
+  color: #64748b;
+  transition: color 0.3s ease;
+}
+.nm-message.nm-win {
+  color: #10b981;
+  animation: nm-pulse 0.6s ease 2;
+}
+.nm-message.nm-lose {
+  color: #ef4444;
+  animation: nm-shake 0.4s ease 2;
+}
+@keyframes nm-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+@keyframes nm-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+.nm-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #64748b;
+  margin-top: 8px;
+}
+.nm-footer span {
+  font-weight: 600;
+  color: #1e293b;
+}
+@media (max-width: 480px) {
+  .nm-container { padding: 12px; }
+  .nm-grid { gap: 6px; padding: 6px; }
+  .nm-cell { font-size: clamp(16px, 5vw, 22px); border-radius: 10px; }
+  .nm-score { font-size: 16px; }
+  .nm-reset-btn { padding: 6px 12px; font-size: 13px; }
+}
 /* === ge6ac44a1 === */
 .m2048-wrap{width:100%;max-width:100%;box-sizing:border-box;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:#1e293b;user-select:none;-webkit-user-select:none;padding:4px}
 .m2048-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;flex-wrap:wrap}
@@ -1355,6 +1510,13 @@ body{margin:0;padding:0;background:#f8f9fc;font-family:'Segoe UI',system-ui,-app
       <div class="tags">数字迷宫挑战</div>
     </div>
   </div>
+<div class="game-card" onclick="openGame('gdde7cd56_7')">
+    <div class="thumb"><svg viewBox='0 0 56 56'><rect width='56' height='56' fill='#f8f9fc'/><rect x='4' y='4' width='48' height='48' rx='8' fill='#ffffff' stroke='#e2e8f0' stroke-width='1.5'/><g fill='#7c3aed' font-size='6' font-family='Segoe UI,system-ui,sans-serif' text-anchor='middle' dominant-baseline='middle'><text x='14' y='14'>1</text><text x='28' y='14'>2</text><text x='42' y='14'>3</text><text x='14' y='28'>4</text><text x='28' y='28'>5</text><text x='42' y='28'>6</text><text x='14' y='42'>7</text><text x='28' y='42'>8</text><text x='42' y='42'>9</text></g><circle cx='28' cy='28' r='4' fill='#06b6d4' opacity='0.3'/><path d='M28 28 L42 28 L42 42' stroke='#10b981' stroke-width='2' fill='none'/></svg></div>
+    <div class="info">
+      <div class="name">数字迷宫 Number Maze</div>
+      <div class="tags">数字迷宫，挑战逻辑</div>
+    </div>
+  </div>
 <div class="game-card" onclick="openGame('ge6ac44a1')">
     <div class="thumb"><svg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'><rect width='56' height='56' rx='8' fill='#f8f9fc'/><rect x='6' y='6' width='21' height='21' rx='4' fill='#ede9fe'/><text x='16.5' y='21' font-size='11' font-family='system-ui' font-weight='700' fill='#7c3aed' text-anchor='middle'>2</text><rect x='29' y='6' width='21' height='21' rx='4' fill='#cffafe'/><text x='39.5' y='21' font-size='11' font-family='system-ui' font-weight='700' fill='#06b6d4' text-anchor='middle'>4</text><rect x='6' y='29' width='21' height='21' rx='4' fill='#d1fae5'/><text x='16.5' y='44' font-size='11' font-family='system-ui' font-weight='700' fill='#10b981' text-anchor='middle'>8</text><rect x='29' y='29' width='21' height='21' rx='4' fill='#fef3c7'/><text x='39.5' y='44' font-size='10' font-family='system-ui' font-weight='700' fill='#f59e0b' text-anchor='middle'>16</text></svg></div>
     <div class="info">
@@ -1536,6 +1698,7 @@ function openGame(type) {
     gdde7cd56_4: '数字迷宫 Number Maze',
     gdde7cd56_5: '数字迷宫 Number Maze',
     gdde7cd56_6: '数字迷宫 Number Maze',
+    gdde7cd56_7: '数字迷宫 Number Maze',
     ge6ac44a1: '数字合成 2048 | 2048 Merge',
     gf2be41e2: 'Color Memory',
     gf2c90829: 'RGB Color Guess',
@@ -1635,6 +1798,7 @@ function openGame(type) {
   else if (type === 'gdde7cd56_4') init_gdde7cd56_4(content);
   else if (type === 'gdde7cd56_5') init_gdde7cd56_5(content);
   else if (type === 'gdde7cd56_6') init_gdde7cd56_6(content);
+  else if (type === 'gdde7cd56_7') init_gdde7cd56_7(content);
   else if (type === 'ge6ac44a1') init_ge6ac44a1(content);
   else if (type === 'gf2be41e2') init_gf2be41e2(content);
   else if (type === 'gf2c90829') init_gf2c90829(content);
@@ -9699,6 +9863,199 @@ document.addEventListener('keydown', (e) => {
 });
 
 initGame();
+}
+// === gdde7cd56_7 ===
+function init_gdde7cd56_7(container) {
+const nmSize = 4;
+let nmGrid = [];
+let nmCurrent = { r: 0, c: 0 };
+let nmTarget = { r: 3, c: 3 };
+let nmScore = 0;
+let nmSteps = 0;
+let nmGameOver = false;
+
+const nmGridEl = container.querySelector('.nm-grid');
+const nmScoreEl = container.querySelector('.nm-score span');
+const nmStepsEl = container.querySelector('.nm-steps span');
+const nmMessageEl = container.querySelector('.nm-message');
+const nmResetBtn = container.querySelector('.nm-reset-btn');
+
+function nmInitGame() {
+  nmScore = 0;
+  nmSteps = 0;
+  nmGameOver = false;
+  nmCurrent = { r: 0, c: 0 };
+  nmTarget = { r: nmSize - 1, c: nmSize - 1 };
+  nmUpdateUI();
+  nmGenerateGrid();
+  nmRenderGrid();
+  nmMessageEl.textContent = '使用方向键或点击移动，收集数字并到达目标';
+  nmMessageEl.className = 'nm-message';
+}
+
+function nmGenerateGrid() {
+  nmGrid = [];
+  for (let r = 0; r < nmSize; r++) {
+    nmGrid[r] = [];
+    for (let c = 0; c < nmSize; c++) {
+      nmGrid[r][c] = { value: 0, blocked: false, visited: false };
+    }
+  }
+  // 随机放置数字1-9，每个数字出现1-2次，总共10-12个数字
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const positions = [];
+  for (let r = 0; r < nmSize; r++) {
+    for (let c = 0; c < nmSize; c++) {
+      positions.push({ r, c });
+    }
+  }
+  // 打乱位置
+  for (let i = positions.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [positions[i], positions[j]] = [positions[j], positions[i]];
+  }
+  // 选择10-12个位置放置数字
+  const numCount = Math.floor(Math.random() * 3) + 10; // 10-12
+  for (let i = 0; i < numCount && i < positions.length; i++) {
+    const pos = positions[i];
+    const num = numbers[Math.floor(Math.random() * numbers.length)];
+    nmGrid[pos.r][pos.c].value = num;
+  }
+  // 确保起点和终点有数字
+  nmGrid[0][0].value = 1;
+  nmGrid[nmSize - 1][nmSize - 1].value = 9;
+  // 随机放置障碍
+  const blockedCount = 2 + Math.floor(Math.random() * 2); // 2-3个障碍
+  let placed = 0;
+  while (placed < blockedCount) {
+    const r = Math.floor(Math.random() * nmSize);
+    const c = Math.floor(Math.random() * nmSize);
+    if ((r === 0 && c === 0) || (r === nmSize - 1 && c === nmSize - 1)) continue;
+    if (!nmGrid[r][c].blocked && nmGrid[r][c].value === 0) {
+      nmGrid[r][c].blocked = true;
+      placed++;
+    }
+  }
+  // 标记起点为已访问
+  nmGrid[0][0].visited = true;
+}
+
+function nmRenderGrid() {
+  nmGridEl.innerHTML = '';
+  for (let r = 0; r < nmSize; r++) {
+    for (let c = 0; c < nmSize; c++) {
+      const cell = document.createElement('div');
+      cell.className = 'nm-cell';
+      if (nmGrid[r][c].blocked) {
+        cell.classList.add('nm-blocked');
+      } else {
+        cell.textContent = nmGrid[r][c].value;
+        if (nmGrid[r][c].visited) {
+          cell.classList.add('nm-visited');
+        }
+        if (r === nmCurrent.r && c === nmCurrent.c) {
+          cell.classList.add('nm-current');
+        }
+        if (r === nmTarget.r && c === nmTarget.c) {
+          cell.classList.add('nm-target');
+        }
+      }
+      cell.dataset.r = r;
+      cell.dataset.c = c;
+      cell.addEventListener('click', () => nmHandleClick(r, c));
+      nmGridEl.appendChild(cell);
+    }
+  }
+}
+
+function nmHandleClick(r, c) {
+  if (nmGameOver) return;
+  // 检查是否相邻
+  const dr = Math.abs(r - nmCurrent.r);
+  const dc = Math.abs(c - nmCurrent.c);
+  if ((dr === 1 && dc === 0) || (dr === 0 && dc === 1)) {
+    nmMoveTo(r, c);
+  }
+}
+
+function nmMoveTo(r, c) {
+  if (nmGameOver) return;
+  if (nmGrid[r][c].blocked) return;
+  if (nmGrid[r][c].visited) return;
+  nmCurrent = { r, c };
+  nmGrid[r][c].visited = true;
+  nmSteps++;
+  nmScore += nmGrid[r][c].value;
+  nmUpdateUI();
+  nmRenderGrid();
+  // 检查胜利
+  if (r === nmTarget.r && c === nmTarget.c) {
+    nmGameOver = true;
+    nmMessageEl.textContent = '🎉 你赢了！最终得分: ' + nmScore;
+    nmMessageEl.className = 'nm-message nm-win';
+  } else {
+    // 检查是否无路可走
+    const dirs = [[0, 1], [0, -1], [1, 0], [-1, 0]];
+    let hasMove = false;
+    for (const [dr, dc] of dirs) {
+      const nr = r + dr, nc = c + dc;
+      if (nr >= 0 && nr < nmSize && nc >= 0 && nc < nmSize) {
+        if (!nmGrid[nr][nc].blocked && !nmGrid[nr][nc].visited) {
+          hasMove = true;
+          break;
+        }
+      }
+    }
+    if (!hasMove) {
+      nmGameOver = true;
+      nmMessageEl.textContent = '💀 无路可走！得分: ' + nmScore;
+      nmMessageEl.className = 'nm-message nm-lose';
+    } else {
+      nmMessageEl.textContent = '继续前进...';
+      nmMessageEl.className = 'nm-message';
+    }
+  }
+}
+
+function nmUpdateUI() {
+  nmScoreEl.textContent = nmScore;
+  nmStepsEl.textContent = nmSteps;
+}
+
+function nmHandleKey(e) {
+  if (nmGameOver) return;
+  const key = e.key;
+  let dr = 0, dc = 0;
+  if (key === 'ArrowUp') dr = -1;
+  else if (key === 'ArrowDown') dr = 1;
+  else if (key === 'ArrowLeft') dc = -1;
+  else if (key === 'ArrowRight') dc = 1;
+  else return;
+  e.preventDefault();
+  const nr = nmCurrent.r + dr;
+  const nc = nmCurrent.c + dc;
+  if (nr >= 0 && nr < nmSize && nc >= 0 && nc < nmSize) {
+    if (!nmGrid[nr][nc].blocked && !nmGrid[nr][nc].visited) {
+      nmMoveTo(nr, nc);
+    }
+  }
+}
+
+// 绑定键盘事件
+container.addEventListener('keydown', nmHandleKey);
+// 确保容器可以聚焦以接收键盘事件
+container.setAttribute('tabindex', '0');
+container.style.outline = 'none';
+container.focus();
+
+// 重置按钮事件
+nmResetBtn.addEventListener('click', () => {
+  nmInitGame();
+  container.focus();
+});
+
+// 初始化游戏
+nmInitGame();
 }
 // === ge6ac44a1 ===
 function init_ge6ac44a1(container) {
