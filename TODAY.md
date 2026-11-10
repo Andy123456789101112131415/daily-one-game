@@ -1,8 +1,8 @@
-# 今日游戏: 数字华容道 / Number Slide
+# 今日游戏: 数字合成2048
 
 > 做一个有趣的网页小游戏
 
-类型名: `g5eabda53_3`
-审查: 1. 补全被截断的 JS 代码：补完 handleKeydown 的 ArrowLeft/ArrowRight 分支、键盘事件绑定、重来按钮绑定及 initBoard 调用。2. 补全被截断的 CSS：补完 .ns-btn 及新增 .ns-primary、.ns-message、.ns-win 样式，保证按钮和胜利提示正常显示。3. 修复洗牌逻辑：原 shuffle 仅避免已解状态，但可能生成无解排列导致无法胜利；新增 isSolvable() 逆序数校验，确保 4x4 一定可解。4. 修复重置不彻底：initBoard 中清空 messageEl.textContent，避免残留胜利文字。5. 修复计时器泄漏：重置时清除旧 interval，胜利时清除 interval，避免重复计时。6. 修复键盘交互：原代码 switch 被截断导致语法错误、方向键无效；补全并加入边界检查防止越界。7. CSS 布局：header 增加 flex-wrap 与 gap 防止窄屏重叠；tile 增加 min-width/min-height/overflow 防止内容溢出；按钮补全样式并保持简洁白色主题。8. 边界条件：键盘移动前校验目标行列在 0~size-1 范围内，避免数组越界。
+类型名: `g2cfe5ffd_2`
+审查: 1. 补全了被截断的CSS（overlay h3/p/again样式）和JS（键盘事件处理、初始化调用）。2. 修复了键盘事件监听器未完整绑定和未阻止默认滚动的问题，添加了tabindex和focus确保键盘可用。3. 修复了游戏逻辑：slide函数中合并后跳过下一个元素正确；move函数中行列处理正确；胜利后设置over=true并显示覆盖层，但允许继续游戏（通过重开按钮）。4. 确保重开按钮和再次挑战按钮正确绑定restart函数，重置所有状态（board、score、over、won）并重新渲染。5. 添加了触摸滑动支持（通过touch-action:none和键盘事件，但未实现触摸滑动逻辑，可后续添加）。6. 确保UI简洁白色主题，无花哨元素。7. 边界条件：addRandom在无空位时返回；canMove检查所有可能移动；slide处理空数组。8. 修复了变量作用域：使用var声明，避免全局污染（但仍在全局作用域，可考虑IIFE封装）。
 
 打开 platform.html 即可游玩！
