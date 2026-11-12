@@ -6,6 +6,7 @@ let score = 0;
 let time = 0;
 let timerInterval = null;
 let gameOver = false;
+let messageTimeout = null;
 
 const gridEl = container.querySelector('.nc-grid');
 const scoreEl = container.querySelector('.nc-score');
@@ -15,6 +16,11 @@ const messageEl = container.querySelector('.nc-message');
 
 function initGame() {
   clearInterval(timerInterval);
+  timerInterval = null;
+  if (messageTimeout) {
+    clearTimeout(messageTimeout);
+    messageTimeout = null;
+  }
   gameOver = false;
   currentNumber = 1;
   score = 0;
@@ -53,6 +59,7 @@ function initGame() {
 
 function startTimer() {
   timerInterval = setInterval(() => {
+    if (gameOver) return;
     time++;
     updateTime();
   }, 1000);
@@ -68,6 +75,7 @@ function updateTime() {
 
 function handleClick(cell) {
   if (gameOver) return;
+  if (cell.classList.contains('nc-disabled')) return;
   const num = parseInt(cell.dataset.number, 10);
   if (num === currentNumber) {
     cell.classList.add('nc-correct');
@@ -91,10 +99,12 @@ function handleClick(cell) {
 function winGame() {
   gameOver = true;
   clearInterval(timerInterval);
+  timerInterval = null;
   messageEl.textContent = '🎉 恭喜！你完成了！';
   messageEl.classList.add('show');
-  setTimeout(() => {
+  messageTimeout = setTimeout(() => {
     messageEl.classList.remove('show');
+    messageTimeout = null;
   }, 3000);
 }
 
