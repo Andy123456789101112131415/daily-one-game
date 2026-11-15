@@ -1,8 +1,8 @@
-# 今日游戏: 数字华容道 Number Slide
+# 今日游戏: 数字合并 2048 Merge
 
 > 做一个有趣的网页小游戏
 
-类型名: `gd07d6fd5_8`
-审查: 1) 修复CSS被截断：补全.ns-win-overlay.ns-show显示态、.ns-win-text/.ns-win-sub样式、.ns-confetti动画与@keyframes，并加响应式媒体查询。2) 修复JS被截断：补全createConfetti（设置颜色/延迟、动画结束后移除节点，避免内存泄漏）。3) 修复初始化死循环风险：原initBoard在生成不可解排列时会无限递归/循环，改为do-while校验可解性(isSolvable)且非已完成状态。4) 修复计时器从未启动的问题：新增startTimer，并在resetGame中调用；winGame中清理timer并置null。5) 修复重置不彻底：resetGame统一重置isWon/moves/seconds、UI文本、隐藏胜利层、清除残留彩带、重新初始化并渲染。6) 修复胜利层无法显示：CSS补充.ns-show类。7) 事件绑定：resetBtn与playAgainBtn均绑定resetGame，避免重复绑定（每次renderBoard重建tile，旧节点被替换，无泄漏）。8) 保持简洁白色主题，无花哨元素。
+类型名: `g7836f25a_7`
+审查: 1. 补全被截断的CSS（#mrg-over button 样式及悬停态），避免样式断裂。2. 补全被截断的JS move() 合并逻辑：原代码在 `if(target.v===t.v&&!target.merged&&!t.merged)` 处中断，导致语法错误、游戏无法运行；现已实现完整合并、分数累加、tiles 数组同步、移动判定。3. 修复合并后 tile 位置/数组不同步问题：合并时从 tiles 移除两个旧块并加入新块，避免重复渲染与幽灵方块。4. 修复移动后未更新 grid 引用导致的位置错乱：仅在 `grid[rr][cc]===t` 时执行位移，防止已合并块被二次移动。5. 增加 canMove() 判断游戏结束，修复原代码无法失败的问题；结束弹层显示最终得分。6. render() 增加 boardW<=0 的兜底（初始隐藏或未布局时除零/负宽度导致 cell 为 NaN）。7. 增加 window resize 重新渲染，修复响应式下格子尺寸不更新导致的溢出/错位。8. 键盘监听支持方向键与 WASD，并 preventDefault 防止页面滚动；触摸滑动阈值 20px，避免误触。9. 重来按钮与结束弹层按钮均绑定 init，重置彻底（grid、tiles、score、over、弹层状态全部清空）。10. 保持简洁白色主题，无花哨元素。
 
 打开 platform.html 即可游玩！
