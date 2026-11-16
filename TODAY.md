@@ -1,8 +1,8 @@
-# 今日游戏: 数字合并 2048 Merge
+# 今日游戏: 数字华容道 Puzzle Slide
 
 > 做一个有趣的网页小游戏
 
-类型名: `g7836f25a_7`
-审查: 1. 补全被截断的CSS（#mrg-over button 样式及悬停态），避免样式断裂。2. 补全被截断的JS move() 合并逻辑：原代码在 `if(target.v===t.v&&!target.merged&&!t.merged)` 处中断，导致语法错误、游戏无法运行；现已实现完整合并、分数累加、tiles 数组同步、移动判定。3. 修复合并后 tile 位置/数组不同步问题：合并时从 tiles 移除两个旧块并加入新块，避免重复渲染与幽灵方块。4. 修复移动后未更新 grid 引用导致的位置错乱：仅在 `grid[rr][cc]===t` 时执行位移，防止已合并块被二次移动。5. 增加 canMove() 判断游戏结束，修复原代码无法失败的问题；结束弹层显示最终得分。6. render() 增加 boardW<=0 的兜底（初始隐藏或未布局时除零/负宽度导致 cell 为 NaN）。7. 增加 window resize 重新渲染，修复响应式下格子尺寸不更新导致的溢出/错位。8. 键盘监听支持方向键与 WASD，并 preventDefault 防止页面滚动；触摸滑动阈值 20px，避免误触。9. 重来按钮与结束弹层按钮均绑定 init，重置彻底（grid、tiles、score、over、弹层状态全部清空）。10. 保持简洁白色主题，无花哨元素。
+类型名: `g94662b58`
+审查: 1. 补全被截断的 CSS（.pz-btn-primary 悬停、.pz-win 遮罩/内容/按钮样式），并将背景改为白色主题；为 .pz-tile 增加 min-width/min-height 防止网格溢出。2. 补全被截断的 JS 键盘事件处理：原代码在 `else if(e.key` 处截断，导致语法错误、整个脚本无法执行。补全方向键映射（上→空格下移、下→空格上移、左→空格右移、右→空格左移），并加入边界检查与 preventDefault。3. 修复 shuffle 中 valid 为空时的潜在问题（加 break 保护），避免 Math.random 取到 undefined 导致崩溃。4. showWin 与 play-again 按钮增加 null 检查，避免 DOM 引用为空时报错。5. 初始化末尾补上 initBoard/shuffle/render 调用，确保游戏启动即渲染。6. 重置逻辑保留并确保清除胜利遮罩、步数归零、重新洗牌，重来按钮与再来一局按钮均正确绑定。
 
 打开 platform.html 即可游玩！
