@@ -1,8 +1,14 @@
-# 今日游戏: 数字华容道 Puzzle Slide
+# 今日游戏: 数字拼图 2048
 
 > 做一个有趣的网页小游戏
 
-类型名: `g94662b58`
-审查: 1. 补全被截断的 CSS（.pz-btn-primary 悬停、.pz-win 遮罩/内容/按钮样式），并将背景改为白色主题；为 .pz-tile 增加 min-width/min-height 防止网格溢出。2. 补全被截断的 JS 键盘事件处理：原代码在 `else if(e.key` 处截断，导致语法错误、整个脚本无法执行。补全方向键映射（上→空格下移、下→空格上移、左→空格右移、右→空格左移），并加入边界检查与 preventDefault。3. 修复 shuffle 中 valid 为空时的潜在问题（加 break 保护），避免 Math.random 取到 undefined 导致崩溃。4. showWin 与 play-again 按钮增加 null 检查，避免 DOM 引用为空时报错。5. 初始化末尾补上 initBoard/shuffle/render 调用，确保游戏启动即渲染。6. 重置逻辑保留并确保清除胜利遮罩、步数归零、重新洗牌，重来按钮与再来一局按钮均正确绑定。
+类型名: `gbfdcd24a_4`
+审查: 1. 修复了键盘事件监听器不完整的问题：原代码中 handleKey 函数未定义完整，现在补全了方向键和 WASD 的映射，并添加了 preventDefault 防止页面滚动。
+2. 添加了重新开始按钮的事件绑定：原代码缺少 restartBtn 的点击事件，现在绑定到 init 函数。
+3. 补全了 CSS 中缺失的 .pg-t2048 样式和 .pg-big 字体大小调整，确保 2048 方块显示正常。
+4. 添加了 .pg-overlay、.pg-msg、.pg-sub、.pg-btn 等覆盖层和按钮的样式，使游戏结束/胜利界面正常显示。
+5. 修复了胜利后继续游戏按钮的显示逻辑：在 showOverlay 中正确显示继续按钮，并绑定点击事件设置 keepGoing 为 true 并隐藏覆盖层。
+6. 确保游戏初始化时调用 init()，并正确重置所有状态。
+7. 其他小修复：确保所有变量定义完整，事件监听器正确绑定，无内存泄漏。
 
 打开 platform.html 即可游玩！
