@@ -1,12 +1,13 @@
 function init_gd07d6fd5_9(container) {
 function initGame(container) {
-  let size = 4;
+  const size = 4;
   let board = [];
   let emptyPos = { r: 0, c: 0 };
   let moves = 0;
   let timerInterval = null;
   let seconds = 0;
   let gameWon = false;
+  let started = false;
 
   const gameDiv = document.createElement('div');
   gameDiv.className = 'ns-game';
@@ -46,7 +47,7 @@ function initGame(container) {
   }
 
   function startTimer() {
-    if (timerInterval) clearInterval(timerInterval);
+    stopTimer();
     seconds = 0;
     timerSpan.textContent = formatTime(seconds);
     timerInterval = setInterval(() => {
@@ -62,22 +63,35 @@ function initGame(container) {
     }
   }
 
+  function isSolvable(arr) {
+    let inversions = 0;
+    const flat = arr.filter(v => v !== 0);
+    for (let i = 0; i < flat.length; i++) {
+      for (let j = i + 1; j < flat.length; j++) {
+        if (flat[i] > flat[j]) inversions++;
+      }
+    }
+    const emptyRowFromBottom = size - Math.floor(arr.indexOf(0) / size);
+    if (size % 2 === 1) {
+      return inversions % 2 === 0;
+    }
+    return (inversions + emptyRowFromBottom) % 2 === 1;
+  }
+
   function shuffleBoard() {
     const total = size * size;
-    board = [];
-    for (let i = 0; i < total - 1; i++) {
-      board.push(i + 1);
-    }
-    board.push(0);
-    for (let i = board.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [board[i], board[j]] = [board[j], board[i]];
-    }
-    emptyPos.r = Math.floor((total - 1) / size);
-    emptyPos.c = (total - 1) % size;
-    if (isSolved()) {
-      shuffleBoard();
-    }
+    do {
+      board = [];
+      for (let i = 0; i < total - 1; i++) board.push(i + 1);
+      board.push(0);
+      for (let i = board.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [board[i], board[j]] = [board[j], board[i]];
+      }
+    } while (isSolved() || !isSolvable(board));
+    const idx = board.indexOf(0);
+    emptyPos.r = Math.floor(idx / size);
+    emptyPos.c = idx % size;
   }
 
   function isSolved() {
@@ -97,69 +111,78 @@ function initGame(container) {
         cell.classList.add('ns-empty');
         cell.textContent = '';
       } else {
-        cell.textContent = val;
-        const r = Math.floor(i / size);
-        const c = i % size;
-        cell.dataset.r = r;
-        cell.dataset.c = c;
-        cell.addEventListener('click', () => tryMove(r, c));
+        cell.textContent = String(val);
+        cell.dataset.index = String(i);
+        cell.addEventListener('click', () => handleCellClick(i));
       }
       boardDiv.appendChild(cell);
     }
   }
 
-  function tryMove(r, c) {
+  function handleCellClick(index) {
     if (gameWon) return;
+    const r = Math.floor(index / size);
+    const c = index % size;
     const dr = Math.abs(r - emptyPos.r);
     const dc = Math.abs(c - emptyPos.c);
-    if ((dr === 1 && dc === 0) || (dr === 0 && dc === 1)) {
-      const emptyIndex = emptyPos.r * size + emptyPos.c;
-      const tileIndex = r * size + c;
-      board[emptyIndex] = board[tileIndex];
-      board[tileIndex] = 0;
-      emptyPos.r = r;
-      emptyPos.c = c;
-      moves++;
-      movesSpan.textContent = moves;
-      renderBoard();
-      if (isSolved()) {
-        gameWon = true;
-        stopTimer();
-        winOverlay.classList.add('ns-show');
-      }
+    if (dr + dc !== 1) return;
+    if (!started) {
+      started = true;
+      startTimer();
     }
-  }
-
-  function handleKey(e) {
-    if (gameWon) return;
-    let dr = 0, dc = 0;
-    if (e.key === 'ArrowUp') dr = 1;
-    else if (e.key === 'ArrowDown') dr = -1;
-    else if (e.key === 'ArrowLeft') dc = 1;
-    else if (e.key === 'ArrowRight') dc = -1;
-    else return;
-    e.preventDefault();
-    const nr = emptyPos.r + dr;
-    const nc = emptyPos.c + dc;
-    if (nr >= 0 && nr < size && nc >= 0 && nc < size) {
-      tryMove(nr, nc);
+    board[emptyPos.r * size + emptyPos.c] = board[index];
+    board[index] = 0;
+    emptyPos.r = r;
+    emptyPos.c = c;
+    moves++;
+    movesSpan.textContent = String(moves);
+    renderBoard();
+    if (isSolved()) {
+      gameWon = true;
+      stopTimer();
+      winOverlay.classList.add('ns-show');
     }
   }
 
   function resetGame() {
+    stopTimer();
     gameWon = false;
+    started = false;
     moves = 0;
+    seconds = 0;
     movesSpan.textContent = '0';
+    timerSpan.textContent = formatTime(0);
     winOverlay.classList.remove('ns-show');
     shuffleBoard();
     renderBoard();
-    stopTimer();
-    startTimer();
+  }
+
+  function handleKey(e) {
+    if (gameWon) return;
+    const key = e.key;
+    let target = null;
+    if (key === 'ArrowUp') target = { r: emptyPos.r + 1, c: emptyPos.c };
+    else if (key === 'ArrowDown') target = { r: emptyPos.r - 1, c: emptyPos.c };
+    else if (key === 'ArrowLeft') target = { r: emptyPos.r, c: emptyPos.c + 1 };
+    else if (key === 'ArrowRight') target = { r: emptyPos.r, c: emptyPos.c - 1 };
+    else return;
+    if (target.r < 0 || target.r >= size || target.c < 0 || target.c >= size) return;
+    e.preventDefault();
+    handleCellClick(target.r * size + target.c);
   }
 
   restartBtn.addEventListener('click', resetGame);
   playAgainBtn.addEventListener('click', resetGame);
   document.addEventListener('keydown', handleKey);
+
+  const observer = new MutationObserver(() => {
+    if (!document.body.contains(gameDiv)) {
+      stopTimer();
+      document.removeEventListener('keydown', handleKey);
+      observer.disconnect();
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
 
   resetGame();
 }
