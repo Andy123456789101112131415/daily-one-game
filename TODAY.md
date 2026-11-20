@@ -1,8 +1,8 @@
-# 今日游戏: 数字华容道 Number Slide
+# 今日游戏: 数字合成 2048
 
 > 做一个有趣的网页小游戏
 
-类型名: `gd07d6fd5_9`
-审查: 1. 修复 shuffleBoard 可能生成无解局面：新增 isSolvable 逆序数校验，循环直到生成可解且非已完成的盘面。2. 修复 emptyPos 计算错误：原代码假设空格在最后位置，现改为按 board.indexOf(0) 计算。3. 补全被截断的 renderBoard/handleCellClick 等逻辑，点击相邻格交换并更新步数。4. 计时器改为首次移动后启动，重置时彻底清零并停止。5. 胜利判定后停止计时并显示遮罩，重来/再来一局均调用 resetGame 完整重置。6. 新增键盘方向键支持（方向表示空格移动方向），并做边界检查防止越界。7. 使用 MutationObserver 在组件被移除时清理定时器与键盘监听，避免内存泄漏。8. CSS 补全被截断的 .ns-win-content 样式，给 .ns-board 和 .ns-cell 加 box-sizing 防止溢出，保持简洁白色主题。
+类型名: `gc14ed3c8_5`
+审查: 1. 修复变量未定义：原代码直接使用未声明的 container，改为 document.querySelector('.g2048-wrap')，并对所有 DOM 查询做空值保护。2. 修复键盘事件被截断：原代码 ArrowUp 分支不完整、缺少 ArrowDown，补全四个方向并统一 preventDefault。3. 修复胜利逻辑：原代码每次移动后只要 score>=2048 就弹窗，且用分数而非棋盘值判断；改为检测棋盘是否出现 2048 方块，并用 won 标志防止重复触发。4. 修复 slide 数组越界：原代码 arr[i+1] 在末尾会取到 undefined，增加 i+1<arr.length 判断。5. 修复重来按钮：原代码只绑定了一个 .g2048-restart，且结束弹窗内没有重来按钮；新增弹窗内重来按钮并分别绑定，init 中重置 over/won 并隐藏弹窗，重置彻底。6. 修复 best 分数不持久：best 在 render 中更新，但 init 未重置 best（保留最高分），逻辑正确；补充 bestEl 空值保护。7. 补充触摸滑动支持，避免移动端无法操作。8. CSS 补全被截断的样式：增加 64/128/256/512/1024/2048 配色、pop 动画、结束遮罩层样式，单元格加 overflow:hidden 与 word-break 防止数字溢出，保持简洁白色主题。9. 所有事件监听器只绑定一次，无重复绑定或内存泄漏。
 
 打开 platform.html 即可游玩！
