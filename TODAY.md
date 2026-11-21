@@ -1,8 +1,8 @@
-# 今日游戏: 数字合成 2048
+# 今日游戏: 数字排序 Number Sort
 
 > 做一个有趣的网页小游戏
 
-类型名: `gc14ed3c8_5`
-审查: 1. 修复变量未定义：原代码直接使用未声明的 container，改为 document.querySelector('.g2048-wrap')，并对所有 DOM 查询做空值保护。2. 修复键盘事件被截断：原代码 ArrowUp 分支不完整、缺少 ArrowDown，补全四个方向并统一 preventDefault。3. 修复胜利逻辑：原代码每次移动后只要 score>=2048 就弹窗，且用分数而非棋盘值判断；改为检测棋盘是否出现 2048 方块，并用 won 标志防止重复触发。4. 修复 slide 数组越界：原代码 arr[i+1] 在末尾会取到 undefined，增加 i+1<arr.length 判断。5. 修复重来按钮：原代码只绑定了一个 .g2048-restart，且结束弹窗内没有重来按钮；新增弹窗内重来按钮并分别绑定，init 中重置 over/won 并隐藏弹窗，重置彻底。6. 修复 best 分数不持久：best 在 render 中更新，但 init 未重置 best（保留最高分），逻辑正确；补充 bestEl 空值保护。7. 补充触摸滑动支持，避免移动端无法操作。8. CSS 补全被截断的样式：增加 64/128/256/512/1024/2048 配色、pop 动画、结束遮罩层样式，单元格加 overflow:hidden 与 word-break 防止数字溢出，保持简洁白色主题。9. 所有事件监听器只绑定一次，无重复绑定或内存泄漏。
+类型名: `gbf3f9a57`
+审查: 1. 修复变量未定义：原代码直接使用 container.querySelector 但 container 未定义，改为在 IIFE 中先获取 .ns-container 并做空值保护。2. 修复 localStorage 存储类型：nsUpdateBest 中 setItem 传入 number，统一转为 String，避免隐式转换问题。3. 修复计时器泄漏：nsStopTimer 增加 nsTimerId !== null 判断，防止重复 clearInterval；nsReset 中先 stop 再 start，避免多个 interval 叠加。4. 修复 parseInt 缺少基数：parseInt(cell.dataset.index) 改为 parseInt(...,10)。5. 修复 dataset 赋值类型：cell.dataset.index = i 改为 String(i)。6. 修复胜利逻辑：nsCurrent 递增后判断 > nsTotal 正确触发 nsWin，逻辑保留并确认无死循环。7. 修复重置不彻底：nsReset 清空消息、重置计时显示、停止旧计时器、重建棋盘并重新计时，确保状态完全重置。8. CSS 修复：.ns-cell.ns-correct 增加 cursor:default 表示已点击不可再点；.ns-stats 增加 flex-wrap 防止窄屏溢出；响应式 4 列布局保留。9. 保持简洁白色主题，无花哨元素，重来按钮沿用 .ns-btn 可随时重置。10. 事件监听器在重建棋盘时旧节点被 innerHTML 清空，随节点回收，无内存泄漏；正确点击后移除监听避免重复触发。
 
 打开 platform.html 即可游玩！
