@@ -17,7 +17,7 @@ function initGame(container) {
 
   const info = document.createElement('div');
   info.className = 'ns-info';
-  info.innerHTML = '<div>步数: <span id="ns-moves">0</span></div><div>时间: <span id="ns-time">00:00</span></div>';
+  info.innerHTML = '<div>步数: <span class="ns-moves">0</span></div><div>时间: <span class="ns-time">00:00</span></div>';
 
   const restartBtn = document.createElement('button');
   restartBtn.className = 'ns-btn';
@@ -38,8 +38,8 @@ function initGame(container) {
   gameDiv.appendChild(message);
   container.appendChild(gameDiv);
 
-  const movesSpan = info.querySelector('#ns-moves');
-  const timeSpan = info.querySelector('#ns-time');
+  const movesSpan = info.querySelector('.ns-moves');
+  const timeSpan = info.querySelector('.ns-time');
 
   function formatTime(ms) {
     const totalSec = Math.floor(ms / 1000);
@@ -67,19 +67,6 @@ function initGame(container) {
     }
   }
 
-  function shuffle() {
-    tiles = Array.from({ length: total }, (_, i) => i + 1);
-    tiles[emptyIndex] = 0;
-    for (let i = 0; i < 1000; i++) {
-      const neighbors = getNeighbors(emptyIndex);
-      const rand = neighbors[Math.floor(Math.random() * neighbors.length)];
-      swap(emptyIndex, rand);
-    }
-    if (isSolved()) {
-      shuffle();
-    }
-  }
-
   function getNeighbors(index) {
     const row = Math.floor(index / size);
     const col = index % size;
@@ -104,13 +91,28 @@ function initGame(container) {
     return tiles[total - 1] === 0;
   }
 
+  function shuffle() {
+    tiles = Array.from({ length: total }, (_, i) => i + 1);
+    tiles[total - 1] = 0;
+    emptyIndex = total - 1;
+    for (let i = 0; i < 1000; i++) {
+      const neighbors = getNeighbors(emptyIndex);
+      if (!neighbors.length) break;
+      const rand = neighbors[Math.floor(Math.random() * neighbors.length)];
+      swap(emptyIndex, rand);
+    }
+    if (isSolved()) {
+      shuffle();
+    }
+  }
+
   function render() {
     board.innerHTML = '';
     tiles.forEach((value, index) => {
       const tile = document.createElement('div');
       tile.className = 'ns-tile' + (value === 0 ? ' ns-empty' : '');
-      tile.textContent = value === 0 ? '' : value;
-      tile.dataset.index = index;
+      tile.textContent = value === 0 ? '' : String(value);
+      tile.dataset.index = String(index);
       if (value !== 0) {
         tile.addEventListener('click', () => handleTileClick(index));
       }
@@ -120,65 +122,34 @@ function initGame(container) {
 
   function handleTileClick(index) {
     if (gameWon) return;
-    if (getNeighbors(emptyIndex).includes(index)) {
-      swap(emptyIndex, index);
-      moves++;
-      movesSpan.textContent = moves;
-      render();
-      if (isSolved()) {
-        win();
-      }
+    if (!getNeighbors(emptyIndex).includes(index)) return;
+    if (!startTime) startTimer();
+    swap(emptyIndex, index);
+    moves++;
+    movesSpan.textContent = String(moves);
+    render();
+    if (isSolved()) {
+      gameWon = true;
+      stopTimer();
+      message.textContent = `🎉 完成！用了 ${moves} 步，${formatTime(Date.now() - startTime)}`;
+      message.className = 'ns-message ns-win';
     }
   }
 
-  function win() {
-    gameWon = true;
-    stopTimer();
-    message.textContent = '🎉 恭喜完成！';
-    message.className = 'ns-message ns-win';
-    setTimeout(() => {
-      message.textContent = '';
-      message.className = 'ns-message';
-    }, 3000);
-  }
-
   function reset() {
-    gameWon = false;
-    moves = 0;
-    movesSpan.textContent = '0';
     stopTimer();
+    startTime = null;
+    moves = 0;
+    gameWon = false;
+    movesSpan.textContent = '0';
     timeSpan.textContent = '00:00';
     message.textContent = '';
     message.className = 'ns-message';
     shuffle();
     render();
-    startTimer();
   }
 
   restartBtn.addEventListener('click', reset);
-
-  container.addEventListener('keydown', (e) => {
-    if (gameWon) return;
-    const key = e.key;
-    let targetIndex = -1;
-    const row = Math.floor(emptyIndex / size);
-    const col = emptyIndex % size;
-    if (key === 'ArrowUp' && row < size - 1) targetIndex = emptyIndex + size;
-    else if (key === 'ArrowDown' && row > 0) targetIndex = emptyIndex - size;
-    else if (key === 'ArrowLeft' && col < size - 1) targetIndex = emptyIndex + 1;
-    else if (key === 'ArrowRight' && col > 0) targetIndex = emptyIndex - 1;
-    if (targetIndex !== -1) {
-      e.preventDefault();
-      swap(emptyIndex, targetIndex);
-      moves++;
-      movesSpan.textContent = moves;
-      render();
-      if (isSolved()) win();
-    }
-  });
-
-  container.tabIndex = 0;
-  container.style.outline = 'none';
 
   reset();
 }
