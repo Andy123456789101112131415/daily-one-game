@@ -1,8 +1,8 @@
-# 今日游戏: 数字华容道 Number Slide
+# 今日游戏: 数字连线连线 Number Connect
 
 > 做一个有趣的网页小游戏
 
-类型名: `gd07d6fd5_10`
-审查: 1. 修复原JS代码被截断导致的语法错误（render函数未闭合、缺少handleTileClick/reset/事件绑定/初始化调用）。2. 修复shuffle中emptyIndex未重置的问题：初始化tiles后显式设置emptyIndex=total-1，避免递归shuffle时emptyIndex状态错误。3. 修复shuffle死循环风险：增加neighbors为空时的break保护，并保留isSolved递归重排。4. 修复swap逻辑：原代码在交换后分别判断tiles[i]/tiles[j]为0，逻辑正确但需确保emptyIndex准确，保留并配合shuffle重置。5. 修复info中id选择器改为class选择器，避免多实例冲突。6. 事件绑定：为每个非空tile绑定click，调用handleTileClick，检查相邻性；gameWon后禁止操作。7. 计时器：首次有效移动才启动，胜利时停止；reset时彻底清理interval、startTime、moves、gameWon、message、时间显示。8. 胜利判定与消息显示：isSolved后设置gameWon、停止计时、显示步数与用时，添加ns-win样式。9. CSS：为.ns-tile增加min-width/min-height/overflow防止网格溢出；.ns-empty增加pointer-events:none避免点击空块；保持白色简洁主题。10. 重来按钮已存在并绑定reset，重置彻底。
+类型名: `ga523daca`
+审查: 1. CSS被截断（.nc-btn:active 后缺失），补全并移除未使用的 .nc-path/.nc-start/.nc-next/.nc-hint 类；补充 .nc-message 样式、nc-shake 关键帧、nc-primary 按钮样式及移动端媒体查询。2. JS 中 winGame 先读取 score 再更新导致显示分数不含奖励，改为先累加 bonus 再显示。3. startTimer 未先清除旧定时器，重置时可能产生多个计时器，已加 clearInterval。4. timeLeft 可能变为负数，增加下限 0 保护。5. 多处 querySelector 结果未判空（board、cell、msg、stats），增加 null 检查防止引用错误。6. 重置时 timer 置 null，避免残留句柄。7. 事件监听器随 renderBoard 重建 DOM 自动释放，无泄漏；重来按钮仅绑定一次。8. 保持简洁白色主题，仅保留紫色主色按钮。
 
 打开 platform.html 即可游玩！
