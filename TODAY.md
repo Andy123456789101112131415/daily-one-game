@@ -1,8 +1,8 @@
-# 今日游戏: 数字华容道 Number Slide
+# 今日游戏: 数字拼图2048
 
 > 做一个有趣的网页小游戏
 
-类型名: `gd07d6fd5_11`
-审查: 1) 修复 initBoard 中 emptyPos 未初始化导致 getNeighbors 读取 undefined 的崩溃，并在洗牌后检测已解状态递归重洗；2) isSolved 增加空格位置校验；3) 补全被截断的 setupUI 函数，正确获取 DOM 元素并绑定重来按钮与键盘方向键；4) 键盘事件按方向映射到空格相邻方块，避免无效点击；5) 修复 CSS 中 ns-btn 的 cursor:point 拼写错误为 pointer，补全被截断的样式；6) 添加 ns-shake 动画定义，使无效点击反馈生效；7) 添加 ns-win 遮罩样式与 ns-show 显示类，确保胜利界面可见；8) 网格增加 width:100% 与 box-sizing 防止溢出，header 支持换行，tile 加 min-width/min-height 防止布局断裂；9) 重置时先停止计时器再启动，避免重复 interval 泄漏；10) 保持白色简洁主题，无花哨元素。
+类型名: `g0bed040c`
+审查: 1. 修复 move() 中 down 分支被截断导致的语法错误（board[r][c]=rr[r] 补全）。2. 修复 slide() 的 changed 判断错误：原逻辑用 arr.length 与过滤后长度比较恒为 false，改为逐位比较 row 与 res，确保移动/合并正确触发 addRandom 与渲染。3. move() 增加 addRandom、render、checkState 调用，修复分数不更新、无法生成新块、无法判定胜负的问题。4. 新增 canMove() 与 checkState()，实现胜利（2048）与失败（无空格且无可合并）判定，并显示 #g2048-over 覆盖层。5. render() 增加 gridW 为 0 时的兜底（默认 320），避免除零/NaN 尺寸。6. newBoard() 对 overEl 做空值保护，重置时移除 show 类，重置彻底。7. 绑定键盘（方向键/WASD）、触摸滑动、重来按钮与 resize 重绘；触摸使用 passive 监听避免阻塞。8. CSS 补全被截断的 #g2048-btn 样式及 #g2048-over 覆盖层样式，保持简洁白色主题；#g2048-board 增加 overflow:hidden 防止方块溢出，tile 增加 overflow:hidden 防止数字溢出。9. 移除未使用的 old 变量，避免冗余。
 
 打开 platform.html 即可游玩！
